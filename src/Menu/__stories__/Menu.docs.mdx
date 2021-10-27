@@ -1,0 +1,42 @@
+# Menu
+
+## Свойства
+
+```tsx
+type DefaultItem = {
+  label: string
+  href?: string
+  target?: string
+  active?: boolean
+  onClick?: React.EventHandler<React.MouseEvent>
+  subMenu?: DefaultItem[]
+}
+
+type MenuPropGetItemLabel<ITEM> = (item: ITEM) => string
+type MenuPropGetItemHref<ITEM> = (item: ITEM) => string | undefined
+type MenuPropGetItemTarget<ITEM> = (item: ITEM) => string | undefined
+type MenuPropGetItemActive<ITEM> = (item: ITEM) => boolean | undefined
+type MenuPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined
+type MenuPropGetItemOnClick<ITEM> = (item: ITEM) => React.EventHandler<React.MouseEvent> | undefined
+type MenuPropOnItemClick<ITEM> = (props: { e: React.MouseEvent; item: ITEM }) => void
+
+const defaultGetItemLabel: MenuPropGetItemLabel<DefaultItem> = item => item.label
+const defaultGetItemActive: MenuPropGetItemActive<DefaultItem> = item => item.active
+const defaultGetItemHref: MenuPropGetItemHref<DefaultItem> = item => item.href
+const defaultGetItemOnClick: MenuPropGetItemOnClick<DefaultItem> = item => item.onClick
+const defaultGetItemTarget: MenuPropGetItemTarget<DefaultItem> = item => item.target
+const defaultGetItemSubMenu: MenuPropGetItemSubMenu<DefaultItem> = item => item.subMenu
+```
+
+| Свойство          | Тип                         | По умолчанию            | Описание                                       |
+| ----------------- | --------------------------- | ----------------------- | ---------------------------------------------- |
+| `items`           | `ITEM[]`                    | -                       | Элементы меню                                  |
+| `onItemClick?`    | `MenuPropOnItemClick`       | -                       | Функция клика по элементу                      |
+| `getItemTarget?`  | `MenuPropGetItemTarget`     | `defaultGetItemTarget`  | Функция для определения `target` элемента      |
+| `getItemHref?`    | `MenuPropGetItemTarget`     | `defaultGetItemHref`    | Функция для определения `href` элемента        |
+| `getItemLabel?`   | `MenuPropGetItemLabel`      | `defaultGetItemLabel`   | Функция для определения заголовка элемента     |
+| `getItemActive?`  | `MenuPropGetItemActive`     | `defaultGetItemActive`  | Функция для определения активности элемента    |
+| `getItemOnClick?` | `MenuPropGetItemOnClick`    | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
+| `getItemSubMenu?` | `MenuPropGetItemSubMenu`    | `defaultGetItemSubMenu` | Функция для определения подменю элемента       |
+| `className?`      | `string`                    | -                       | Дополнительный класс                           |
+| `ref?`            | `React.Ref<HTMLDivElement>` | -                       | Ссылка на корневой DOM-элемент                 |

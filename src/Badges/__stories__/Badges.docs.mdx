@@ -1,0 +1,31 @@
+# Badges
+
+## Свойства
+
+```tsx
+type DefaultItem = {
+  label: string
+  status?: BadgePropStatus
+  icon?: IconComponent
+}
+
+type BadgesPropGetItemLabel<ITEM> = (item: ITEM) => string
+type BadgesPropGetItemStatus<ITEM> = (item: ITEM) => BadgePropStatus | undefined
+type BadgesPropGetItemIcon<ITEM> = (item: ITEM) => IconComponent | undefined
+
+const defaultGetItemIcon: BadgesPropGetItemIcon<DefaultItem> = item => item.icon
+const defaultGetItemLabel: BadgesPropGetItemLabel<DefaultItem> = item => item.label
+const defaultGetItemStatus: BadgesPropGetItemStatus<DefaultItem> = item => item.status
+```
+
+| Свойство         | Тип                         | По умолчанию           | Описание                                  |
+| ---------------- | --------------------------- | ---------------------- | ----------------------------------------- |
+| `items`          | `ITEM[]`                    | -                      | Элементы меню                             |
+| `form?`          | `"default", "round"`        | `"default"`            | Форма                                     |
+| `size?`          | `"m", "s", "l"`             | `"m"`                  | Размер                                    |
+| `view?`          | `"filled", "stroked"`       | `"filled"`             | Вид                                       |
+| `getItemLabel?`  | `BadgesPropGetItemLabel`    | `defaultGetItemLabel`  | Функция для определения названия элемента |
+| `getItemStatus?` | `BadgesPropGetItemStatus`   | `defaultGetItemStatus` | Функция для определения статуса элемента  |
+| `getItemIcon?`   | `BadgesPropGetItemIcon`     | `defaultGetItemIcon`   | Функция для определения иконки элемента   |
+| `className?`     | `string`                    | -                      | Дополнительный класс                      |
+| `ref?`           | `React.Ref<HTMLDivElement>` | -                      | Ссылка на корневой DOM-элемент            |

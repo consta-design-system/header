@@ -1,0 +1,9 @@
+.che--VerticalMenuLevel {
+  &-Header {
+    display: flex;
+    align-items: center;
+    flex: none;
+
+    border-bottom: 1px solid var(--color-bg-border);
+  }
+}

@@ -1,0 +1,52 @@
+# TileMenu
+
+## Свойства
+
+```tsx
+type DefaultItem = {
+  title: string
+  image?: string
+  description?: string
+  href?: string
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
+}
+
+type TileMenuPropGetItemImage<ITEM> = (item: ITEM) => string | React.FC | undefined
+
+type TileMenuPropGetItemTitle<ITEM> = (item: ITEM) => string
+
+type TileMenuPropGetItemDescription<ITEM> = (item: ITEM) => string | undefined
+
+type TileMenuPropGetItemHref<ITEM> = (item: ITEM) => string | undefined
+
+type TileMenuPropGetItemOnClick<ITEM> = (
+  item: ITEM
+) => React.MouseEventHandler<HTMLAnchorElement> | undefined
+
+type TileMenuPropOnItemClick<ITEM> = (props: {
+  e: React.MouseEvent<HTMLAnchorElement>
+  item: ITEM
+}) => void
+
+const defaultGetItemImage: TileMenuPropGetItemImage<DefaultItem> = item => item.image
+const defaultGetItemTitle: TileMenuPropGetItemTitle<DefaultItem> = item => item.title
+const defaultGetItemHref: TileMenuPropGetItemHref<DefaultItem> = item => item.href
+const defaultGetItemOnClick: TileMenuPropGetItemOnClick<DefaultItem> = item => item.onClick
+const defaultGetItemDescription: TileMenuPropGetItemDescription<DefaultItem> = item =>
+  item.description
+```
+
+| Свойство              | Тип                              | По умолчанию                | Описание                                          |
+| --------------------- | -------------------------------- | --------------------------- | ------------------------------------------------- |
+| `items`               | `ITEM[]`                         | -                           | Элементы меню                                     |
+| `view?`               | `'lines', 'twoLines', 'cards'`   | `lines`                     | Вид                                               |
+| `onItemClick?`        | `TileMenuPropOnItemClick`        | -                           | Событие клика на элемент списка                   |
+| `isMobile?`           | `boolean`                        | -                           | Мобильный вид                                     |
+| `getItemImage?`       | `TileMenuPropGetItemImage`       | `defaultGetItemImage`       | Функция для определения изображения элемента      |
+| `getItemTitle?`       | `TileMenuPropGetItemTitle`       | `defaultGetItemTitle`       | Функция для определения названия элемента         |
+| `getItemDescription?` | `TileMenuPropGetItemDescription` | `defaultGetItemDescription` | Функция для определения описания элемента         |
+| `getItemHref?`        | `TileMenuPropGetItemDescription` | `defaultGetItemHref`        | Функция для определения ссылки элемента           |
+| `getItemOnClick?`     | `TileMenuPropGetItemOnClick`     | `defaultGetItemOnClick`     | Функция для определения события клика по элементу |
+| `className?`          | `string`                         | -                           | Дополнительный CSS-класс                          |
+| `listClassName?`      | `string`                         | -                           | Дополнительный CSS-класс списка                   |
+| `ref?`                | `React.Ref<HTMLDivElement>`      | -                           | Ссылка на корневой DOM-элемент                    |

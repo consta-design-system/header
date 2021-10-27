@@ -1,0 +1,7 @@
+.che--TileMenuStories {
+  &-List {
+    &_isDesctop {
+      max-height: 70vh;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.che--NotificationCard {
+  display: flex;
+
+  &-Image {
+    flex: none;
+
+    margin-right: var(--space-m);
+  }
+
+  &-Content {
+    position: relative;
+
+    flex: 1;
+  }
+
+  &-Text {
+    margin-bottom: var(--space-m);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-Title {
+    margin-bottom: var(--space-2xs);
+
+    &_cardWithActions {
+      margin-right: calc(var(--control-height-xs) + var(--space-2xs));
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-Footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &-Badges {
+    flex: 1;
+
+    margin-right: var(--space-xs);
+  }
+
+  &-Button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &-Actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

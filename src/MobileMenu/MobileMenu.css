@@ -1,0 +1,14 @@
+.che--MobileMenu {
+  &-Sidebar {
+    overflow: hidden;
+
+    max-width: calc(100% - var(--space-4xl));
+  }
+
+  &-Menu {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    height: 100%;
+  }
+}
