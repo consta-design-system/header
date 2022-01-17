@@ -2,14 +2,14 @@ import React, { useRef, useState, useCallback, useEffect, forwardRef } from 'rea
 import { IconMeatball } from '@consta/uikit/IconMeatball'
 import { Button } from '@consta/uikit/Button'
 
-import { ContextMenu } from '@consta/uikit/ContextMenu'
 import { useForkRef } from '@consta/uikit/useForkRef'
 import { withTooltip } from '@consta/uikit/withTooltip'
-import { CSSTransition } from 'react-transition-group'
+
 import { useMutableRef } from '@consta/uikit/useMutableRef'
-import { cnMixPopoverAnimateForCssTransition } from '@/__private__/mixs/MixPopoverAnimate/MixPopoverAnimate'
+
 import { NotificationsActionsProps, NotificationsActionsComponent } from './types'
 import { withDefaultGetters, menuGetItemLeftSideBar } from './helpers'
+import { AnimatedContextMenu } from '@/__private__/AnimatedContextMenu/AnimatedContextMenu'
 
 const ButtonWithTooltip = withTooltip()(Button)
 
@@ -102,25 +102,19 @@ const NotificationsActionsRender = (
         ref={menuRef}
         onClick={toogleMenu}
       />
-      <CSSTransition
-        in={visibleMenu}
-        classNames={cnMixPopoverAnimateForCssTransition}
-        timeout={200}
-        unmountOnExit
-      >
-        <ContextMenu
-          items={items}
-          getLabel={getItemLabel}
-          getOnClick={getOnItemClick}
-          getKey={getItemLabel}
-          getLeftSideBar={menuGetItemLeftSideBar(getItemIcon)}
-          anchorRef={buttonRef}
-          onClickOutside={closeMenu}
-          possibleDirections={['downStartRight', 'upStartRight']}
-          direction="downStartRight"
-          style={{ width: 280 }}
-        />
-      </CSSTransition>
+      <AnimatedContextMenu
+        isOpen={visibleMenu}
+        items={items}
+        getLabel={getItemLabel}
+        getOnClick={getOnItemClick}
+        getKey={getItemLabel}
+        getLeftSideBar={menuGetItemLeftSideBar(getItemIcon)}
+        anchorRef={buttonRef}
+        onClickOutside={closeMenu}
+        possibleDirections={['downStartRight', 'upStartRight']}
+        direction="downStartRight"
+        style={{ width: 280 }}
+      />
     </>
   )
 }

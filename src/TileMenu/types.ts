@@ -26,12 +26,16 @@ export type TileMenuPropOnItemClick<ITEM> = (props: {
   e: React.MouseEvent<HTMLAnchorElement>
   item: ITEM
 }) => void
+export type TileMenuOnItemClick<ITEM> = (props: {
+  e: React.MouseEvent<HTMLAnchorElement>
+  item: ITEM
+}) => void
 
 type CommonProps<ITEM> = {
   view?: TileMenuPropView
   items: ITEM[]
   isMobile?: boolean
-  onItemClick?: (props: { e: React.MouseEvent<HTMLAnchorElement>; item: ITEM }) => void
+  onItemClick?: TileMenuOnItemClick<ITEM>
   getItemImage?: TileMenuPropGetItemImage<ITEM>
   getItemTitle?: TileMenuPropGetItemTitle<ITEM>
   getItemDescription?: TileMenuPropGetItemDescription<ITEM>

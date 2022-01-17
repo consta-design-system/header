@@ -1,0 +1,10 @@
+.che--AnimatedContextMenu {
+  &_exit {
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition: opacity 0.2s, transform 0.2s;
+    transform: translate(0, var(--space-s));
+  }
+}

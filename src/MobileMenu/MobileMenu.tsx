@@ -50,6 +50,7 @@ const MobileMenuRender = (props: MobileMenuProps, ref: React.Ref<HTMLButtonEleme
         position="left"
         isOpen={visibleMenu}
         onClickOutside={off}
+        size="m"
       >
         <VerticalMenu
           className={cnMobileMenu('Menu')}

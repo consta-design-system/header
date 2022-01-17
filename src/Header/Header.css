@@ -1,0 +1,61 @@
+.che--Header {
+  &-Logo {
+    flex: none;
+  }
+
+  &-Menu {
+    flex: 1;
+  }
+
+  &-RowCenterLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+
+    &_breakpoint {
+      &_m {
+        width: 100%;
+      }
+    }
+  }
+
+  &-RowCenterRight {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    width: 100%;
+    gap: var(--space-l);
+  }
+
+  &-NotificationsList {
+    &_breakpoint {
+      &_m {
+        max-height: 60vh;
+      }
+    }
+  }
+
+  &-TileMenuList {
+    &_breakpoint {
+      &_m {
+        max-height: 60vh;
+      }
+    }
+  }
+
+  &-RowCenterLeftMobile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
+  &-MobileMenuHeader {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    margin: var(--space-s) var(--space-l);
+    gap: var(--space-s);
+  }
+}
