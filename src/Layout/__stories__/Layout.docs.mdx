@@ -1,1 +1,24 @@
 # Layout
+
+```tsx
+type LayoutSlotHeight = 'm' | 's'
+
+type LayoutRow = {
+  left: React.ReactNode
+  right: React.ReactNode
+  center: React.ReactNode
+  height?: LayoutSlotHeight
+}
+
+type LayoutPropRowCenter = React.ReactNode | LayoutRow
+type LayoutPropRowTop = React.ReactNode | Omit<LayoutRow, 'height'>
+type LayoutPropRowBottom = React.ReactNode | Omit<LayoutRow, 'height'>
+```
+
+| Свойство     | Тип                         | По умолчанию | Описание                       |
+| ------------ | --------------------------- | ------------ | ------------------------------ |
+| `rowCenter?` | `LayoutPropRowCenter`       | -            | Центральная строка             |
+| `rowTop?`    | `LayoutPropRowTop`          | -            | Верхняя строка                 |
+| `rowBottom?` | `LayoutPropRowBottom`       | -            | Нижняя строка                  |
+| `className?` | `string`                    | -            | Дополнительный CSS-класс       |
+| `ref?`       | `React.Ref<HTMLDivElement>` | -            | Ссылка на корневой DOM-элемент |
