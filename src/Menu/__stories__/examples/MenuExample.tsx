@@ -7,7 +7,7 @@ import { Menu } from '@/Menu'
 const items = [
   {
     label: 'Пункт 1',
-    href: '#',
+    // href: '#',
     // onClick: e => {
     //   e.preventDefault()
     //   e.stopPropagation()

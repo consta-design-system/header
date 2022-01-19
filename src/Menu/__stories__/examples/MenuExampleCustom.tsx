@@ -14,11 +14,11 @@ type MenuItem = {
 const menu: MenuItem[] = [
   {
     name: 'Пункт меню 1',
-    href: '#',
-    onClick: e => {
-      e.preventDefault()
-      e.stopPropagation()
-    },
+    // href: '#',
+    // onClick: e => {
+    //   e.preventDefault()
+    //   e.stopPropagation()
+    // },
     sub: [{ name: 'Пункт меню 1-1' }, { name: 'Пункт меню 1-2' }],
   },
   { name: 'Пункт меню 2', sub: [{ name: 'Пункт меню 2-1' }] },
