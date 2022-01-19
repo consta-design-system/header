@@ -2,11 +2,19 @@ import { Meta } from '@storybook/addon-docs/blocks'
 
 <Meta title="Документация/Старт" id="common-start" parameters={{ order: 100 }} />
 
-# Header для дизайн-системы Consta
+# Header | Дизайн-система Consta
 
-Здесь можно посмотреть документацию и примеры компонента Table. Компонент взят из библиотеки [rc-table](https://github.com/react-component/table) и адаптирован для [дизайн-системы Consta](https://consta.gazprom-neft.ru/).
+Шапка — составной компонент, собирается из нескольких модулей.
 
-[Посмотреть документацию и примеры](?path=/docs/components-table--playground)
+[Посмотреть на GitHub](https://github.com/gazprom-neft/header)
+
+## Как собрать шапку
+
+Есть два варианта: использовать компонент `Header` или собрать кастомную шапку.
+
+`Header` уже собран: он состоит из определённых модулей и обладает жёсткой структурой. Вы можете не показывать какой-то модуль, но не можете поменять его расположение. Этот вариант подходит, если хочется всё сделать быстро, устраивает расположение элементов и не смущает множество настроек. [Подробнее про Header](?path=/docs/components-header--playground)
+
+Чтобы собрать кастомную шапку, используйте `Layout` в качестве каркаса, в который можно поместить компоненты, элементы и модули. Это очень гибкий вариант: вы можете добавить в каркас почти что угодно и расположить так, как это нужно для проекта. [Подробнее о кастомной шапке](?path=/story/components-layout--playground)
 
 ## Быстрый старт
 
@@ -18,6 +26,25 @@ import { Meta } from '@storybook/addon-docs/blocks'
 
 Тему обязательно нужно подключать в корне приложения, так, чтобы все компоненты `@consta/header` были вложены в компонент `Theme`.
 
+[Как подключить тему](https://consta-uikit.vercel.app/?path=/docs/thematization-how-to-connect-theme--page)
+
+#### Соберите шапку
+
+Например, так:
+
+```js
+import { Theme, presetGpnDefault } from '@consta/uikit/Theme'
+import { Header } from '@consta/header'
+
+const App = () => {
+  return (
+    <Theme preset={presetGpnDefault}>
+      <Header />
+    </Theme>
+  )
+}
+```
+
 #### Всë!
 
 ## Разработчикам
@@ -26,7 +53,7 @@ import { Meta } from '@storybook/addon-docs/blocks'
 
 [Правила оформления коммитов](https://consta-uikit.vercel.app/?path=/docs/common-develop-commits-style--page)
 
-[Правила офомрелния issue](https://consta-uikit.vercel.app/?path=/docs/common-develop-issues--page)
+[Правила оформления issue](https://consta-uikit.vercel.app/?path=/docs/common-develop-issues--page)
 
 ## Подробности о дизайн-системе Consta
 
