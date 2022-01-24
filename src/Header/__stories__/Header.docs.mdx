@@ -1,4 +1,4 @@
-import { HeaderExampleBasic } from './examples/HeaderExample'
+import { HeaderExampleBasic, HeaderExampleNotLogined } from './examples/HeaderExample'
 
 # Header
 
@@ -8,7 +8,7 @@ import { HeaderExampleBasic } from './examples/HeaderExample'
 
 > Если вам нужна более гибкая структура, используйте [Layout](?path=/docs/components-layout--playground)
 
-- [Меню](#горизонтальное-меню)
+- [Меню](#меню)
 - [Логотип](#логотип)
 - [Уведомления](#уведомления)
 - [Выпадающее меню с плиткой](#выпадающее-меню-с-плиткой)
@@ -18,9 +18,9 @@ import { HeaderExampleBasic } from './examples/HeaderExample'
 
 ### Меню
 
-Выпадающее меню работает на основе `MobileMenu`.
+Выпадающее меню, работает на основе `MobileMenu` или `Menu` (зависит от ширины экрана).
 
-Добавить пункты меню можно с помощью свойства `menu`, подробности — в документации компонента [MobileMenu](?path=/docs/components-mobilemenu--playground).
+Добавить пункты меню можно с помощью свойства `menu`, подробности — в [документации компонента меню](?path=/docs/components-menu--playground).
 
 ### Логотип
 
@@ -51,7 +51,13 @@ import { HeaderExampleBasic } from './examples/HeaderExample'
 У блока есть два состояния:
 
 - пользователь вошёл в систему — `userLogined={true}`, в блоке будет видна информация об этом пользователе,
-- пользователь может войти - `userLogined={false}`, в блоке будет кнопка для входа.
+- пользователь может войти — `userLogined={false}`, в блоке будет кнопка для входа.
+
+```tsx
+<Header userLogined={false} />
+```
+
+<HeaderExampleNotLogined />
 
 Вы можете указать данные о пользователе:
 
@@ -60,6 +66,12 @@ import { HeaderExampleBasic } from './examples/HeaderExample'
 - дополнительную информацию - в `userInfo`.
 
 За текст на кнопке для входа отвечает свойство `loginButtonLabel`.
+
+```tsx
+<Header userName="Иванов Иван" userInfo="Владелец" loginButtonLabel="Войти" userLogined={true} />
+```
+
+<HeaderExampleBasic />
 
 ## Свойства
 

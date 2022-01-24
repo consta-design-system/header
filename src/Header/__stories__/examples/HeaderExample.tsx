@@ -25,3 +25,22 @@ export const HeaderExampleBasic = () => (
     />
   </Example>
 )
+
+export const HeaderExampleNotLogined = () => (
+  <Example>
+    <Header
+      logo={<ConstaLogo />}
+      userName="Иванов Иван"
+      userInfo="Владелец"
+      loginButtonLabel="Войти"
+      userLogined={false}
+      notifications={notifications}
+      notificationsActions={notificationsActions}
+      notificationsTitle="Уведомления"
+      notificationsGroupByDay={true}
+      tileMenu={tileMenu}
+      tileMenuTitle="Сервисы"
+      menu={menu}
+    />
+  </Example>
+)

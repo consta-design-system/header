@@ -1,6 +1,117 @@
+import { TileMenuExample, TileMenuExampleMobile } from './examples/TileMenuExample'
+import {
+  TileMenuExampleViewCards,
+  TileMenuExampleViewTwoLines,
+} from './examples/TileMenuExampleView'
+
 # TileMenu
 
 Выпадающее меню с плиткой внутри.
+
+<TileMenuExample />
+
+- [Пункты меню](#пункты-меню)
+- [Поведение](#поведение)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+## Пункты меню
+
+За пункты меню отвечает свойство `items` (тип [DefaultItem](#свойства)). В него входит:
+
+- `title` — заголовок пункта меню (обязательный),
+- `description` — описание пункта,
+- `href` — ссылка, по которой с него можно перейти,
+- `onClick` — возвращает клик на этот пункт.
+
+```tsx
+import { TileMenu, DefaultItem } from '@consta/header/TileMenu'
+
+const items: DefaultItem[] = [
+  {
+    title: 'Портал',
+    description: 'Сводная информация обо мне и подразделении, новости компании',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  // и так далее
+]
+
+export const TileMenuExample = () => <TileMenu items={items} title={'Заголовок'} />
+```
+
+<TileMenuExample />
+
+### Меню с кастомным типом данных
+
+Вы можете сделать меню с кастомным типом данных, отличающимся от [DefaultItem](#свойства).
+В этом случае используйте геттеры
+`getItemTitle`, `getItemDescription`, `getItemHref`, `getItemOnClick`,
+чтобы компонент понимал, откуда брать данные.
+
+## Заголовок
+
+Заголовок для меню можно указать в свойстве `title`. Он виден только в [мобильном меню](#мобильное-меню).
+
+## Вид меню
+
+Плитки в меню можно расположить разными способами, за это отвечает свойство `view`. Варианты:
+
+- в одну колонку — `lines` (по умолчанию),
+- в две колонки — `twoLines`,
+- в виде карточек — `cards`.
+
+#### В одну колонку
+
+```tsx
+<TileMenu items={items} title={'Заголовок'} view="lines" />
+```
+
+<TileMenuExample />
+
+#### В две колонки
+
+```tsx
+<TileMenu items={items} title={'Заголовок'} view="twoLines" />
+```
+
+<TileMenuExampleViewTwoLines />
+
+#### В виде карточек
+
+```tsx
+<TileMenu items={items} title={'Заголовок'} view="cards" />
+```
+
+<TileMenuExampleViewCards />
+
+## Мобильное меню
+
+Чтобы меню правильно отображалось на мобильном устройстве, добавьте `isMobile={true}`. Тогда по клику на иконку меню откроется на весь экран.
+
+```tsx
+import { TileMenu, DefaultItem } from '@consta/header/TileMenu'
+
+const items: DefaultItem[] = [
+  {
+    title: 'Портал',
+    description: 'Сводная информация обо мне и подразделении, новости компании',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  // и так далее
+]
+
+export const TileMenuExampleMobile = () => (
+  <TileMenu items={items} title={'Заголовок'} isMobile={true} />
+)
+```
+
+<TileMenuExampleMobile />
+
+## Импорт
+
+```tsx
+import { TileMenu } from '@consta/header/TileMenu'
+```
 
 ## Свойства
 

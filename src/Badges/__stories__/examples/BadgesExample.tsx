@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Example } from '@/__private__/storybook'
+import { cnMixSpace } from '@consta/uikit/MixSpace'
 
 import { Badges } from '@/Badges'
 
@@ -51,7 +52,7 @@ export const BadgesExampleBasic100 = () => (
 
 export const BadgesExampleForm = () => (
   <Example>
-    <Badges style={{ marginBottom: 'var(--space-s)' }} items={items} form="default" />
+    <Badges className={cnMixSpace({ mB: 'l' })} items={items} form="default" />
     <Badges items={items} form="round" />
   </Example>
 )
