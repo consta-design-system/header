@@ -59,15 +59,15 @@ export const BadgesExampleForm = () => (
 
 export const BadgesExampleSize = () => (
   <Example>
-    <Badges style={{ marginBottom: 'var(--space-s)' }} items={items} size="l" />
-    <Badges style={{ marginBottom: 'var(--space-s)' }} items={items} size="m" />
+    <Badges className={cnMixSpace({ mB: 'l' })} items={items} size="l" />
+    <Badges className={cnMixSpace({ mB: 'l' })} items={items} size="m" />
     <Badges items={items} size="s" />
   </Example>
 )
 
 export const BadgesExampleView = () => (
   <Example>
-    <Badges style={{ marginBottom: 'var(--space-s)' }} items={items} view="filled" />
+    <Badges className={cnMixSpace({ mB: 'l' })} items={items} view="filled" />
     <Badges items={items} view="stroked" />
   </Example>
 )

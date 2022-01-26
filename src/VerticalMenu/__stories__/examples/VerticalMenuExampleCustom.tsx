@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Example } from '@/__private__/storybook'
+import { cnMixSpace } from '@consta/uikit/MixSpace'
 
 import { VerticalMenu } from '@/VerticalMenu'
 
@@ -47,7 +48,7 @@ const menu: MenuItem[] = [
 ]
 
 export const VerticalMenuExampleCustom = () => (
-  <Example style={{ marginBottom: 'var(--space-l)' }} width="300px" height="200px">
+  <Example className={cnMixSpace({ mB: 'l' })} width="300px" height="200px">
     <VerticalMenu items={menu} getItemLabel={item => item.name} getItemSubMenu={item => item.sub} />
   </Example>
 )
