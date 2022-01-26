@@ -2334,7 +2334,7 @@
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-11.0.0.tgz#719cf05fcc1abb6533610a2e0f5dd1e61eac14fe"
   integrity sha512-VoNqai1vR5anRF5Tuh/+SWDFk7xi7oMwHrHrbm1BprYXjB2RJsWLhUrStMssDxEl5lW/z3EUdg8RvH/IUBccSQ==
 
-"@consta/uikit@^3.12.1":
+"@consta/uikit@^3.13.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-3.13.0.tgz#07bffb2c0e85f63b666804e0bb996687be515a82"
   integrity sha512-RnHinYvF2OhP9T+B1Yp7GMbcwi1EI1f3nb9gsFqZn1OR0xkKvRzJvl0KKxCa8VYW+vv+bLZRt28MqLuyGg7dCw==
