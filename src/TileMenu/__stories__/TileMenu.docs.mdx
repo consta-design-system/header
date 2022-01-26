@@ -6,12 +6,19 @@ import {
 
 # TileMenu
 
+```tsx
+import { TileMenu } from '@consta/header/TileMenu'
+```
+
 Выпадающее меню с плиткой внутри.
 
 <TileMenuExample />
 
 - [Пункты меню](#пункты-меню)
-- [Поведение](#поведение)
+- [Меню с кастомным типом данных](#меню-с-кастомным-типом-данных)
+- [Заголовок](#заголовок)
+- [Вид меню](#вид-меню)
+- [Мобильное меню](#мобильное-меню)
 - [Импорт](#импорт)
 - [Список свойств](#свойства)
 
@@ -149,18 +156,18 @@ const defaultGetItemDescription: TileMenuPropGetItemDescription<DefaultItem> = i
   item.description
 ```
 
-| Свойство              | Тип                              | По умолчанию                | Описание                                          |
-| --------------------- | -------------------------------- | --------------------------- | ------------------------------------------------- |
-| `items`               | `ITEM[]`                         | -                           | Элементы меню                                     |
-| `view?`               | `'lines', 'twoLines', 'cards'`   | `lines`                     | Вид                                               |
-| `onItemClick?`        | `TileMenuPropOnItemClick`        | -                           | Событие клика на элемент списка                   |
-| `getItemImage?`       | `TileMenuPropGetItemImage`       | `defaultGetItemImage`       | Функция для определения изображения элемента      |
-| `getItemTitle?`       | `TileMenuPropGetItemTitle`       | `defaultGetItemTitle`       | Функция для определения названия элемента         |
-| `getItemDescription?` | `TileMenuPropGetItemDescription` | `defaultGetItemDescription` | Функция для определения описания элемента         |
-| `getItemHref?`        | `TileMenuPropGetItemDescription` | `defaultGetItemHref`        | Функция для определения ссылки элемента           |
-| `getItemOnClick?`     | `TileMenuPropGetItemOnClick`     | `defaultGetItemOnClick`     | Функция для определения события клика по элементу |
-| `title?`              | `string`                         | -                           | Заголовок меню                                    |
-| `isMobile?`           | `boolean`                        | -                           | Мобильный вид                                     |
-| `className?`          | `string`                         | -                           | Дополнительный CSS-класс                          |
-| `listClassName?`      | `string`                         | -                           | Дополнительный CSS-класс списка                   |
-| `ref?`                | `React.Ref<HTMLDivElement>`      | -                           | Ссылка на корневой DOM-элемент                    |
+| Свойство              | Тип                              | По умолчанию                | Описание                                                         |
+| --------------------- | -------------------------------- | --------------------------- | ---------------------------------------------------------------- |
+| `items`               | `ITEM[]`                         | -                           | Элементы меню                                                    |
+| `view?`               | `'lines', 'twoLines', 'cards'`   | `'lines'`                   | Вид                                                              |
+| `onItemClick?`        | `TileMenuPropOnItemClick`        | -                           | Событие клика на элемент списка                                  |
+| `getItemImage?`       | `TileMenuPropGetItemImage`       | `defaultGetItemImage`       | Функция для определения изображения элемента                     |
+| `getItemTitle?`       | `TileMenuPropGetItemTitle`       | `defaultGetItemTitle`       | Функция для определения названия элемента                        |
+| `getItemDescription?` | `TileMenuPropGetItemDescription` | `defaultGetItemDescription` | Функция для определения описания элемента                        |
+| `getItemHref?`        | `TileMenuPropGetItemDescription` | `defaultGetItemHref`        | Функция для определения ссылки элемента                          |
+| `getItemOnClick?`     | `TileMenuPropGetItemOnClick`     | `defaultGetItemOnClick`     | Функция для определения события клика по элементу                |
+| `title?`              | `string`                         | -                           | Заголовок меню                                                   |
+| `isMobile?`           | `boolean`                        | -                           | Мобильный вид                                                    |
+| `className?`          | `string`                         | -                           | Дополнительный CSS-класс для кнопки, по которой открывается меню |
+| `listClassName?`      | `string`                         | -                           | Дополнительный CSS-класс для списка карточек                     |
+| `ref?`                | `React.Ref<HTMLDivElement>`      | -                           | Ссылка на корневой DOM-элемент                                   |

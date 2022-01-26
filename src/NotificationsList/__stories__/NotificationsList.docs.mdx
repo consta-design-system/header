@@ -1,6 +1,409 @@
+import {
+  NotificationsListExample,
+  NotificationsListExampleBasic,
+  NotificationsListExampleBadges,
+  NotificationsListExampleView,
+} from './examples/NotificationsListExample'
+
+import {
+  NotificationsListExampleActions,
+  NotificationsListExampleActions2,
+  NotificationsListExampleRead,
+} from './examples/NotificationsListExampleActions'
+import {
+  NotificationsListExampleDate,
+  NotificationsListExampleGroups,
+} from './examples/NotificationsListExampleGroups'
+
 # NotificationsList
 
-Список уведомлений с бейджиками, информацией о пользователе и группировкой. Содержимое для компонента [Notifications](?path=/docs/components-notifications--playground).
+```tsx
+import { NotificationsList } from '@consta/header/NotificationsList'
+```
+
+Список уведомлений с бейджиками, статусом, возможными действиями и группировкой. Представляет собой содержимое для компонента [Notifications](?path=/docs/components-notifications--playground).
+
+- [Список уведомлений](#список-уведомлений)
+- [Бейджики](#бейджики)
+- [Изображение или аватар](#изображение-или-аватар)
+- [Действия](#действия)
+  - [Действия со списком](#действия-со-списком)
+  - [Действия с уведомлением](#действия-с-уведомлением)
+- [Прочитанные](#прочитанные)
+- [Группировка](#группировка)
+  - [По дням](#группировка-по-дням)
+  - [По группам](#группировка-по-группам)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+- [Пример использования](#пример)
+
+## Список уведмолений
+
+Данные для уведомлений можно указать в свойстве `items` (тип [DefaultItem](#свойства)). В него входит:
+
+- `label` — заголовок уведомления (обязательный),
+- `description` — описание,
+- `image` — ссылка на изображение,
+- `read` — отмечает сообщение [прочитанным](#прочитанные),
+- `date` — дата,
+- `badges` — [список бейджиков](#бейджики),
+- `actions` — объект с описанием [действий](#действия-с-уведомлением), которые можно совершить с этим уведомлением,
+- `group` — [группа](#группировка), к которой относится это уведомление,
+- `view` — [внешний вид](#вид) списка c уведомлениями,
+- `onClick` — возвращает клик на этот пункт.
+
+Вот пример простого списка: в нём есть заголовок, описание и картинка, больше ничего:
+
+```tsx
+import { NotificationsList, DefaultItem } from '@/NotificationsList'
+
+const itemsBasic: DefaultItem[] = [
+  {
+    label: 'Один человек',
+    description: 'Принёс краску',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  {
+    label: 'Другой человек',
+    description: 'Покрасил забор',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+  },
+]
+
+export const NotificationsListExample = () => (
+  <NotificationsList items={itemsBasic} title="Уведомления о действиях с забором" />
+)
+```
+
+<NotificationsListExampleBasic />
+
+[Посмотреть полный пример списка уведомлений](#пример)
+
+## Бейджики
+
+Если вам нужно добавить к уведомлению бейджики — с тегами или статусами,
+передайте в свойстве `badges` массив с данными типа [`Badge`](#свойства). Что внутри:
+
+- `label` — надпись на бейджике (обязательно),
+- `status` — статус бейджика, варианты: `'success'`, `'error'`, `'warning'`, `'normal'`, `'system'` (см. [Badge](https://consta-uikit.vercel.app/?path=/docs/components-badge--playground)). По умолчанию `'normal'`.
+
+```tsx
+import { NotificationsList, DefaultItem } from '@/NotificationsList'
+
+const itemsBadges: DefaultItem[] = [
+  {
+    label: 'Один человек',
+    description: 'Принёс краску',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    badges: [
+      {
+        label: 'готов к работе',
+        status: 'warning',
+      },
+      {
+        label: 'горит',
+        status: 'error',
+      },
+    ],
+  },
+  {
+    label: 'Другой человек',
+    description: 'Покрасил забор',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    badges: [
+      {
+        label: 'покрашен',
+        status: 'success',
+      },
+    ],
+  },
+]
+
+export const NotificationsListExample = () => (
+  <NotificationsList items={itemsBadges} title="Уведомления о действиях с забором" />
+)
+```
+
+<NotificationsListExampleBadges />
+
+## Изображение или аватар
+
+По умолчанию уведомление ведёт себя как обычный текст с заголовком и изображением.
+Если укажете `view='user'`, уведомление будет вести себя как компонент [User](https://consta-uikit.vercel.app/?path=/docs/components-user--playground): `title` превратится в имя пользователя, а `image` — в его аватарку.
+
+Это не сильно влияет на весь компонент, но если не укажете картинку, аватарка сформируется из имени пользователя (цвет подбирается автоматически).
+
+При `view='default'` изображение ничем не заменяется.
+
+```tsx
+import { NotificationsList, DefaultItem } from '@/NotificationsList'
+
+const itemsView: DefaultItem[] = [
+  {
+    label: 'Иванов Иван Иванович'',
+    description: 'Принёс краску',
+    view: 'default',
+  },
+  {
+    label: 'Петров Петр Петрович',
+    description: 'Покрасил забор',
+    view: 'user',
+  },
+]
+
+export const NotificationsListExample = () => <NotificationsList items={itemsView} title="Уведомления о действиях с забором" />
+```
+
+<NotificationsListExampleView />
+
+## Действия
+
+Дополнительные действия, которые пользователь может совершать с уведомлениями,
+показываются в выпадающем меню — при нажатии на многоточие.
+
+Можно совершать действия [со всем списком уведомлений сразу](#действия-со-списком) или только [с одним уведомлением](#действия-с-уведомлением).
+
+Чтобы создать уведомления, используйте объект типа [DefaultAction](#свойства). Что внутри:
+
+- `label` — название действия (например, «Удалить»),
+- `icon` — иконка из [библиотеки иконок](https://consta-uikit.vercel.app/?path=/story/components-icons--playground),
+- `onClick` — функция для получения клика по этому элементу.
+
+Вы можете создать уведомления с кастомным типом данных, отличающимся от [DefaultItem](#свойства). В этом случае используйте геттеры
+`getActionLabel`, `getActionIcon`, `getActionOnClick`, чтобы указать компоненту,
+откуда брать описание действий.
+
+### Действия со списком
+
+Действия со списком можно посмотреть по нажатию на многоточие рядом с заголовком списка. Чтобы их добавить, создайте объект с описанием действий и передайте в свойстве `actions`.
+
+```tsx
+import { NotificationsList, DefaultItem } from '@/NotificationsList'
+
+import { IconTrash } from '@consta/uikit/IconTrash'
+import { IconEye } from '@consta/uikit/IconEye'
+
+const itemsBasic: DefaultItem[] = [
+  {
+    label: 'Один человек',
+    description: 'Принёс краску',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  {
+    label: 'Другой человек',
+    description: 'Покрасил забор',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+  },
+]
+
+const actions: DefaultAction[] = [
+  {
+    label: 'Отметить все как прочитанное',
+    icon: IconEye,
+  },
+  {
+    label: 'Удалить все',
+    icon: IconTrash,
+  },
+]
+
+export const NotificationsListExampleActions = () => (
+  <NotificationsList items={itemsBasic} actions={actions} title="Уведомления" />
+)
+```
+
+<NotificationsListExampleActions />
+
+> **Важно:** формулируйте описание действий так, чтобы было понятно,
+> что действие применится ко всем элементам списка: «Удалить всё», «Отметить всё», «Наплевать на всё»
+
+### Действия с уведомлениями
+
+Чтобы посмотреть действия, которые можно совершить с конкретным уведомлением, нажмите на многоточие рядом с этим уведомлением.
+
+Описать эти действия можно в объекте с описанием уведомления — в атрибуте `actions` типа [DefaultItem](#свойства).
+
+```tsx
+import { NotificationsList, DefaultItem } from '@/NotificationsList'
+
+import { IconTrash } from '@consta/uikit/IconTrash'
+import { IconEye } from '@consta/uikit/IconEye'
+
+const itemsActions: DefaultItem[] = [
+  {
+    label: 'Иванов Иван Иванович'',
+    description: 'Принёс краску',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    actions: [
+      {
+        label: 'Удалить',
+        icon: IconTrash,
+      },
+      {
+        label: 'Отметить как прочитанное',
+        icon: IconEye,
+      },
+    ],
+  },
+  {
+    label: 'Петров Петр Петрович',
+    description: 'Покрасил забор',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    actions: [
+      {
+        label: 'Положить в корзину',
+        icon: IconTrash,
+      },
+      {
+        label: 'Я посмотрел',
+        icon: IconEye,
+      },
+    ],
+  },
+]
+
+export const NotificationsListExampleActions2 = () => <NotificationsList items={itemsActions} title="Уведомления"  />
+```
+
+<NotificationsListExampleActions2 />
+
+## Прочитанные
+
+Чтобы пометить сообщение прочитанным, добавьте в объект с его описанием `read`.
+
+```tsx
+import { NotificationsList, DefaultItem } from '@/NotificationsList'
+
+const itemsRead: DefaultItem[] = [
+  {
+    label: 'Прочитанное уведомление',
+    description: 'Принёс краску',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    read: true,
+  },
+  {
+    label: 'Непрочитанное уведомление',
+    description: 'Покрасил забор',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    read: false,
+  },
+]
+
+export const NotificationsListExampleActions2 = () => (
+  <NotificationsList items={itemsRead} title="Уведомления" />
+)
+```
+
+<NotificationsListExampleRead />
+
+## Группировка
+
+За группировку событий отвечает свойство `groups`. Есть два варианта группировки: по дням или по группам.
+
+### Группировка по дням
+
+Чтобы с группировать уведомления по дням:
+
+1. добавьте дату в объект с описанием каждого уведомления — в атрибуте `date`,
+2. укажите свойство `groupByDay`.
+
+```tsx
+import { NotificationsList, DefaultItem } from '@/NotificationsList'
+
+const itemsDate: DefaultItem[] = [
+  {
+    label: 'Первое уведомление',
+    description: 'Привет, мир',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    date: new Date(2021, 10, 12, 13, 57, 0),
+  },
+  {
+    label: 'Второе уведомление',
+    description: 'Пока-пока',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    date: new Date(2021, 10, 12, 13, 57, 0),
+  },
+  {
+    label: 'Третее уведомление',
+    description: 'Пока-пока',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    date: new Date(),
+  },
+  {
+    label: 'Четвёртое уведомление',
+    description: 'Пока-пока',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    date: new Date(),
+  },
+]
+
+export const NotificationsListExampleDate = () => (
+  <NotificationsList items={itemsDate} groupByDay title="Уведомления" />
+)
+```
+
+<NotificationsListExampleDate />
+
+Чтобы поменять формат даты, используйте свойство `itemDateFormat`.
+
+### Группировка по группам
+
+Чтобы разбить уведомления на группы:
+
+1. передайте в свойстве `groups` объект с описанием групп типа [DefaultGroup](#свойства) с двумя обязательными полями:
+
+- `label` — название группы,
+- `id` — идентификатор группы.
+
+2. добавьте идентификатор группы в объект с описанием уведомления — в свойстве `group`.
+
+```tsx
+import { NotificationsList, DefaultItem, DefaultGroup } from '@/NotificationsList'
+
+const groups: DefaultGroup[] = [
+  {
+    label: 'важное',
+    id: 'important',
+  },
+  {
+    label: 'неважное',
+    id: 'not',
+  },
+]
+
+const itemsGroups: DefaultItem[] = [
+  {
+    label: 'Первое уведомление',
+    description: 'Привет, мир',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    group: 'important',
+  },
+  {
+    label: 'Второе уведомление',
+    description: 'Пока-пока',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    group: 'not',
+  },
+  {
+    label: 'Третее уведомление',
+    description: 'Пока-пока',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    group: 'not',
+  },
+  {
+    label: 'Четвёртое уведомление',
+    description: 'Пока-пока',
+    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
+    group: 'important',
+  },
+]
+
+export const NotificationsListExampleGroups = () => (
+  <NotificationsList items={itemsGroups} groups={groups} title="Уведомления" />
+)
+```
+
+<NotificationsListExampleGroups />
 
 ## Свойства
 
@@ -128,3 +531,182 @@ const defaultDateFormat = (date: Date): string => {
 | `getGroupId?`         | `NotificationsListPropGetGroupId`             | `defaultGetGroupId`         | Функция для определения уникального ключа группы     |
 | `className?`          | `string`                                      | -                           | Дополнительный класс                                 |
 | `ref?`                | `React.Ref<HTMLDivElement>`                   | -                           | Ссылка на корневой DOM-элемент                       |
+
+## Пример
+
+```tsx
+import React from 'react'
+
+import { NotificationsList, DefaultItem, DefaultAction } from '@/NotificationsList'
+
+import { IconTrash } from '@consta/uikit/IconTrash'
+import { IconEye } from '@consta/uikit/IconEye'
+
+import { action } from '@storybook/addon-actions'
+
+const emptyFunction = () => action('emptyFunction')
+
+export const items: DefaultItem[] = [
+  {
+    label: 'Иванов Иван Иванович',
+    description: 'Добавил файлы в проект, план/факт по расчету предварительные',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    date: new Date(2021, 10, 12, 13, 57, 0),
+    read: false,
+    badges: [
+      {
+        label: 'отчеты 1',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 2',
+        status: 'warning',
+      },
+      {
+        label: 'система 3',
+        status: 'success',
+      },
+      {
+        label: 'отчеты 4',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 5',
+        status: 'warning',
+      },
+      {
+        label: 'система 6',
+        status: 'success',
+      },
+    ],
+    onClick: emptyFunction,
+    actions: [
+      {
+        label: 'Удалить',
+        onClick: emptyFunction,
+        icon: IconTrash,
+      },
+      {
+        label: 'Отметить как прочитанное',
+        onClick: emptyFunction,
+        icon: IconEye,
+      },
+    ],
+    view: 'user',
+    group: 'd',
+  },
+  {
+    label: 'Иванов Иван Иванович',
+    description: 'Добавил файлы в проект, план/факт по расчету предварительные',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    date: new Date(),
+    read: true,
+    badges: [
+      {
+        label: 'отчеты 1',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 2',
+        status: 'warning',
+      },
+      {
+        label: 'система 3',
+        status: 'success',
+      },
+      {
+        label: 'отчеты 4',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 5',
+        status: 'warning',
+      },
+      {
+        label: 'система 6',
+        status: 'success',
+      },
+    ],
+    onClick: emptyFunction,
+    actions: [
+      {
+        label: 'Удалить',
+        onClick: emptyFunction,
+        icon: IconTrash,
+      },
+      {
+        label: 'Отметить как прочитанное',
+        onClick: emptyFunction,
+        icon: IconEye,
+      },
+    ],
+    view: 'user',
+  },
+  {
+    label: 'Иванов Иван Иванович',
+    description: 'Добавил файлы в проект, план/факт по расчету предварительные',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    date: new Date(),
+    read: true,
+    badges: [
+      {
+        label: 'отчеты 1',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 2',
+        status: 'warning',
+      },
+      {
+        label: 'система 3',
+        status: 'success',
+      },
+      {
+        label: 'отчеты 4',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 5',
+        status: 'warning',
+      },
+      {
+        label: 'система 6',
+        status: 'success',
+      },
+    ],
+    onClick: emptyFunction,
+    actions: [
+      {
+        label: 'Удалить',
+        onClick: emptyFunction,
+        icon: IconTrash,
+      },
+      {
+        label: 'Отметить как прочитанное',
+        onClick: emptyFunction,
+        icon: IconEye,
+      },
+    ],
+    view: 'user',
+  },
+]
+
+export const actions: DefaultAction[] = [
+  {
+    label: 'Отметить все как прочитанное',
+    onClick: emptyFunction,
+    icon: IconEye,
+  },
+  {
+    label: 'Удалить все',
+    onClick: emptyFunction,
+    icon: IconTrash,
+  },
+]
+
+export const NotificationsListExample = () => (
+  <NotificationsList items={items} title="Уведомления" actions={actions} groupByDay />
+)
+```
+
+<NotificationsListExample />

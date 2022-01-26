@@ -1,6 +1,14 @@
 # Notifications
 
-Кнопка и для списка уведомлений [NotificationsList](http://localhost:6006/?path=/docs/components-notifications--playground).
+Кнопка и обвязка для списка уведомлений [NotificationsList](http://localhost:6006/?path=/docs/components-notifications--playground).
+
+## Список уведомлений
+
+Список уведомлений работает так же, как в компоненте [NotificationsList](http://localhost:6006/?path=/docs/components-notifications--playground).
+
+## Мобильная версия
+
+Чтобы уведомления правильно отображалось на мобильном устройстве, добавьте `isMobile={true}`. Тогда список уведомлений откроется на весь экран.
 
 | Свойство              | Тип                                           | По умолчанию                | Описание                                                                                                                              |
 | --------------------- | --------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -26,6 +34,6 @@
 | `getGroupLabel?`      | `NotificationsListPropGetGroupLabel`          | `defaultGetGroupLabel`      | Функция для определения заголовка группы (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))             |
 | `getGroupId?`         | `NotificationsListPropGetGroupId`             | `defaultGetGroupId`         | Функция для определения уникального ключа группы (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))     |
 | `isMobile?`           | `boolean`                                     | -                           | Мобильный вид                                                                                                                         |
-| `className?`          | `string`                                      | -                           | Дополнительный класс (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))                                 |
-| `listClassName?`      | `string`                                      | -                           | Дополнительный класс списка                                                                                                           |
+| `className?`          | `string`                                      | -                           | Дополнительный CSS-класс для кнопки, по которой открываются уведомления                                                               |
+| `listClassName?`      | `string`                                      | -                           | Дополнительный CSS-класс списка уведомлений (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))          |
 | `ref?`                | `React.Ref<HTMLButtonElement>`                | -                           | Ссылка на корневой DOM-элемент (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))                       |
