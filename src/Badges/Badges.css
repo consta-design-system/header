@@ -1,8 +1,6 @@
 .che--Badges {
-  margin: 0 0 calc(var(--space-xs) * -1) 0;
-
   &-Badge {
-    margin: 0 var(--space-xs) var(--space-xs) 0;
+    margin-right: var(--space-xs);
 
     &_hidden {
       position: absolute;

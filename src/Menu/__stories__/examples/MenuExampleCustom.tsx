@@ -1,12 +1,8 @@
 import React from 'react'
 
-import { createMetadata } from '../../__private__/storybook'
-import { VerticalMenu } from '../VerticalMenu'
-import { cnMixSpace } from '@consta/uikit/MixSpace'
+import { Example } from '@/__private__/storybook'
 
-import { boolean } from '@storybook/addon-knobs'
-
-import mdx from './VerticalMenu.docs.mdx'
+import { Menu } from '@/Menu'
 
 type MenuItem = {
   name: string
@@ -18,11 +14,11 @@ type MenuItem = {
 const menu: MenuItem[] = [
   {
     name: 'Пункт меню 1',
-    href: '#',
-    onClick: e => {
-      e.preventDefault()
-      e.stopPropagation()
-    },
+    // href: '#',
+    // onClick: e => {
+    //   e.preventDefault()
+    //   e.stopPropagation()
+    // },
     sub: [{ name: 'Пункт меню 1-1' }, { name: 'Пункт меню 1-2' }],
   },
   { name: 'Пункт меню 2', sub: [{ name: 'Пункт меню 2-1' }] },
@@ -50,35 +46,8 @@ const menu: MenuItem[] = [
   },
 ]
 
-const defaultKnobs = () => ({
-  withHeader: boolean('withHeader', false),
-})
-
-export function Playground() {
-  const { withHeader } = defaultKnobs()
-
-  const header = withHeader && (
-    <div className={cnMixSpace({ pH: 'xl', pV: 'm' })}>Заголовок меню</div>
-  )
-
-  return (
-    <div style={{ height: '100vh' }}>
-      <VerticalMenu
-        items={menu}
-        getItemLabel={item => item.name}
-        getItemSubMenu={item => item.sub}
-        header={header}
-      />
-    </div>
-  )
-}
-
-export default createMetadata({
-  title: 'Компоненты|/VerticalMenu',
-  id: 'components/VerticalMenu',
-  parameters: {
-    docs: {
-      page: mdx,
-    },
-  },
-})
+export const MenuExampleCustom = () => (
+  <Example style={{ marginBottom: 'var(--space-l)' }}>
+    <Menu items={menu} getItemLabel={item => item.name} getItemSubMenu={item => item.sub} />
+  </Example>
+)
