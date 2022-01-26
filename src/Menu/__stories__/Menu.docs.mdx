@@ -1,4 +1,124 @@
+import { MenuExampleBasic, MenuExampleBasic200, MenuExampleBasic100 } from './examples/MenuExample'
+import { MenuExampleCustom } from './examples/MenuExampleCustom'
+
 # Menu
+
+```tsx
+import { Menu } from '@consta/header/Menu'
+```
+
+Горизонтальное выпадающее меню.
+
+- [Пункты меню](#пункты-меню)
+  - [Пример обычного меню](#пример-обычного-меню)
+  - [Пример меню с кастомным типом](#пример-меню-с-кастомным-типом)
+- [Поведение](#поведение)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+## Пункты меню
+
+За пункты меню отвечает свойство `items` (тип [DefaultItem](#свойства)). В него входит:
+
+- `label` — текст пункта (обязательный),
+- `href` — ссылка, по которой с него можно перейти,
+- `active` — отмечает активный пункт меню,
+- `onClick` — возвращает клик на этот пункт,
+- `subMenu` — массив с описанием подпунктов.
+
+##### Пример обычного меню
+
+```tsx
+import { Menu } from '@consta/header/Menu'
+
+const items = [
+  {
+    label: 'Пункт 1',
+    href: '#',
+    onClick: e => {
+      e.preventDefault()
+      e.stopPropagation()
+    },
+    subMenu: [{ label: 'Пункт 1-1' }, { label: 'Пункт 1-2' }],
+  },
+  { label: 'Пункт меню 2' },
+  { label: 'Пункт меню 3' },
+]
+
+export const MenuExampleBasic = () => <Menu items={items} />
+```
+
+<MenuExampleBasic />
+
+##### Пример меню с кастомным типом
+
+Вы можете сделать меню с кастомным типом данных, отличающимся от [DefaultItem](#свойства).
+В этом случае используйте геттеры
+`getItemHref`, `getItemLabel`, `getItemActive`, `getItemOnClick`, `getItemSubMenu`,
+чтобы компонент понимал, откуда брать данные.
+
+```tsx
+import { Menu } from '@consta/header/Menu'
+
+const menu: MenuItem[] = [
+  {
+    name: 'Пункт меню 1',
+    href: '#',
+    onClick: e => {
+      e.preventDefault()
+      e.stopPropagation()
+    },
+    sub: [{ name: 'Пункт меню 1-1' }, { name: 'Пункт меню 1-2' }],
+  },
+  { name: 'Пункт меню 2', sub: [{ name: 'Пункт меню 2-1' }] },
+  {
+    name: 'Пункт меню 3',
+    sub: [
+      { name: 'Пункт меню 3-1', sub: [{ name: 'Пункт меню 3-1-1' }] },
+      { name: 'Пункт меню 3-2', sub: [{ name: 'Пункт меню 3-2-1' }] },
+      {
+        name: 'Пункт меню 3-3',
+        sub: [
+          { name: 'Пункт меню 3-1', sub: [{ name: 'Пункт меню 3-1-1' }] },
+          { name: 'Пункт меню 3-2', sub: [{ name: 'Пункт меню 3-2-1' }] },
+          {
+            name: 'Пункт меню 3-3',
+            sub: [
+              { name: 'Пункт меню 3-3-1', sub: [{ name: 'Пункт меню 3-3-1-1' }] },
+              { name: 'Пункт меню 3-3-2', sub: [{ name: 'Пункт меню 3-3-2-1' }] },
+              { name: 'Пункт меню 3-3-3', sub: [{ name: 'Пункт меню 3-3-3-1' }] },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]
+
+export const MenuExampleCustom = () => (
+  <Menu items={menu} getItemLabel={item => item.name} getItemSubMenu={item => item.sub} />
+)
+```
+
+<MenuExampleCustom />
+
+## Поведение
+
+Если меню не помещается по ширине в родительский контейнер, оно автоматически сворачивается.
+
+##### Пример меню в контейнере шириной 200 px
+
+<MenuExampleBasic200 />
+
+##### Пример меню в контейнере шириной 100 px
+
+<MenuExampleBasic100 />
+
+## Импорт
+
+```tsx
+import { Menu } from '@consta/header/Menu'
+```
 
 ## Свойства
 
@@ -38,5 +158,5 @@ const defaultGetItemSubMenu: MenuPropGetItemSubMenu<DefaultItem> = item => item.
 | `getItemActive?`  | `MenuPropGetItemActive`     | `defaultGetItemActive`  | Функция для определения активности элемента    |
 | `getItemOnClick?` | `MenuPropGetItemOnClick`    | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
 | `getItemSubMenu?` | `MenuPropGetItemSubMenu`    | `defaultGetItemSubMenu` | Функция для определения подменю элемента       |
-| `className?`      | `string`                    | -                       | Дополнительный класс                           |
+| `className?`      | `string`                    | -                       | Дополнительный CSS-класс                       |
 | `ref?`            | `React.Ref<HTMLDivElement>` | -                       | Ссылка на корневой DOM-элемент                 |

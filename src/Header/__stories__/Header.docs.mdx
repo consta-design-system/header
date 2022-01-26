@@ -1,9 +1,84 @@
+import { HeaderExampleBasic, HeaderExampleNotLogined } from './examples/HeaderExample'
+
 # Header
+
+Готовая шапка для проекта с жёсткой структурой, состоит из нескольких модулей. Модули можно скрывать и настраивать, но поменять расположение не получится.
+
+<HeaderExampleBasic />
+
+> Если вам нужна более гибкая структура, используйте [Layout](?path=/docs/components-layout--playground)
+
+- [Меню](#меню)
+- [Логотип](#логотип)
+- [Уведомления](#уведомления)
+- [Выпадающее меню с плиткой](#выпадающее-меню-с-плиткой)
+- [Логин](#логин)
+- [Список свойств](#свойства)
+- [Пример использования](#пример)
+
+### Меню
+
+Выпадающее меню, работает на основе `MobileMenu` или `Menu` (зависит от ширины экрана).
+
+Добавить пункты меню можно с помощью свойства `menu`, подробности — в [документации компонента меню](?path=/docs/components-menu--playground).
+
+### Логотип
+
+За логотип отвечает свойство `logo`. В него можно поместить что угодно.
+
+### Уведомления
+
+Этот компонент работает на основе `NotificationsList`. Как его настроить:
+
+- данные для уведомлений передаются в `notifications`,
+- действия, которые можно с этими уведомлениями совершать, можно указать в `notificationsActions`,
+- заголовок для выпадающего блока с уведомлениями — `notificationsTitle`.
+
+Чтобы сгруппировать уведомления по дням, добавьте `notificationsGroupByDay`.
+
+[Подробнее об уведомлениях](?path=/docs/components-notificationslist--playground)
+
+### Выпадающее меню с плиткой
+
+Это выпадающее меню работает на основе `TileMenu`.
+
+[Посмотреть документацию](?path=/docs/components-tilemenu--playground)
+
+### Логин
+
+Блок с кнопкой для входа и информацией о пользователе.
+
+У блока есть два состояния:
+
+- пользователь вошёл в систему — `userLogined={true}`, в блоке будет видна информация об этом пользователе,
+- пользователь может войти — `userLogined={false}`, в блоке будет кнопка для входа.
+
+```tsx
+<Header userLogined={false} />
+```
+
+<HeaderExampleNotLogined />
+
+Вы можете указать данные о пользователе:
+
+- имя пользователя — в свойстве `userName`,
+- изображение — `userAvatar`,
+- дополнительную информацию - в `userInfo`.
+
+За текст на кнопке для входа отвечает свойство `loginButtonLabel`.
+
+```tsx
+<Header userName="Иванов Иван" userInfo="Владелец" loginButtonLabel="Войти" userLogined={true} />
+```
+
+<HeaderExampleBasic />
+
+## Свойства
 
 | Свойство                           | Тип                                                                     | По умолчанию                | Описание                                                                                                                                      |
 | ---------------------------------- | ----------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `logo?`                            | `React.ReactNode`                                                       | -                           | Логотип                                                                                                                                       |
-| `onLogoClick?`                     | `React.MouseEventHandler`                                               | -                           | Функция отпработает по нажатию на логотип                                                                                                     |
+| `onLogoClick?`                     | `React.MouseEventHandler`                                               | -                           | Функция отработает по нажатию на логотип                                                                                                      |
 | `logoHref?`                        | `string`                                                                | -                           | Атрибут `href` на логотипе                                                                                                                    |
 | `menu?`                            | `MENU_ITEM[]`                                                           | -                           | Элементы меню (см. [Menu](/?path=/docs/components-menu--playground) )                                                                         |
 | `onMenuItemClick?`                 | `MenuPropOnItemClick`                                                   | -                           | Функция клика по элементу (см. [Menu](/?path=/docs/components-menu--playground) )                                                             |
@@ -52,3 +127,157 @@
 | `tileMenuTitle?`                   | `string`                                                                | `string`                    | Заголовок `tileMenu` (см. [TileMenu](/?path=/docs/components-tilemenu--playground))                                                           |
 | `className?`                       | `string`                                                                | -                           | Дополнительный класс                                                                                                                          |
 | `ref?`                             | `React.Ref<HTMLDivElement>`                                             | -                           | Ссылка на корневой DOM-элемент                                                                                                                |
+
+## Пример
+
+```tsx
+import { IconTrash } from '@consta/uikit/IconTrash'
+import { IconEye } from '@consta/uikit/IconEye'
+import { Header } from '@consta/header/Header'
+
+export const notifications: DefaultItem[] = [
+  {
+    label: 'Андриевский Дмитрий Олегович',
+    description: 'Добавил файлы в проект, план/факт по расчету предварительные',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    date: new Date(),
+    read: true,
+    badges: [
+      {
+        label: 'отчеты',
+        status: 'normal',
+      },
+      {
+        label: 'файлы',
+        status: 'warning',
+      },
+      {
+        label: 'система',
+        status: 'success',
+      },
+      {
+        label: 'отчеты 4',
+        status: 'normal',
+      },
+      {
+        label: 'файлы',
+        status: 'warning',
+      },
+      {
+        label: 'система',
+        status: 'success',
+      },
+    ],
+    onClick: emptyFunction,
+    actions: [
+      {
+        label: 'Удалить',
+        onClick: emptyFunction,
+        icon: IconTrash,
+      },
+      {
+        label: 'Отметить как прочитанное',
+        onClick: emptyFunction,
+        icon: IconEye,
+      },
+    ],
+    view: 'user',
+  },
+  // и так далее
+]
+
+export const notificationsActions: DefaultAction[] = [
+  {
+    label: 'Отметить все как прочитанное',
+    onClick: emptyFunction,
+    icon: IconEye,
+  },
+  {
+    label: 'Удалить все',
+    onClick: emptyFunction,
+    icon: IconTrash,
+  },
+]
+
+type MenuItem = {
+  label: string
+  subMenu?: MenuItem[]
+  href?: string
+  onClick?: React.EventHandler<React.MouseEvent>
+}
+
+export const menu: MenuItem[] = [
+  {
+    label: 'Пункт меню 1',
+    href: '#',
+    onClick: e => {
+      e.preventDefault()
+      e.stopPropagation()
+    },
+    subMenu: [{ label: 'Пункт меню 1-1' }, { label: 'Пункт меню 1-2' }],
+  },
+  { label: 'Пункт меню 2', subMenu: [{ label: 'Пункт меню 2-1' }] },
+  {
+    label: 'Пункт меню 3',
+    subMenu: [
+      { label: 'Пункт меню 3-1', subMenu: [{ label: 'Пункт меню 3-1-1' }] },
+      { label: 'Пункт меню 3-2', subMenu: [{ label: 'Пункт меню 3-2-1' }] },
+      {
+        label: 'Пункт меню 3-3',
+        subMenu: [
+          { label: 'Пункт меню 3-1', subMenu: [{ label: 'Пункт меню 3-1-1' }] },
+          { label: 'Пункт меню 3-2', subMenu: [{ label: 'Пункт меню 3-2-1' }] },
+          {
+            label: 'Пункт меню 3-3',
+            subMenu: [
+              { label: 'Пункт меню 3-3-1', subMenu: [{ label: 'Пункт меню 3-3-1-1' }] },
+              { label: 'Пункт меню 3-3-2', subMenu: [{ label: 'Пункт меню 3-3-2-1' }] },
+              { label: 'Пункт меню 3-3-3', subMenu: [{ label: 'Пункт меню 3-3-3-1' }] },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]
+
+type TileMenuItem = {
+  title: string
+  description: string
+  image: string
+}
+
+export const tileMenu: TileMenuItem[] = [
+  {
+    title: 'Портал',
+    description: 'Сводная информация обо мне и подразделении, новости компании',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  // и так далее
+]
+
+export const HeaderExampleBasic = () => (
+  <Example>
+    <Header
+      logo={
+
+          //some image
+
+      }
+      userName="Иванов Иван"
+      userInfo="Владелец"
+      loginButtonLabel="Войти"
+      userLogined={true}
+      notifications={notifications}
+      notificationsActions={notificationsActions}
+      notificationsTitle="Уведомления"
+      notificationsGroupByDay={true}
+      tileMenu={tileMenu}
+      tileMenuTitle="Сервисы"
+      menu={menu}
+    />
+  </Example>
+)
+```
+
+<HeaderExampleBasic />

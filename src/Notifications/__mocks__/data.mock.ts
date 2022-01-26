@@ -8,7 +8,7 @@ const emptyFunction = () => action('emptyFunction')
 
 export const items: DefaultItem[] = [
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
@@ -56,7 +56,7 @@ export const items: DefaultItem[] = [
     group: 'd',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
@@ -103,7 +103,7 @@ export const items: DefaultItem[] = [
     view: 'user',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
@@ -150,7 +150,7 @@ export const items: DefaultItem[] = [
     view: 'user',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
@@ -198,7 +198,7 @@ export const items: DefaultItem[] = [
     group: 'd',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
@@ -245,7 +245,7 @@ export const items: DefaultItem[] = [
     view: 'user',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
@@ -292,7 +292,7 @@ export const items: DefaultItem[] = [
     view: 'user',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
@@ -340,7 +340,7 @@ export const items: DefaultItem[] = [
     group: 'd',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
@@ -387,7 +387,7 @@ export const items: DefaultItem[] = [
     view: 'user',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
@@ -434,7 +434,7 @@ export const items: DefaultItem[] = [
     view: 'user',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
@@ -482,7 +482,7 @@ export const items: DefaultItem[] = [
     group: 'd',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
@@ -529,7 +529,7 @@ export const items: DefaultItem[] = [
     view: 'user',
   },
   {
-    label: 'Андриевский Дмитрий Олегович',
+    label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(),
