@@ -58,6 +58,8 @@ export type HeaderProps<
   TILE_MENU_ITEM = DefaultTileMenuItem
 > = PropsWithHTMLAttributesAndRef<
   {
+    // Header
+    fixed?: boolean
     // Logo
     logo?: React.ReactNode
     onLogoClick?: React.MouseEventHandler

@@ -7,12 +7,8 @@ import { ConstaLogo } from './ConstaLogo'
 import { select, boolean } from '@storybook/addon-knobs'
 import { getByMap } from '@consta/uikit/__internal__/src/utils/getByMap'
 import { menu, notifications, notificationsActions, tileMenu } from '../__mocks__/data.mock'
-import { cn } from '@/__private__/utils/bem'
-import './HeaderStories.css'
 
 import mdx from './Header.docs.mdx'
-
-const cnHeaderStories = cn('HeaderStories')
 
 const logoMap = {
   undefined,
@@ -48,8 +44,8 @@ export function Playground() {
 
   return (
     <Header
-      className={cnHeaderStories()}
       style={{ zIndex: 1000 }}
+      fixed
       logo={getByMap(logoMap, logo)}
       {...loginProps}
       {...notificationsProps}

@@ -18,6 +18,7 @@ export const cnHeader = cn('Header')
 const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
   const {
     className,
+    fixed,
 
     // Logo
     logo,
@@ -87,7 +88,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
       <Layout
         {...otherProps}
         ref={ref}
-        className={cnHeader(null, [className])}
+        className={cnHeader({ fixed }, [className])}
         rowCenter={{
           left: (
             <div className={cnHeader('RowCenterLeft', { breakpoint: 'm' })}>
