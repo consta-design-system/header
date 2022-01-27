@@ -59,6 +59,8 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
     return {}
   }, [])
 
+  const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined
+
   useEffect(
     useDebounce(() => {
       if (!mouseOnMenu) {
@@ -120,6 +122,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
                 spareDirection="downStartLeft"
                 getItemAs={getItemAs}
                 getItemHTMLAttributes={getItemHTMLAttributes}
+                style={{ zIndex: elementZIndex }}
               />
             </li>
           )
@@ -151,6 +154,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
               spareDirection="downStartRight"
               getItemAs={getItemAs}
               getItemHTMLAttributes={getItemHTMLAttributes}
+              style={{ zIndex: elementZIndex }}
             />
           </li>
         )}

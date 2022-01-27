@@ -34,6 +34,8 @@ const MobileMenuRender = (props: MobileMenuProps, ref: React.Ref<HTMLButtonEleme
 
   const [visibleMenu, { toogle, off }] = useFlag()
 
+  const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined
+
   return (
     <>
       <Button
@@ -51,6 +53,7 @@ const MobileMenuRender = (props: MobileMenuProps, ref: React.Ref<HTMLButtonEleme
         isOpen={visibleMenu}
         onClickOutside={off}
         size="m"
+        style={{ zIndex: elementZIndex }}
       >
         <VerticalMenu
           className={cnMobileMenu('Menu')}

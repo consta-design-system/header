@@ -10,10 +10,10 @@ import { LayoutRow } from './LayoutRow/LayoutRow'
 const cnLayout = cn('Layout')
 
 export const Layout = forwardRef((props: LayoutProps, ref: React.Ref<HTMLDivElement>) => {
-  const { className, rowTop, rowBottom, rowCenter, children } = props
+  const { className, rowTop, rowBottom, rowCenter, children, ...otherProps } = props
 
   return (
-    <div ref={ref} className={cnLayout(null, [className])}>
+    <div {...otherProps} className={cnLayout(null, [className])} ref={ref}>
       {rowTop && <LayoutRow className={cnLayout('Row')} content={rowTop} height="s" />}
       {(rowCenter || children) && (
         <LayoutRow

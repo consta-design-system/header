@@ -61,6 +61,8 @@ function NotificationsListRender(props: NotificationsListProps, ref: React.Ref<H
     return () => listRef.current?.removeEventListener('scroll', closeAllMenu)
   }, [listRef.current])
 
+  const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined
+
   return (
     <div {...otherProps} ref={ref} className={cnNotificationsList(null, [className])}>
       {(title || actions) && (
@@ -75,6 +77,7 @@ function NotificationsListRender(props: NotificationsListProps, ref: React.Ref<H
               getItemIcon={getActionIcon}
               getItemOnClick={getActionOnClick}
               getItemLabel={getActionLabel}
+              style={{ zIndex: elementZIndex }}
             />
           )}
           {onClose && (
@@ -124,6 +127,7 @@ function NotificationsListRender(props: NotificationsListProps, ref: React.Ref<H
                     setVisibleMenu={value => {
                       setVisibleMenuRef.current[`${groupIndex}-${itemIndex}`] = value
                     }}
+                    style={{ zIndex: elementZIndex }}
                   />
                 )
               })}

@@ -86,6 +86,8 @@ const NotificationsRender = (props: NotificationsProps, ref: React.Ref<HTMLButto
     getItemView,
   }
 
+  const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined
+
   return (
     <>
       <Button
@@ -98,8 +100,8 @@ const NotificationsRender = (props: NotificationsProps, ref: React.Ref<HTMLButto
         onClick={toogle}
       />
       {isMobile ? (
-        <Sidebar isOpen={visibleMenu} onClickOutside={off}>
-          <NotificationsList {...listProps} onClose={off} />
+        <Sidebar isOpen={visibleMenu} onClickOutside={off} style={{ zIndex: elementZIndex }}>
+          <NotificationsList {...listProps} onClose={off} style={{ zIndex: elementZIndex }} />
         </Sidebar>
       ) : (
         <CSSTransition
@@ -117,11 +119,12 @@ const NotificationsRender = (props: NotificationsProps, ref: React.Ref<HTMLButto
             style={{
               ['--popover-arrow-size' as string]: `${ARROW_SIZE}px`,
               ['--popover-arrow-offset' as string]: `${ARROW_OFFSET}px`,
+              zIndex: elementZIndex,
             }}
             onClickOutside={off}
           >
             <div className={cnMixPopoverArrow({ direction })} />
-            <NotificationsList {...listProps} />
+            <NotificationsList {...listProps} style={{ zIndex: elementZIndex }} />
           </Popover>
         </CSSTransition>
       )}
@@ -130,5 +133,3 @@ const NotificationsRender = (props: NotificationsProps, ref: React.Ref<HTMLButto
 }
 
 export const Notifications = forwardRef(NotificationsRender) as NotificationsComponent
-
-export * from './types'
