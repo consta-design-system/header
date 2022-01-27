@@ -1,6 +1,6 @@
 {
   "name": "@consta/header",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "build:css": "NODE_ENV=production postcss 'src/**/*.css' --base src --dir lib",
     "build:js": "NODE_ENV=production BUILDING_JS=true babel src --out-dir lib --extensions '.ts,.tsx' --source-maps",
@@ -21,8 +21,7 @@
     "unit": "NODE_PATH=./node_modules TZ=Europe/Moscow jest",
     "unit:watch": "yarn unit --watchAll",
     "test": "npm-run-all --parallel lint checktypes",
-    "prepare": "yarn install-peers",
-    "deps": "yarn install & yarn add @emotion/styled-base@10.0.17 -D"
+    "prepare": "yarn install-peers"
   },
   "files": [
     "*",
