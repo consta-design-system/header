@@ -41,6 +41,13 @@ const NotificationsActionsRender = (
   const setVisibleMenuRef = useMutableRef(setVisibleMenuProp)
   const menuRef = useForkRef([buttonRef, ref])
 
+  const getOnItemClick = (item: typeof items[number]) => (e: React.MouseEvent) => {
+    onItemClick?.({ e, item })
+    getItemOnClick(item)?.(e)
+  }
+
+  const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined
+
   useEffect(() => {
     setVisibleMenu(opened)
   }, [opened])
@@ -53,11 +60,6 @@ const NotificationsActionsRender = (
     setVisibleMenuRef.current?.(setVisibleMenu)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const getOnItemClick = (item: typeof items[number]) => (e: React.MouseEvent) => {
-    onItemClick?.({ e, item })
-    getItemOnClick(item)?.(e)
-  }
 
   if (items.length === 1 && !mainButtonOnlyIcon) {
     return (
@@ -113,7 +115,7 @@ const NotificationsActionsRender = (
         onClickOutside={closeMenu}
         possibleDirections={['downStartRight', 'upStartRight']}
         direction="downStartRight"
-        style={{ width: 280 }}
+        style={{ width: 280, zIndex: elementZIndex }}
       />
     </>
   )

@@ -1,7 +1,6 @@
 import { withKnobs } from '@storybook/addon-knobs'
-import { withInfo } from '@storybook/addon-info'
 import { addDecorator, addParameters } from '@storybook/react'
-import { withPropsTable } from 'storybook-addon-react-docgen'
+
 import { theme } from './manager'
 
 import {
@@ -14,14 +13,8 @@ import {
 import './storybook.css'
 import mdx from './stub.stories.mdx'
 
-addDecorator(withPropsTable)
 addDecorator(withKnobs)
 addDecorator(environmentDecorator())
-addDecorator(
-  withInfo({
-    header: false,
-  })
-)
 
 const storySort = (a, b) => {
   const orderA = a[1].parameters.order

@@ -80,6 +80,8 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
 
   const breakpoints = useBreakpoints({ s: 800, m: 1200 })
 
+  const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex : undefined
+
   if (breakpoints.m) {
     return (
       <Layout
@@ -101,6 +103,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   getItemSubMenu={getMenuItemSubMenu}
                   getItemTarget={getMenuItemTarget}
                   onItemClick={onMenuItemClick}
+                  style={{ zIndex: elementZIndex }}
                 />
               )}
             </div>
@@ -127,6 +130,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   getItemTitle={getTileMenuItemTitle}
                   listClassName={cnHeader('TileMenuList', { breakpoint: 'm' })}
                   title={tileMenuTitle}
+                  style={{ zIndex: elementZIndex }}
                 />
               )}
               {notifications?.length && (
@@ -153,6 +157,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   getActionOnClick={getNotificationsActionOnClick}
                   getGroupLabel={getNotificationsGroupLabel}
                   getGroupId={getNotificationsGroupId}
+                  style={{ zIndex: elementZIndex }}
                 />
               )}
             </div>
@@ -182,6 +187,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   getItemSubMenu={getMenuItemSubMenu}
                   getItemTarget={getMenuItemTarget}
                   onItemClick={onMenuItemClick}
+                  style={{ zIndex: elementZIndex }}
                 />
               )}
               <HeaderLogo className={cnHeader('Logo')} logo={logo} href={logoHref} />
@@ -210,6 +216,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   listClassName={cnHeader('TileMenuList')}
                   title={tileMenuTitle}
                   isMobile
+                  style={{ zIndex: elementZIndex }}
                 />
               )}
               {notifications?.length && (
@@ -237,6 +244,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   getGroupLabel={getNotificationsGroupLabel}
                   getGroupId={getNotificationsGroupId}
                   isMobile
+                  style={{ zIndex: elementZIndex }}
                 />
               )}
             </div>
@@ -265,6 +273,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                 getItemSubMenu={getMenuItemSubMenu}
                 getItemTarget={getMenuItemTarget}
                 onItemClick={onMenuItemClick}
+                style={{ zIndex: elementZIndex }}
                 header={
                   <div className={cnHeader('MobileMenuHeader')}>
                     <div>
@@ -292,6 +301,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                             listClassName={cnHeader('TileMenuList')}
                             title={tileMenuTitle}
                             isMobile
+                            style={{ zIndex: elementZIndex }}
                           />
                         )}
                         {notifications?.length && (
@@ -319,6 +329,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                             getGroupLabel={getNotificationsGroupLabel}
                             getGroupId={getNotificationsGroupId}
                             isMobile
+                            style={{ zIndex: elementZIndex }}
                           />
                         )}
                       </div>

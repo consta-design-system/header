@@ -10,7 +10,6 @@ module.exports = {
   addons: [
     '@storybook/addon-knobs',
     '@storybook/addon-actions',
-    'storybook-addon-react-docgen',
     '@storybook/addon-docs/register',
     'storybook-addon-themes',
     'storybook-addon-designs',

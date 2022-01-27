@@ -35,6 +35,7 @@ function TileMenuRender(props: TileMenuProps, ref: React.Ref<HTMLButtonElement>)
     getItemOnClick,
     getItemTitle,
     title,
+    onItemClick,
     ...otherProps
   } = props
 
@@ -57,7 +58,10 @@ function TileMenuRender(props: TileMenuProps, ref: React.Ref<HTMLButtonElement>)
     getItemTitle,
     items,
     view,
+    onItemClick,
   }
+
+  const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined
 
   return (
     <>
@@ -71,7 +75,13 @@ function TileMenuRender(props: TileMenuProps, ref: React.Ref<HTMLButtonElement>)
         onClick={toogle}
       />
       {isMobile ? (
-        <Sidebar isOpen={visibleMenu} onClickOutside={off} onClose={off} title={title}>
+        <Sidebar
+          isOpen={visibleMenu}
+          onClickOutside={off}
+          onClose={off}
+          title={title}
+          style={{ zIndex: elementZIndex }}
+        >
           <TileMenuList {...listProps} />
         </Sidebar>
       ) : (
@@ -90,6 +100,7 @@ function TileMenuRender(props: TileMenuProps, ref: React.Ref<HTMLButtonElement>)
             style={{
               ['--popover-arrow-size' as string]: `${ARROW_SIZE}px`,
               ['--popover-arrow-offset' as string]: `${ARROW_OFFSET}px`,
+              zIndex: elementZIndex,
             }}
             onClickOutside={off}
           >

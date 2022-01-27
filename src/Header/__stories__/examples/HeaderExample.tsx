@@ -22,6 +22,7 @@ export const HeaderExampleBasic = () => (
       tileMenu={tileMenu}
       tileMenuTitle="Сервисы"
       menu={menu}
+      style={{ zIndex: 100 }}
     />
   </Example>
 )
@@ -41,6 +42,7 @@ export const HeaderExampleNotLogined = () => (
       tileMenu={tileMenu}
       tileMenuTitle="Сервисы"
       menu={menu}
+      style={{ zIndex: 100 }}
     />
   </Example>
 )

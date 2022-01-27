@@ -63,6 +63,7 @@ export const NotificationCard = forwardRef(
               mainButtonOnlyIcon
               opened={actionsMenuOpened}
               setVisibleMenu={setVisibleMenu}
+              style={{ zIndex: props.style?.zIndex }}
             />
           )}
         </div>
