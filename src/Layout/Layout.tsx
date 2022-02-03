@@ -14,15 +14,19 @@ export const Layout = forwardRef((props: LayoutProps, ref: React.Ref<HTMLDivElem
 
   return (
     <div {...otherProps} className={cnLayout(null, [className])} ref={ref}>
-      {rowTop && <LayoutRow className={cnLayout('Row')} content={rowTop} height="s" />}
+      {rowTop && (
+        <LayoutRow className={cnLayout('Row', { top: true })} content={rowTop} height="s" />
+      )}
       {(rowCenter || children) && (
         <LayoutRow
-          className={cnLayout('Row')}
+          className={cnLayout('Row', { center: true })}
           content={rowCenter || children}
           height={LayoutRowIsObject(rowCenter) ? rowCenter.height : undefined}
         />
       )}
-      {rowBottom && <LayoutRow className={cnLayout('Row')} content={rowBottom} height="s" />}
+      {rowBottom && (
+        <LayoutRow className={cnLayout('Row', { botton: true })} content={rowBottom} height="s" />
+      )}
     </div>
   )
 })

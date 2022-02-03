@@ -10,6 +10,7 @@ import { Notifications } from '@/Notifications'
 import { TileMenu } from '@/TileMenu'
 import { useBreakpoints } from '@consta/uikit/useBreakpoints'
 import { MobileMenu } from '@/MobileMenu'
+import { Breadcrumbs } from '@consta/uikit/BreadcrumbsCanary'
 
 import './Header.css'
 
@@ -76,6 +77,17 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
     getTileMenuItemOnClick,
     getTileMenuItemTitle,
     tileMenuTitle,
+
+    // Breadcrumbs
+    breadcrumbs,
+    breadcrumbsOnlyIconRoot,
+    onBreadcrumbsItemClick,
+    getBreadcrumbsItemLabel,
+    getBreadcrumbsItemHref,
+    getBreadcrumbsItemIcon,
+    getBreadcrumbsItemOnClick,
+    breadcrumbsLastItemIsLink,
+    breadcrumbsFitMode,
     ...otherProps
   } = props
 
@@ -164,6 +176,25 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
             </div>
           ),
         }}
+        rowBottom={
+          breadcrumbs ? (
+            <Breadcrumbs
+              className={cnHeader('Breadcrumbs')}
+              items={breadcrumbs}
+              onlyIconRoot={breadcrumbsOnlyIconRoot}
+              size="m"
+              onItemClick={onBreadcrumbsItemClick}
+              getItemLabel={getBreadcrumbsItemLabel}
+              getItemHref={getBreadcrumbsItemHref}
+              getItemIcon={getBreadcrumbsItemIcon}
+              getItemOnClick={getBreadcrumbsItemOnClick}
+              lastItemIsLink={breadcrumbsLastItemIsLink}
+              fitMode={breadcrumbsFitMode}
+            />
+          ) : (
+            undefined
+          )
+        }
       />
     )
   }
@@ -173,7 +204,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
       <Layout
         {...otherProps}
         ref={ref}
-        className={cnHeader(null, [className])}
+        className={cnHeader({ fixed }, [className])}
         rowCenter={{
           left: (
             <div className={cnHeader('RowCenterLeft')}>
@@ -251,6 +282,25 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
             </div>
           ),
         }}
+        rowBottom={
+          breadcrumbs ? (
+            <Breadcrumbs
+              className={cnHeader('Breadcrumbs')}
+              items={breadcrumbs}
+              onlyIconRoot={breadcrumbsOnlyIconRoot}
+              size="m"
+              onItemClick={onBreadcrumbsItemClick}
+              getItemLabel={getBreadcrumbsItemLabel}
+              getItemHref={getBreadcrumbsItemHref}
+              getItemIcon={getBreadcrumbsItemIcon}
+              getItemOnClick={getBreadcrumbsItemOnClick}
+              lastItemIsLink={breadcrumbsLastItemIsLink}
+              fitMode={breadcrumbsFitMode}
+            />
+          ) : (
+            undefined
+          )
+        }
       />
     )
   }
@@ -259,7 +309,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
     <Layout
       {...otherProps}
       ref={ref}
-      className={cnHeader(null, [className])}
+      className={cnHeader({ fixed }, [className])}
       rowCenter={{
         left: (
           <div className={cnHeader('RowCenterLeft')}>

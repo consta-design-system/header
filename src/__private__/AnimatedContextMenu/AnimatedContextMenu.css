@@ -1,10 +1,10 @@
 .che--AnimatedContextMenu {
-  &_exit {
+  &_exit.ContextMenuLevel {
     pointer-events: none;
 
-    opacity: 0;
+    opacity: 0 !important;
 
-    transition: opacity 0.2s, transform 0.2s;
-    transform: translate(0, var(--space-s));
+    transition: opacity 0.2s, transform 0.2s !important;
+    transform: translateY(var(--space-s)) !important;
   }
 }

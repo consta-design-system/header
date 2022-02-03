@@ -123,6 +123,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
                 getItemAs={getItemAs}
                 getItemHTMLAttributes={getItemHTMLAttributes}
                 style={{ zIndex: elementZIndex }}
+                offset={8}
               />
             </li>
           )
@@ -155,6 +156,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
               getItemAs={getItemAs}
               getItemHTMLAttributes={getItemHTMLAttributes}
               style={{ zIndex: elementZIndex }}
+              offset={5}
             />
           </li>
         )}

@@ -1,6 +1,8 @@
 import { DefaultItem, DefaultAction } from '@/NotificationsList'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
+import { IconComponent } from '@consta/uikit/Icon'
+import { IconHome } from '@consta/uikit/IconHome'
 
 import { action } from '@storybook/addon-actions'
 
@@ -396,5 +398,39 @@ export const tileMenu: TileMenuItem[] = [
     title: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+]
+
+type Page = {
+  icon?: IconComponent
+  href: string
+  label: string
+}
+
+export const breadcrumbs: Page[] = [
+  {
+    icon: IconHome,
+    label: 'Главная',
+    href: 'https://url.com/page-1',
+  },
+  {
+    label: 'Раздел',
+    href: 'https://url.com/page-2',
+  },
+  {
+    label: 'Подраздел',
+    href: 'https://url.com/page-3',
+  },
+  {
+    label: 'Элемент подраздела',
+    href: 'https://url.com/page-4',
+  },
+  {
+    label: 'Дополнительные свойства элемента подраздела',
+    href: 'https://url.com/page-5',
+  },
+  {
+    label: 'Детальное описание свойства элемента подраздела',
+    href: 'https://url.com/page-6',
   },
 ]
