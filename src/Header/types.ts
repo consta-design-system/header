@@ -46,6 +46,16 @@ import {
 
 import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWithHTMLAttributes'
 
+import {
+  BreadcrumbsPropGetItemLabel,
+  BreadcrumbsPropGetItemHref,
+  BreadcrumbsPropGetItemOnClick,
+  BreadcrumbsPropGetItemIcon,
+  BreadcrumbsPropOnItemClick,
+  BreadcrumbPropFitMode,
+  DefaultItem as DefaultBreadcrumbsItem,
+} from '@consta/uikit/BreadcrumbsCanary'
+
 export type HeaderProps<
   // Menu
   MENU_ITEM = DefaultMenuItem,
@@ -55,11 +65,13 @@ export type HeaderProps<
   NOTIFICATION_ACTION = DefaultNotificationAction,
   NOTIFICATION_GROUP_BY_DAY extends boolean = false,
   // TileMenu
-  TILE_MENU_ITEM = DefaultTileMenuItem
+  TILE_MENU_ITEM = DefaultTileMenuItem,
+  // Breadcrumbs
+  BREADCRUMBS_ITEM = DefaultBreadcrumbsItem
 > = PropsWithHTMLAttributesAndRef<
   {
-    // Header
     fixed?: boolean
+
     // Logo
     logo?: React.ReactNode
     onLogoClick?: React.MouseEventHandler
@@ -117,6 +129,17 @@ export type HeaderProps<
     getTileMenuItemDescription?: TileMenuPropGetItemDescription<TILE_MENU_ITEM>
     getTileMenuItemHref?: TileMenuPropGetItemHref<TILE_MENU_ITEM>
     getTileMenuItemOnClick?: TileMenuPropGetItemOnClick<TILE_MENU_ITEM>
+
+    // Breadcrumbs
+    breadcrumbs?: BREADCRUMBS_ITEM[]
+    getBreadcrumbsItemLabel?: BreadcrumbsPropGetItemLabel<BREADCRUMBS_ITEM>
+    getBreadcrumbsItemHref?: BreadcrumbsPropGetItemHref<BREADCRUMBS_ITEM>
+    getBreadcrumbsItemIcon?: BreadcrumbsPropGetItemIcon<BREADCRUMBS_ITEM>
+    getBreadcrumbsItemOnClick?: BreadcrumbsPropGetItemOnClick<BREADCRUMBS_ITEM>
+    onBreadcrumbsItemClick?: BreadcrumbsPropOnItemClick<BREADCRUMBS_ITEM>
+    breadcrumbsOnlyIconRoot?: boolean
+    breadcrumbsLastItemIsLink?: boolean
+    breadcrumbsFitMode?: BreadcrumbPropFitMode
   },
   HTMLDivElement
 > &
@@ -140,18 +163,20 @@ export type HeaderProps<
   // TileMenu
   (TILE_MENU_ITEM extends { title: DefaultTileMenuItem['title'] | unknown }
     ? {}
-    : { getTileMenuItemTitle: TileMenuPropGetItemTitle<TILE_MENU_ITEM> })
+    : { getTileMenuItemTitle: TileMenuPropGetItemTitle<TILE_MENU_ITEM> }) &
+  // Breadcrumbs
+  (BREADCRUMBS_ITEM extends { label: DefaultBreadcrumbsItem['label'] | unknown }
+    ? {}
+    : { getBreadcrumbsItemLabel: BreadcrumbsPropGetItemLabel<BREADCRUMBS_ITEM> })
 
 export type HeaderComponent = <
-  // Menu
   MENU_ITEM = DefaultMenuItem,
-  // Notifications
   NOTIFICATION_ITEM = DefaultNotificationItem,
   NOTIFICATION_GROUP = DefaultNotificationGroup,
   NOTIFICATION_ACTION = DefaultNotificationAction,
   NOTIFICATION_GROUP_BY_DAY extends boolean = false,
-  // TileMenu
-  TILE_MENU_ITEM = DefaultTileMenuItem
+  TILE_MENU_ITEM = DefaultTileMenuItem,
+  BREADCRUMBS_ITEM = DefaultBreadcrumbsItem
 >(
   props: HeaderProps<
     MENU_ITEM,
@@ -159,6 +184,7 @@ export type HeaderComponent = <
     NOTIFICATION_GROUP,
     NOTIFICATION_ACTION,
     NOTIFICATION_GROUP_BY_DAY,
-    TILE_MENU_ITEM
+    TILE_MENU_ITEM,
+    BREADCRUMBS_ITEM
   >
 ) => React.ReactElement | null

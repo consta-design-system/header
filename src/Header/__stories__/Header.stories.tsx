@@ -6,7 +6,13 @@ import { createMetadata } from '../../__private__/storybook'
 import { ConstaLogo } from './ConstaLogo'
 import { select, boolean } from '@storybook/addon-knobs'
 import { getByMap } from '@consta/uikit/__internal__/src/utils/getByMap'
-import { menu, notifications, notificationsActions, tileMenu } from '../__mocks__/data.mock'
+import {
+  menu,
+  notifications,
+  notificationsActions,
+  tileMenu,
+  breadcrumbs,
+} from '../__mocks__/data.mock'
 
 import mdx from './Header.docs.mdx'
 
@@ -22,10 +28,18 @@ const defaultKnobs = () => ({
   withTileMenu: boolean('widthTileMenu', true),
   withNotifications: boolean('widthNotifications', true),
   withLogin: boolean('withLogin', true),
+  widthBreadcrumbs: boolean('widthBreadcrumbs', true),
 })
 
 export function Playground() {
-  const { logo, withMenu, withTileMenu, withNotifications, withLogin } = defaultKnobs()
+  const {
+    logo,
+    withMenu,
+    withTileMenu,
+    withNotifications,
+    withLogin,
+    widthBreadcrumbs,
+  } = defaultKnobs()
 
   const tileMenuProps = withTileMenu && { tileMenu, tileMenuTitle: 'Сервисы' }
   const menuProps = withMenu && { menu }
@@ -41,6 +55,10 @@ export function Playground() {
     loginButtonLabel: 'Войти',
     userLogined: true,
   }
+  const breadcrumbsProps = widthBreadcrumbs && {
+    breadcrumbs,
+    onBreadcrumbsItemClick: ({ e }: { e: React.SyntheticEvent }) => e.preventDefault(),
+  }
 
   return (
     <Header
@@ -51,6 +69,7 @@ export function Playground() {
       {...notificationsProps}
       {...tileMenuProps}
       {...menuProps}
+      {...breadcrumbsProps}
     />
   )
 }
