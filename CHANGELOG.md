@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.2.0 (09/02/2022)
+Самое важное:
+- Добавлены хлебные крошки
+
+---
+
+- [feat(Breadcrumbs): add breadcrumbs (#3)](https://github.com/consta-design-system/header/commit/403821e7cd06d8290340d3b0339345600788c6c2) - [@gizeasy](https://github.com/gizeasy)
+- [feat(Header): added modifier `_fixed`](https://github.com/consta-design-system/header/commit/51d45d15a4724cdee6de38f3f9960338e6f5d91d) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v0.1.0 (27/01/2022)
 Та-да-да дам: готов новый `Header` (кажется, его многие ждут, а некоторые уже используют). 
 
