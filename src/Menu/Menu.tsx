@@ -10,7 +10,7 @@ import { useFlag } from '@consta/uikit/useFlag'
 import { AnimatedContextMenu } from '@/__private__/AnimatedContextMenu/AnimatedContextMenu'
 
 import { cn } from '@/__private__/utils/bem'
-import { useHideElementsLine } from '@/__private__/hooks/useHideElementsLine'
+import { useHideElementsInLine } from '@consta/uikit/useHideElementsInLine'
 
 import { withDefaultGetters, getItemClick, animateTimeout } from './helpers'
 import { MenuComponent, MenuProps } from './types'
@@ -35,7 +35,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   const [openedSubMenu, setOpenedSubMenu] = useState<number | 'more' | undefined>()
   const [mouseOnMenu, setMouseOnMenu] = useFlag()
 
-  const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } = useHideElementsLine<
+  const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } = useHideElementsInLine<
     HTMLLIElement,
     HTMLUListElement,
     typeof items[number]
