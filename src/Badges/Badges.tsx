@@ -2,7 +2,8 @@ import React, { forwardRef } from 'react'
 
 import { Badge } from '@consta/uikit/Badge'
 import { useForkRef } from '@consta/uikit/useForkRef'
-import { useHideElementsLine } from '@/__private__/hooks/useHideElementsLine'
+
+import { useHideElementsInLine } from '@consta/uikit/useHideElementsInLine'
 import { cn } from '@/__private__/utils/bem'
 
 import { BadgesProps, BadgesComponent } from './types'
@@ -25,11 +26,7 @@ const BadgesRender = (props: BadgesProps, ref: React.Ref<HTMLDivElement>) => {
     ...otherProps
   } = withDefaultGetters(props)
 
-  const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } = useHideElementsLine<
-    HTMLDivElement,
-    HTMLDivElement,
-    typeof items[number]
-  >(items)
+  const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } = useHideElementsInLine(items)
 
   return (
     <div
