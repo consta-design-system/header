@@ -56,6 +56,8 @@ import {
   DefaultItem as DefaultBreadcrumbsItem,
 } from '@consta/uikit/BreadcrumbsCanary'
 
+import { HeaderSearchProps } from './HeaderSearch'
+
 export type HeaderProps<
   // Menu
   MENU_ITEM = DefaultMenuItem,
@@ -140,6 +142,12 @@ export type HeaderProps<
     breadcrumbsOnlyIconRoot?: boolean
     breadcrumbsLastItemIsLink?: boolean
     breadcrumbsFitMode?: BreadcrumbPropFitMode
+
+    // Search
+    searchValue?: HeaderSearchProps['value']
+    searchOnChange?: HeaderSearchProps['onChange']
+    searchOnSubmit?: HeaderSearchProps['onSubmit']
+    searchPlaceholder?: HeaderSearchProps['placeholder']
   },
   HTMLDivElement
 > &

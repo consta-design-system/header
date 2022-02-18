@@ -12,7 +12,9 @@ import { AnimatedContextMenu } from '@/__private__/AnimatedContextMenu/AnimatedC
 import { cn } from '@/__private__/utils/bem'
 import { useHideElementsInLine } from '@consta/uikit/useHideElementsInLine'
 
-import { withDefaultGetters, getItemClick, animateTimeout } from './helpers'
+import { animateTimeout } from '@consta/uikit/MixPopoverAnimate'
+
+import { withDefaultGetters, getItemClick } from './helpers'
 import { MenuComponent, MenuProps } from './types'
 import './Menu.css'
 

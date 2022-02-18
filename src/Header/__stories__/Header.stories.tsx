@@ -28,7 +28,8 @@ const defaultKnobs = () => ({
   withTileMenu: boolean('widthTileMenu', true),
   withNotifications: boolean('widthNotifications', true),
   withLogin: boolean('withLogin', true),
-  widthBreadcrumbs: boolean('widthBreadcrumbs', true),
+  withBreadcrumbs: boolean('withBreadcrumbs', true),
+  withSearch: boolean('withSearch', true),
 })
 
 export function Playground() {
@@ -38,7 +39,8 @@ export function Playground() {
     withTileMenu,
     withNotifications,
     withLogin,
-    widthBreadcrumbs,
+    withBreadcrumbs,
+    withSearch,
   } = defaultKnobs()
 
   const tileMenuProps = withTileMenu && { tileMenu, tileMenuTitle: 'Сервисы' }
@@ -55,9 +57,13 @@ export function Playground() {
     loginButtonLabel: 'Войти',
     userLogined: true,
   }
-  const breadcrumbsProps = widthBreadcrumbs && {
+  const breadcrumbsProps = withBreadcrumbs && {
     breadcrumbs,
     onBreadcrumbsItemClick: ({ e }: { e: React.SyntheticEvent }) => e.preventDefault(),
+  }
+  const searchProps = withSearch && {
+    searchOnSubmit: ({ value }: { value?: string | null }) => alert(`Поиск ${value}`),
+    searchPlaceholder: 'Поиск',
   }
 
   return (
@@ -70,6 +76,7 @@ export function Playground() {
       {...tileMenuProps}
       {...menuProps}
       {...breadcrumbsProps}
+      {...searchProps}
     />
   )
 }

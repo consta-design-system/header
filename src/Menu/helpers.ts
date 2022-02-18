@@ -39,5 +39,3 @@ export function getItemClick<ITEM>(
     getItemOnClick(item)?.(e)
   }
 }
-
-export const animateTimeout = 200

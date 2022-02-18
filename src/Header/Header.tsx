@@ -6,6 +6,7 @@ import { Layout } from '@/Layout'
 import { Menu } from '@/Menu'
 import { HeaderLogo } from './HeaderLogo'
 import { HeaderLogin } from './HeaderLogin'
+import { HeaderSearch } from './HeaderSearch'
 import { Notifications } from '@/Notifications'
 import { TileMenu } from '@/TileMenu'
 import { useBreakpoints } from '@consta/uikit/useBreakpoints'
@@ -88,6 +89,12 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
     getBreadcrumbsItemOnClick,
     breadcrumbsLastItemIsLink,
     breadcrumbsFitMode,
+
+    // Search
+    searchValue,
+    searchOnChange,
+    searchOnSubmit,
+    searchPlaceholder,
     ...otherProps
   } = props
 
@@ -105,6 +112,14 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
           left: (
             <div className={cnHeader('RowCenterLeft', { breakpoint: 'm' })}>
               <HeaderLogo className={cnHeader('Logo')} logo={logo} href={logoHref} />
+              {(searchOnSubmit || searchOnChange) && (
+                <HeaderSearch
+                  value={searchValue}
+                  onChange={searchOnChange}
+                  onSubmit={searchOnSubmit}
+                  placeholder={searchPlaceholder}
+                />
+              )}
               {menu && (
                 <Menu
                   className={cnHeader('Menu')}
@@ -223,6 +238,14 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                 />
               )}
               <HeaderLogo className={cnHeader('Logo')} logo={logo} href={logoHref} />
+              {(searchOnSubmit || searchOnChange) && (
+                <HeaderSearch
+                  value={searchValue}
+                  onChange={searchOnChange}
+                  onSubmit={searchOnSubmit}
+                  placeholder={searchPlaceholder}
+                />
+              )}
             </div>
           ),
           right: (
@@ -385,6 +408,16 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                         )}
                       </div>
                     )}
+                    <div className={cnHeader('MobileSearchContainer')}>
+                      {(searchOnSubmit || searchOnChange) && (
+                        <HeaderSearch
+                          value={searchValue}
+                          onChange={searchOnChange}
+                          onSubmit={searchOnSubmit}
+                          placeholder={searchPlaceholder}
+                        />
+                      )}
+                    </div>
                   </div>
                 }
               />
