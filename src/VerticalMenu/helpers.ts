@@ -7,7 +7,7 @@ import {
   VerticalMenuPropGetItemOnClick,
   VerticalMenuPropGetItemSubMenu,
   VerticalMenuPropGetItemTarget,
-  VerticalMenuPropOnItemClick,
+  VerticalMenuPropGetItemGroup,
 } from './types'
 
 export const defaultGetItemLabel: VerticalMenuPropGetItemLabel<DefaultItem> = item => item.label
@@ -18,6 +18,7 @@ export const defaultGetItemOnClick: VerticalMenuPropGetItemOnClick<DefaultItem> 
 export const defaultGetItemTarget: VerticalMenuPropGetItemTarget<DefaultItem> = item => item.target
 export const defaultGetItemSubMenu: VerticalMenuPropGetItemSubMenu<DefaultItem> = item =>
   item.subMenu
+export const defaultGetItemGroup: VerticalMenuPropGetItemGroup<DefaultItem> = item => item.groupId
 
 export function withDefaultGetters<ITEM>(props: VerticalMenuProps<ITEM>) {
   return {
@@ -28,16 +29,6 @@ export function withDefaultGetters<ITEM>(props: VerticalMenuProps<ITEM>) {
     getItemOnClick: props.getItemOnClick || defaultGetItemOnClick,
     getItemTarget: props.getItemTarget || defaultGetItemTarget,
     getItemSubMenu: props.getItemSubMenu || defaultGetItemSubMenu,
-  }
-}
-
-export function getItemClick<ITEM>(
-  item: ITEM,
-  getItemOnClick: VerticalMenuPropGetItemOnClick<ITEM>,
-  onItemClick?: VerticalMenuPropOnItemClick<ITEM>
-): React.MouseEventHandler {
-  return e => {
-    onItemClick?.({ e, item })
-    getItemOnClick(item)?.(e)
+    getItemGroup: props.getItemGroup || defaultGetItemGroup,
   }
 }

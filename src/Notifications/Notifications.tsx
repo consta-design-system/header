@@ -1,6 +1,6 @@
-import React, { forwardRef, useRef, useState, useCallback } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 
-import { CSSTransition } from 'react-transition-group'
+import { Transition } from 'react-transition-group'
 import { cn } from '@/__private__/utils/bem'
 
 import { NotificationsProps, NotificationsComponent } from './types'
@@ -15,7 +15,8 @@ import { useForkRef } from '@consta/uikit/useForkRef'
 import { IconRing } from '@consta/uikit/IconRing'
 import { useFlag } from '@consta/uikit/useFlag'
 import { cnMixPopoverArrow } from '@/__private__/mixs/MixPopoverArrow/MixPopoverArrow'
-import { cnMixPopoverAnimateForCssTransition } from '@/__private__/mixs/MixPopoverAnimate/MixPopoverAnimate'
+
+import { cnMixPopoverAnimate, animateTimeout } from '@consta/uikit/MixPopoverAnimate'
 
 import './Notifications.css'
 
@@ -57,10 +58,6 @@ const NotificationsRender = (props: NotificationsProps, ref: React.Ref<HTMLButto
   const [direction, setDirection] = useState<Direction | undefined>(undefined)
 
   const [visibleMenu, { toogle, off }] = useFlag()
-
-  const onSetDirection = useCallback((dir: Direction) => {
-    setDirection(dir)
-  }, [])
 
   const listProps = {
     className: cnNotifications('List', [listClassName]),
@@ -104,29 +101,26 @@ const NotificationsRender = (props: NotificationsProps, ref: React.Ref<HTMLButto
           <NotificationsList {...listProps} onClose={off} style={{ zIndex: elementZIndex }} />
         </Sidebar>
       ) : (
-        <CSSTransition
-          classNames={cnMixPopoverAnimateForCssTransition}
-          timeout={200}
-          unmountOnExit
-          in={visibleMenu}
-        >
-          <Popover
-            className={cnNotifications('Popover')}
-            anchorRef={buttonRef}
-            arrowOffset={ARROW_OFFSET + ARROW_SIZE}
-            offset={ARROW_SIZE + 4}
-            onSetDirection={onSetDirection}
-            style={{
-              ['--popover-arrow-size' as string]: `${ARROW_SIZE}px`,
-              ['--popover-arrow-offset' as string]: `${ARROW_OFFSET}px`,
-              zIndex: elementZIndex,
-            }}
-            onClickOutside={off}
-          >
-            <div className={cnMixPopoverArrow({ direction })} />
-            <NotificationsList {...listProps} style={{ zIndex: elementZIndex }} />
-          </Popover>
-        </CSSTransition>
+        <Transition timeout={animateTimeout} unmountOnExit in={visibleMenu}>
+          {animate => (
+            <Popover
+              className={cnNotifications('Popover', [cnMixPopoverAnimate({ animate, direction })])}
+              anchorRef={buttonRef}
+              arrowOffset={ARROW_OFFSET + ARROW_SIZE}
+              offset={ARROW_SIZE + 4}
+              onSetDirection={setDirection}
+              style={{
+                ['--popover-arrow-size' as string]: `${ARROW_SIZE}px`,
+                ['--popover-arrow-offset' as string]: `${ARROW_OFFSET}px`,
+                zIndex: elementZIndex,
+              }}
+              onClickOutside={off}
+            >
+              <div className={cnMixPopoverArrow({ direction })} />
+              <NotificationsList {...listProps} style={{ zIndex: elementZIndex }} />
+            </Popover>
+          )}
+        </Transition>
       )}
     </>
   )

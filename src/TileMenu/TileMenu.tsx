@@ -1,16 +1,16 @@
-import React, { forwardRef, useRef, useState, useCallback } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 
 import { cn } from '@/__private__/utils/bem'
 import { IconBento } from '@consta/uikit/IconBento'
 import { Button } from '@consta/uikit/Button'
-import { CSSTransition } from 'react-transition-group'
+import { Transition } from 'react-transition-group'
 import { useFlag } from '@consta/uikit/useFlag'
 import { useForkRef } from '@consta/uikit/useForkRef'
 import { Popover, Direction } from '@consta/uikit/Popover'
 import { cnMixPopoverArrow } from '@/__private__/mixs/MixPopoverArrow/MixPopoverArrow'
-import { cnMixPopoverAnimateForCssTransition } from '@/__private__/mixs/MixPopoverAnimate/MixPopoverAnimate'
 import { Sidebar } from '@/__private__/components/Sidebar'
 import { TileMenuProps, tileMenuPropViewDefault, TileMenuComponent } from './types'
+import { cnMixPopoverAnimate, animateTimeout } from '@consta/uikit/MixPopoverAnimate'
 
 import { TileMenuList } from './TileMenuList/TileMenuList'
 
@@ -33,7 +33,7 @@ function TileMenuRender(props: TileMenuProps, ref: React.Ref<HTMLButtonElement>)
     getItemHref,
     getItemImage,
     getItemOnClick,
-    getItemTitle,
+    getItemLabel,
     title,
     onItemClick,
     ...otherProps
@@ -45,17 +45,13 @@ function TileMenuRender(props: TileMenuProps, ref: React.Ref<HTMLButtonElement>)
 
   const [visibleMenu, { toogle, off }] = useFlag()
 
-  const onSetDirection = useCallback((dir: Direction) => {
-    setDirection(dir)
-  }, [])
-
   const listProps = {
     className: listClassName,
     getItemDescription,
     getItemHref,
     getItemImage,
     getItemOnClick,
-    getItemTitle,
+    getItemLabel,
     items,
     view,
     onItemClick,
@@ -85,31 +81,30 @@ function TileMenuRender(props: TileMenuProps, ref: React.Ref<HTMLButtonElement>)
           <TileMenuList {...listProps} />
         </Sidebar>
       ) : (
-        <CSSTransition
-          classNames={cnMixPopoverAnimateForCssTransition}
-          timeout={200}
-          unmountOnExit
-          in={visibleMenu}
-        >
-          <Popover
-            className={cnTileMenu('Popover', { view })}
-            anchorRef={buttonRef}
-            arrowOffset={ARROW_OFFSET + ARROW_SIZE}
-            offset={ARROW_SIZE + 4}
-            onSetDirection={onSetDirection}
-            style={{
-              ['--popover-arrow-size' as string]: `${ARROW_SIZE}px`,
-              ['--popover-arrow-offset' as string]: `${ARROW_OFFSET}px`,
-              zIndex: elementZIndex,
-            }}
-            onClickOutside={off}
-          >
-            <div className={cnMixPopoverArrow({ direction })} />
-            <div className={cnTileMenu('ListWrapper')}>
-              <TileMenuList {...listProps} />
-            </div>
-          </Popover>
-        </CSSTransition>
+        <Transition timeout={animateTimeout} unmountOnExit in={visibleMenu}>
+          {animate => (
+            <Popover
+              className={cnTileMenu('Popover', { view }, [
+                cnMixPopoverAnimate({ animate, direction }),
+              ])}
+              anchorRef={buttonRef}
+              arrowOffset={ARROW_OFFSET + ARROW_SIZE}
+              offset={ARROW_SIZE + 4}
+              onSetDirection={setDirection}
+              style={{
+                ['--popover-arrow-size' as string]: `${ARROW_SIZE}px`,
+                ['--popover-arrow-offset' as string]: `${ARROW_OFFSET}px`,
+                zIndex: elementZIndex,
+              }}
+              onClickOutside={off}
+            >
+              <div className={cnMixPopoverArrow({ direction })} />
+              <div className={cnTileMenu('ListWrapper')}>
+                <TileMenuList {...listProps} />
+              </div>
+            </Popover>
+          )}
+        </Transition>
       )}
     </>
   )

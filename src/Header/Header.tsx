@@ -1,7 +1,7 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 
 import { cn } from '@/__private__/utils/bem'
-import { HeaderProps, HeaderComponent } from './types'
+import { HeaderProps, HeaderComponent, DefaultItemLanguages } from './types'
 import { Layout } from '@/Layout'
 import { Menu } from '@/Menu'
 import { HeaderLogo } from './HeaderLogo'
@@ -12,6 +12,11 @@ import { TileMenu } from '@/TileMenu'
 import { useBreakpoints } from '@consta/uikit/useBreakpoints'
 import { MobileMenu } from '@/MobileMenu'
 import { Breadcrumbs } from '@consta/uikit/BreadcrumbsCanary'
+import { SelectMenu } from '@/SelectMenu'
+import { ButtonMenu } from '@/ButtonMenu'
+import { Languages, LanguagesProps } from '@/Languages'
+
+import { getMobileMenu } from './helpers'
 
 import './Header.css'
 
@@ -76,7 +81,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
     getTileMenuItemHref,
     getTileMenuItemImage,
     getTileMenuItemOnClick,
-    getTileMenuItemTitle,
+    getTileMenuItemLabel,
     tileMenuTitle,
 
     // Breadcrumbs
@@ -95,12 +100,58 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
     searchOnChange,
     searchOnSubmit,
     searchPlaceholder,
+
+    // SecondaryMenu
+    secondaryMenuLabel,
+    secondaryMenu,
+    getSecondaryMenuItemHref,
+    getSecondaryMenuItemLabel,
+    getSecondaryMenuItemOnClick,
+    getSecondaryMenuItemSubMenu,
+    getSecondaryMenuItemTarget,
+
+    // SocialMedia
+    socialMedia,
+    getSocialMediaItemHref,
+    getSocialMediaItemIcon,
+    getSocialMediaItemLabel,
+    getSocialMediaItemOnClick,
+    getSocialMediaItemTarget,
+    onSocialMediaItemClick,
+
+    // Languages
+    languages,
+    languageValue: languageValueProp,
+    getLanguagesItemHref,
+    getLanguagesItemLabel,
+    getLanguagesItemOnClick,
+    getLanguagesItemTarget,
+    onLanguageChange: onLanguageChangeProp,
+
+    // AdditionalButtons
+    additionalButtons,
+    getAdditionalButtonsItemHref,
+    getAdditionalButtonsItemIcon,
+    getAdditionalButtonsItemLabel,
+    getAdditionalButtonsItemOnClick,
+    getAdditionalButtonsItemTarget,
+    onAdditionalButtonsItemClick,
+
     ...otherProps
   } = props
 
   const breakpoints = useBreakpoints({ s: 800, m: 1200 })
 
+  const [languagesValue, setLanguagesValue] = useState<DefaultItemLanguages | undefined>(
+    languageValueProp || languages?.[0]
+  )
+
   const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex : undefined
+
+  const onLanguageChange: LanguagesProps<DefaultItemLanguages>['onChange'] = params => {
+    onLanguageChangeProp?.(params)
+    setLanguagesValue(params.item)
+  }
 
   if (breakpoints.m) {
     return (
@@ -108,6 +159,75 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
         {...otherProps}
         ref={ref}
         className={cnHeader({ fixed }, [className])}
+        rowTop={{
+          left:
+            secondaryMenuLabel && secondaryMenu?.length ? (
+              <SelectMenu
+                label={secondaryMenuLabel}
+                items={secondaryMenu}
+                getItemHref={getSecondaryMenuItemHref}
+                getItemLabel={getSecondaryMenuItemLabel}
+                getItemOnClick={getSecondaryMenuItemOnClick}
+                getItemSubMenu={getSecondaryMenuItemSubMenu}
+                getItemTarget={getSecondaryMenuItemTarget}
+                style={{ zIndex: elementZIndex }}
+              />
+            ) : (
+              undefined
+            ),
+          center: socialMedia?.length ? (
+            <ButtonMenu
+              items={socialMedia}
+              getItemHref={getSocialMediaItemHref}
+              getItemIcon={getSocialMediaItemIcon}
+              getItemLabel={getSocialMediaItemLabel}
+              getItemOnClick={getSocialMediaItemOnClick}
+              getItemTarget={getSocialMediaItemTarget}
+              onItemClick={onSocialMediaItemClick}
+              view="clear"
+              onlyIcon
+              size="s"
+            />
+          ) : (
+            undefined
+          ),
+          right: (
+            <div className={cnHeader('RowTopRight')}>
+              {[
+                languages?.length ? (
+                  <Languages
+                    key="Languages"
+                    items={languages}
+                    value={languagesValue}
+                    getItemHref={getLanguagesItemHref}
+                    getItemLabel={getLanguagesItemLabel}
+                    getItemOnClick={getLanguagesItemOnClick}
+                    getItemTarget={getLanguagesItemTarget}
+                    onChange={onLanguageChange}
+                    style={{ zIndex: elementZIndex }}
+                  />
+                ) : (
+                  undefined
+                ),
+                additionalButtons?.length ? (
+                  <ButtonMenu
+                    items={additionalButtons}
+                    getItemHref={getAdditionalButtonsItemHref}
+                    getItemIcon={getAdditionalButtonsItemIcon}
+                    getItemLabel={getAdditionalButtonsItemLabel}
+                    getItemOnClick={getAdditionalButtonsItemOnClick}
+                    getItemTarget={getAdditionalButtonsItemTarget}
+                    onItemClick={onAdditionalButtonsItemClick}
+                    view="clear"
+                    size="s"
+                  />
+                ) : (
+                  undefined
+                ),
+              ]}
+            </div>
+          ),
+        }}
         rowCenter={{
           left: (
             <div className={cnHeader('RowCenterLeft', { breakpoint: 'm' })}>
@@ -155,7 +275,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   getItemHref={getTileMenuItemHref}
                   getItemImage={getTileMenuItemImage}
                   getItemOnClick={getTileMenuItemOnClick}
-                  getItemTitle={getTileMenuItemTitle}
+                  getItemLabel={getTileMenuItemLabel}
                   listClassName={cnHeader('TileMenuList', { breakpoint: 'm' })}
                   title={tileMenuTitle}
                   style={{ zIndex: elementZIndex }}
@@ -226,15 +346,31 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
               {menu && (
                 <MobileMenu
                   className={cnHeader('Menu')}
-                  items={menu}
+                  items={getMobileMenu(props, { languagesValue, setLanguagesValue })}
                   getItemActive={getMenuItemActive}
                   getItemHref={getMenuItemHref}
                   getItemLabel={getMenuItemLabel}
                   getItemOnClick={getMenuItemOnClick}
                   getItemSubMenu={getMenuItemSubMenu}
                   getItemTarget={getMenuItemTarget}
-                  onItemClick={onMenuItemClick}
                   style={{ zIndex: elementZIndex }}
+                  footer={
+                    socialMedia?.length && (
+                      <ButtonMenu
+                        className={cnHeader('MobileMenuSocialMedia')}
+                        items={socialMedia}
+                        getItemHref={getSocialMediaItemHref}
+                        getItemIcon={getSocialMediaItemIcon}
+                        getItemLabel={getSocialMediaItemLabel}
+                        getItemOnClick={getSocialMediaItemOnClick}
+                        getItemTarget={getSocialMediaItemTarget}
+                        onItemClick={onSocialMediaItemClick}
+                        view="clear"
+                        onlyIcon
+                        size="s"
+                      />
+                    )
+                  }
                 />
               )}
               <HeaderLogo className={cnHeader('Logo')} logo={logo} href={logoHref} />
@@ -267,7 +403,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   getItemHref={getTileMenuItemHref}
                   getItemImage={getTileMenuItemImage}
                   getItemOnClick={getTileMenuItemOnClick}
-                  getItemTitle={getTileMenuItemTitle}
+                  getItemLabel={getTileMenuItemLabel}
                   listClassName={cnHeader('TileMenuList')}
                   title={tileMenuTitle}
                   isMobile
@@ -339,14 +475,13 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
             {menu && (
               <MobileMenu
                 className={cnHeader('Menu')}
-                items={menu}
+                items={getMobileMenu(props, { languagesValue, setLanguagesValue })}
                 getItemActive={getMenuItemActive}
                 getItemHref={getMenuItemHref}
                 getItemLabel={getMenuItemLabel}
                 getItemOnClick={getMenuItemOnClick}
                 getItemSubMenu={getMenuItemSubMenu}
                 getItemTarget={getMenuItemTarget}
-                onItemClick={onMenuItemClick}
                 style={{ zIndex: elementZIndex }}
                 header={
                   <div className={cnHeader('MobileMenuHeader')}>
@@ -371,7 +506,7 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                             getItemHref={getTileMenuItemHref}
                             getItemImage={getTileMenuItemImage}
                             getItemOnClick={getTileMenuItemOnClick}
-                            getItemTitle={getTileMenuItemTitle}
+                            getItemLabel={getTileMenuItemLabel}
                             listClassName={cnHeader('TileMenuList')}
                             title={tileMenuTitle}
                             isMobile
@@ -419,6 +554,23 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                       )}
                     </div>
                   </div>
+                }
+                footer={
+                  socialMedia?.length && (
+                    <ButtonMenu
+                      className={cnHeader('MobileMenuSocialMedia')}
+                      items={socialMedia}
+                      getItemHref={getSocialMediaItemHref}
+                      getItemIcon={getSocialMediaItemIcon}
+                      getItemLabel={getSocialMediaItemLabel}
+                      getItemOnClick={getSocialMediaItemOnClick}
+                      getItemTarget={getSocialMediaItemTarget}
+                      onItemClick={onSocialMediaItemClick}
+                      view="clear"
+                      onlyIcon
+                      size="s"
+                    />
+                  )
                 }
               />
             )}

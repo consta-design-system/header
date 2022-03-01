@@ -1,4 +1,5 @@
 import React from 'react'
+import { IconComponent } from '@consta/uikit/Icon'
 
 import {
   DefaultItem as DefaultMenuItem,
@@ -38,7 +39,7 @@ import {
   TileMenuPropGetItemDescription,
   TileMenuPropGetItemHref,
   TileMenuPropGetItemOnClick,
-  TileMenuPropGetItemTitle,
+  TileMenuPropGetItemLabel,
   TileMenuOnItemClick,
   TileMenuPropView,
   DefaultItem as DefaultTileMenuItem,
@@ -58,6 +59,41 @@ import {
 
 import { HeaderSearchProps } from './HeaderSearch'
 
+import {
+  SelectMenuPropGetItemHref,
+  SelectMenuPropGetItemLabel,
+  SelectMenuPropGetItemOnClick,
+  SelectMenuPropGetItemSubMenu,
+  SelectMenuPropGetItemTarget,
+  SelectMenuPropOnItemClick,
+  DefaultItem as DefaultSelectMenuItem,
+} from '@/SelectMenu'
+
+import {
+  ButtonMenuPropGetItemHref,
+  ButtonMenuPropGetItemIcon,
+  ButtonMenuPropGetItemLabel,
+  ButtonMenuPropGetItemOnClick,
+  ButtonMenuPropGetItemTarget,
+  ButtonMenuPropOnItemClick,
+  DefaultItem as ButtonMenuDefaultItem,
+} from '@/ButtonMenu'
+
+import { DefaultItem as DefaultItemLanguages } from '@/Languages'
+
+export type DefaultSocialMediaItem = ButtonMenuDefaultItem & { icon: IconComponent }
+
+export {
+  DefaultMenuItem,
+  DefaultNotificationItem,
+  DefaultNotificationGroup,
+  DefaultNotificationAction,
+  DefaultTileMenuItem,
+  DefaultSelectMenuItem,
+  DefaultItemLanguages,
+  ButtonMenuDefaultItem as AdditionalButtonsDefaultItem,
+}
+
 export type HeaderProps<
   // Menu
   MENU_ITEM = DefaultMenuItem,
@@ -69,7 +105,15 @@ export type HeaderProps<
   // TileMenu
   TILE_MENU_ITEM = DefaultTileMenuItem,
   // Breadcrumbs
-  BREADCRUMBS_ITEM = DefaultBreadcrumbsItem
+  BREADCRUMBS_ITEM = DefaultBreadcrumbsItem,
+  // SecondaryMenu
+  SECONDARY_MENU_ITEM = DefaultSelectMenuItem,
+  // ButtonMenu
+  SOCIAL_MEDIA_ITEM = DefaultSocialMediaItem,
+  // Languages
+  LANGUAGES_ITEM = DefaultItemLanguages,
+  // AdditionalButtons
+  ADDITIONAL_BUTTONS_ITEM = ButtonMenuDefaultItem
 > = PropsWithHTMLAttributesAndRef<
   {
     fixed?: boolean
@@ -127,7 +171,7 @@ export type HeaderProps<
     tileMenuView?: TileMenuPropView
     onTileMenuItemClick?: TileMenuOnItemClick<TILE_MENU_ITEM>
     getTileMenuItemImage?: TileMenuPropGetItemImage<TILE_MENU_ITEM>
-    getTileMenuItemTitle?: TileMenuPropGetItemTitle<TILE_MENU_ITEM>
+    getTileMenuItemLabel?: TileMenuPropGetItemLabel<TILE_MENU_ITEM>
     getTileMenuItemDescription?: TileMenuPropGetItemDescription<TILE_MENU_ITEM>
     getTileMenuItemHref?: TileMenuPropGetItemHref<TILE_MENU_ITEM>
     getTileMenuItemOnClick?: TileMenuPropGetItemOnClick<TILE_MENU_ITEM>
@@ -148,6 +192,45 @@ export type HeaderProps<
     searchOnChange?: HeaderSearchProps['onChange']
     searchOnSubmit?: HeaderSearchProps['onSubmit']
     searchPlaceholder?: HeaderSearchProps['placeholder']
+
+    // SecondaryMenu
+    secondaryMenu?: DefaultSelectMenuItem[]
+    onSecondaryMenuItemClick?: SelectMenuPropOnItemClick<SECONDARY_MENU_ITEM>
+    getSecondaryMenuItemHref?: SelectMenuPropGetItemHref<SECONDARY_MENU_ITEM>
+    getSecondaryMenuItemLabel?: SelectMenuPropGetItemLabel<SECONDARY_MENU_ITEM>
+    getSecondaryMenuItemTarget?: SelectMenuPropGetItemTarget<SECONDARY_MENU_ITEM>
+    getSecondaryMenuItemOnClick?: SelectMenuPropGetItemOnClick<SECONDARY_MENU_ITEM>
+    getSecondaryMenuItemSubMenu?: SelectMenuPropGetItemSubMenu<SECONDARY_MENU_ITEM>
+    secondaryMenuLabel?: string
+
+    // SocialMedia
+    socialMedia?: SOCIAL_MEDIA_ITEM[]
+    onSocialMediaItemClick?: ButtonMenuPropOnItemClick<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemHref?: ButtonMenuPropGetItemHref<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemLabel?: ButtonMenuPropGetItemLabel<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemTarget?: ButtonMenuPropGetItemTarget<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemOnClick?: ButtonMenuPropGetItemOnClick<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemIcon?: ButtonMenuPropGetItemIcon<SOCIAL_MEDIA_ITEM>
+
+    // Languages
+
+    languages?: LANGUAGES_ITEM[]
+    languagesLabel?: string
+    languageValue?: LANGUAGES_ITEM
+    onLanguageChange?: SelectMenuPropOnItemClick<LANGUAGES_ITEM>
+    getLanguagesItemHref?: SelectMenuPropGetItemHref<LANGUAGES_ITEM>
+    getLanguagesItemLabel?: SelectMenuPropGetItemLabel<LANGUAGES_ITEM>
+    getLanguagesItemTarget?: SelectMenuPropGetItemTarget<LANGUAGES_ITEM>
+    getLanguagesItemOnClick?: SelectMenuPropGetItemOnClick<LANGUAGES_ITEM>
+
+    // AdditionalButtons
+    additionalButtons?: ADDITIONAL_BUTTONS_ITEM[]
+    onAdditionalButtonsItemClick?: ButtonMenuPropOnItemClick<ADDITIONAL_BUTTONS_ITEM>
+    getAdditionalButtonsItemHref?: ButtonMenuPropGetItemHref<ADDITIONAL_BUTTONS_ITEM>
+    getAdditionalButtonsItemLabel?: ButtonMenuPropGetItemLabel<ADDITIONAL_BUTTONS_ITEM>
+    getAdditionalButtonsItemTarget?: ButtonMenuPropGetItemTarget<ADDITIONAL_BUTTONS_ITEM>
+    getAdditionalButtonsItemOnClick?: ButtonMenuPropGetItemOnClick<ADDITIONAL_BUTTONS_ITEM>
+    getAdditionalButtonsItemIcon?: ButtonMenuPropGetItemIcon<ADDITIONAL_BUTTONS_ITEM>
   },
   HTMLDivElement
 > &
@@ -169,13 +252,31 @@ export type HeaderProps<
     ? {}
     : { getNotificationsItemLabel: NotificationsListPropGetItemLabel<NOTIFICATION_ITEM> }) &
   // TileMenu
-  (TILE_MENU_ITEM extends { title: DefaultTileMenuItem['title'] | unknown }
+  (TILE_MENU_ITEM extends { title: DefaultTileMenuItem['label'] | unknown }
     ? {}
-    : { getTileMenuItemTitle: TileMenuPropGetItemTitle<TILE_MENU_ITEM> }) &
+    : { getTileMenuItemLabel: TileMenuPropGetItemLabel<TILE_MENU_ITEM> }) &
   // Breadcrumbs
   (BREADCRUMBS_ITEM extends { label: DefaultBreadcrumbsItem['label'] | unknown }
     ? {}
-    : { getBreadcrumbsItemLabel: BreadcrumbsPropGetItemLabel<BREADCRUMBS_ITEM> })
+    : { getBreadcrumbsItemLabel: BreadcrumbsPropGetItemLabel<BREADCRUMBS_ITEM> }) &
+  // SecondaryMenu
+  (SECONDARY_MENU_ITEM extends { label: DefaultSelectMenuItem['label'] | unknown }
+    ? {}
+    : { getSecondaryMenuItemLabel: SelectMenuPropGetItemLabel<SECONDARY_MENU_ITEM> }) &
+  // SocialMedia
+  (SOCIAL_MEDIA_ITEM extends { label: DefaultSocialMediaItem['label'] | unknown }
+    ? {}
+    : { getSocialMediaItemLabel: ButtonMenuPropGetItemLabel<SOCIAL_MEDIA_ITEM> }) &
+  (SOCIAL_MEDIA_ITEM extends { icon: DefaultSocialMediaItem['icon'] | unknown }
+    ? {}
+    : { getSocialMediaItemIcon: ButtonMenuPropGetItemIcon<SOCIAL_MEDIA_ITEM> }) &
+  (LANGUAGES_ITEM extends { label: DefaultSelectMenuItem['label'] | unknown }
+    ? {}
+    : { getLanguagesItemLabel: SelectMenuPropGetItemLabel<LANGUAGES_ITEM> }) &
+  // AdditionalButtons
+  (ADDITIONAL_BUTTONS_ITEM extends { label: ButtonMenuDefaultItem['label'] | unknown }
+    ? {}
+    : { getAdditionalButtonsItemLabel: ButtonMenuPropGetItemLabel<ADDITIONAL_BUTTONS_ITEM> })
 
 export type HeaderComponent = <
   MENU_ITEM = DefaultMenuItem,

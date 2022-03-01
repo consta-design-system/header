@@ -14,7 +14,9 @@ import { useHideElementsInLine } from '@consta/uikit/useHideElementsInLine'
 
 import { animateTimeout } from '@consta/uikit/MixPopoverAnimate'
 
-import { withDefaultGetters, getItemClick } from './helpers'
+import { withDefaultGetters } from './helpers'
+
+import { getItemClick } from '@/__private__/helpers/getItemClick'
 import { MenuComponent, MenuProps } from './types'
 import './Menu.css'
 
@@ -46,6 +48,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   const moreButtonRef = useRef<HTMLButtonElement>(null)
 
   const getItemHrefRef = useMutableRef(getItemHref)
+  const getItemTargetRef = useMutableRef(getItemTarget)
 
   const getItemAs = useCallback((item: typeof items[number]) => {
     if (!!getItemHrefRef.current(item)) {
@@ -55,10 +58,13 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   }, [])
 
   const getItemHTMLAttributes = useCallback((item: typeof items[number]) => {
-    if (!!getItemHrefRef.current(item)) {
-      return { href: getItemHrefRef.current(item) }
+    const href = getItemHrefRef.current(item)
+    const target = getItemTargetRef.current(item)
+
+    return {
+      ...(href && { href: getItemHrefRef.current(item) }),
+      ...(target && { href: getItemTargetRef.current(item) }),
     }
-    return {}
   }, [])
 
   const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined

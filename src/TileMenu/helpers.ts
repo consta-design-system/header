@@ -1,7 +1,7 @@
 import {
   TileMenuPropGetItemDescription,
   TileMenuPropGetItemImage,
-  TileMenuPropGetItemTitle,
+  TileMenuPropGetItemLabel,
   DefaultItem,
   TileMenuListProps,
   TileMenuPropGetItemHref,
@@ -9,7 +9,7 @@ import {
 } from './types'
 
 export const defaultGetItemImage: TileMenuPropGetItemImage<DefaultItem> = item => item.image
-export const defaultGetItemTitle: TileMenuPropGetItemTitle<DefaultItem> = item => item.title
+export const defaultGetItemLabel: TileMenuPropGetItemLabel<DefaultItem> = item => item.label
 export const defaultGetItemHref: TileMenuPropGetItemHref<DefaultItem> = item => item.href
 export const defaultGetItemOnClick: TileMenuPropGetItemOnClick<DefaultItem> = item => item.onClick
 export const defaultGetItemDescription: TileMenuPropGetItemDescription<DefaultItem> = item =>
@@ -19,7 +19,7 @@ export function withDefaultGetters<ITEM>(props: TileMenuListProps<ITEM>) {
   return {
     ...props,
     getItemDescription: props.getItemDescription || defaultGetItemDescription,
-    getItemTitle: props.getItemTitle || defaultGetItemTitle,
+    getItemLabel: props.getItemLabel || defaultGetItemLabel,
     getItemImage: props.getItemImage || defaultGetItemImage,
     getItemHref: props.getItemHref || defaultGetItemHref,
     getItemOnClick: props.getItemOnClick || defaultGetItemOnClick,

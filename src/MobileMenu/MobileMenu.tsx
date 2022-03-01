@@ -29,6 +29,7 @@ const MobileMenuRender = (props: MobileMenuProps, ref: React.Ref<HTMLButtonEleme
     header,
     onItemClick,
     sidebarClassName,
+    footer,
     ...otherProps
   } = props
 
@@ -66,6 +67,7 @@ const MobileMenuRender = (props: MobileMenuProps, ref: React.Ref<HTMLButtonEleme
           getItemSubMenu={getItemSubMenu}
           onItemClick={onItemClick}
           header={header}
+          footer={footer}
         />
       </Sidebar>
     </>
