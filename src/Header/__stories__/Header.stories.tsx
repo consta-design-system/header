@@ -12,6 +12,9 @@ import {
   notificationsActions,
   tileMenu,
   breadcrumbs,
+  socialMedia,
+  languages,
+  additionalButtons,
 } from '../__mocks__/data.mock'
 
 import mdx from './Header.docs.mdx'
@@ -28,7 +31,12 @@ const defaultKnobs = () => ({
   withTileMenu: boolean('widthTileMenu', true),
   withNotifications: boolean('widthNotifications', true),
   withLogin: boolean('withLogin', true),
-  widthBreadcrumbs: boolean('widthBreadcrumbs', true),
+  withBreadcrumbs: boolean('withBreadcrumbs', true),
+  withSearch: boolean('withSearch', true),
+  withSecondaryMenu: boolean('withSecondaryMenu', true),
+  withSocialMedia: boolean('withSocialMedia', true),
+  withLanguages: boolean('withLanguages', true),
+  withAdditionalButtons: boolean('withAdditionalButtons', true),
 })
 
 export function Playground() {
@@ -38,7 +46,12 @@ export function Playground() {
     withTileMenu,
     withNotifications,
     withLogin,
-    widthBreadcrumbs,
+    withBreadcrumbs,
+    withSearch,
+    withSecondaryMenu,
+    withSocialMedia,
+    withLanguages,
+    withAdditionalButtons,
   } = defaultKnobs()
 
   const tileMenuProps = withTileMenu && { tileMenu, tileMenuTitle: 'Сервисы' }
@@ -55,11 +68,27 @@ export function Playground() {
     loginButtonLabel: 'Войти',
     userLogined: true,
   }
-  const breadcrumbsProps = widthBreadcrumbs && {
+  const breadcrumbsProps = withBreadcrumbs && {
     breadcrumbs,
     onBreadcrumbsItemClick: ({ e }: { e: React.SyntheticEvent }) => e.preventDefault(),
   }
-
+  const searchProps = withSearch && {
+    searchOnSubmit: ({ value }: { value?: string | null }) => alert(`Поиск ${value}`),
+    searchPlaceholder: 'Поиск',
+  }
+  const secondaryMenuProps = withSecondaryMenu && {
+    secondaryMenuLabel: 'Дополнительное меню',
+    secondaryMenu: menu,
+  }
+  const socialMediaProps = withSocialMedia && {
+    socialMedia,
+  }
+  const languagesProps = withLanguages && {
+    languages,
+  }
+  const additionalButtonsProps = withAdditionalButtons && {
+    additionalButtons,
+  }
   return (
     <Header
       style={{ zIndex: 1000 }}
@@ -70,6 +99,11 @@ export function Playground() {
       {...tileMenuProps}
       {...menuProps}
       {...breadcrumbsProps}
+      {...searchProps}
+      {...secondaryMenuProps}
+      {...socialMediaProps}
+      {...languagesProps}
+      {...additionalButtonsProps}
     />
   )
 }

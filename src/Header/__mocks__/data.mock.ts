@@ -1,8 +1,14 @@
 import { DefaultItem, DefaultAction } from '@/NotificationsList'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
+import { IconDinosaur } from '@consta/uikit/IconDinosaur'
 import { IconComponent } from '@consta/uikit/Icon'
 import { IconHome } from '@consta/uikit/IconHome'
+import {
+  DefaultSocialMediaItem,
+  DefaultItemLanguages,
+  AdditionalButtonsDefaultItem,
+} from '@/Header'
 
 import { action } from '@storybook/addon-actions'
 
@@ -432,5 +438,50 @@ export const breadcrumbs: Page[] = [
   {
     label: 'Детальное описание свойства элемента подраздела',
     href: 'https://url.com/page-6',
+  },
+]
+
+export const socialMedia: DefaultSocialMediaItem[] = [
+  {
+    label: 'facebook',
+    target: '_blank',
+    href: '#',
+    icon: IconDinosaur,
+  },
+  {
+    label: 'vk',
+    target: '_blank',
+    href: '#',
+    icon: IconDinosaur,
+  },
+  {
+    label: 'instagram',
+    target: '_blank',
+    href: '#',
+    icon: IconDinosaur,
+  },
+  {
+    label: 'youtube',
+    target: '_blank',
+    href: '#',
+    icon: IconDinosaur,
+  },
+]
+
+export const languages: DefaultItemLanguages[] = [
+  {
+    label: 'RU',
+  },
+  {
+    label: 'EN',
+  },
+]
+
+export const additionalButtons: AdditionalButtonsDefaultItem[] = [
+  {
+    label: 'Закупки',
+  },
+  {
+    label: 'Контакты',
   },
 ]

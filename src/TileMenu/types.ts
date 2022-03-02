@@ -8,7 +8,7 @@ export type TileMenuPropView = typeof tileMenuPropView[number]
 export const tileMenuPropViewDefault = tileMenuPropView[0]
 
 export type DefaultItem = {
-  title: string
+  label: string
   image?: string
   description?: string
   href?: string
@@ -16,7 +16,7 @@ export type DefaultItem = {
 }
 
 export type TileMenuPropGetItemImage<ITEM> = (item: ITEM) => string | React.FC | undefined
-export type TileMenuPropGetItemTitle<ITEM> = (item: ITEM) => string
+export type TileMenuPropGetItemLabel<ITEM> = (item: ITEM) => string
 export type TileMenuPropGetItemDescription<ITEM> = (item: ITEM) => string | undefined
 export type TileMenuPropGetItemHref<ITEM> = (item: ITEM) => string | undefined
 export type TileMenuPropGetItemOnClick<ITEM> = (
@@ -37,7 +37,7 @@ type CommonProps<ITEM> = {
   isMobile?: boolean
   onItemClick?: TileMenuOnItemClick<ITEM>
   getItemImage?: TileMenuPropGetItemImage<ITEM>
-  getItemTitle?: TileMenuPropGetItemTitle<ITEM>
+  getItemLabel?: TileMenuPropGetItemLabel<ITEM>
   getItemDescription?: TileMenuPropGetItemDescription<ITEM>
   getItemHref?: TileMenuPropGetItemHref<ITEM>
   getItemOnClick?: TileMenuPropGetItemOnClick<ITEM>
@@ -47,9 +47,9 @@ export type TileMenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
   CommonProps<ITEM> & { listClassName?: string; title?: string },
   HTMLButtonElement
 > &
-  (ITEM extends { title: DefaultItem['title'] }
+  (ITEM extends { label: DefaultItem['label'] }
     ? {}
-    : { getItemTitle: TileMenuPropGetItemTitle<ITEM> })
+    : { getItemLabel: TileMenuPropGetItemLabel<ITEM> })
 
 export type TileMenuListProps<ITEM = DefaultItem> = PropsWithHTMLAttributes<
   CommonProps<ITEM>,

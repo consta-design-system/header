@@ -26,7 +26,7 @@ export const TileMenuList = ((props: TileMenuListProps) => {
     children,
     getItemDescription,
     getItemImage,
-    getItemTitle,
+    getItemLabel,
     getItemHref,
     getItemOnClick,
     onItemClick,
@@ -42,7 +42,7 @@ export const TileMenuList = ((props: TileMenuListProps) => {
             key={cnTileMenuList('Item', { index })}
             view={getByMap(itemViewMap, view)}
             image={getItemImage(item)}
-            title={getItemTitle(item)}
+            title={getItemLabel(item)}
             description={getItemDescription(item)}
             href={getItemHref(item)}
             onClick={e => {

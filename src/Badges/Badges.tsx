@@ -26,11 +26,7 @@ const BadgesRender = (props: BadgesProps, ref: React.Ref<HTMLDivElement>) => {
     ...otherProps
   } = withDefaultGetters(props)
 
-  const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } = useHideElementsInLine<
-    HTMLDivElement,
-    HTMLDivElement,
-    typeof items[number]
-  >(items)
+  const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } = useHideElementsInLine(items)
 
   return (
     <div

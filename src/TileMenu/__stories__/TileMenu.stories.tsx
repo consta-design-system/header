@@ -11,42 +11,42 @@ import mdx from './TileMenu.docs.mdx'
 
 const items: DefaultItem[] = [
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },

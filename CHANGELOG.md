@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.3.0 (02/03/2022)
+Самое важное:
+- Добавили компоненты для верхней строки `Header`.
+- Добавили поиск в `Header`.
+
+---
+
+- [feat(Header): added some components to the top line](https://github.com/consta-design-system/header/commit/ac5ec0184a0ddba1001fa4051ba016951caa6cbe) - [@gizeasy](https://github.com/gizeasy)
+- [feat(HeaderSearch): added search to header (#5)](https://github.com/consta-design-system/header/commit/a61102eb9fe47f2f9a02fc87e4e8bf525d80a172) - [@gizeasy](https://github.com/gizeasy)
+- [refactor(global): refactoring due to update uikit (#4)](https://github.com/consta-design-system/header/commit/91090d6f1b55fa314e464b55ccf11014589e440f) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v0.2.0 (09/02/2022)
 Самое важное:
 - Добавлены хлебные крошки

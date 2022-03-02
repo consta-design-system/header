@@ -1,0 +1,4 @@
+.che--ButtonMenu {
+  display: flex;
+  gap: var(--button-menu-gap);
+}

@@ -6,7 +6,6 @@ import { VerticalMenuItemComponent } from '../types'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import './VerticalMenuItem.css'
 import { Text } from '@consta/uikit/Text'
-import { cnMixSpace } from '@consta/uikit/MixSpace'
 
 export const cnVerticalMenuItem = cn('VerticalMenuItem')
 
@@ -27,7 +26,7 @@ export const VerticalMenuItem: VerticalMenuItemComponent = props => {
     <Text
       {...otherProps}
       {...propsLink}
-      className={cnVerticalMenuItem({ active }, [cnMixSpace({ p: 's', pL: 'xl' }), className])}
+      className={cnVerticalMenuItem({ active }, [className])}
       onClick={onClick}
     >
       {label}

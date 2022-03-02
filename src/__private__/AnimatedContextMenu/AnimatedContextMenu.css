@@ -5,6 +5,6 @@
     opacity: 0 !important;
 
     transition: opacity 0.2s, transform 0.2s !important;
-    transform: translateY(var(--space-s)) !important;
+    transform: var(--mix-dropdown-animate-transform) !important;
   }
 }

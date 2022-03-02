@@ -1,0 +1,42 @@
+# SelectMenu
+
+```tsx
+import { SelectMenu } from '@consta/header/SelectMenu'
+```
+
+Меню в виде выподающего списка
+
+## Свойства
+
+```tsx
+type DefaultItem = {
+  label: string
+  href?: string
+  target?: string
+  onClick?: React.EventHandler<React.MouseEvent>
+}
+
+type SelectMenuPropGetItemLabel<ITEM> = (item: ITEM) => string
+type SelectMenuPropGetItemHref<ITEM> = (item: ITEM) => string | undefined
+type SelectMenuPropGetItemTarget<ITEM> = (item: ITEM) => string | undefined
+type SelectMenuPropGetItemOnClick<ITEM> = (
+  item: ITEM
+) => React.EventHandler<React.MouseEvent> | undefined
+type SelectMenuPropOnItemClick<ITEM> = (props: { e: React.MouseEvent; item: ITEM }) => void
+
+export const defaultGetItemLabel: SelectMenuPropGetItemLabel<DefaultItem> = item => item.label
+export const defaultGetItemHref: SelectMenuPropGetItemHref<DefaultItem> = item => item.href
+export const defaultGetItemOnClick: SelectMenuPropGetItemOnClick<DefaultItem> = item => item.onClick
+export const defaultGetItemTarget: SelectMenuPropGetItemTarget<DefaultItem> = item => item.target
+```
+
+| Свойство         | Тип                            | По умолчанию            | Описание                                       |
+| ---------------- | ------------------------------ | ----------------------- | ---------------------------------------------- |
+| `items`          | `ITEM[]`                       | -                       | Элементы                                       |
+| `onItemClick`    | `SelectMenuPropOnItemClick`    | -                       | Функция клика по элементу                      |
+| `getItemHref`    | `SelectMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента        |
+| `getItemLabel`   | `SelectMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента     |
+| `getItemTarget`  | `SelectMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента      |
+| `getItemOnClick` | `SelectMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
+| `className?`     | `string`                       | -                       | Дополнительный CSS-класс                       |
+| `ref?`           | `React.Ref<HTMLDivElement>`    | -                       | Ссылка на корневой DOM-элемент                 |

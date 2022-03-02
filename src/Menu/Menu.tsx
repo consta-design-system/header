@@ -12,7 +12,11 @@ import { AnimatedContextMenu } from '@/__private__/AnimatedContextMenu/AnimatedC
 import { cn } from '@/__private__/utils/bem'
 import { useHideElementsInLine } from '@consta/uikit/useHideElementsInLine'
 
-import { withDefaultGetters, getItemClick, animateTimeout } from './helpers'
+import { animateTimeout } from '@consta/uikit/MixPopoverAnimate'
+
+import { withDefaultGetters } from './helpers'
+
+import { getItemClick } from '@/__private__/helpers/getItemClick'
 import { MenuComponent, MenuProps } from './types'
 import './Menu.css'
 
@@ -36,14 +40,15 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   const [mouseOnMenu, setMouseOnMenu] = useFlag()
 
   const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } = useHideElementsInLine<
+    typeof items[number],
     HTMLLIElement,
-    HTMLUListElement,
-    typeof items[number]
+    HTMLUListElement
   >(items)
 
   const moreButtonRef = useRef<HTMLButtonElement>(null)
 
   const getItemHrefRef = useMutableRef(getItemHref)
+  const getItemTargetRef = useMutableRef(getItemTarget)
 
   const getItemAs = useCallback((item: typeof items[number]) => {
     if (!!getItemHrefRef.current(item)) {
@@ -53,10 +58,13 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   }, [])
 
   const getItemHTMLAttributes = useCallback((item: typeof items[number]) => {
-    if (!!getItemHrefRef.current(item)) {
-      return { href: getItemHrefRef.current(item) }
+    const href = getItemHrefRef.current(item)
+    const target = getItemTargetRef.current(item)
+
+    return {
+      ...(href && { href: getItemHrefRef.current(item) }),
+      ...(target && { href: getItemTargetRef.current(item) }),
     }
-    return {}
   }, [])
 
   const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex + 1 : undefined
