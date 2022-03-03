@@ -23,7 +23,6 @@
   &-Popover {
     --popover-bg-color: var(--color-bg-default);
     --popover-arrow-bg-color: var(--popover-bg-color);
-    position: relative;
 
     width: calc(100vw - var(--space-l));
     max-width: var(--popover-max-width);
