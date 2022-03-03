@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.2 (03/03/2022)
+- [fix(Popovers): fixed position popovers](https://github.com/consta-design-system/header/commit/16a9887f82e5882d335896618a4bb03549557bbf) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v0.3.1 (03/03/2022)
 - [fix(global): fixed exports types](https://github.com/consta-design-system/header/commit/700e944bbb2d485cbece8d5d644f7b61976bb904) - [@gizeasy](https://github.com/gizeasy)
 
