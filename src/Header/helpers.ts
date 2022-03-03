@@ -1,4 +1,4 @@
-import { HeaderProps, DefaultItemLanguages } from './types'
+import { HeaderProps, HeaderDefaultLanguagesItem } from './types'
 
 import { getGetters as getGettersForMenu } from '@/Menu/helpers'
 import { DefaultItem } from '@/MobileMenu'
@@ -8,8 +8,8 @@ import { getItemClick } from '@/__private__/helpers/getItemClick'
 import { SelectMenuPropOnItemClick } from '@/SelectMenu'
 
 type HeaderState = {
-  languagesValue: DefaultItemLanguages | undefined
-  setLanguagesValue: React.Dispatch<React.SetStateAction<DefaultItemLanguages | undefined>>
+  languagesValue: HeaderDefaultLanguagesItem | undefined
+  setLanguagesValue: React.Dispatch<React.SetStateAction<HeaderDefaultLanguagesItem | undefined>>
 }
 
 const getMenu = (props: HeaderProps): DefaultItem[] => {
@@ -91,7 +91,7 @@ const getLanguages = (props: HeaderProps, state: HeaderState): DefaultItem[] => 
     return []
   }
 
-  const onLanguageChange: SelectMenuPropOnItemClick<DefaultItemLanguages> = params => {
+  const onLanguageChange: SelectMenuPropOnItemClick<HeaderDefaultLanguagesItem> = params => {
     state.setLanguagesValue(params.item)
     props.onLanguageChange?.(params)
   }

@@ -3,7 +3,7 @@ import { IconProps } from '@consta/uikit/Icon'
 
 import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWithHTMLAttributes'
 
-export type DefaultAction = {
+export type NotificationsDefaultAction = {
   label: string
   onClick?: React.EventHandler<React.MouseEvent>
   icon?: React.FC<IconProps>
@@ -14,19 +14,19 @@ export type Badge = {
   status?: BadgePropStatus
 }
 
-export type DefaultGroup = {
+export type NotificationsDefaultGroup = {
   label: string
   id: string
 }
 
-export type DefaultItem = {
+export type NotificationsDefaultItem = {
   label: string
   description?: string
   image?: string
   read?: boolean
   date?: Date
   badges?: Badge[]
-  actions?: DefaultAction[]
+  actions?: NotificationsDefaultAction[]
   onClick?: React.EventHandler<React.MouseEvent>
   group?: string
   view?: 'default' | 'user'
@@ -38,7 +38,9 @@ export type NotificationsListPropGetItemImage<ITEM> = (item: ITEM) => string | u
 export type NotificationsListPropGetItemRead<ITEM> = (item: ITEM) => boolean | undefined
 export type NotificationsListPropGetItemDate<ITEM> = (item: ITEM) => Date | undefined
 export type NotificationsListPropGetItemBadges<ITEM> = (item: ITEM) => Badge[] | undefined
-export type NotificationsListPropGetItemActions<ITEM> = (item: ITEM) => DefaultAction[] | undefined
+export type NotificationsListPropGetItemActions<ITEM> = (
+  item: ITEM
+) => NotificationsDefaultAction[] | undefined
 export type NotificationsListPropGetItemGroup<ITEM> = (item: ITEM) => string | undefined
 export type NotificationsListPropGetItemView<ITEM> = (item: ITEM) => 'default' | 'user' | undefined
 export type NotificationsListPropItemDateFormat = (date: Date) => string
@@ -82,30 +84,30 @@ export type Props<ITEM, GROUP, ACTION, GROUP_BY_DAY extends boolean> = {
   groupLabelFormat?: NotificationsListPropGroupLabelFormat<GROUP_BY_DAY>
   groups?: GROUP_BY_DAY extends true ? never : GROUP[]
   onClose?: React.EventHandler<React.MouseEvent>
-} & (ACTION extends { label: DefaultAction['label'] }
+} & (ACTION extends { label: NotificationsDefaultAction['label'] }
   ? {}
   : { getActionLabel: NotificationsListPropGetItemActions<ACTION> }) &
-  (GROUP extends { label: DefaultGroup['label'] }
+  (GROUP extends { label: NotificationsDefaultGroup['label'] }
     ? {}
     : { getGroupLabel: NotificationsListPropGetGroupLabel<GROUP> }) &
-  (GROUP extends { id: DefaultGroup['id'] }
+  (GROUP extends { id: NotificationsDefaultGroup['id'] }
     ? {}
     : { getGroupId: NotificationsListPropGetGroupId<GROUP> }) &
-  (ITEM extends { label: DefaultItem['label'] }
+  (ITEM extends { label: NotificationsDefaultItem['label'] }
     ? {}
     : { getItemLabel: NotificationsListPropGetItemLabel<ITEM> })
 
 export type NotificationsListProps<
-  ITEM = DefaultItem,
-  GROUP = DefaultGroup,
-  ACTION = DefaultAction,
+  ITEM = NotificationsDefaultItem,
+  GROUP = NotificationsDefaultGroup,
+  ACTION = NotificationsDefaultAction,
   GROUP_BY_DAY extends boolean = false
 > = PropsWithHTMLAttributesAndRef<Props<ITEM, GROUP, ACTION, GROUP_BY_DAY>, HTMLDivElement>
 
 export type NotificationsListComponent = <
-  ITEM = DefaultItem,
-  GROUP = DefaultGroup,
-  ACTION = DefaultAction,
+  ITEM = NotificationsDefaultItem,
+  GROUP = NotificationsDefaultGroup,
+  ACTION = NotificationsDefaultAction,
   GROUP_BY_DAY extends boolean = false
 >(
   props: NotificationsListProps<ITEM, GROUP, ACTION, GROUP_BY_DAY>

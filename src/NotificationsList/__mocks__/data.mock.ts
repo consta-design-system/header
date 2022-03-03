@@ -1,4 +1,8 @@
-import { DefaultItem, DefaultAction, DefaultGroup } from '../types'
+import {
+  NotificationsDefaultItem,
+  NotificationsDefaultAction,
+  NotificationsDefaultGroup,
+} from '../types'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
 
@@ -6,7 +10,7 @@ import { action } from '@storybook/addon-actions'
 
 const emptyFunction = () => action('emptyFunction')
 
-export const items: DefaultItem[] = [
+export const items: NotificationsDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
@@ -151,7 +155,7 @@ export const items: DefaultItem[] = [
   },
 ]
 
-export const itemsBadges: DefaultItem[] = [
+export const itemsBadges: NotificationsDefaultItem[] = [
   {
     label: 'Один человек',
     description: 'Принёс краску',
@@ -180,7 +184,7 @@ export const itemsBadges: DefaultItem[] = [
   },
 ]
 
-export const itemsBasic: DefaultItem[] = [
+export const itemsBasic: NotificationsDefaultItem[] = [
   {
     label: 'Один человек',
     description: 'Принёс краску',
@@ -193,7 +197,7 @@ export const itemsBasic: DefaultItem[] = [
   },
 ]
 
-export const itemsView: DefaultItem[] = [
+export const itemsView: NotificationsDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Принёс краску',
@@ -206,7 +210,7 @@ export const itemsView: DefaultItem[] = [
   },
 ]
 
-export const itemsActions: DefaultItem[] = [
+export const itemsActions: NotificationsDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Принёс краску',
@@ -243,7 +247,7 @@ export const itemsActions: DefaultItem[] = [
   },
 ]
 
-export const itemsRead: DefaultItem[] = [
+export const itemsRead: NotificationsDefaultItem[] = [
   {
     label: 'Прочитанное уведомление',
     description: 'Принёс краску',
@@ -258,7 +262,7 @@ export const itemsRead: DefaultItem[] = [
   },
 ]
 
-export const itemsDate: DefaultItem[] = [
+export const itemsDate: NotificationsDefaultItem[] = [
   {
     label: 'Первое уведомление',
     description: 'Привет, мир',
@@ -285,7 +289,7 @@ export const itemsDate: DefaultItem[] = [
   },
 ]
 
-export const actions: DefaultAction[] = [
+export const actions: NotificationsDefaultAction[] = [
   {
     label: 'Отметить все как прочитанное',
     onClick: emptyFunction,
@@ -298,7 +302,7 @@ export const actions: DefaultAction[] = [
   },
 ]
 
-export const groups: DefaultGroup[] = [
+export const groups: NotificationsDefaultGroup[] = [
   {
     label: 'важное',
     id: 'important',
@@ -309,7 +313,7 @@ export const groups: DefaultGroup[] = [
   },
 ]
 
-export const itemsGroups: DefaultItem[] = [
+export const itemsGroups: NotificationsDefaultItem[] = [
   {
     label: 'Первое уведомление',
     description: 'Привет, мир',

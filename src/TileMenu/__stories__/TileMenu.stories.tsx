@@ -1,6 +1,11 @@
 import React from 'react'
 
-import { TileMenu, DefaultItem, tileMenuPropView, tileMenuPropViewDefault } from '@/TileMenu'
+import {
+  TileMenu,
+  TileMenuDefaultItem,
+  tileMenuPropView,
+  tileMenuPropViewDefault,
+} from '@/TileMenu'
 
 import { createMetadata } from '../../__private__/storybook'
 import { select, boolean, text } from '@storybook/addon-knobs'
@@ -9,7 +14,7 @@ import './TileMenuStories.css'
 
 import mdx from './TileMenu.docs.mdx'
 
-const items: DefaultItem[] = [
+const items: TileMenuDefaultItem[] = [
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',

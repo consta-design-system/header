@@ -1,12 +1,12 @@
 import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWithHTMLAttributes'
 
-export type DefaultItem = {
+export type MenuDefaultItem = {
   label: string
   href?: string
   target?: string
   active?: boolean
   onClick?: React.EventHandler<React.MouseEvent>
-  subMenu?: DefaultItem[]
+  subMenu?: MenuDefaultItem[]
 }
 
 export type MenuPropGetItemLabel<ITEM> = (item: ITEM) => string
@@ -19,7 +19,7 @@ export type MenuPropGetItemOnClick<ITEM> = (
 ) => React.EventHandler<React.MouseEvent> | undefined
 export type MenuPropOnItemClick<ITEM> = (props: { e: React.MouseEvent; item: ITEM }) => void
 
-export type MenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
+export type MenuProps<ITEM = MenuDefaultItem> = PropsWithHTMLAttributesAndRef<
   {
     items: ITEM[]
     onItemClick?: MenuPropOnItemClick<ITEM>
@@ -32,8 +32,10 @@ export type MenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
   },
   HTMLDivElement
 > &
-  (ITEM extends { label: DefaultItem['label'] } ? {} : { getItemLabel: MenuPropGetItemLabel<ITEM> })
+  (ITEM extends { label: MenuDefaultItem['label'] }
+    ? {}
+    : { getItemLabel: MenuPropGetItemLabel<ITEM> })
 
-export type MenuComponent = <ITEM = DefaultItem>(
+export type MenuComponent = <ITEM = MenuDefaultItem>(
   props: MenuProps<ITEM>
 ) => React.ReactElement | null

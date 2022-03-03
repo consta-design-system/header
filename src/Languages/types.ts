@@ -8,14 +8,14 @@ import {
 
 import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWithHTMLAttributes'
 
-export type DefaultItem = {
+export type LanguagesDefaultItem = {
   label: string
   href?: string
   target?: string
   onClick?: React.EventHandler<React.MouseEvent>
 }
 
-export type LanguagesProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
+export type LanguagesProps<ITEM = LanguagesDefaultItem> = PropsWithHTMLAttributesAndRef<
   {
     items: ITEM[]
     value?: ITEM
@@ -27,10 +27,10 @@ export type LanguagesProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
   },
   HTMLDivElement
 > &
-  (ITEM extends { label: DefaultItem['label'] }
+  (ITEM extends { label: LanguagesDefaultItem['label'] }
     ? {}
     : { getItemLabel: SelectMenuPropGetItemLabel<ITEM> })
 
-export type LanguagesComponent = <ITEM = DefaultItem>(
+export type LanguagesComponent = <ITEM = LanguagesDefaultItem>(
   props: LanguagesProps<ITEM>
 ) => React.ReactElement | null

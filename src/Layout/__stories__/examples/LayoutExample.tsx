@@ -2,13 +2,13 @@ import React from 'react'
 
 import { Example } from '@/__private__/storybook'
 
-import { DefaultItem, Menu } from '@/Menu'
+import { MenuDefaultItem, Menu } from '@/Menu'
 import { cnMixSpace } from '@consta/uikit/MixSpace'
 import { Notifications } from '@/Notifications'
 
 import { Layout } from '@/Layout'
 
-const menu: DefaultItem[] = [
+const menu: MenuDefaultItem[] = [
   {
     label: 'Пункт 1',
     subMenu: [{ label: 'Пункт 1-1' }, { label: 'Пункт 1-2' }],

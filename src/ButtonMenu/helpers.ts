@@ -1,5 +1,5 @@
 import {
-  DefaultItem,
+  ButtonMenuDefaultItem,
   ButtonMenuProps,
   ButtonMenuPropGetItemHref,
   ButtonMenuPropGetItemLabel,
@@ -8,11 +8,16 @@ import {
   ButtonMenuPropGetItemIcon,
 } from './types'
 
-export const defaultGetItemLabel: ButtonMenuPropGetItemLabel<DefaultItem> = item => item.label
-export const defaultGetItemHref: ButtonMenuPropGetItemHref<DefaultItem> = item => item.href
-export const defaultGetItemOnClick: ButtonMenuPropGetItemOnClick<DefaultItem> = item => item.onClick
-export const defaultGetItemTarget: ButtonMenuPropGetItemTarget<DefaultItem> = item => item.target
-export const defaultGetItemIcon: ButtonMenuPropGetItemIcon<DefaultItem> = item => item.icon
+export const defaultGetItemLabel: ButtonMenuPropGetItemLabel<ButtonMenuDefaultItem> = item =>
+  item.label
+export const defaultGetItemHref: ButtonMenuPropGetItemHref<ButtonMenuDefaultItem> = item =>
+  item.href
+export const defaultGetItemOnClick: ButtonMenuPropGetItemOnClick<ButtonMenuDefaultItem> = item =>
+  item.onClick
+export const defaultGetItemTarget: ButtonMenuPropGetItemTarget<ButtonMenuDefaultItem> = item =>
+  item.target
+export const defaultGetItemIcon: ButtonMenuPropGetItemIcon<ButtonMenuDefaultItem> = item =>
+  item.icon
 
 export const getGetters = <ITEM>(props: {
   getItemLabel?: ButtonMenuPropGetItemLabel<ITEM>

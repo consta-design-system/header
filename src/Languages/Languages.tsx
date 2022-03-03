@@ -1,13 +1,15 @@
 import React, { forwardRef, useState } from 'react'
 
-import { LanguagesProps, LanguagesComponent, DefaultItem } from './types'
+import { LanguagesProps, LanguagesComponent, LanguagesDefaultItem } from './types'
 import { withDefaultGetters } from './helpers'
 
 import { SelectMenu } from '@/SelectMenu'
 
 const LanguagesRender = (props: LanguagesProps, ref: React.Ref<HTMLDivElement>) => {
   const { value: valueProp, onChange, ...otherProps } = withDefaultGetters(props)
-  const [value, setValue] = useState<DefaultItem | undefined>(valueProp || otherProps.items[0])
+  const [value, setValue] = useState<LanguagesDefaultItem | undefined>(
+    valueProp || otherProps.items[0]
+  )
 
   return (
     <SelectMenu

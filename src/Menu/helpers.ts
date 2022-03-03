@@ -1,5 +1,5 @@
 import {
-  DefaultItem,
+  MenuDefaultItem,
   MenuProps,
   MenuPropGetItemActive,
   MenuPropGetItemHref,
@@ -9,12 +9,12 @@ import {
   MenuPropGetItemTarget,
 } from './types'
 
-export const defaultGetItemLabel: MenuPropGetItemLabel<DefaultItem> = item => item.label
-export const defaultGetItemActive: MenuPropGetItemActive<DefaultItem> = item => item.active
-export const defaultGetItemHref: MenuPropGetItemHref<DefaultItem> = item => item.href
-export const defaultGetItemOnClick: MenuPropGetItemOnClick<DefaultItem> = item => item.onClick
-export const defaultGetItemTarget: MenuPropGetItemTarget<DefaultItem> = item => item.target
-export const defaultGetItemSubMenu: MenuPropGetItemSubMenu<DefaultItem> = item => item.subMenu
+export const defaultGetItemLabel: MenuPropGetItemLabel<MenuDefaultItem> = item => item.label
+export const defaultGetItemActive: MenuPropGetItemActive<MenuDefaultItem> = item => item.active
+export const defaultGetItemHref: MenuPropGetItemHref<MenuDefaultItem> = item => item.href
+export const defaultGetItemOnClick: MenuPropGetItemOnClick<MenuDefaultItem> = item => item.onClick
+export const defaultGetItemTarget: MenuPropGetItemTarget<MenuDefaultItem> = item => item.target
+export const defaultGetItemSubMenu: MenuPropGetItemSubMenu<MenuDefaultItem> = item => item.subMenu
 
 export const getGetters = <ITEM>(props: {
   getItemLabel?: MenuPropGetItemLabel<ITEM>

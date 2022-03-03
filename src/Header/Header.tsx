@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react'
 
 import { cn } from '@/__private__/utils/bem'
-import { HeaderProps, HeaderComponent, DefaultItemLanguages } from './types'
+import { HeaderProps, HeaderComponent, HeaderDefaultLanguagesItem } from './types'
 import { Layout } from '@/Layout'
 import { Menu } from '@/Menu'
 import { HeaderLogo } from './HeaderLogo'
@@ -142,13 +142,13 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
 
   const breakpoints = useBreakpoints({ s: 800, m: 1200 })
 
-  const [languagesValue, setLanguagesValue] = useState<DefaultItemLanguages | undefined>(
+  const [languagesValue, setLanguagesValue] = useState<HeaderDefaultLanguagesItem | undefined>(
     languageValueProp || languages?.[0]
   )
 
   const elementZIndex = typeof props.style?.zIndex === 'number' ? props.style.zIndex : undefined
 
-  const onLanguageChange: LanguagesProps<DefaultItemLanguages>['onChange'] = params => {
+  const onLanguageChange: LanguagesProps<HeaderDefaultLanguagesItem>['onChange'] = params => {
     onLanguageChangeProp?.(params)
     setLanguagesValue(params.item)
   }

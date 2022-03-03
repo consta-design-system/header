@@ -7,7 +7,7 @@ export const tileMenuPropView = ['lines', 'twoLines', 'cards'] as const
 export type TileMenuPropView = typeof tileMenuPropView[number]
 export const tileMenuPropViewDefault = tileMenuPropView[0]
 
-export type DefaultItem = {
+export type TileMenuDefaultItem = {
   label: string
   image?: string
   description?: string
@@ -43,23 +43,23 @@ type CommonProps<ITEM> = {
   getItemOnClick?: TileMenuPropGetItemOnClick<ITEM>
 }
 
-export type TileMenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
+export type TileMenuProps<ITEM = TileMenuDefaultItem> = PropsWithHTMLAttributesAndRef<
   CommonProps<ITEM> & { listClassName?: string; title?: string },
   HTMLButtonElement
 > &
-  (ITEM extends { label: DefaultItem['label'] }
+  (ITEM extends { label: TileMenuDefaultItem['label'] }
     ? {}
     : { getItemLabel: TileMenuPropGetItemLabel<ITEM> })
 
-export type TileMenuListProps<ITEM = DefaultItem> = PropsWithHTMLAttributes<
+export type TileMenuListProps<ITEM = TileMenuDefaultItem> = PropsWithHTMLAttributes<
   CommonProps<ITEM>,
   HTMLDivElement
 >
 
-export type TileMenuListComponent = <ITEM = DefaultItem>(
+export type TileMenuListComponent = <ITEM = TileMenuDefaultItem>(
   props: TileMenuListProps<ITEM>
 ) => React.ReactElement | null
 
-export type TileMenuComponent = <ITEM = DefaultItem>(
+export type TileMenuComponent = <ITEM = TileMenuDefaultItem>(
   props: TileMenuProps<ITEM>
 ) => React.ReactElement | null

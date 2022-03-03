@@ -2,17 +2,18 @@ import {
   TileMenuPropGetItemDescription,
   TileMenuPropGetItemImage,
   TileMenuPropGetItemLabel,
-  DefaultItem,
+  TileMenuDefaultItem,
   TileMenuListProps,
   TileMenuPropGetItemHref,
   TileMenuPropGetItemOnClick,
 } from './types'
 
-export const defaultGetItemImage: TileMenuPropGetItemImage<DefaultItem> = item => item.image
-export const defaultGetItemLabel: TileMenuPropGetItemLabel<DefaultItem> = item => item.label
-export const defaultGetItemHref: TileMenuPropGetItemHref<DefaultItem> = item => item.href
-export const defaultGetItemOnClick: TileMenuPropGetItemOnClick<DefaultItem> = item => item.onClick
-export const defaultGetItemDescription: TileMenuPropGetItemDescription<DefaultItem> = item =>
+export const defaultGetItemImage: TileMenuPropGetItemImage<TileMenuDefaultItem> = item => item.image
+export const defaultGetItemLabel: TileMenuPropGetItemLabel<TileMenuDefaultItem> = item => item.label
+export const defaultGetItemHref: TileMenuPropGetItemHref<TileMenuDefaultItem> = item => item.href
+export const defaultGetItemOnClick: TileMenuPropGetItemOnClick<TileMenuDefaultItem> = item =>
+  item.onClick
+export const defaultGetItemDescription: TileMenuPropGetItemDescription<TileMenuDefaultItem> = item =>
   item.description
 
 export function withDefaultGetters<ITEM>(props: TileMenuListProps<ITEM>) {

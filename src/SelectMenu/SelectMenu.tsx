@@ -3,7 +3,7 @@ import React, { useRef, useCallback, forwardRef } from 'react'
 import { cn } from '@/__private__/utils/bem'
 
 import { withDefaultGetters } from './helpers'
-import { SelectMenuComponent, SelectMenuProps, DefaultItem } from './types'
+import { SelectMenuComponent, SelectMenuProps, SelectMenuDefaultItem } from './types'
 import './SelectMenu.css'
 import { Text } from '@consta/uikit/Text'
 import { IconSelect } from '@consta/uikit/IconSelect'
@@ -38,14 +38,14 @@ const SelectMenuRender = (props: SelectMenuProps, componentRef: React.Ref<HTMLDi
   const getItemTargetRef = useMutableRef(getItemTarget)
   const onClickRef = useMutableRef(onClickProp)
 
-  const getItemAs = useCallback((item: DefaultItem) => {
+  const getItemAs = useCallback((item: SelectMenuDefaultItem) => {
     if (!!getItemHrefRef.current(item)) {
       return 'a'
     }
     return 'span'
   }, [])
 
-  const getItemHTMLAttributes = useCallback((item: DefaultItem) => {
+  const getItemHTMLAttributes = useCallback((item: SelectMenuDefaultItem) => {
     const href = getItemHrefRef.current(item)
     const target = getItemTargetRef.current(item)
 

@@ -1,11 +1,16 @@
-import { Props, DefaultAction, DefaultItem, DefaultGroup } from '@/NotificationsList'
+import {
+  Props,
+  NotificationsDefaultAction,
+  NotificationsDefaultItem,
+  NotificationsDefaultGroup,
+} from '@/NotificationsList'
 
 import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWithHTMLAttributes'
 
 export type NotificationsProps<
-  ITEM = DefaultItem,
-  GROUP = DefaultGroup,
-  ACTION = DefaultAction,
+  ITEM = NotificationsDefaultItem,
+  GROUP = NotificationsDefaultGroup,
+  ACTION = NotificationsDefaultAction,
   GROUP_BY_DAY extends boolean = false
 > = PropsWithHTMLAttributesAndRef<
   Omit<Props<ITEM, GROUP, ACTION, GROUP_BY_DAY>, 'onClose'> & {
@@ -16,9 +21,9 @@ export type NotificationsProps<
 >
 
 export type NotificationsComponent = <
-  ITEM = DefaultItem,
-  GROUP = DefaultGroup,
-  ACTION = DefaultAction,
+  ITEM = NotificationsDefaultItem,
+  GROUP = NotificationsDefaultGroup,
+  ACTION = NotificationsDefaultAction,
   GROUP_BY_DAY extends boolean = false
 >(
   props: NotificationsProps<ITEM, GROUP, ACTION, GROUP_BY_DAY>

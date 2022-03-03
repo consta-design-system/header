@@ -13,9 +13,9 @@ import {
   NotificationsListPropGetItemLabel,
   NotificationsListPropGetItemRead,
   NotificationsListPropGetItemView,
-  DefaultAction,
-  DefaultGroup,
-  DefaultItem,
+  NotificationsDefaultAction,
+  NotificationsDefaultGroup,
+  NotificationsDefaultItem,
   NotificationsListProps,
   NotificationsListPropGroupLabelFormat,
 } from './types'
@@ -23,24 +23,34 @@ import {
 import { getGroups as constaGetGroups } from '@consta/uikit/__internal__/src/utils/getGroups'
 import { format, isToday, isYesterday, startOfDay } from 'date-fns'
 
-const defaultGetActionIcon: NotificationsListPropGetActionIcon<DefaultAction> = action =>
+const defaultGetActionIcon: NotificationsListPropGetActionIcon<NotificationsDefaultAction> = action =>
   action.icon
-const defaultGetActionLabel: NotificationsListPropGetActionLabel<DefaultAction> = action =>
+const defaultGetActionLabel: NotificationsListPropGetActionLabel<NotificationsDefaultAction> = action =>
   action.label
-const defaultGetActionOnClick: NotificationsListPropGetActionOnClick<DefaultAction> = action =>
+const defaultGetActionOnClick: NotificationsListPropGetActionOnClick<NotificationsDefaultAction> = action =>
   action.onClick
-const defaultGetGroupId: NotificationsListPropGetGroupId<DefaultGroup> = group => group.id
-const defaultGetGroupLabel: NotificationsListPropGetGroupLabel<DefaultGroup> = group => group.label
-const defaultGetItemActions: NotificationsListPropGetItemActions<DefaultItem> = item => item.actions
-const defaultGetItemBadges: NotificationsListPropGetItemBadges<DefaultItem> = item => item.badges
-const defaultGetItemDate: NotificationsListPropGetItemDate<DefaultItem> = item => item.date
-const defaultGetItemDescription: NotificationsListPropGetItemDescription<DefaultItem> = item =>
+const defaultGetGroupId: NotificationsListPropGetGroupId<NotificationsDefaultGroup> = group =>
+  group.id
+const defaultGetGroupLabel: NotificationsListPropGetGroupLabel<NotificationsDefaultGroup> = group =>
+  group.label
+const defaultGetItemActions: NotificationsListPropGetItemActions<NotificationsDefaultItem> = item =>
+  item.actions
+const defaultGetItemBadges: NotificationsListPropGetItemBadges<NotificationsDefaultItem> = item =>
+  item.badges
+const defaultGetItemDate: NotificationsListPropGetItemDate<NotificationsDefaultItem> = item =>
+  item.date
+const defaultGetItemDescription: NotificationsListPropGetItemDescription<NotificationsDefaultItem> = item =>
   item.description
-const defaultGetItemGroup: NotificationsListPropGetItemGroup<DefaultItem> = item => item.group
-const defaultGetItemImage: NotificationsListPropGetItemImage<DefaultItem> = item => item.image
-const defaultGetItemLabel: NotificationsListPropGetItemLabel<DefaultItem> = item => item.label
-const defaultGetItemRead: NotificationsListPropGetItemRead<DefaultItem> = item => item.read
-const defaultGetItemView: NotificationsListPropGetItemView<DefaultItem> = item => item.view
+const defaultGetItemGroup: NotificationsListPropGetItemGroup<NotificationsDefaultItem> = item =>
+  item.group
+const defaultGetItemImage: NotificationsListPropGetItemImage<NotificationsDefaultItem> = item =>
+  item.image
+const defaultGetItemLabel: NotificationsListPropGetItemLabel<NotificationsDefaultItem> = item =>
+  item.label
+const defaultGetItemRead: NotificationsListPropGetItemRead<NotificationsDefaultItem> = item =>
+  item.read
+const defaultGetItemView: NotificationsListPropGetItemView<NotificationsDefaultItem> = item =>
+  item.view
 
 export function withDefaultGetters<ITEM, GROUP, ACTION>(
   props: NotificationsListProps<ITEM, GROUP, ACTION>

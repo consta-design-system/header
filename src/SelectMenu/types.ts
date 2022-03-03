@@ -1,11 +1,11 @@
 import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWithHTMLAttributes'
 
-export type DefaultItem = {
+export type SelectMenuDefaultItem = {
   label: string
   href?: string
   target?: string
   onClick?: React.EventHandler<React.MouseEvent>
-  subMenu?: DefaultItem[]
+  subMenu?: SelectMenuDefaultItem[]
 }
 
 export type SelectMenuPropGetItemLabel<ITEM> = (item: ITEM) => string
@@ -17,7 +17,7 @@ export type SelectMenuPropGetItemOnClick<ITEM> = (
 export type SelectMenuPropOnItemClick<ITEM> = (props: { e: React.MouseEvent; item: ITEM }) => void
 export type SelectMenuPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined
 
-export type SelectMenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
+export type SelectMenuProps<ITEM = SelectMenuDefaultItem> = PropsWithHTMLAttributesAndRef<
   {
     items: ITEM[]
     onItemClick?: SelectMenuPropOnItemClick<ITEM>
@@ -30,10 +30,10 @@ export type SelectMenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
   },
   HTMLDivElement
 > &
-  (ITEM extends { label: DefaultItem['label'] }
+  (ITEM extends { label: SelectMenuDefaultItem['label'] }
     ? {}
     : { getItemLabel: SelectMenuPropGetItemLabel<ITEM> })
 
-export type SelectMenuComponent = <ITEM = DefaultItem>(
+export type SelectMenuComponent = <ITEM = SelectMenuDefaultItem>(
   props: SelectMenuProps<ITEM>
 ) => React.ReactElement | null

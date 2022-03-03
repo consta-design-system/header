@@ -1,4 +1,4 @@
-import { DefaultItem, DefaultAction } from '@/NotificationsList'
+import { NotificationsDefaultItem, NotificationsDefaultAction } from '@/NotificationsList'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
 
@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions'
 
 const emptyFunction = () => action('emptyFunction')
 
-export const items: DefaultItem[] = [
+export const items: NotificationsDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
@@ -577,7 +577,7 @@ export const items: DefaultItem[] = [
   },
 ]
 
-export const actions: DefaultAction[] = [
+export const actions: NotificationsDefaultAction[] = [
   {
     label: 'Отметить все как прочитанное',
     onClick: emptyFunction,

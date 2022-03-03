@@ -2,7 +2,7 @@ import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWi
 import { IconComponent } from '@consta/uikit/Icon'
 import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
 
-export type DefaultItem = {
+export type ButtonMenuDefaultItem = {
   label: string
   href?: string
   target?: string
@@ -19,7 +19,7 @@ export type ButtonMenuPropGetItemOnClick<ITEM> = (
 ) => React.EventHandler<React.MouseEvent> | undefined
 export type ButtonMenuPropOnItemClick<ITEM> = (props: { e: React.MouseEvent; item: ITEM }) => void
 
-export type ButtonMenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
+export type ButtonMenuProps<ITEM = ButtonMenuDefaultItem> = PropsWithHTMLAttributesAndRef<
   {
     items: ITEM[]
     onItemClick?: ButtonMenuPropOnItemClick<ITEM>
@@ -35,10 +35,10 @@ export type ButtonMenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributesAndRef<
   },
   HTMLDivElement
 > &
-  (ITEM extends { label: DefaultItem['label'] }
+  (ITEM extends { label: ButtonMenuDefaultItem['label'] }
     ? {}
     : { getItemLabel: ButtonMenuPropGetItemLabel<ITEM> })
 
-export type ButtonMenuComponent = <ITEM = DefaultItem>(
+export type ButtonMenuComponent = <ITEM = ButtonMenuDefaultItem>(
   props: ButtonMenuProps<ITEM>
 ) => React.ReactElement | null

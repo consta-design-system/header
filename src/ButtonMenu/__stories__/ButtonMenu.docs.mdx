@@ -9,7 +9,7 @@ import { SelectMenu } from '@consta/header/SelectMenu'
 ## Свойства
 
 ```tsx
-type DefaultItem = {
+type ButtonMenuDefaultItem = {
   label: string
   href?: string
   target?: string
@@ -24,10 +24,14 @@ type SelectMenuPropGetItemOnClick<ITEM> = (
 ) => React.EventHandler<React.MouseEvent> | undefined
 type SelectMenuPropOnItemClick<ITEM> = (props: { e: React.MouseEvent; item: ITEM }) => void
 
-export const defaultGetItemLabel: SelectMenuPropGetItemLabel<DefaultItem> = item => item.label
-export const defaultGetItemHref: SelectMenuPropGetItemHref<DefaultItem> = item => item.href
-export const defaultGetItemOnClick: SelectMenuPropGetItemOnClick<DefaultItem> = item => item.onClick
-export const defaultGetItemTarget: SelectMenuPropGetItemTarget<DefaultItem> = item => item.target
+export const defaultGetItemLabel: SelectMenuPropGetItemLabel<ButtonMenuDefaultItem> = item =>
+  item.label
+export const defaultGetItemHref: SelectMenuPropGetItemHref<ButtonMenuDefaultItem> = item =>
+  item.href
+export const defaultGetItemOnClick: SelectMenuPropGetItemOnClick<ButtonMenuDefaultItem> = item =>
+  item.onClick
+export const defaultGetItemTarget: SelectMenuPropGetItemTarget<ButtonMenuDefaultItem> = item =>
+  item.target
 ```
 
 | Свойство         | Тип                            | По умолчанию            | Описание                                       |

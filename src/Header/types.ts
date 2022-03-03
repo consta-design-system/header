@@ -2,7 +2,7 @@ import React from 'react'
 import { IconComponent } from '@consta/uikit/Icon'
 
 import {
-  DefaultItem as DefaultMenuItem,
+  MenuDefaultItem,
   MenuPropOnItemClick,
   MenuPropGetItemHref,
   MenuPropGetItemLabel,
@@ -28,9 +28,9 @@ import {
   NotificationsListPropGetItemRead,
   NotificationsListPropGetItemView,
   NotificationsListPropGroupLabelFormat,
-  DefaultAction as DefaultNotificationAction,
-  DefaultGroup as DefaultNotificationGroup,
-  DefaultItem as DefaultNotificationItem,
+  NotificationsDefaultAction,
+  NotificationsDefaultGroup,
+  NotificationsDefaultItem,
   NotificationsListPropItemDateFormat,
 } from '@/NotificationsList'
 
@@ -42,7 +42,7 @@ import {
   TileMenuPropGetItemLabel,
   TileMenuOnItemClick,
   TileMenuPropView,
-  DefaultItem as DefaultTileMenuItem,
+  TileMenuDefaultItem,
 } from '@/TileMenu'
 
 import { PropsWithHTMLAttributesAndRef } from '@/__private__/utils/types/PropsWithHTMLAttributes'
@@ -54,7 +54,7 @@ import {
   BreadcrumbsPropGetItemIcon,
   BreadcrumbsPropOnItemClick,
   BreadcrumbPropFitMode,
-  DefaultItem as DefaultBreadcrumbsItem,
+  DefaultItem as BreadcrumbsDefaultItem,
 } from '@consta/uikit/BreadcrumbsCanary'
 
 import { HeaderSearchProps } from './HeaderSearch'
@@ -66,7 +66,7 @@ import {
   SelectMenuPropGetItemSubMenu,
   SelectMenuPropGetItemTarget,
   SelectMenuPropOnItemClick,
-  DefaultItem as DefaultSelectMenuItem,
+  SelectMenuDefaultItem,
 } from '@/SelectMenu'
 
 import {
@@ -76,44 +76,42 @@ import {
   ButtonMenuPropGetItemOnClick,
   ButtonMenuPropGetItemTarget,
   ButtonMenuPropOnItemClick,
-  DefaultItem as ButtonMenuDefaultItem,
+  ButtonMenuDefaultItem,
 } from '@/ButtonMenu'
 
-import { DefaultItem as DefaultItemLanguages } from '@/Languages'
+import { LanguagesDefaultItem } from '@/Languages'
 
-export type DefaultSocialMediaItem = ButtonMenuDefaultItem & { icon: IconComponent }
-
-export {
-  DefaultMenuItem,
-  DefaultNotificationItem,
-  DefaultNotificationGroup,
-  DefaultNotificationAction,
-  DefaultTileMenuItem,
-  DefaultSelectMenuItem,
-  DefaultItemLanguages,
-  ButtonMenuDefaultItem as AdditionalButtonsDefaultItem,
-}
+export type HeaderDefaultSocialMediaItem = ButtonMenuDefaultItem & { icon: IconComponent }
+export type HeaderDefaultAdditionalButtonsItem = ButtonMenuDefaultItem
+export type HeaderDefaultMenuItem = MenuDefaultItem
+export type HeaderDefaultNotificationAction = NotificationsDefaultAction
+export type HeaderDefaultNotificationGroup = NotificationsDefaultGroup
+export type HeaderDefaultNotificationItem = NotificationsDefaultItem
+export type HeaderDefaultTileMenuItem = TileMenuDefaultItem
+export type HeaderDefaultBreadcrumbsItem = BreadcrumbsDefaultItem
+export type HeaderDefaultSelectMenuItem = SelectMenuDefaultItem
+export type HeaderDefaultLanguagesItem = LanguagesDefaultItem
 
 export type HeaderProps<
   // Menu
-  MENU_ITEM = DefaultMenuItem,
+  MENU_ITEM = HeaderDefaultMenuItem,
   // Notifications
-  NOTIFICATION_ITEM = DefaultNotificationItem,
-  NOTIFICATION_GROUP = DefaultNotificationGroup,
-  NOTIFICATION_ACTION = DefaultNotificationAction,
+  NOTIFICATION_ITEM = HeaderDefaultNotificationItem,
+  NOTIFICATION_GROUP = HeaderDefaultNotificationGroup,
+  NOTIFICATION_ACTION = HeaderDefaultNotificationAction,
   NOTIFICATION_GROUP_BY_DAY extends boolean = false,
   // TileMenu
-  TILE_MENU_ITEM = DefaultTileMenuItem,
+  TILE_MENU_ITEM = HeaderDefaultTileMenuItem,
   // Breadcrumbs
-  BREADCRUMBS_ITEM = DefaultBreadcrumbsItem,
+  BREADCRUMBS_ITEM = HeaderDefaultBreadcrumbsItem,
   // SecondaryMenu
-  SECONDARY_MENU_ITEM = DefaultSelectMenuItem,
+  SECONDARY_MENU_ITEM = HeaderDefaultSelectMenuItem,
   // ButtonMenu
-  SOCIAL_MEDIA_ITEM = DefaultSocialMediaItem,
+  SOCIAL_MEDIA_ITEM = HeaderDefaultSocialMediaItem,
   // Languages
-  LANGUAGES_ITEM = DefaultItemLanguages,
+  LANGUAGES_ITEM = HeaderDefaultLanguagesItem,
   // AdditionalButtons
-  ADDITIONAL_BUTTONS_ITEM = ButtonMenuDefaultItem
+  ADDITIONAL_BUTTONS_ITEM = HeaderDefaultAdditionalButtonsItem
 > = PropsWithHTMLAttributesAndRef<
   {
     fixed?: boolean
@@ -194,7 +192,7 @@ export type HeaderProps<
     searchPlaceholder?: HeaderSearchProps['placeholder']
 
     // SecondaryMenu
-    secondaryMenu?: DefaultSelectMenuItem[]
+    secondaryMenu?: SECONDARY_MENU_ITEM[]
     onSecondaryMenuItemClick?: SelectMenuPropOnItemClick<SECONDARY_MENU_ITEM>
     getSecondaryMenuItemHref?: SelectMenuPropGetItemHref<SECONDARY_MENU_ITEM>
     getSecondaryMenuItemLabel?: SelectMenuPropGetItemLabel<SECONDARY_MENU_ITEM>
@@ -235,57 +233,57 @@ export type HeaderProps<
   HTMLDivElement
 > &
   // Menu
-  (MENU_ITEM extends { label: DefaultMenuItem['label'] | unknown }
+  (MENU_ITEM extends { label: HeaderDefaultMenuItem['label'] | unknown }
     ? {}
     : { getMenuItemLabel: MenuPropGetItemLabel<MENU_ITEM> }) &
   // Notifications
-  (NOTIFICATION_ACTION extends { label: DefaultNotificationAction['label'] | unknown }
+  (NOTIFICATION_ACTION extends { label: HeaderDefaultNotificationAction['label'] | unknown }
     ? {}
     : { getNotificationsActionLabel: NotificationsListPropGetItemActions<NOTIFICATION_ACTION> }) &
-  (NOTIFICATION_GROUP extends { label: DefaultNotificationGroup['label'] | unknown }
+  (NOTIFICATION_GROUP extends { label: HeaderDefaultNotificationGroup['label'] | unknown }
     ? {}
     : { getNotificationsGroupLabel: NotificationsListPropGetGroupLabel<NOTIFICATION_GROUP> }) &
-  (NOTIFICATION_GROUP extends { id: DefaultNotificationGroup['id'] | unknown }
+  (NOTIFICATION_GROUP extends { id: HeaderDefaultNotificationGroup['id'] | unknown }
     ? {}
     : { getNotificationsGroupId: NotificationsListPropGetGroupId<NOTIFICATION_GROUP> }) &
-  (NOTIFICATION_ITEM extends { label: DefaultNotificationItem['label'] | unknown }
+  (NOTIFICATION_ITEM extends { label: HeaderDefaultNotificationItem['label'] | unknown }
     ? {}
     : { getNotificationsItemLabel: NotificationsListPropGetItemLabel<NOTIFICATION_ITEM> }) &
   // TileMenu
-  (TILE_MENU_ITEM extends { title: DefaultTileMenuItem['label'] | unknown }
+  (TILE_MENU_ITEM extends { label: HeaderDefaultTileMenuItem['label'] | unknown }
     ? {}
     : { getTileMenuItemLabel: TileMenuPropGetItemLabel<TILE_MENU_ITEM> }) &
   // Breadcrumbs
-  (BREADCRUMBS_ITEM extends { label: DefaultBreadcrumbsItem['label'] | unknown }
+  (BREADCRUMBS_ITEM extends { label: HeaderDefaultBreadcrumbsItem['label'] | unknown }
     ? {}
     : { getBreadcrumbsItemLabel: BreadcrumbsPropGetItemLabel<BREADCRUMBS_ITEM> }) &
   // SecondaryMenu
-  (SECONDARY_MENU_ITEM extends { label: DefaultSelectMenuItem['label'] | unknown }
+  (SECONDARY_MENU_ITEM extends { label: HeaderDefaultSelectMenuItem['label'] | unknown }
     ? {}
     : { getSecondaryMenuItemLabel: SelectMenuPropGetItemLabel<SECONDARY_MENU_ITEM> }) &
   // SocialMedia
-  (SOCIAL_MEDIA_ITEM extends { label: DefaultSocialMediaItem['label'] | unknown }
+  (SOCIAL_MEDIA_ITEM extends { label: HeaderDefaultSocialMediaItem['label'] | unknown }
     ? {}
     : { getSocialMediaItemLabel: ButtonMenuPropGetItemLabel<SOCIAL_MEDIA_ITEM> }) &
-  (SOCIAL_MEDIA_ITEM extends { icon: DefaultSocialMediaItem['icon'] | unknown }
+  (SOCIAL_MEDIA_ITEM extends { icon: HeaderDefaultSocialMediaItem['icon'] | unknown }
     ? {}
     : { getSocialMediaItemIcon: ButtonMenuPropGetItemIcon<SOCIAL_MEDIA_ITEM> }) &
-  (LANGUAGES_ITEM extends { label: DefaultSelectMenuItem['label'] | unknown }
+  (LANGUAGES_ITEM extends { label: HeaderDefaultLanguagesItem['label'] | unknown }
     ? {}
     : { getLanguagesItemLabel: SelectMenuPropGetItemLabel<LANGUAGES_ITEM> }) &
   // AdditionalButtons
-  (ADDITIONAL_BUTTONS_ITEM extends { label: ButtonMenuDefaultItem['label'] | unknown }
+  (ADDITIONAL_BUTTONS_ITEM extends { label: HeaderDefaultAdditionalButtonsItem['label'] | unknown }
     ? {}
     : { getAdditionalButtonsItemLabel: ButtonMenuPropGetItemLabel<ADDITIONAL_BUTTONS_ITEM> })
 
 export type HeaderComponent = <
-  MENU_ITEM = DefaultMenuItem,
-  NOTIFICATION_ITEM = DefaultNotificationItem,
-  NOTIFICATION_GROUP = DefaultNotificationGroup,
-  NOTIFICATION_ACTION = DefaultNotificationAction,
+  MENU_ITEM = MenuDefaultItem,
+  NOTIFICATION_ITEM = HeaderDefaultNotificationItem,
+  NOTIFICATION_GROUP = HeaderDefaultNotificationGroup,
+  NOTIFICATION_ACTION = HeaderDefaultNotificationAction,
   NOTIFICATION_GROUP_BY_DAY extends boolean = false,
-  TILE_MENU_ITEM = DefaultTileMenuItem,
-  BREADCRUMBS_ITEM = DefaultBreadcrumbsItem
+  TILE_MENU_ITEM = HeaderDefaultTileMenuItem,
+  BREADCRUMBS_ITEM = HeaderDefaultBreadcrumbsItem
 >(
   props: HeaderProps<
     MENU_ITEM,

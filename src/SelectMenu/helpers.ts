@@ -1,5 +1,5 @@
 import {
-  DefaultItem,
+  SelectMenuDefaultItem,
   SelectMenuProps,
   SelectMenuPropGetItemHref,
   SelectMenuPropGetItemLabel,
@@ -8,11 +8,16 @@ import {
   SelectMenuPropGetItemSubMenu,
 } from './types'
 
-export const defaultGetItemLabel: SelectMenuPropGetItemLabel<DefaultItem> = item => item.label
-export const defaultGetItemHref: SelectMenuPropGetItemHref<DefaultItem> = item => item.href
-export const defaultGetItemOnClick: SelectMenuPropGetItemOnClick<DefaultItem> = item => item.onClick
-export const defaultGetItemTarget: SelectMenuPropGetItemTarget<DefaultItem> = item => item.target
-export const defaultGetItemSubMenu: SelectMenuPropGetItemSubMenu<DefaultItem> = item => item.subMenu
+export const defaultGetItemLabel: SelectMenuPropGetItemLabel<SelectMenuDefaultItem> = item =>
+  item.label
+export const defaultGetItemHref: SelectMenuPropGetItemHref<SelectMenuDefaultItem> = item =>
+  item.href
+export const defaultGetItemOnClick: SelectMenuPropGetItemOnClick<SelectMenuDefaultItem> = item =>
+  item.onClick
+export const defaultGetItemTarget: SelectMenuPropGetItemTarget<SelectMenuDefaultItem> = item =>
+  item.target
+export const defaultGetItemSubMenu: SelectMenuPropGetItemSubMenu<SelectMenuDefaultItem> = item =>
+  item.subMenu
 
 export const getGetters = <ITEM>(props: {
   getItemLabel?: SelectMenuPropGetItemLabel<ITEM>

@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Example } from '@/__private__/storybook'
 
-import { TileMenu, DefaultItem } from '@/TileMenu'
+import { TileMenu, TileMenuDefaultItem } from '@/TileMenu'
 
-const items: DefaultItem[] = [
+const items: TileMenuDefaultItem[] = [
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',

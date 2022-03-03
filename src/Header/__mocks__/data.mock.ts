@@ -1,20 +1,20 @@
-import { DefaultItem, DefaultAction } from '@/NotificationsList'
+import { NotificationsDefaultItem, NotificationsDefaultAction } from '@/NotificationsList'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
 import { IconDinosaur } from '@consta/uikit/IconDinosaur'
 import { IconComponent } from '@consta/uikit/Icon'
 import { IconHome } from '@consta/uikit/IconHome'
 import {
-  DefaultSocialMediaItem,
-  DefaultItemLanguages,
-  AdditionalButtonsDefaultItem,
+  HeaderDefaultSocialMediaItem,
+  HeaderDefaultLanguagesItem,
+  HeaderDefaultAdditionalButtonsItem,
 } from '@/Header'
 
 import { action } from '@storybook/addon-actions'
 
 const emptyFunction = () => action('emptyFunction')
 
-export const notifications: DefaultItem[] = [
+export const notifications: NotificationsDefaultItem[] = [
   {
     label: 'Андриевский Дмитрий Олегович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
@@ -303,7 +303,7 @@ export const notifications: DefaultItem[] = [
   },
 ]
 
-export const notificationsActions: DefaultAction[] = [
+export const notificationsActions: NotificationsDefaultAction[] = [
   {
     label: 'Отметить все как прочитанное',
     onClick: emptyFunction,
@@ -359,49 +359,49 @@ export const menu: MenuItem[] = [
 ]
 
 type TileMenuItem = {
-  title: string
+  label: string
   description: string
   image: string
 }
 
 export const tileMenu: TileMenuItem[] = [
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
-    title: 'Портал',
+    label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
     image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
@@ -441,7 +441,7 @@ export const breadcrumbs: Page[] = [
   },
 ]
 
-export const socialMedia: DefaultSocialMediaItem[] = [
+export const socialMedia: HeaderDefaultSocialMediaItem[] = [
   {
     label: 'facebook',
     target: '_blank',
@@ -468,7 +468,7 @@ export const socialMedia: DefaultSocialMediaItem[] = [
   },
 ]
 
-export const languages: DefaultItemLanguages[] = [
+export const languages: HeaderDefaultLanguagesItem[] = [
   {
     label: 'RU',
   },
@@ -477,7 +477,7 @@ export const languages: DefaultItemLanguages[] = [
   },
 ]
 
-export const additionalButtons: AdditionalButtonsDefaultItem[] = [
+export const additionalButtons: HeaderDefaultAdditionalButtonsItem[] = [
   {
     label: 'Закупки',
   },
