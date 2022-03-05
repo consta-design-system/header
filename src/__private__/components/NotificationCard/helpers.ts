@@ -1,4 +1,6 @@
-import { format, formatDistanceToNow } from 'date-fns'
+import format from 'date-fns/format'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+
 import ruLocale from 'date-fns/locale/ru'
 
 export const defaultDateFormat = (date: Date): string => {

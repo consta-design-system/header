@@ -159,75 +159,80 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
         {...otherProps}
         ref={ref}
         className={cnHeader({ fixed }, [className])}
-        rowTop={{
-          left:
-            secondaryMenuLabel && secondaryMenu?.length ? (
-              <SelectMenu
-                label={secondaryMenuLabel}
-                items={secondaryMenu}
-                getItemHref={getSecondaryMenuItemHref}
-                getItemLabel={getSecondaryMenuItemLabel}
-                getItemOnClick={getSecondaryMenuItemOnClick}
-                getItemSubMenu={getSecondaryMenuItemSubMenu}
-                getItemTarget={getSecondaryMenuItemTarget}
-                style={{ zIndex: elementZIndex }}
+        rowTop={
+          (additionalButtons?.length ||
+            languages?.length ||
+            socialMedia?.length ||
+            (secondaryMenu?.length && secondaryMenuLabel)) && {
+            left:
+              secondaryMenuLabel && secondaryMenu?.length ? (
+                <SelectMenu
+                  label={secondaryMenuLabel}
+                  items={secondaryMenu}
+                  getItemHref={getSecondaryMenuItemHref}
+                  getItemLabel={getSecondaryMenuItemLabel}
+                  getItemOnClick={getSecondaryMenuItemOnClick}
+                  getItemSubMenu={getSecondaryMenuItemSubMenu}
+                  getItemTarget={getSecondaryMenuItemTarget}
+                  style={{ zIndex: elementZIndex }}
+                />
+              ) : (
+                undefined
+              ),
+            center: socialMedia?.length ? (
+              <ButtonMenu
+                items={socialMedia}
+                getItemHref={getSocialMediaItemHref}
+                getItemIcon={getSocialMediaItemIcon}
+                getItemLabel={getSocialMediaItemLabel}
+                getItemOnClick={getSocialMediaItemOnClick}
+                getItemTarget={getSocialMediaItemTarget}
+                onItemClick={onSocialMediaItemClick}
+                view="clear"
+                onlyIcon
+                size="s"
               />
             ) : (
               undefined
             ),
-          center: socialMedia?.length ? (
-            <ButtonMenu
-              items={socialMedia}
-              getItemHref={getSocialMediaItemHref}
-              getItemIcon={getSocialMediaItemIcon}
-              getItemLabel={getSocialMediaItemLabel}
-              getItemOnClick={getSocialMediaItemOnClick}
-              getItemTarget={getSocialMediaItemTarget}
-              onItemClick={onSocialMediaItemClick}
-              view="clear"
-              onlyIcon
-              size="s"
-            />
-          ) : (
-            undefined
-          ),
-          right: (
-            <div className={cnHeader('RowTopRight')}>
-              {[
-                languages?.length ? (
-                  <Languages
-                    key="Languages"
-                    items={languages}
-                    value={languagesValue}
-                    getItemHref={getLanguagesItemHref}
-                    getItemLabel={getLanguagesItemLabel}
-                    getItemOnClick={getLanguagesItemOnClick}
-                    getItemTarget={getLanguagesItemTarget}
-                    onChange={onLanguageChange}
-                    style={{ zIndex: elementZIndex }}
-                  />
-                ) : (
-                  undefined
-                ),
-                additionalButtons?.length ? (
-                  <ButtonMenu
-                    items={additionalButtons}
-                    getItemHref={getAdditionalButtonsItemHref}
-                    getItemIcon={getAdditionalButtonsItemIcon}
-                    getItemLabel={getAdditionalButtonsItemLabel}
-                    getItemOnClick={getAdditionalButtonsItemOnClick}
-                    getItemTarget={getAdditionalButtonsItemTarget}
-                    onItemClick={onAdditionalButtonsItemClick}
-                    view="clear"
-                    size="s"
-                  />
-                ) : (
-                  undefined
-                ),
-              ]}
-            </div>
-          ),
-        }}
+            right: (
+              <div className={cnHeader('RowTopRight')}>
+                {[
+                  languages?.length ? (
+                    <Languages
+                      key="Languages"
+                      items={languages}
+                      value={languagesValue}
+                      getItemHref={getLanguagesItemHref}
+                      getItemLabel={getLanguagesItemLabel}
+                      getItemOnClick={getLanguagesItemOnClick}
+                      getItemTarget={getLanguagesItemTarget}
+                      onChange={onLanguageChange}
+                      style={{ zIndex: elementZIndex }}
+                    />
+                  ) : (
+                    undefined
+                  ),
+                  additionalButtons?.length ? (
+                    <ButtonMenu
+                      items={additionalButtons}
+                      getItemHref={getAdditionalButtonsItemHref}
+                      getItemIcon={getAdditionalButtonsItemIcon}
+                      getItemLabel={getAdditionalButtonsItemLabel}
+                      getItemOnClick={getAdditionalButtonsItemOnClick}
+                      getItemTarget={getAdditionalButtonsItemTarget}
+                      onItemClick={onAdditionalButtonsItemClick}
+                      view="clear"
+                      size="s"
+                    />
+                  ) : (
+                    undefined
+                  ),
+                ]}
+              </div>
+            ),
+          }
+        }
         rowCenter={{
           left: (
             <div className={cnHeader('RowCenterLeft', { breakpoint: 'm' })}>
@@ -335,6 +340,8 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
   }
 
   if (breakpoints.s) {
+    const mobileMenuItems = getMobileMenu(props, { languagesValue, setLanguagesValue })
+
     return (
       <Layout
         {...otherProps}
@@ -343,10 +350,10 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
         rowCenter={{
           left: (
             <div className={cnHeader('RowCenterLeft')}>
-              {menu && (
+              {(mobileMenuItems.length || socialMedia?.length) && (
                 <MobileMenu
                   className={cnHeader('Menu')}
-                  items={getMobileMenu(props, { languagesValue, setLanguagesValue })}
+                  items={mobileMenuItems}
                   getItemActive={getMenuItemActive}
                   getItemHref={getMenuItemHref}
                   getItemLabel={getMenuItemLabel}
@@ -464,6 +471,8 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
     )
   }
 
+  const mobileMenuItems = getMobileMenu(props, { languagesValue, setLanguagesValue })
+
   return (
     <Layout
       {...otherProps}
@@ -472,7 +481,14 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
       rowCenter={{
         left: (
           <div className={cnHeader('RowCenterLeft')}>
-            {menu && (
+            {(mobileMenuItems.length ||
+              userName ||
+              userAvatar ||
+              tileMenu?.length ||
+              notifications?.length ||
+              searchOnSubmit ||
+              searchOnChange ||
+              socialMedia?.length) && (
               <MobileMenu
                 className={cnHeader('Menu')}
                 items={getMobileMenu(props, { languagesValue, setLanguagesValue })}
@@ -484,76 +500,83 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                 getItemTarget={getMenuItemTarget}
                 style={{ zIndex: elementZIndex }}
                 header={
-                  <div className={cnHeader('MobileMenuHeader')}>
-                    <div>
-                      <HeaderLogin
-                        userName={userName}
-                        userAvatar={userAvatar}
-                        userInfo={userInfo}
-                        userLogined={userLogined}
-                        onLoginButtonClick={onLoginButtonClick}
-                        loginButtonLabel={loginButtonLabel}
-                      />
-                    </div>
-                    {tileMenu?.length && notifications?.length && (
+                  (userName ||
+                    userAvatar ||
+                    tileMenu?.length ||
+                    notifications?.length ||
+                    searchOnSubmit ||
+                    searchOnChange) && (
+                    <div className={cnHeader('MobileMenuHeader')}>
                       <div>
-                        {tileMenu?.length && (
-                          <TileMenu
-                            items={tileMenu}
-                            view={tileMenuView}
-                            onItemClick={onTileMenuItemClick}
-                            getItemDescription={getTileMenuItemDescription}
-                            getItemHref={getTileMenuItemHref}
-                            getItemImage={getTileMenuItemImage}
-                            getItemOnClick={getTileMenuItemOnClick}
-                            getItemLabel={getTileMenuItemLabel}
-                            listClassName={cnHeader('TileMenuList')}
-                            title={tileMenuTitle}
-                            isMobile
-                            style={{ zIndex: elementZIndex }}
-                          />
-                        )}
-                        {notifications?.length && (
-                          <Notifications
-                            listClassName={cnHeader('NotificationsList')}
-                            items={notifications}
-                            itemDateFormat={notificationsDateFormat}
-                            title={notificationsTitle}
-                            actions={notificationsActions}
-                            groupByDay={notificationsGroupByDay}
-                            groupLabelFormat={notificationsGroupLabelFormat}
-                            groups={notificationsGroups}
-                            getItemLabel={getNotificationsItemLabel}
-                            getItemDescription={getNotificationsItemDescription}
-                            getItemImage={getNotificationsItemImage}
-                            getItemRead={getNotificationsItemRead}
-                            getItemDate={getNotificationsItemDate}
-                            getItemBadges={getNotificationsItemBadges}
-                            getItemActions={getNotificationsItemActions}
-                            getItemGroup={getNotificationsItemGroup}
-                            getItemView={getNotificationsItemView}
-                            getActionLabel={getNotificationsActionLabel}
-                            getActionIcon={getNotificationsActionIcon}
-                            getActionOnClick={getNotificationsActionOnClick}
-                            getGroupLabel={getNotificationsGroupLabel}
-                            getGroupId={getNotificationsGroupId}
-                            isMobile
-                            style={{ zIndex: elementZIndex }}
-                          />
-                        )}
-                      </div>
-                    )}
-                    <div className={cnHeader('MobileSearchContainer')}>
-                      {(searchOnSubmit || searchOnChange) && (
-                        <HeaderSearch
-                          value={searchValue}
-                          onChange={searchOnChange}
-                          onSubmit={searchOnSubmit}
-                          placeholder={searchPlaceholder}
+                        <HeaderLogin
+                          userName={userName}
+                          userAvatar={userAvatar}
+                          userInfo={userInfo}
+                          userLogined={userLogined}
+                          onLoginButtonClick={onLoginButtonClick}
+                          loginButtonLabel={loginButtonLabel}
                         />
+                      </div>
+                      {(tileMenu?.length || notifications?.length) && (
+                        <div>
+                          {tileMenu?.length && (
+                            <TileMenu
+                              items={tileMenu}
+                              view={tileMenuView}
+                              onItemClick={onTileMenuItemClick}
+                              getItemDescription={getTileMenuItemDescription}
+                              getItemHref={getTileMenuItemHref}
+                              getItemImage={getTileMenuItemImage}
+                              getItemOnClick={getTileMenuItemOnClick}
+                              getItemLabel={getTileMenuItemLabel}
+                              listClassName={cnHeader('TileMenuList')}
+                              title={tileMenuTitle}
+                              isMobile
+                              style={{ zIndex: elementZIndex }}
+                            />
+                          )}
+                          {notifications?.length && (
+                            <Notifications
+                              listClassName={cnHeader('NotificationsList')}
+                              items={notifications}
+                              itemDateFormat={notificationsDateFormat}
+                              title={notificationsTitle}
+                              actions={notificationsActions}
+                              groupByDay={notificationsGroupByDay}
+                              groupLabelFormat={notificationsGroupLabelFormat}
+                              groups={notificationsGroups}
+                              getItemLabel={getNotificationsItemLabel}
+                              getItemDescription={getNotificationsItemDescription}
+                              getItemImage={getNotificationsItemImage}
+                              getItemRead={getNotificationsItemRead}
+                              getItemDate={getNotificationsItemDate}
+                              getItemBadges={getNotificationsItemBadges}
+                              getItemActions={getNotificationsItemActions}
+                              getItemGroup={getNotificationsItemGroup}
+                              getItemView={getNotificationsItemView}
+                              getActionLabel={getNotificationsActionLabel}
+                              getActionIcon={getNotificationsActionIcon}
+                              getActionOnClick={getNotificationsActionOnClick}
+                              getGroupLabel={getNotificationsGroupLabel}
+                              getGroupId={getNotificationsGroupId}
+                              isMobile
+                              style={{ zIndex: elementZIndex }}
+                            />
+                          )}
+                        </div>
+                      )}
+                      {(searchOnSubmit || searchOnChange) && (
+                        <div className={cnHeader('MobileSearchContainer')}>
+                          <HeaderSearch
+                            value={searchValue}
+                            onChange={searchOnChange}
+                            onSubmit={searchOnSubmit}
+                            placeholder={searchPlaceholder}
+                          />
+                        </div>
                       )}
                     </div>
-                  </div>
+                  )
                 }
                 footer={
                   socialMedia?.length && (
