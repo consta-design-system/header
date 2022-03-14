@@ -65,7 +65,7 @@ const VerticalMenuRender = (props: VerticalMenuProps, ref: React.Ref<HTMLDivElem
   const getItemLabelRef = useMutableRef(getItemLabel)
 
   useEffect(() => {
-    // обновляем оровни при смене items
+    // обновляем уровни при смене items
     const keys = levels[levels.length - 1].id.split('-').slice(1)
 
     let id = '0'

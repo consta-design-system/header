@@ -8,12 +8,13 @@ import { SelectMenu } from '@consta/header/SelectMenu'
 
 ## Свойства
 
-```tsx
+```ts
 type SelectMenuDefaultItem = {
   label: string
   href?: string
   target?: string
   onClick?: React.EventHandler<React.MouseEvent>
+  subMenu?: SelectMenuDefaultItem[]
 }
 
 type SelectMenuPropGetItemLabel<ITEM> = (item: ITEM) => string
@@ -23,24 +24,26 @@ type SelectMenuPropGetItemOnClick<ITEM> = (
   item: ITEM
 ) => React.EventHandler<React.MouseEvent> | undefined
 type SelectMenuPropOnItemClick<ITEM> = (props: { e: React.MouseEvent; item: ITEM }) => void
+type SelectMenuPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined
 
-export const defaultGetItemLabel: SelectMenuPropGetItemLabel<SelectMenuDefaultItem> = item =>
-  item.label
-export const defaultGetItemHref: SelectMenuPropGetItemHref<SelectMenuDefaultItem> = item =>
-  item.href
-export const defaultGetItemOnClick: SelectMenuPropGetItemOnClick<SelectMenuDefaultItem> = item =>
+const defaultGetItemLabel: SelectMenuPropGetItemLabel<SelectMenuDefaultItem> = item => item.label
+const defaultGetItemHref: SelectMenuPropGetItemHref<SelectMenuDefaultItem> = item => item.href
+const defaultGetItemOnClick: SelectMenuPropGetItemOnClick<SelectMenuDefaultItem> = item =>
   item.onClick
-export const defaultGetItemTarget: SelectMenuPropGetItemTarget<SelectMenuDefaultItem> = item =>
-  item.target
+const defaultGetItemTarget: SelectMenuPropGetItemTarget<SelectMenuDefaultItem> = item => item.target
+const defaultGetItemSubMenu: SelectMenuPropGetItemSubMenu<SelectMenuDefaultItem> = item =>
+  item.subMenu
 ```
 
 | Свойство         | Тип                            | По умолчанию            | Описание                                       |
 | ---------------- | ------------------------------ | ----------------------- | ---------------------------------------------- |
 | `items`          | `ITEM[]`                       | -                       | Элементы                                       |
+| `label`          | `string`                       | -                       | Надпись                                        |
 | `onItemClick`    | `SelectMenuPropOnItemClick`    | -                       | Функция клика по элементу                      |
 | `getItemHref`    | `SelectMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента        |
 | `getItemLabel`   | `SelectMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента     |
 | `getItemTarget`  | `SelectMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента      |
 | `getItemOnClick` | `SelectMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
+| `getItemSubMenu` | `SelectMenuPropGetItemSubMenu` | `defaultGetItemSubMenu` | Функция для определения подменю                |
 | `className?`     | `string`                       | -                       | Дополнительный CSS-класс                       |
 | `ref?`           | `React.Ref<HTMLDivElement>`    | -                       | Ссылка на корневой DOM-элемент                 |
