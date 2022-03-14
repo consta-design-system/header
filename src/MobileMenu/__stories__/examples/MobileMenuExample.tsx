@@ -20,6 +20,6 @@ const items = [
 
 export const MobileMenuExampleBasic = () => (
   <Example>
-    <MobileMenu items={items} />
+    <MobileMenu items={items} style={{ zIndex: 10 }} />
   </Example>
 )

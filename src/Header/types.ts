@@ -106,10 +106,10 @@ export type HeaderProps<
   BREADCRUMBS_ITEM = HeaderDefaultBreadcrumbsItem,
   // SecondaryMenu
   SECONDARY_MENU_ITEM = HeaderDefaultSelectMenuItem,
-  // ButtonMenu
-  SOCIAL_MEDIA_ITEM = HeaderDefaultSocialMediaItem,
   // Languages
   LANGUAGES_ITEM = HeaderDefaultLanguagesItem,
+  // ButtonMenu
+  SOCIAL_MEDIA_ITEM = HeaderDefaultSocialMediaItem,
   // AdditionalButtons
   ADDITIONAL_BUTTONS_ITEM = HeaderDefaultAdditionalButtonsItem
 > = PropsWithHTMLAttributesAndRef<
@@ -201,17 +201,7 @@ export type HeaderProps<
     getSecondaryMenuItemSubMenu?: SelectMenuPropGetItemSubMenu<SECONDARY_MENU_ITEM>
     secondaryMenuLabel?: string
 
-    // SocialMedia
-    socialMedia?: SOCIAL_MEDIA_ITEM[]
-    onSocialMediaItemClick?: ButtonMenuPropOnItemClick<SOCIAL_MEDIA_ITEM>
-    getSocialMediaItemHref?: ButtonMenuPropGetItemHref<SOCIAL_MEDIA_ITEM>
-    getSocialMediaItemLabel?: ButtonMenuPropGetItemLabel<SOCIAL_MEDIA_ITEM>
-    getSocialMediaItemTarget?: ButtonMenuPropGetItemTarget<SOCIAL_MEDIA_ITEM>
-    getSocialMediaItemOnClick?: ButtonMenuPropGetItemOnClick<SOCIAL_MEDIA_ITEM>
-    getSocialMediaItemIcon?: ButtonMenuPropGetItemIcon<SOCIAL_MEDIA_ITEM>
-
     // Languages
-
     languages?: LANGUAGES_ITEM[]
     languagesLabel?: string
     languageValue?: LANGUAGES_ITEM
@@ -220,6 +210,15 @@ export type HeaderProps<
     getLanguagesItemLabel?: SelectMenuPropGetItemLabel<LANGUAGES_ITEM>
     getLanguagesItemTarget?: SelectMenuPropGetItemTarget<LANGUAGES_ITEM>
     getLanguagesItemOnClick?: SelectMenuPropGetItemOnClick<LANGUAGES_ITEM>
+
+    // SocialMedia
+    socialMedia?: SOCIAL_MEDIA_ITEM[]
+    onSocialMediaItemClick?: ButtonMenuPropOnItemClick<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemHref?: ButtonMenuPropGetItemHref<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemLabel?: ButtonMenuPropGetItemLabel<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemTarget?: ButtonMenuPropGetItemTarget<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemOnClick?: ButtonMenuPropGetItemOnClick<SOCIAL_MEDIA_ITEM>
+    getSocialMediaItemIcon?: ButtonMenuPropGetItemIcon<SOCIAL_MEDIA_ITEM>
 
     // AdditionalButtons
     additionalButtons?: ADDITIONAL_BUTTONS_ITEM[]
@@ -261,6 +260,10 @@ export type HeaderProps<
   (SECONDARY_MENU_ITEM extends { label: HeaderDefaultSelectMenuItem['label'] | unknown }
     ? {}
     : { getSecondaryMenuItemLabel: SelectMenuPropGetItemLabel<SECONDARY_MENU_ITEM> }) &
+  // Languages
+  (LANGUAGES_ITEM extends { label: HeaderDefaultLanguagesItem['label'] | unknown }
+    ? {}
+    : { getLanguagesItemLabel: SelectMenuPropGetItemLabel<LANGUAGES_ITEM> }) &
   // SocialMedia
   (SOCIAL_MEDIA_ITEM extends { label: HeaderDefaultSocialMediaItem['label'] | unknown }
     ? {}
@@ -268,9 +271,6 @@ export type HeaderProps<
   (SOCIAL_MEDIA_ITEM extends { icon: HeaderDefaultSocialMediaItem['icon'] | unknown }
     ? {}
     : { getSocialMediaItemIcon: ButtonMenuPropGetItemIcon<SOCIAL_MEDIA_ITEM> }) &
-  (LANGUAGES_ITEM extends { label: HeaderDefaultLanguagesItem['label'] | unknown }
-    ? {}
-    : { getLanguagesItemLabel: SelectMenuPropGetItemLabel<LANGUAGES_ITEM> }) &
   // AdditionalButtons
   (ADDITIONAL_BUTTONS_ITEM extends { label: HeaderDefaultAdditionalButtonsItem['label'] | unknown }
     ? {}
@@ -290,10 +290,10 @@ export type HeaderComponent = <
   BREADCRUMBS_ITEM = HeaderDefaultBreadcrumbsItem,
   // SecondaryMenu
   SECONDARY_MENU_ITEM = HeaderDefaultSelectMenuItem,
-  // ButtonMenu
-  SOCIAL_MEDIA_ITEM = HeaderDefaultSocialMediaItem,
   // Languages
   LANGUAGES_ITEM = HeaderDefaultLanguagesItem,
+  // ButtonMenu
+  SOCIAL_MEDIA_ITEM = HeaderDefaultSocialMediaItem,
   // AdditionalButtons
   ADDITIONAL_BUTTONS_ITEM = HeaderDefaultAdditionalButtonsItem
 >(
@@ -306,8 +306,8 @@ export type HeaderComponent = <
     TILE_MENU_ITEM,
     BREADCRUMBS_ITEM,
     SECONDARY_MENU_ITEM,
-    SOCIAL_MEDIA_ITEM,
     LANGUAGES_ITEM,
+    SOCIAL_MEDIA_ITEM,
     ADDITIONAL_BUTTONS_ITEM
   >
 ) => React.ReactElement | null
