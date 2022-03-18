@@ -56,7 +56,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/Menu',
+  title: 'модули|/Menu',
   id: 'components/Menu',
   parameters: {
     docs: {

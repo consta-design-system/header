@@ -62,7 +62,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/ButtonMenu',
+  title: 'модули|/ButtonMenu',
   id: 'components/ButtonMenu',
   parameters: {
     docs: {

@@ -40,7 +40,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/Badges',
+  title: 'модули|/Badges',
   id: 'components/Badges',
   parameters: {
     docs: {

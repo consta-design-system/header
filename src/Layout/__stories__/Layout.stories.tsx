@@ -57,7 +57,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/Layout',
+  title: 'модули|/Layout',
   id: 'components/Layout',
   parameters: {
     docs: {
