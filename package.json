@@ -72,7 +72,7 @@
     ]
   },
   "peerDependencies": {
-    "@consta/uikit": "^3.17.1"
+    "@consta/uikit": "^3.18.0"
   },
   "dependencies": {
     "@bem-react/classname": "^1.5.8",
