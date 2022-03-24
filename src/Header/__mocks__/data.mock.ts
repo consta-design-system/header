@@ -9,10 +9,41 @@ import {
   HeaderDefaultLanguagesItem,
   HeaderDefaultAdditionalButtonsItem,
 } from '@/Header'
-
+import { ThemePreset, presetGpnDefault, presetGpnDark, presetGpnDisplay } from '@consta/uikit/Theme'
+import { IconLightningBolt } from '@consta/uikit/IconLightningBolt'
+import { IconMoon } from '@consta/uikit/IconMoon'
+import { IconSun } from '@consta/uikit/IconSun'
 import { action } from '@storybook/addon-actions'
 
 const emptyFunction = () => action('emptyFunction')
+
+export type ThemeItem = {
+  icon: IconComponent
+  key: string
+  label: string
+  preset: ThemePreset
+}
+
+export const themes: ThemeItem[] = [
+  {
+    key: '1',
+    label: 'Светлая',
+    icon: IconSun,
+    preset: presetGpnDefault,
+  },
+  {
+    key: '2',
+    label: 'Темная',
+    icon: IconMoon,
+    preset: presetGpnDark,
+  },
+  {
+    key: '3',
+    preset: presetGpnDisplay,
+    label: 'Системная',
+    icon: IconLightningBolt,
+  },
+]
 
 export const notifications: NotificationsDefaultItem[] = [
   {

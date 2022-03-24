@@ -49,6 +49,14 @@
     gap: var(--space-l);
   }
 
+  &-ThemeToggler {
+    &_breakpoint {
+      &_m {
+        max-height: 60vh;
+      }
+    }
+  }
+
   &-NotificationsList {
     &_breakpoint {
       &_m {
