@@ -1,10 +1,66 @@
+import {
+  SelectMenuExample,
+  SelectMenuExample30,
+  SelectMenuExample200,
+} from './examples/SelectMenuExample'
+
 # SelectMenu
 
 ```tsx
 import { SelectMenu } from '@consta/header/SelectMenu'
 ```
 
-Меню в виде выподающего списка
+Меню в виде выпадающего списка.
+
+- [Пункты меню](#пункты-меню)
+- [Адаптивность](#адаптивность)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+## Пункты меню
+
+За пункты меню отвечает свойство `items` (тип [SelectMenuDefaultItem](#свойства)). В него входит:
+
+- `label` — текст варианта в выпадающем списке (обязательный),
+- `href` — ссылка, по которой с него можно перейти,
+- `target` — где откроется ссылка,
+- `subMenu` — объект с описанием подпунктов,
+- `onClick` — возвращает клик на этот пункт.
+
+Вы можете сделать меню с кастомным типом данных, отличающимся от [SelectMenuDefaultItem](#свойства).
+В этом случае используйте геттеры
+`getItemHref`, `getItemLabel`, `getItemTarget`, `getItemOnClick`, `getItemSubMenu`,
+чтобы компонент понимал, откуда брать данные.
+
+Поменять текст, который видно, когда выпадающий список не развёрнут, можно в свойтсве `placeholder`.
+
+```tsx
+import { SelectMenu } from '@/SelectMenu'
+
+const menu = ['Все ресурсы портала знаний', 'Закупки', 'Контакты']
+
+const getLabel = (item: string) => item
+
+export const SelectMenuExample = () => (
+  <SelectMenu items={menu} getItemLabel={getLabel} label="Выберите" />
+)
+```
+
+##### Пример меню-списка
+
+<SelectMenuExample />
+
+## Адаптивность
+
+Если текст подсказки не помещается по ширине в родительский контейнер, текст переносится на следующую строчку.
+
+##### Пример меню в контейнере шириной 200 px
+
+<SelectMenuExample200 />
+
+##### Пример меню в контейнере шириной 30 px
+
+<SelectMenuExample30 />
 
 ## Свойства
 

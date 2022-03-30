@@ -1,7 +1,10 @@
 import { NotificationsDefaultItem, NotificationsDefaultAction } from '@/NotificationsList'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
-import { IconDinosaur } from '@consta/uikit/IconDinosaur'
+import { IconYoutube } from '@consta/uikit/IconYoutube'
+import { IconVkontakte } from '@consta/uikit/IconVkontakte'
+import { IconYandexDzen } from '@consta/uikit/IconYandexDzen'
+
 import { IconComponent } from '@consta/uikit/Icon'
 import { IconHome } from '@consta/uikit/IconHome'
 import {
@@ -443,28 +446,22 @@ export const breadcrumbs: Page[] = [
 
 export const socialMedia: HeaderDefaultSocialMediaItem[] = [
   {
-    label: 'facebook',
-    target: '_blank',
-    href: '#',
-    icon: IconDinosaur,
-  },
-  {
     label: 'vk',
     target: '_blank',
     href: '#',
-    icon: IconDinosaur,
-  },
-  {
-    label: 'instagram',
-    target: '_blank',
-    href: '#',
-    icon: IconDinosaur,
+    icon: IconVkontakte,
   },
   {
     label: 'youtube',
     target: '_blank',
     href: '#',
-    icon: IconDinosaur,
+    icon: IconYoutube,
+  },
+  {
+    label: 'yandex dzen',
+    target: '_blank',
+    href: '#',
+    icon: IconYandexDzen,
   },
 ]
 

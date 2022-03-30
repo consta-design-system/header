@@ -6,10 +6,10 @@
 
 ```sh
 # NPM
-$ npm install @consta/table
+$ npm install @consta/header
 
 # Yarn
-$ yarn add @consta/table
+$ yarn add @consta/header
 ```
 
 ## Подключите зависимости
@@ -69,7 +69,7 @@ $ yarn test
 
 ## Документация
 
-[Посмотреть документацию и примеры](https://rc-table.vercel.app/)
+[Посмотреть документацию и примеры](https://header-consta.vercel.app/)
 
 ## Контрибьюторам
 

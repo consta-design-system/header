@@ -72,7 +72,7 @@
     ]
   },
   "peerDependencies": {
-    "@consta/uikit": "^3.17.1"
+    "@consta/uikit": "^3.18.1"
   },
   "dependencies": {
     "@bem-react/classname": "^1.5.8",
@@ -96,9 +96,8 @@
     "@babel/cli": "7.10.5",
     "@babel/plugin-transform-react-jsx": "7.3.0",
     "@babel/preset-typescript": "7.10.4",
-    "@consta/uikit": "^3.17.1",
-    "@consta/widgets-configs": "1.5.0",
-    "@consta/widgets-utils": "0.2.14",
+    "@consta/uikit": "^3.18.1",
+    "@consta/widgets-configs": "1.5.1",
     "@mdx-js/loader": "1.5.9",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-docs": "5.3.19",

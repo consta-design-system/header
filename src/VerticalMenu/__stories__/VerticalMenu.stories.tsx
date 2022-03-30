@@ -74,7 +74,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/VerticalMenu',
+  title: 'Компоненты/VerticalMenu',
   id: 'components/VerticalMenu',
   parameters: {
     docs: {
