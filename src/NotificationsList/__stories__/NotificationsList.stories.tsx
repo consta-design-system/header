@@ -13,7 +13,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/NotificationsList',
+  title: 'Компоненты/NotificationsList',
   id: 'components/NotificationsList',
   parameters: {
     docs: {
