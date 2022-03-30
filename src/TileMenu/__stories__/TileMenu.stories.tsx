@@ -80,7 +80,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/TileMenu',
+  title: 'Компоненты/TileMenu',
   id: 'components/TileMenu',
   parameters: {
     docs: {

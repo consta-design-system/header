@@ -124,9 +124,10 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/Header',
+  title: 'Компоненты/Header',
   id: 'components/Header',
   parameters: {
+    order: 100,
     docs: {
       page: mdx,
     },

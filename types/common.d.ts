@@ -64,6 +64,7 @@ declare module '@storybook/types' {
         url: string
       }
       environment?: EnvironmentDecoratorParams
+      order?: number
     }
   }
 }
