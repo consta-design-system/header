@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.4.0 (30/03/2022)
+Самое важное:
+- Добавили переключатель темы `ThemeToggler`
+- Обновили документацию
+
+---
+
+- [feat(themeToggler): added themeToggler (#13)](https://github.com/consta-design-system/header/commit/05a376e9ba700b666c2afb0b4c29613996092c96) - [@gizeasy](https://github.com/gizeasy)
+- [docs(storybook): sort components (#12)](https://github.com/consta-design-system/header/commit/15525da0177ea2796e7a4367c07c4f2b431ed8ab) - [@gizeasy](https://github.com/gizeasy)
+- [docs: edit readme, ButtonMenu, SelectMenu docs (#10)](https://github.com/consta-design-system/header/commit/ef894c41ff0e50d4019359229fb3041b45adf9df) - [@arhayka](https://github.com/arhayka)
+- [feat(Header): change icons (#11)](https://github.com/consta-design-system/header/commit/7178b8d6dee0d678c60f3d97d609f4232cbafcec) - [@N1MBER](https://github.com/N1MBER)
+- [fix(favicon): fix favicon (#9)](https://github.com/consta-design-system/header/commit/ad797c46ad8560891c29759dbcbdbf80a7a696e1) - [@N1MBER](https://github.com/N1MBER)
+- [docs(package.json): remove engines](https://github.com/consta-design-system/header/commit/efe9534ce77ea62696ff30a3baeb3dc02660b1e9) - [@gizeasy](https://github.com/gizeasy)
+- [docs(components): add docs (#6)](https://github.com/consta-design-system/header/commit/75d8e42b7112b1ed34ec2e4a4b5df60d24ba6df8) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v0.3.3 (05/03/2022)
 - [fix(Header): some small fixes](https://github.com/consta-design-system/header/commit/9085dd908bcaf94ff864715447112f25ad267392) - [@gizeasy](https://github.com/gizeasy)
 
