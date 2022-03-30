@@ -12,6 +12,7 @@ import { TileMenu } from '@/TileMenu'
 import { useBreakpoints } from '@consta/uikit/useBreakpoints'
 import { MobileMenu } from '@/MobileMenu'
 import { Breadcrumbs } from '@consta/uikit/BreadcrumbsCanary'
+import { ThemeToggler } from '@consta/uikit/ThemeToggler'
 import { SelectMenu } from '@/SelectMenu'
 import { ButtonMenu } from '@/ButtonMenu'
 import { Languages, LanguagesProps } from '@/Languages'
@@ -136,6 +137,14 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
     getAdditionalButtonsItemOnClick,
     getAdditionalButtonsItemTarget,
     onAdditionalButtonsItemClick,
+
+    // ThemeToggler
+    themeItems,
+    theme,
+    getThemeTogglerItemKey,
+    getThemeTogglerItemLabel,
+    getThemeTogglerItemIcon,
+    onThemeChange,
 
     ...otherProps
   } = props
@@ -313,6 +322,18 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   style={{ zIndex: elementZIndex }}
                 />
               )}
+              {theme && themeItems?.length && (
+                <ThemeToggler
+                  className={cnHeader('ThemeToggler', { breakpoint: 'm' })}
+                  items={themeItems}
+                  value={theme}
+                  getItemKey={getThemeTogglerItemKey}
+                  getItemLabel={getThemeTogglerItemLabel}
+                  getItemIcon={getThemeTogglerItemIcon}
+                  size="s"
+                  onChange={params => onThemeChange?.(params)}
+                />
+              )}
             </div>
           ),
         }}
@@ -445,6 +466,18 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                   style={{ zIndex: elementZIndex }}
                 />
               )}
+              {theme && themeItems?.length && (
+                <ThemeToggler
+                  className={cnHeader('ThemeToggler')}
+                  items={themeItems}
+                  value={theme}
+                  getItemKey={getThemeTogglerItemKey}
+                  getItemLabel={getThemeTogglerItemLabel}
+                  getItemIcon={getThemeTogglerItemIcon}
+                  size="s"
+                  onChange={params => onThemeChange?.(params)}
+                />
+              )}
             </div>
           ),
         }}
@@ -517,8 +550,20 @@ const HeaderRender = (props: HeaderProps, ref: React.Ref<HTMLDivElement>) => {
                           loginButtonLabel={loginButtonLabel}
                         />
                       </div>
-                      {(tileMenu?.length || notifications?.length) && (
+                      {(tileMenu?.length || notifications?.length || themeItems?.length) && (
                         <div>
+                          {theme && themeItems?.length && (
+                            <ThemeToggler
+                              className={cnHeader('ThemeToggler')}
+                              items={themeItems}
+                              value={theme}
+                              getItemKey={getThemeTogglerItemKey}
+                              getItemLabel={getThemeTogglerItemLabel}
+                              getItemIcon={getThemeTogglerItemIcon}
+                              size="s"
+                              onChange={params => onThemeChange?.(params)}
+                            />
+                          )}
                           {tileMenu?.length && (
                             <TileMenu
                               items={tileMenu}

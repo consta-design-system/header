@@ -13,6 +13,14 @@ import {
 } from '@/Menu'
 
 import {
+  ThemeTogglerPropGetItemIcon,
+  ThemeTogglerPropGetItemKey,
+  ThemeTogglerPropGetItemLabel,
+  ThemeTogglerItemDefault,
+  ThemeTogglerPropSetValue,
+} from '@consta/uikit/ThemeToggler'
+
+import {
   NotificationsListPropGetItemLabel,
   NotificationsListPropGetActionIcon,
   NotificationsListPropGetActionLabel,
@@ -111,7 +119,9 @@ export type HeaderProps<
   // ButtonMenu
   SOCIAL_MEDIA_ITEM = HeaderDefaultSocialMediaItem,
   // AdditionalButtons
-  ADDITIONAL_BUTTONS_ITEM = HeaderDefaultAdditionalButtonsItem
+  ADDITIONAL_BUTTONS_ITEM = HeaderDefaultAdditionalButtonsItem,
+  // ThemeToggler
+  THEME_TOGGLER_ITEM = ThemeTogglerItemDefault
 > = PropsWithHTMLAttributesAndRef<
   {
     fixed?: boolean
@@ -228,6 +238,14 @@ export type HeaderProps<
     getAdditionalButtonsItemTarget?: ButtonMenuPropGetItemTarget<ADDITIONAL_BUTTONS_ITEM>
     getAdditionalButtonsItemOnClick?: ButtonMenuPropGetItemOnClick<ADDITIONAL_BUTTONS_ITEM>
     getAdditionalButtonsItemIcon?: ButtonMenuPropGetItemIcon<ADDITIONAL_BUTTONS_ITEM>
+
+    // ThemeToggler
+    themeItems?: THEME_TOGGLER_ITEM[]
+    theme?: THEME_TOGGLER_ITEM
+    getThemeTogglerItemKey?: ThemeTogglerPropGetItemKey<THEME_TOGGLER_ITEM>
+    getThemeTogglerItemLabel?: ThemeTogglerPropGetItemLabel<THEME_TOGGLER_ITEM>
+    getThemeTogglerItemIcon?: ThemeTogglerPropGetItemIcon<THEME_TOGGLER_ITEM>
+    onThemeChange?: ThemeTogglerPropSetValue<THEME_TOGGLER_ITEM>
   },
   HTMLDivElement
 > &
@@ -274,7 +292,23 @@ export type HeaderProps<
   // AdditionalButtons
   (ADDITIONAL_BUTTONS_ITEM extends { label: HeaderDefaultAdditionalButtonsItem['label'] | unknown }
     ? {}
-    : { getAdditionalButtonsItemLabel: ButtonMenuPropGetItemLabel<ADDITIONAL_BUTTONS_ITEM> })
+    : { getAdditionalButtonsItemLabel: ButtonMenuPropGetItemLabel<ADDITIONAL_BUTTONS_ITEM> }) &
+  // ThemeToggler
+  (THEME_TOGGLER_ITEM extends { key: ThemeTogglerItemDefault['key'] | unknown }
+    ? {}
+    : {
+        getThemeTogglerItemKey: ThemeTogglerPropGetItemKey<THEME_TOGGLER_ITEM>
+      }) &
+  (THEME_TOGGLER_ITEM extends { icon: ThemeTogglerItemDefault['icon'] | unknown }
+    ? {}
+    : {
+        getThemeTogglerItemIcon: ThemeTogglerPropGetItemIcon<THEME_TOGGLER_ITEM>
+      }) &
+  (THEME_TOGGLER_ITEM extends { label: ThemeTogglerItemDefault['label'] | unknown }
+    ? {}
+    : {
+        getThemeTogglerItemLabel: ThemeTogglerPropGetItemLabel<THEME_TOGGLER_ITEM>
+      })
 
 export type HeaderComponent = <
   // Menu
@@ -295,7 +329,9 @@ export type HeaderComponent = <
   // ButtonMenu
   SOCIAL_MEDIA_ITEM = HeaderDefaultSocialMediaItem,
   // AdditionalButtons
-  ADDITIONAL_BUTTONS_ITEM = HeaderDefaultAdditionalButtonsItem
+  ADDITIONAL_BUTTONS_ITEM = HeaderDefaultAdditionalButtonsItem,
+  // ThemeToggler
+  THEME_TOGGLER_ITEM = ThemeTogglerItemDefault
 >(
   props: HeaderProps<
     MENU_ITEM,
@@ -308,6 +344,7 @@ export type HeaderComponent = <
     SECONDARY_MENU_ITEM,
     LANGUAGES_ITEM,
     SOCIAL_MEDIA_ITEM,
-    ADDITIONAL_BUTTONS_ITEM
+    ADDITIONAL_BUTTONS_ITEM,
+    THEME_TOGGLER_ITEM
   >
 ) => React.ReactElement | null

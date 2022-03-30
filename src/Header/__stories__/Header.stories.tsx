@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Header } from '@/Header'
 
@@ -15,8 +15,10 @@ import {
   socialMedia,
   languages,
   additionalButtons,
+  themes,
+  ThemeItem,
 } from '../__mocks__/data.mock'
-
+import { Theme } from '@consta/uikit/Theme'
 import mdx from './Header.docs.mdx'
 
 const logoMap = {
@@ -27,9 +29,9 @@ const logoMap = {
 
 const defaultKnobs = () => ({
   logo: select('logo', ['undefined', 'Text', 'Svg'], 'Svg'),
-  withMenu: boolean('widthMenu', true),
-  withTileMenu: boolean('widthTileMenu', true),
-  withNotifications: boolean('widthNotifications', true),
+  withMenu: boolean('withMenu', true),
+  withTileMenu: boolean('withTileMenu', true),
+  withNotifications: boolean('withNotifications', true),
   withLogin: boolean('withLogin', true),
   withBreadcrumbs: boolean('withBreadcrumbs', true),
   withSearch: boolean('withSearch', true),
@@ -37,6 +39,7 @@ const defaultKnobs = () => ({
   withSocialMedia: boolean('withSocialMedia', true),
   withLanguages: boolean('withLanguages', true),
   withAdditionalButtons: boolean('withAdditionalButtons', true),
+  withThemeToggler: boolean('withThemeToggler', true),
 })
 
 export function Playground() {
@@ -52,7 +55,10 @@ export function Playground() {
     withSocialMedia,
     withLanguages,
     withAdditionalButtons,
+    withThemeToggler,
   } = defaultKnobs()
+
+  const [theme, setTheme] = useState<ThemeItem>(themes[0])
 
   const tileMenuProps = withTileMenu && { tileMenu, tileMenuTitle: 'Сервисы' }
   const menuProps = withMenu && { menu }
@@ -89,22 +95,31 @@ export function Playground() {
   const additionalButtonsProps = withAdditionalButtons && {
     additionalButtons,
   }
+
+  const themeTogglerProps = withThemeToggler && {
+    themeItems: themes,
+    theme,
+    onThemeChange: ({ value }: { value: ThemeItem | null }) => value && setTheme(value),
+  }
   return (
-    <Header
-      style={{ zIndex: 1000 }}
-      fixed
-      logo={getByMap(logoMap, logo)}
-      {...loginProps}
-      {...notificationsProps}
-      {...tileMenuProps}
-      {...menuProps}
-      {...breadcrumbsProps}
-      {...searchProps}
-      {...secondaryMenuProps}
-      {...socialMediaProps}
-      {...languagesProps}
-      {...additionalButtonsProps}
-    />
+    <Theme preset={theme.preset}>
+      <Header
+        style={{ zIndex: 1000 }}
+        fixed
+        logo={getByMap(logoMap, logo)}
+        {...loginProps}
+        {...notificationsProps}
+        {...tileMenuProps}
+        {...menuProps}
+        {...breadcrumbsProps}
+        {...searchProps}
+        {...secondaryMenuProps}
+        {...socialMediaProps}
+        {...languagesProps}
+        {...additionalButtonsProps}
+        {...themeTogglerProps}
+      />
+    </Theme>
   )
 }
 
