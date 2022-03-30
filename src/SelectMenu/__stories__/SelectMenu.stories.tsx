@@ -18,7 +18,7 @@ export function Playground() {
 }
 
 export default createMetadata({
-  title: 'Компоненты|/SelectMenu',
+  title: 'Компоненты/SelectMenu',
   id: 'components/SelectMenu',
   parameters: {
     docs: {
