@@ -355,6 +355,7 @@ type MenuItem = {
   subMenu?: MenuItem[]
   href?: string
   onClick?: React.EventHandler<React.MouseEvent>
+  active?: boolean
 }
 
 export const menu: MenuItem[] = [
@@ -366,6 +367,7 @@ export const menu: MenuItem[] = [
       e.stopPropagation()
     },
     subMenu: [{ label: 'Пункт меню 1-1' }, { label: 'Пункт меню 1-2' }],
+    active: true,
   },
   { label: 'Пункт меню 2', subMenu: [{ label: 'Пункт меню 2-1' }] },
   {

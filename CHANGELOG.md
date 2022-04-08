@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.4.1 (08/04/2022)
+- [fix(Menu): fix active item (#18)](https://github.com/consta-design-system/header/commit/201b6764f8bc9308d475e2b0aa73b0a052da500e) - [@gizeasy](https://github.com/gizeasy)
+- [docs(common): change links to vercel (#17)](https://github.com/consta-design-system/header/commit/bc807231aa619515b4ece9e985c1be48e677a7f2) - [@arhayka](https://github.com/arhayka)
+- [chore(deploy): edit public path (#16)](https://github.com/consta-design-system/header/commit/d6ecb74163a70e3f12716f2f3ea4fdaa83985e74) - [@gizeasy](https://github.com/gizeasy)
+- [chore(deploy): conditional comment on a pull request (#15)](https://github.com/consta-design-system/header/commit/d16e287d8db457909810d8467a7353d920bac595) - [@gizeasy](https://github.com/gizeasy)
+- [chore(deploy): add deploy (#14)](https://github.com/consta-design-system/header/commit/1b363fa4a6d4a7659211098574d063bc1338e8ed) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v0.4.0 (30/03/2022)
 Самое важное:
 - Добавили переключатель темы `ThemeToggler`

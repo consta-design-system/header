@@ -17,6 +17,8 @@
 
   &-Menu {
     flex: 1;
+
+    height: var(--header-height);
   }
 
   &-RowCenterLeft {
