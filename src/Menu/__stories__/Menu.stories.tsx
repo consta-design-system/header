@@ -2,6 +2,9 @@ import React from 'react'
 
 import { createMetadata } from '../../__private__/storybook'
 import { Menu } from '../Menu'
+import { cn } from '@/__private__/utils/bem'
+
+import './MenuStories.css'
 
 import mdx from './Menu.docs.mdx'
 
@@ -10,6 +13,7 @@ type MenuItem = {
   sub?: MenuItem[]
   href?: string
   onClick?: React.EventHandler<React.MouseEvent>
+  active?: boolean
 }
 
 const menu: MenuItem[] = [
@@ -21,6 +25,7 @@ const menu: MenuItem[] = [
       e.stopPropagation()
     },
     sub: [{ name: 'Пункт меню 1-1' }, { name: 'Пункт меню 1-2' }],
+    active: true,
   },
   { name: 'Пункт меню 2', sub: [{ name: 'Пункт меню 2-1' }] },
   {
@@ -47,10 +52,17 @@ const menu: MenuItem[] = [
   },
 ]
 
+const cnMenuStories = cn('MenuStories')
+
 export function Playground() {
   return (
     <div>
-      <Menu items={menu} getItemLabel={item => item.name} getItemSubMenu={item => item.sub} />
+      <Menu
+        className={cnMenuStories()}
+        items={menu}
+        getItemLabel={item => item.name}
+        getItemSubMenu={item => item.sub}
+      />
     </div>
   )
 }

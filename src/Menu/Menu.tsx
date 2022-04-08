@@ -98,19 +98,20 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
           const hidden = !visibleItems[index]
           return (
             <li
-              className={cnMenu('Item', { hidden })}
+              className={cnMenu('Item', { hidden, active, opened })}
               key={cnMenu('Item', { index })}
               ref={itemsRefs[index]}
               onMouseEnter={() => setOpenedSubMenu(index)}
             >
               <Tag
-                className={cnMenu('Link', { active, opened })}
+                className={cnMenu('Link')}
                 href={href}
                 target={target}
                 onClick={getItemClick(item, getItemOnClick, onItemClick)}
               >
-                {label} {subItems && <IconSelect size="s" className={cnMenu('Arrow')} />}
+                {label}
               </Tag>
+              {subItems && <IconSelect size="s" className={cnMenu('Arrow')} />}
               <AnimatedContextMenu
                 isOpen={subItems && subItems.length > 0 && opened}
                 items={subItems || []}
@@ -131,7 +132,6 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
                 getItemAs={getItemAs}
                 getItemHTMLAttributes={getItemHTMLAttributes}
                 style={{ zIndex: elementZIndex }}
-                offset={8}
               />
             </li>
           )
@@ -164,7 +164,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
               getItemAs={getItemAs}
               getItemHTMLAttributes={getItemHTMLAttributes}
               style={{ zIndex: elementZIndex }}
-              offset={5}
+              offset={8}
             />
           </li>
         )}
