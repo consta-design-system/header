@@ -1,7 +1,10 @@
 import { NotificationsDefaultItem, NotificationsDefaultAction } from '@/NotificationsList'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
-import { IconDinosaur } from '@consta/uikit/IconDinosaur'
+import { IconYoutube } from '@consta/uikit/IconYoutube'
+import { IconVkontakte } from '@consta/uikit/IconVkontakte'
+import { IconYandexDzen } from '@consta/uikit/IconYandexDzen'
+
 import { IconComponent } from '@consta/uikit/Icon'
 import { IconHome } from '@consta/uikit/IconHome'
 import {
@@ -9,10 +12,41 @@ import {
   HeaderDefaultLanguagesItem,
   HeaderDefaultAdditionalButtonsItem,
 } from '@/Header'
-
+import { ThemePreset, presetGpnDefault, presetGpnDark, presetGpnDisplay } from '@consta/uikit/Theme'
+import { IconLightningBolt } from '@consta/uikit/IconLightningBolt'
+import { IconMoon } from '@consta/uikit/IconMoon'
+import { IconSun } from '@consta/uikit/IconSun'
 import { action } from '@storybook/addon-actions'
 
 const emptyFunction = () => action('emptyFunction')
+
+export type ThemeItem = {
+  icon: IconComponent
+  key: string
+  label: string
+  preset: ThemePreset
+}
+
+export const themes: ThemeItem[] = [
+  {
+    key: '1',
+    label: 'Светлая',
+    icon: IconSun,
+    preset: presetGpnDefault,
+  },
+  {
+    key: '2',
+    label: 'Темная',
+    icon: IconMoon,
+    preset: presetGpnDark,
+  },
+  {
+    key: '3',
+    preset: presetGpnDisplay,
+    label: 'Системная',
+    icon: IconLightningBolt,
+  },
+]
 
 export const notifications: NotificationsDefaultItem[] = [
   {
@@ -443,28 +477,22 @@ export const breadcrumbs: Page[] = [
 
 export const socialMedia: HeaderDefaultSocialMediaItem[] = [
   {
-    label: 'facebook',
-    target: '_blank',
-    href: '#',
-    icon: IconDinosaur,
-  },
-  {
     label: 'vk',
     target: '_blank',
     href: '#',
-    icon: IconDinosaur,
-  },
-  {
-    label: 'instagram',
-    target: '_blank',
-    href: '#',
-    icon: IconDinosaur,
+    icon: IconVkontakte,
   },
   {
     label: 'youtube',
     target: '_blank',
     href: '#',
-    icon: IconDinosaur,
+    icon: IconYoutube,
+  },
+  {
+    label: 'yandex dzen',
+    target: '_blank',
+    href: '#',
+    icon: IconYandexDzen,
   },
 ]
 

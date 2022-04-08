@@ -2329,10 +2329,10 @@
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-11.0.0.tgz#719cf05fcc1abb6533610a2e0f5dd1e61eac14fe"
   integrity sha512-VoNqai1vR5anRF5Tuh/+SWDFk7xi7oMwHrHrbm1BprYXjB2RJsWLhUrStMssDxEl5lW/z3EUdg8RvH/IUBccSQ==
 
-"@consta/uikit@^3.17.1":
-  version "3.17.1"
-  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-3.17.1.tgz#1241e6781a38aa1105c40f2c64cd3330d725a945"
-  integrity sha512-L8XurgCKcd+cSyAcJhZ4X4Ebdj2DwrliZgWg7ENcrz0VDauQKawgNa3Bj34fOVebUApMHvDt1bSBPk4dB+xUDQ==
+"@consta/uikit@^3.18.1":
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-3.18.1.tgz#ab138940d9bc0f810582d94f647cdf1482f4e1e3"
+  integrity sha512-cqVpcoreuPyOk+042qsKsjtTt5cNHxWtthLqtfGpgcsY+n/7e+DJjQXinSB+4XrnwJASxYn26O4m73r9fFT8FA==
   dependencies:
     "@bem-react/classname" "^1.5.8"
     "@bem-react/classnames" "^1.3.9"
@@ -2345,10 +2345,10 @@
     react-transition-group "^4.4.1"
     tslib "^2.1.0"
 
-"@consta/widgets-configs@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@consta/widgets-configs/-/widgets-configs-1.5.0.tgz#19e51ec9328d614825a8b53bfdc9cae5ff9b385c"
-  integrity sha512-t4ydsYScaC1nqLsuGbnM57+Grw3YOml8tp9vG24iBzXw4dVpqEfu5mb+nfcZ2WyKxxH6lLMdHLYqt/gQzeJHhA==
+"@consta/widgets-configs@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@consta/widgets-configs/-/widgets-configs-1.5.1.tgz#e2075bfe42a4340566709e56863fcf51699c3536"
+  integrity sha512-OUdCln4YBn5a7+Aj7VgGcs6mSeFwjsN1RlJigWNKwPmjlhSw6F/P4pje7i6PZpFpXobd81xle/HR2HKncWRpnQ==
   dependencies:
     "@babel/core" "7.4.5"
     "@babel/plugin-proposal-class-properties" "7.4.4"
@@ -2420,11 +2420,6 @@
     webpack "4.40.2"
     webpack-cli "3.3.9"
     webpack-merge "4.2.1"
-
-"@consta/widgets-utils@0.2.14":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@consta/widgets-utils/-/widgets-utils-0.2.14.tgz#e06b2461b69cbe89ef49470b6a8754d23361dfb2"
-  integrity sha512-ZBoX148PIDN13hotbH4cgQmqJo2DrYQ6UM1t7iFzHirbQeN+CtRUm9CBfY8necBLjG2URA1NT3n5a9bN2FOILA==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
