@@ -17,7 +17,7 @@
     "lint-fix:ts": "eslint '{src,types}/**/*.ts{,x}' --fix",
     "lint:css": "stylelint 'src/**/*.css'",
     "lint-fix:css": "stylelint 'src/**/*.css' --fix",
-    "checktypes": "tsc --noEmit --extendedDiagnostics",
+    "checktypes": "tsc --noEmit",
     "unit": "NODE_PATH=./node_modules TZ=Europe/Moscow jest",
     "unit:watch": "yarn unit --watchAll",
     "test": "npm-run-all --parallel lint checktypes",
@@ -138,6 +138,8 @@
     "storybook-addon-designs": "^6.0.0",
     "storybook-addon-smart-knobs": "6.0.2",
     "storybook-addon-themes": "5.4.1",
+    "ts-jest": "26.4.1",
+    "typescript": "4.6.2",
     "webpack-merge": "4.2.2"
   }
 }
