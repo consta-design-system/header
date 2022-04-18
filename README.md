@@ -14,7 +14,7 @@ $ yarn add @consta/header
 
 ## Подключите зависимости
 
-Чтобы начать работу, установите библиотеку [`@consta/uikit`](https://www.npmjs.com/package/@consta/uikit) и [настройте тему](http://uikit.gizeasy.ru/?path=/docs/components-theme--playground).
+Чтобы начать работу, установите библиотеку [`@consta/uikit`](https://www.npmjs.com/package/@consta/uikit) и [настройте тему](http://uikit.consta.design/?path=/docs/components-theme--playground).
 
 ### Можно использовать компоненты
 
@@ -69,11 +69,11 @@ $ yarn test
 
 ## Документация
 
-[Посмотреть документацию и примеры](http://header.gizeasy.ru/)
+[Посмотреть документацию и примеры](http://header.consta.design/)
 
 ## Контрибьюторам
 
-Будем рады, если вы захотите принять участие в разработке дизайн-системы =) Но сначала прочитайте [инструкцию для контрибьюторов](http://uikit.gizeasy.ru/?path=/docs/common-develop-contributors--page).
+Будем рады, если вы захотите принять участие в разработке дизайн-системы =) Но сначала прочитайте [инструкцию для контрибьюторов](http://uikit.consta.design/?path=/docs/common-develop-contributors--page).
 
 ## Лицензия
 
