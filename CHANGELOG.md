@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.4.2 (19/04/2022)
+- [docs(global): replace url (#21)](https://github.com/consta-design-system/header/commit/cd1dad8fd8c364515ce8cc316b5606ab671abd00) - [@arhayka](https://github.com/arhayka)
+- [chore(deps): update deps](https://github.com/consta-design-system/header/commit/3ac0e73b9e806d7f44ca29c6163fe6658ec1135e) - [@gizeasy](https://github.com/gizeasy)
+- [docs(Header): add ThemeToggler to Header doc (#20)](https://github.com/consta-design-system/header/commit/97a943d098b9e6dc9b3cb7f8732939069f01ff2e) - [@arhayka](https://github.com/arhayka)
+- [chore(tsconfig.json): exclude node_modules (#19)](https://github.com/consta-design-system/header/commit/35c4c06c2da4cf830bf22728a1c8a9dbf6b730a7) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v0.4.1 (08/04/2022)
 - [fix(Menu): fix active item (#18)](https://github.com/consta-design-system/header/commit/201b6764f8bc9308d475e2b0aa73b0a052da500e) - [@gizeasy](https://github.com/gizeasy)
 - [docs(common): change links to vercel (#17)](https://github.com/consta-design-system/header/commit/bc807231aa619515b4ece9e985c1be48e677a7f2) - [@arhayka](https://github.com/arhayka)
