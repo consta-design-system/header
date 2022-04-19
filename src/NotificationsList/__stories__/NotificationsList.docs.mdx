@@ -85,7 +85,7 @@ export const NotificationsListExample = () => (
 передайте в свойстве `badges` массив с данными типа [`Badge`](#свойства). Что внутри:
 
 - `label` — надпись на бейджике (обязательно),
-- `status` — статус бейджика, варианты: `'success'`, `'error'`, `'warning'`, `'normal'`, `'system'` (см. [Badge](http://uikit.gizeasy.ru/?path=/docs/components-badge--playground)). По умолчанию `'normal'`.
+- `status` — статус бейджика, варианты: `'success'`, `'error'`, `'warning'`, `'normal'`, `'system'` (см. [Badge](http://uikit.consta.design/?path=/docs/components-badge--playground)). По умолчанию `'normal'`.
 
 ```tsx
 import { NotificationsList, DefaultItem } from '@/NotificationsList'
@@ -129,7 +129,7 @@ export const NotificationsListExample = () => (
 ## Изображение или аватар
 
 По умолчанию уведомление ведёт себя как обычный текст с заголовком и изображением.
-Если укажете `view='user'`, уведомление будет вести себя как компонент [User](http://uikit.gizeasy.ru/?path=/docs/components-user--playground): `title` превратится в имя пользователя, а `image` — в его аватарку.
+Если укажете `view='user'`, уведомление будет вести себя как компонент [User](http://uikit.consta.design/?path=/docs/components-user--playground): `title` превратится в имя пользователя, а `image` — в его аватарку.
 
 Это не сильно влияет на весь компонент, но если не укажете картинку, аватарка сформируется из имени пользователя (цвет подбирается автоматически).
 
@@ -166,7 +166,7 @@ export const NotificationsListExample = () => <NotificationsList items={itemsVie
 Чтобы создать уведомления, используйте объект типа [DefaultAction](#свойства). Что внутри:
 
 - `label` — название действия (например, «Удалить»),
-- `icon` — иконка из [библиотеки иконок](http://uikit.gizeasy.ru/?path=/story/components-icons--playground),
+- `icon` — иконка из [библиотеки иконок](http://uikit.consta.design/?path=/story/components-icons--playground),
 - `onClick` — функция для получения клика по этому элементу.
 
 Вы можете создать уведомления с кастомным типом данных, отличающимся от [DefaultItem](#свойства). В этом случае используйте геттеры
