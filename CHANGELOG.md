@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.4.4 (11/05/2022)
+Самое важное:
+- Обновили версию `@consta/uikit`
+- Добавили возможность указания подменю для хлебных крошек в `Header`
+---
+
+
+- [Update uikit version and add getters for breadcrumbs](https://github.com/consta-design-system/header/commit/c6a38da18c5c1e3d9856701504219680eaa0d7d6) - [@N1MBER](https://github.com/N1MBER)
+
+--------------------
+
 ## v0.4.3 (28/04/2022)
 - [docs(global): remove gpn (#22)](https://github.com/consta-design-system/header/commit/5ad703cfdce1f92fe278a5969fb9f07f2f0b3029) - [@arhayka](https://github.com/arhayka)
 - [chore(deploy): update config](https://github.com/consta-design-system/header/commit/f8cdd9602540f256582c82ef5243350a9cc4050b) - [@gizeasy](https://github.com/gizeasy)
