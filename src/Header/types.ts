@@ -62,6 +62,7 @@ import {
   BreadcrumbsPropGetItemIcon,
   BreadcrumbsPropOnItemClick,
   BreadcrumbPropFitMode,
+  BreadcrumbsPropGetItemSubMenu,
   DefaultItem as BreadcrumbsDefaultItem,
 } from '@consta/uikit/BreadcrumbsCanary'
 
@@ -190,6 +191,7 @@ export type HeaderProps<
     getBreadcrumbsItemHref?: BreadcrumbsPropGetItemHref<BREADCRUMBS_ITEM>
     getBreadcrumbsItemIcon?: BreadcrumbsPropGetItemIcon<BREADCRUMBS_ITEM>
     getBreadcrumbsItemOnClick?: BreadcrumbsPropGetItemOnClick<BREADCRUMBS_ITEM>
+    getBreadcrumbsItemSubMenu?: BreadcrumbsPropGetItemSubMenu<BREADCRUMBS_ITEM>
     onBreadcrumbsItemClick?: BreadcrumbsPropOnItemClick<BREADCRUMBS_ITEM>
     breadcrumbsOnlyIconRoot?: boolean
     breadcrumbsLastItemIsLink?: boolean
