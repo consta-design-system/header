@@ -447,7 +447,6 @@ type Page = {
   icon?: IconComponent
   href: string
   label: string
-  subMenu?: Page[]
 }
 
 export const breadcrumbs: Page[] = [
@@ -455,26 +454,10 @@ export const breadcrumbs: Page[] = [
     icon: IconHome,
     label: 'Главная',
     href: 'https://url.com/page-1',
-    subMenu: [
-      {
-        label: 'Основное',
-        href: 'https://url.com/page-1-1',
-      },
-      {
-        label: 'Другое',
-        href: 'https://url.com/page-1-2',
-      },
-    ],
   },
   {
     label: 'Раздел',
     href: 'https://url.com/page-2',
-    subMenu: [
-      {
-        label: 'Раздел 1',
-        href: 'https://url.com/page-2-1',
-      },
-    ],
   },
   {
     label: 'Подраздел',
