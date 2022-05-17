@@ -2,6 +2,8 @@ import {
   HeaderExampleBasic,
   HeaderExampleNotLogined,
   HeaderExampleThemeToggler,
+  HeaderExampleFixed,
+  HeaderExampleBreadcrumbs,
 } from './examples/HeaderExample'
 
 # Header
@@ -22,20 +24,25 @@ import { Header } from '@consta/header/Header'
 - [Выпадающее меню с плиткой](#выпадающее-меню-с-плиткой)
 - [Логин](#логин)
 - [Переключатель тем](#переключатель-тем)
+- [Зафиксировать шапку](#зафиксированная-шапка)
+- [Хлебные крошки](#хлебные-крошки)
+- [Адаптивность](#адаптивность)
 - [Список свойств](#свойства)
 - [Пример использования](#пример)
 
-### Меню
+## Меню
 
 Выпадающее меню, работает на основе `MobileMenu` или `Menu` (зависит от ширины экрана).
 
 Добавить пункты меню можно с помощью свойства `menu`, подробности — в [документации компонента меню](?path=/docs/components-menu--playground).
 
-### Логотип
+## Логотип
 
 За логотип отвечает свойство `logo`. В него можно поместить что угодно.
 
-### Уведомления
+Чтобы поставить ссылку с логотипа, используйте `logoHref`.
+
+## Уведомления
 
 Этот компонент работает на основе `NotificationsList`. Как его настроить:
 
@@ -47,13 +54,13 @@ import { Header } from '@consta/header/Header'
 
 [Подробнее об уведомлениях](?path=/docs/components-notificationslist--playground)
 
-### Выпадающее меню с плиткой
+## Выпадающее меню с плиткой
 
 Это выпадающее меню работает на основе `TileMenu`.
 
 [Посмотреть документацию](?path=/docs/components-tilemenu--playground)
 
-### Логин
+## Логин
 
 Блок с кнопкой для входа и информацией о пользователе.
 
@@ -72,7 +79,7 @@ import { Header } from '@consta/header/Header'
 
 - имя пользователя — в свойстве `userName`,
 - изображение — `userAvatar`,
-- дополнительную информацию - в `userInfo`.
+- дополнительную информацию — в `userInfo`.
 
 За текст на кнопке для входа отвечает свойство `loginButtonLabel`.
 
@@ -82,7 +89,7 @@ import { Header } from '@consta/header/Header'
 
 <HeaderExampleBasic />
 
-### Переключатель тем
+## Переключатель тем
 
 С помощью переключателя тем можно поменять можно менять оформление страницы. Для этого нужно:
 
@@ -163,7 +170,106 @@ export const HeaderExampleThemeToggler = () => {
 
 <HeaderExampleThemeToggler />
 
-### Свойства
+## Зафиксированная шапка
+
+Чтобы зафиксировать шапку при прокрутке страницы у верхнего края экрана, используйте свойство `fixed`.
+
+```tsx
+<Header
+  logo={<ConstaLogo />}
+  userName="Иванов Иван"
+  userInfo="Владелец"
+  loginButtonLabel="Войти"
+  userLogined={true}
+  notifications={notifications}
+  notificationsActions={notificationsActions}
+  notificationsTitle="Уведомления"
+  notificationsGroupByDay={true}
+  tileMenu={tileMenu}
+  tileMenuTitle="Сервисы"
+  menu={menu}
+  style={{ zIndex: 100 }}
+  fixed
+/>
+```
+
+<HeaderExampleFixed />
+
+## Хлебные крошки
+
+Чтобы добавить под шапкой хлебные крошки, используйте `breadcrumbs`. Это свойство ведёт себя так же, как компонент [Breadcrumbs](http://uikit.consta.design/?path=/docs/components-breadcrumbs--playground) из библиотеки @consta.uikit.
+
+```tsx
+type Page = {
+  icon?: IconComponent
+  href: string
+  label: string
+  subMenu?: Page[]
+}
+
+export const breadcrumbs: Page[] = [
+  {
+    icon: IconHome,
+    label: 'Главная',
+    href: 'https://url.com/page-1',
+    subMenu: [
+      {
+        label: 'Основное',
+        href: 'https://url.com/page-1-1',
+      },
+      {
+        label: 'Другое',
+        href: 'https://url.com/page-1-2',
+      },
+    ],
+  },
+  {
+    label: 'Раздел',
+    href: 'https://url.com/page-2',
+    subMenu: [
+      {
+        label: 'Раздел 1',
+        href: 'https://url.com/page-2-1',
+      },
+    ],
+  },
+  {
+    label: 'Подраздел',
+    href: 'https://url.com/page-3',
+  },
+  {
+    label: 'Элемент подраздела',
+    href: 'https://url.com/page-4',
+  },
+  {
+    label: 'Дополнительные свойства элемента подраздела',
+    href: 'https://url.com/page-5',
+  },
+  {
+    label: 'Детальное описание свойства элемента подраздела',
+    href: 'https://url.com/page-6',
+  },
+]
+
+export const HeaderExampleBreadcrumbs = () => (
+  <Header
+    // ...
+    breadcrumbs={breadcrumbs}
+  />
+)
+```
+
+<HeaderExampleBreadcrumbs />
+
+## Адаптивность
+
+На мобильных экранах в шапке остаются только логотип или название сервиса и кнопка-гамбургер. Если нажать на кнопку, открывается боковая панель, в которую «спрятались» все остальные компоненты. Меню становится вертикальным, другие компоненты отображаются выше.
+
+> Чтобы посмотреть, как это работает, уменьшите ширину окна браузера
+
+<HeaderExampleBasic />
+
+## Свойства
 
 | Свойство                                          | Тип                                                                     | По умолчанию                | Описание                                                                                                                                                   |
 | ------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -179,13 +285,13 @@ export const HeaderExampleThemeToggler = () => {
 | `getMenuItemActive?`                              | `MenuPropGetItemActive`                                                 | `defaultGetItemActive`      | Функция для определения активности элемента (см. [Menu](/?path=/docs/components-menu--playground) )                                                        |
 | `getMenuItemOnClick?`                             | `MenuPropGetItemOnClick`                                                | `defaultGetItemOnClick`     | Функция для определения функции клика элемента (см. [Menu](/?path=/docs/components-menu--playground) )                                                     |
 | `getMenuItemSubMenu?`                             | `MenuPropGetItemSubMenu`                                                | `defaultGetItemSubMenu`     | Функция для определения подменю элемента (см. [Menu](/?path=/docs/components-menu--playground) )                                                           |
-| `userName?`                                       | `string`                                                                | -                           | Имя пользователя                                                                                                                                           |
-| `userAvatar?`                                     | `string`                                                                | -                           | Аватар пользователя                                                                                                                                        |
-| `userInfo?`                                       | `string`                                                                | -                           | Информация о пользователе                                                                                                                                  |
-| `userLogined?`                                    | `boolean`                                                               | -                           | Флаг вхождения в систему                                                                                                                                   |
-| `onLoginButtonClick?`                             | `React.MouseEventHandler`                                               | -                           | Клик по кнопке на логинке                                                                                                                                  |
+| [`userName?`](#логин)                             | `string`                                                                | -                           | Имя пользователя                                                                                                                                           |
+| [`userAvatar?`](#логин)                           | `string`                                                                | -                           | Аватар пользователя                                                                                                                                        |
+| [`userInfo?`](#логин)                             | `string`                                                                | -                           | Информация о пользователе                                                                                                                                  |
+| [`userLogined?`](#логин)                          | `boolean`                                                               | -                           | Флаг вхождения в систему                                                                                                                                   |
+| `onLoginButtonClick?`                             | `React.MouseEventHandler`                                               | -                           | Клик по кнопке для входа                                                                                                                                   |
 | `onUserClick?`                                    | `React.MouseEventHandler`                                               | -                           | Клик по пользователю                                                                                                                                       |
-| `loginButtonLabel?`                               | `string`                                                                | -                           | Текст на кнопке на логинке                                                                                                                                 |
+| [`loginButtonLabel?`](#логин)                     | `string`                                                                | -                           | Текст на кнопке для входа                                                                                                                                  |
 | `notifications`                                   | `NOTIFICATION_ITEM[]`                                                   | -                           | Уведомления (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))                                                               |
 | `notificationsActions?`                           | `NOTIFICATION_ACTION[]`                                                 | -                           | Действия списка уведомлений (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))                                               |
 | `notificationsGroupByDay?`                        | `boolean`                                                               | -                           | Групировка уведомлений по дням (см. [NotificationsList](/?path=/docs/components-notificationslist--playground))                                            |
@@ -216,7 +322,7 @@ export const HeaderExampleThemeToggler = () => {
 | `getTileMenuItemHref?`                            | `TileMenuPropGetItemDescription`                                        | `defaultGetItemHref`        | Функция для определения ссылки элемента `tileMenu` (см. [TileMenu](/?path=/docs/components-tilemenu--playground))                                          |
 | `getTileMenuItemOnClick?`                         | `TileMenuPropGetItemOnClick`                                            | `defaultGetItemOnClick`     | Функция для определения события клика по элементу `tileMenu` (см. [TileMenu](/?path=/docs/components-tilemenu--playground))                                |
 | `tileMenuTitle?`                                  | `string`                                                                | `string`                    | Заголовок `tileMenu` (см. [TileMenu](/?path=/docs/components-tilemenu--playground))                                                                        |
-| `breadcrumbs?`                                    | `BREADCRUMBS_ITEM[]`                                                    | -                           | Хлебные крошки (см. [Breadcrumbs](http://uikit.consta.design/?path=/docs/components-breadcrumbs--playground))                                              |
+| [`breadcrumbs?`](#хлебные-крошки)                 | `BREADCRUMBS_ITEM[]`                                                    | -                           | Хлебные крошки (см. [Breadcrumbs](http://uikit.consta.design/?path=/docs/components-breadcrumbs--playground))                                              |
 | `getBreadcrumbsItemLabel?`                        | `BreadcrumbsPropGetItemLabel`                                           | `defaultGetItemLabel`       | Функция для определения названия хлебной крошки (см. [Breadcrumbs](http://uikit.consta.design/?path=/docs/components-breadcrumbs--playground))             |
 | `getBreadcrumbsItemHref?`                         | `BreadcrumbsPropGetItemHref`                                            | `defaultGetItemHref`        | Функция для определения ссылки хлебной крошки (см. [Breadcrumbs](http://uikit.consta.design/?path=/docs/components-breadcrumbs--playground))               |
 | `getBreadcrumbsItemIcon?`                         | `BreadcrumbsPropGetItemIcon`                                            | `defaultGetItemIcon`        | Функция для определения иконки хлебной крошки (см. [Breadcrumbs](http://uikit.consta.design/?path=/docs/components-breadcrumbs--playground))               |
@@ -394,26 +500,24 @@ export const tileMenu: TileMenuItem[] = [
 ]
 
 export const HeaderExampleBasic = () => (
-  <Example>
-    <Header
-      logo={
+  <Header
+    logo={
 
-          //some image
+        //some image
 
-      }
-      userName="Иванов Иван"
-      userInfo="Владелец"
-      loginButtonLabel="Войти"
-      userLogined={true}
-      notifications={notifications}
-      notificationsActions={notificationsActions}
-      notificationsTitle="Уведомления"
-      notificationsGroupByDay={true}
-      tileMenu={tileMenu}
-      tileMenuTitle="Сервисы"
-      menu={menu}
-    />
-  </Example>
+    }
+    userName="Иванов Иван"
+    userInfo="Владелец"
+    loginButtonLabel="Войти"
+    userLogined={true}
+    notifications={notifications}
+    notificationsActions={notificationsActions}
+    notificationsTitle="Уведомления"
+    notificationsGroupByDay={true}
+    tileMenu={tileMenu}
+    tileMenuTitle="Сервисы"
+    menu={menu}
+  />
 )
 ```
 
