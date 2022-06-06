@@ -55,7 +55,7 @@ import { NotificationsList } from '@consta/header/NotificationsList'
 Вот пример простого списка: в нём есть заголовок, описание и картинка, больше ничего:
 
 ```tsx
-import { NotificationsList, DefaultItem } from '@/NotificationsList'
+import { NotificationsList, DefaultItem } from '@consta/header/NotificationsList'
 
 const itemsBasic: DefaultItem[] = [
   {
@@ -88,7 +88,7 @@ export const NotificationsListExample = () => (
 - `status` — статус бейджика, варианты: `'success'`, `'error'`, `'warning'`, `'normal'`, `'system'` (см. [Badge](http://uikit.consta.design/?path=/docs/components-badge--playground)). По умолчанию `'normal'`.
 
 ```tsx
-import { NotificationsList, DefaultItem } from '@/NotificationsList'
+import { NotificationsList, DefaultItem } from '@consta/header/NotificationsList'
 
 const itemsBadges: DefaultItem[] = [
   {
@@ -136,7 +136,7 @@ export const NotificationsListExample = () => (
 При `view='default'` изображение ничем не заменяется.
 
 ```tsx
-import { NotificationsList, DefaultItem } from '@/NotificationsList'
+import { NotificationsList, DefaultItem } from '@consta/header/NotificationsList'
 
 const itemsView: DefaultItem[] = [
   {
@@ -178,7 +178,7 @@ export const NotificationsListExample = () => <NotificationsList items={itemsVie
 Действия со списком можно посмотреть по нажатию на многоточие рядом с заголовком списка. Чтобы их добавить, создайте объект с описанием действий и передайте в свойстве `actions`.
 
 ```tsx
-import { NotificationsList, DefaultItem } from '@/NotificationsList'
+import { NotificationsList, DefaultItem } from '@consta/header/NotificationsList'
 
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
@@ -224,7 +224,7 @@ export const NotificationsListExampleActions = () => (
 Описать эти действия можно в объекте с описанием уведомления — в атрибуте `actions` типа [DefaultItem](#свойства).
 
 ```tsx
-import { NotificationsList, DefaultItem } from '@/NotificationsList'
+import { NotificationsList, DefaultItem } from '@consta/header/NotificationsList'
 
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
@@ -272,7 +272,7 @@ export const NotificationsListExampleActions2 = () => <NotificationsList items={
 Чтобы пометить сообщение прочитанным, добавьте в объект с его описанием `read`.
 
 ```tsx
-import { NotificationsList, DefaultItem } from '@/NotificationsList'
+import { NotificationsList, DefaultItem } from '@consta/header/NotificationsList'
 
 const itemsRead: DefaultItem[] = [
   {
@@ -308,7 +308,7 @@ export const NotificationsListExampleActions2 = () => (
 2. укажите свойство `groupByDay`.
 
 ```tsx
-import { NotificationsList, DefaultItem } from '@/NotificationsList'
+import { NotificationsList, DefaultItem } from '@consta/header/NotificationsList'
 
 const itemsDate: DefaultItem[] = [
   {
@@ -358,7 +358,7 @@ export const NotificationsListExampleDate = () => (
 2. добавьте идентификатор группы в объект с описанием уведомления — в свойстве `group`.
 
 ```tsx
-import { NotificationsList, DefaultItem, DefaultGroup } from '@/NotificationsList'
+import { NotificationsList, DefaultItem, DefaultGroup } from '@consta/header/NotificationsList'
 
 const groups: DefaultGroup[] = [
   {
@@ -537,7 +537,7 @@ const defaultDateFormat = (date: Date): string => {
 ```tsx
 import React from 'react'
 
-import { NotificationsList, DefaultItem, DefaultAction } from '@/NotificationsList'
+import { NotificationsList, DefaultItem, DefaultAction } from '@consta/header/NotificationsList'
 
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { IconEye } from '@consta/uikit/IconEye'
