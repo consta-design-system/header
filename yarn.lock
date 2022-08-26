@@ -1459,7 +1459,7 @@
     webpack-manifest-plugin "^4.0.2"
     workbox-webpack-plugin "^6.4.1"
 
-"@consta/uikit@>= 3.9.3", "@consta/uikit@^3.24.0":
+"@consta/uikit@>= 3.22.0", "@consta/uikit@^3.24.0":
   version "3.29.0"
   resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-3.29.0.tgz#3ae11c2e57ca733edf1cc329b597183e41fb193a"
   integrity sha512-SS2zH5hmZoKDT+N/wPeLcB68e/l7ri+bY/9CYSTng3ZG0IJGNpyFzKbqbxjcpx4M8PQvInQRZdhXYXGERuTVvw==
