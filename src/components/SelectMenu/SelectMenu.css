@@ -1,0 +1,28 @@
+.che--SelectMenu {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  &-Label {
+    flex: 1;
+  }
+
+  &-ArrowBox {
+    display: flex;
+    flex: none;
+    justify-content: center;
+    align-items: center;
+    width: var(--space-2xl);
+    height: var(--space-2xl);
+    color: var(--color-control-typo-placeholder);
+
+    &_open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-Menu {
+    overflow: auto;
+    max-height: 360px;
+  }
+}

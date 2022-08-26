@@ -1,0 +1,19 @@
+.che--Badges {
+  &-Badge {
+    margin-right: var(--space-xs);
+
+    &_hidden {
+      position: absolute;
+      left: -300vw;
+      visibility: hidden;
+    }
+
+    &_zero {
+      display: none;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

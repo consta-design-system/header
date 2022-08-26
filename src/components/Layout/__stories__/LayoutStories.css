@@ -1,0 +1,10 @@
+.che--LayoutStories {
+  &-Select {
+    width: 230px;
+  }
+
+  &-SocIcons {
+    display: flex;
+    color: var(--color-control-typo-clear);
+  }
+}

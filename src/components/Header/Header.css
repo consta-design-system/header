@@ -1,0 +1,98 @@
+.che--Header {
+  & .che--Layout-Row_botton .che--LayoutRow-Side_position_left {
+    width: 100%;
+  }
+
+  &_fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &-Logo {
+    flex: none;
+  }
+
+  &-Menu {
+    flex: 1;
+    height: var(--header-height);
+  }
+
+  &-RowCenterLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+
+    &_breakpoint {
+      &_m {
+        width: 100%;
+      }
+    }
+  }
+
+  &-RowCenterRight {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-l);
+  }
+
+  &-RowTopRight {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-l);
+  }
+
+  &-ThemeToggler {
+    &_breakpoint {
+      &_m {
+        max-height: 60vh;
+      }
+    }
+  }
+
+  &-NotificationsList {
+    &_breakpoint {
+      &_m {
+        max-height: 60vh;
+      }
+    }
+  }
+
+  &-TileMenuList {
+    &_breakpoint {
+      &_m {
+        max-height: 60vh;
+      }
+    }
+  }
+
+  &-RowCenterLeftMobile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
+  &-MobileMenuHeader {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: var(--space-s) var(--space-l);
+    gap: var(--space-s);
+  }
+
+  &-MobileSearchContainer,
+  &-Breadcrumbs {
+    width: 100%;
+  }
+
+  &-MobileMenuSocialMedia {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-m);
+  }
+}
