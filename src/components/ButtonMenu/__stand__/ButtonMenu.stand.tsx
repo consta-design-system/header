@@ -1,10 +1,10 @@
 import { createStand } from '##/stand/standConfig';
 
 export default createStand({
-  title: 'Header',
-  id: 'Header',
+  title: 'ButtonMenu',
+  id: 'ButtonMenu',
   group: 'components',
-  description: 'Готовая шапка для проекта с жёсткой структурой.',
+  description: 'Меню в виде кнопок.',
   version: '0.4.4',
   status: 'stable',
   figma:

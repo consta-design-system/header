@@ -1,10 +1,10 @@
 import { createStand } from '##/stand/standConfig';
 
 export default createStand({
-  title: 'Header',
-  id: 'Header',
+  title: 'Layout',
+  id: 'Layout',
   group: 'components',
-  description: 'Готовая шапка для проекта с жёсткой структурой.',
+  description: 'Каркас.',
   version: '0.4.4',
   status: 'stable',
   figma:

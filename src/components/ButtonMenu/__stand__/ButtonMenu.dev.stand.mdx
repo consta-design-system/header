@@ -1,0 +1,290 @@
+import { MdxMenu } from '@consta/stand';
+import {
+  ButtonMenuExample,
+  ButtonMenuExample100,
+  ButtonMenuExample50,
+  ButtonMenuExampleForm,
+  ButtonMenuExampleSize,
+  ButtonMenuExampleIcon,
+  ButtonMenuExampleOnlyIcon,
+  ButtonMenuExampleView,
+} from './examples/ButtonMenuExample';
+
+<MdxMenu>
+
+- [Пункты меню](#пункты-меню)
+- [Иконка](#иконка)
+- [Форма](#форма)
+- [Размер](#размер)
+- [Внешний вид](#внешний-вид)
+- [Адаптивность](#адаптивность)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+## Пункты меню
+
+За пункты меню отвечает свойство `items` (тип [ButtonMenuDefaultItem](#свойства)). В него входит:
+
+- `label` — текст на кнопке (обязательный),
+- `href` — ссылка, по которой с неё можно перейти,
+- `target` — где откроется ссылка,
+- `icon` — иконка,
+- `onClick` — возвращает клик на этот пункт.
+
+Вы можете сделать меню с кастомным типом данных, отличающимся от [ButtonMenuDefaultItem](#свойства).
+В этом случае используйте геттеры
+`getItemHref`, `getItemLabel`, `getItemTarget`, `getItemOnClick`, `getItemIcon`,
+чтобы компонент понимал, откуда брать данные.
+
+```tsx
+import { ButtonMenu } from '@consta/header/ButtonMenu';
+
+type MenuItem = {
+  name: string;
+  href?: string;
+  onClick?: React.EventHandler<React.MouseEvent>;
+};
+
+const menu: MenuItem[] = [
+  {
+    name: 'Пункт меню 1',
+    href: '#',
+    onClick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+  },
+  { name: 'Пункт меню 2' },
+];
+
+export const ButtonMenuExample = () => (
+  <ButtonMenu items={menu} getItemLabel={(item) => item.name} />
+);
+```
+
+<ButtonMenuExample />
+
+## Иконка
+
+Добавить к кнопке иконку можно с помощью функции `getItemIcon`.
+
+```tsx
+import { ButtonMenu } from '@consta/header/ButtonMenu';
+
+import { IconDinosaur } from '@consta/uikit/IconDinosaur';
+
+type MenuItem = {
+  name: string;
+  href?: string;
+  onClick?: React.EventHandler<React.MouseEvent>;
+};
+
+const menu: MenuItem[] = [
+  {
+    name: 'Пункт меню 1',
+    href: '#',
+    onClick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+  },
+  { name: 'Пункт меню 2' },
+];
+
+export const ButtonMenuExample = () => (
+  <ButtonMenu
+    items={menu}
+    getItemLabel={(item) => item.name}
+    getItemIcon={() => IconDinosaur}
+  />
+);
+```
+
+<ButtonMenuExampleIcon />
+
+Если хотите оставить на кнопке только иконку, добавьте свойство `onlyIcon`.
+
+```tsx
+<ButtonMenu
+  items={menu}
+  getItemLabel={(item) => item.name}
+  getItemIcon={() => IconDinosaur}
+  onlyIcon
+/>
+```
+
+<ButtonMenuExampleOnlyIcon />
+
+## Форма
+
+За форму кнопки отвечает свойство `form`. Варианты: `'default'`, `'round'`, `'brick'`, `'brickRound'`, `'roundBrick'`, `'brickDefault'`, `'defaultBrick'`.
+
+```tsx
+import { ButtonMenu } from '@consta/header/ButtonMenu';
+
+type MenuItem = {
+  name: string;
+  href?: string;
+  onClick?: React.EventHandler<React.MouseEvent>;
+};
+
+const menu: MenuItem[] = [
+  {
+    name: 'Пункт меню 1',
+    href: '#',
+    onClick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+  },
+  { name: 'Пункт меню 2' },
+];
+
+export const ButtonMenuExample = () => (
+  <ButtonMenu items={menu} getItemLabel={(item) => item.name} form="default" />
+);
+```
+
+<ButtonMenuExampleForm />
+
+## Размер
+
+За форму кнопки отвечает свойство `size`. Варианты: `'xs', 's', 'm', 'l'`, по умолчанию — `'m'`.
+
+```tsx
+import { ButtonMenu } from '@consta/header/ButtonMenu';
+
+type MenuItem = {
+  name: string;
+  href?: string;
+  onClick?: React.EventHandler<React.MouseEvent>;
+};
+
+const menu: MenuItem[] = [
+  {
+    name: 'Пункт меню 1',
+    href: '#',
+    onClick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+  },
+  { name: 'Пункт меню 2' },
+];
+
+export const ButtonMenuExample = () => (
+  <ButtonMenu items={menu} getItemLabel={(item) => item.name} size="xs" />
+);
+```
+
+<ButtonMenuExampleSize />
+
+## Внешний вид
+
+За вид кнопки отвечает свойство `view`. Варианты: `'clear', 'primary', 'secondary', 'ghost'`. По умолчанию — `'primary'`.
+
+```tsx
+import { ButtonMenu } from '@consta/header/ButtonMenu';
+
+type MenuItem = {
+  name: string;
+  href?: string;
+  onClick?: React.EventHandler<React.MouseEvent>;
+};
+
+const menu: MenuItem[] = [
+  {
+    name: 'Пункт меню 1',
+    href: '#',
+    onClick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+  },
+  { name: 'Пункт меню 2' },
+];
+
+export const ButtonMenuExample = () => (
+  <ButtonMenu items={menu} getItemLabel={(item) => item.name} view="primary" />
+);
+```
+
+<ButtonMenuExampleView />
+
+## Адаптивность
+
+Если меню не помещается по ширине в родительский контейнер, текст на кнопке обрезается, к нему добавляется `...`.
+
+##### Пример меню в контейнере шириной 100 px
+
+<ButtonMenuExample100 />
+
+##### Пример меню в контейнере шириной 50 px
+
+<ButtonMenuExample50 />
+
+## Импорт
+
+```tsx
+import { ButtonMenu } from '@consta/header/ButtonMenu';
+```
+
+## Свойства
+
+```ts
+type ButtonMenuDefaultItem = {
+  label: string;
+  href?: string;
+  target?: string;
+  icon?: IconComponent;
+  onClick?: React.EventHandler<React.MouseEvent>;
+};
+
+type ButtonMenuPropGetItemLabel<ITEM> = (item: ITEM) => string;
+type ButtonMenuPropGetItemHref<ITEM> = (item: ITEM) => string | undefined;
+type ButtonMenuPropGetItemTarget<ITEM> = (item: ITEM) => string | undefined;
+type ButtonMenuPropGetItemIcon<ITEM> = (
+  item: ITEM,
+) => IconComponent | undefined;
+type ButtonMenuPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.EventHandler<React.MouseEvent> | undefined;
+type ButtonMenuPropOnItemClick<ITEM> = (props: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+
+const defaultGetItemLabel: ButtonMenuPropGetItemLabel<ButtonMenuDefaultItem> = (
+  item,
+) => item.label;
+const defaultGetItemHref: ButtonMenuPropGetItemHref<ButtonMenuDefaultItem> = (
+  item,
+) => item.href;
+const defaultGetItemOnClick: ButtonMenuPropGetItemOnClick<
+  ButtonMenuDefaultItem
+> = (item) => item.onClick;
+const defaultGetItemTarget: ButtonMenuPropGetItemTarget<
+  ButtonMenuDefaultItem
+> = (item) => item.target;
+const defaultGetItemIcon: ButtonMenuPropGetItemIcon<ButtonMenuDefaultItem> = (
+  item,
+) => item.icon;
+```
+
+| Свойство         | Тип                                                                                       | По умолчанию            | Описание                                       |
+| ---------------- | ----------------------------------------------------------------------------------------- | ----------------------- | ---------------------------------------------- | -------------------------------------- |
+| `items`          | `ITEM[]`                                                                                  | -                       | Элементы                                       |
+| `onItemClick`    | `ButtonMenuPropOnItemClick`                                                               | -                       | Функция клика по элементу                      |
+| `getItemHref`    | `ButtonMenuPropGetItemHref`                                                               | `defaultGetItemHref`    | Функция для определения `href` элемента        |
+| `getItemLabel`   | `ButtonMenuPropGetItemLabel`                                                              | `defaultGetItemLabel`   | Функция для определения заголовка элемента     |
+| `getItemTarget`  | `ButtonMenuPropGetItemTarget`                                                             | `defaultGetItemTarget`  | Функция для определения `target` элемента      |
+| `getItemOnClick` | `ButtonMenuPropGetItemOnClick`                                                            | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
+| `getItemIcon`    | `ButtonMenuPropGetItemIcon`                                                               | `defaultGetItemIcon`    | Функция для определения иконки элемента        |
+| `form?`          | `'default', 'round', 'brick', 'brickRound', 'roundBrick', 'brickDefault', 'defaultBrick'` | `'default'`             | Форма (см. [Button](##LIBS.STAND               | stand:uikit-components-button-stable)) |
+| `size?`          | `'xs', 's', 'm', 'l'`                                                                     | `'m'`                   | Размер (см. [Button](##LIBS.STAND              | stand:uikit-components-button-stable)) |
+| `view?`          | `'clear', 'primary', 'secondary', 'ghost'`                                                | `'primary'`             | Вид (см. [Button](##LIBS.STAND                 | stand:uikit-components-button-stable)) |
+| `onlyIcon?`      | `boolean`                                                                                 | -                       | Только иконка (см. [Button](##LIBS.STAND       | stand:uikit-components-button-stable)) |
+| `className?`     | `string`                                                                                  | -                       | Дополнительный CSS-класс                       |
+| `ref?`           | `React.Ref<HTMLDivElement>`                                                               | -                       | Ссылка на корневой DOM-элемент                 |

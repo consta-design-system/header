@@ -1,10 +1,11 @@
 import { createStand } from '##/stand/standConfig';
 
 export default createStand({
-  title: 'Header',
-  id: 'Header',
+  title: 'NotificationsList',
+  id: 'NotificationsList',
   group: 'components',
-  description: 'Готовая шапка для проекта с жёсткой структурой.',
+  description:
+    'Список уведомлений с бейджиками, статусом, возможными действиями и группировкой.',
   version: '0.4.4',
   status: 'stable',
   figma:

@@ -1,10 +1,10 @@
 import { createStand } from '##/stand/standConfig';
 
 export default createStand({
-  title: 'Header',
-  id: 'Header',
+  title: 'Badges',
+  id: 'Badges',
   group: 'components',
-  description: 'Готовая шапка для проекта с жёсткой структурой.',
+  description: 'Ряд бейджиков.',
   version: '0.4.4',
   status: 'stable',
   figma:

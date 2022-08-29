@@ -1,0 +1,143 @@
+import { MdxMenu } from '@consta/stand';
+import {
+  BadgesExampleBasic200,
+  BadgesExampleBasic100,
+  BadgesExampleForm,
+  BadgesExampleBasic,
+  BadgesExampleSize,
+  BadgesExampleView,
+} from './examples/BadgesExample';
+
+<MdxMenu>
+
+- [Содержимое](#содержимое)
+- [Форма](#форма)
+- [Размер](#размер)
+- [Внешний вид](#внешний-вид)
+- [Адаптивность](#адаптивность)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+## Содержимое
+
+За данные для бейдижков отвечает свойство `items` (тип [DefaultItem](#свойства)). В него входит:
+
+- `label` — текст на бейджике,
+- `status` — статус бейджика, варианты: `'success'` , `'error'` , `'warning'`, `'normal'`, `'system'` (подрбонее см. [Badge](##LIBS.STAND|stand:uikit-components-badge-stable)),
+- `icon` — любая [иконка](##LIBS.STAND|stand:uikit-components-icons-stable).
+
+```tsx
+const items = [
+  {
+    label: 'отчеты',
+    status: 'normal',
+  },
+  {
+    label: 'файлы',
+    status: 'warning',
+  },
+  {
+    label: 'система',
+    status: 'success',
+  },
+  // и так далее
+];
+
+export const BadgesExampleBasic = () => <Badges items={items} />;
+```
+
+<BadgesExampleBasic />
+
+Вы можете сделать бейджики с кастомным типом данных, отличающимся от [DefaultItem](#свойства).
+В этом случае используйте геттеры `getItemLabel`, `getItemStatus`, `getItemIcon`,
+чтобы компонент понимал, откуда брать данные.
+
+## Форма
+
+Поменять форму бейджика можно с помощью `form`. Варианты: `'default'`, `'round'`.
+
+```tsx
+<Badges items={items} form="default" />
+<Badges items={items} form="round" />
+```
+
+<BadgesExampleForm />
+
+## Размер
+
+За размер компонента отвечает свойство `size`.
+
+```tsx
+<Badges items={items} size="l" />
+<Badges items={items} size="m" />
+<Badges items={items} size="s" />
+```
+
+<BadgesExampleSize />
+
+## Внешний вид
+
+За внешний вид компонента отвечает свойство `view`.
+
+```tsx
+<Badges items={items} view="filled" />
+<Badges items={items} view="stroked" />
+
+```
+
+<BadgesExampleView />
+
+## Адаптивность
+
+Бейджики выстраиваются в ряд. Если ряд не помещается в родительский контейнер, он автоматически сворачивается.
+
+##### Ширина 200 px
+
+<BadgesExampleBasic200 />
+
+##### Ширина 100 px
+
+<BadgesExampleBasic100 />
+
+## Импорт
+
+```tsx
+import { Badges } from '@consta/header/Badges';
+```
+
+## Свойства
+
+```tsx
+type DefaultItem = {
+  label: string;
+  status?: BadgePropStatus;
+  icon?: IconComponent;
+};
+
+type BadgesPropGetItemLabel<ITEM> = (item: ITEM) => string;
+type BadgesPropGetItemStatus<ITEM> = (
+  item: ITEM,
+) => BadgePropStatus | undefined;
+type BadgesPropGetItemIcon<ITEM> = (item: ITEM) => IconComponent | undefined;
+
+const defaultGetItemIcon: BadgesPropGetItemIcon<DefaultItem> = (item) =>
+  item.icon;
+const defaultGetItemLabel: BadgesPropGetItemLabel<DefaultItem> = (item) =>
+  item.label;
+const defaultGetItemStatus: BadgesPropGetItemStatus<DefaultItem> = (item) =>
+  item.status;
+```
+
+| Свойство                        | Тип                         | По умолчанию           | Описание                                  |
+| ------------------------------- | --------------------------- | ---------------------- | ----------------------------------------- |
+| [`items`](#содержимое)          | `ITEM[]`                    | -                      | Данные для бейджиков                      |
+| [`form?`](#форма)               | `"default", "round"`        | `"default"`            | Форма                                     |
+| [`size?`](#размер)              | `"m", "s", "l"`             | `"m"`                  | Размер                                    |
+| [`view?`](#внешний-вид)         | `"filled", "stroked"`       | `"filled"`             | Вид                                       |
+| [`getItemLabel?`](#содержимое)  | `BadgesPropGetItemLabel`    | `defaultGetItemLabel`  | Функция для определения названия элемента |
+| [`getItemStatus?`](#содержимое) | `BadgesPropGetItemStatus`   | `defaultGetItemStatus` | Функция для определения статуса элемента  |
+| [`getItemIcon?`](#содержимое)   | `BadgesPropGetItemIcon`     | `defaultGetItemIcon`   | Функция для определения иконки элемента   |
+| `className?`                    | `string`                    | -                      | Дополнительный CSS-класс                  |
+| `ref?`                          | `React.Ref<HTMLDivElement>` | -                      | Ссылка на корневой DOM-элемент            |
