@@ -1,0 +1,35 @@
+## Список уведомлений
+
+Список уведомлений работает так же, как в компоненте [NotificationsList](##LIBS.STAND|stand:header-components-notificationslist-stable).
+
+## Мобильная версия
+
+Чтобы уведомления правильно отображалось на мобильном устройстве, добавьте `isMobile={true}`. Тогда список уведомлений откроется на весь экран.
+
+| Свойство              | Тип                                           | По умолчанию                | Описание                                                                                   |
+| --------------------- | --------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------- |
+| `items`               | `ITEM[]`                                      | -                           | Элементы (см. [NotificationsList](##LIBS.STAND                                             | stand:header-components-notificationslist-stable)) |
+| `actions?`            | `ACTIONS[]`                                   | -                           | Действия списка (см. [NotificationsList](##LIBS.STAND                                      | stand:header-components-notificationslist-stable)) |
+| `groupByDay?`         | `boolean`                                     | -                           | Групировка элементов по дням (см. [NotificationsList](##LIBS.STAND                         | stand:header-components-notificationslist-stable)) |
+| `groupLabelFormat?`   | `NotificationsListPropGroupLabelFormat`       | `defaultGroupLabelFormat`   | Групировка элементов по дням (см. [NotificationsList](##LIBS.STAND                         | stand:header-components-notificationslist-stable)) |
+| `groups?`             | `GROUP_BY_DAY extends true ? never : GROUP[]` | -                           | Группы (см. [NotificationsList](##LIBS.STAND                                               | stand:header-components-notificationslist-stable)) |
+| `title?`              | `string`                                      | -                           | Заголовок (см. [NotificationsList](##LIBS.STAND                                            | stand:header-components-notificationslist-stable)) |
+| `itemDateFormat`      | `NotificationsListPropItemDateFormat`         | `defaultDateFormat`         | Функция форматирования даты элемента (см. [NotificationsList](##LIBS.STAND                 | stand:header-components-notificationslist-stable)) |
+| `getItemLabel?`       | `NotificationsListPropGetItemLabel`           | `defaultGetItemLabel`       | Функция для определения заголовка элемента (см. [NotificationsList](##LIBS.STAND           | stand:header-components-notificationslist-stable)) |
+| `getItemDescription?` | `NotificationsListPropGetItemDescription`     | `defaultGetItemDescription` | Функция для определения описания элемента (см. [NotificationsList](##LIBS.STAND            | stand:header-components-notificationslist-stable)) |
+| `getItemImage?`       | `NotificationsListPropGetItemImage`           | `defaultGetItemImage`       | Функция для определения изображения элемента (см. [NotificationsList](##LIBS.STAND         | stand:header-components-notificationslist-stable)) |
+| `getItemRead?`        | `NotificationsListPropGetItemRead`            | `defaultGetItemRead`        | Функция для определения статуса "прочитано" элемента (см. [NotificationsList](##LIBS.STAND | stand:header-components-notificationslist-stable)) |
+| `getItemDate?`        | `NotificationsListPropGetItemDate`            | `defaultGetItemDate`        | Функция для определения даты элемента (см. [NotificationsList](##LIBS.STAND                | stand:header-components-notificationslist-stable)) |
+| `getItemBadges?`      | `NotificationsListPropGetItemBadges`          | `defaultGetItemBadges`      | Функция для определения бейджов элемента (см. [NotificationsList](##LIBS.STAND             | stand:header-components-notificationslist-stable)) |
+| `getItemActions?`     | `NotificationsListPropGetItemActions`         | `defaultGetItemActions`     | Функция для определения действий элемента (см. [NotificationsList](##LIBS.STAND            | stand:header-components-notificationslist-stable)) |
+| `getItemGroup?`       | `NotificationsListPropGetItemGroup`           | `defaultGetItemGroup`       | Функция для определения группы элемента (см. [NotificationsList](##LIBS.STAND              | stand:header-components-notificationslist-stable)) |
+| `getItemView?`        | `NotificationsListPropGetItemView`            | `defaultGetItemView`        | Функция для определения вида элемента (см. [NotificationsList](##LIBS.STAND                | stand:header-components-notificationslist-stable)) |
+| `getActionLabel?`     | `NotificationsListPropGetActionLabel`         | `defaultGetActionLabel`     | Функция для определения заголовка действия (см. [NotificationsList](##LIBS.STAND           | stand:header-components-notificationslist-stable)) |
+| `getActionIcon?`      | `NotificationsListPropGetActionIcon`          | `defaultGetActionIcon`      | Функция для определения иконки действия (см. [NotificationsList](##LIBS.STAND              | stand:header-components-notificationslist-stable)) |
+| `getActionOnClick?`   | `NotificationsListPropGetActionOnClick`       | `defaultGetActionOnClick`   | Функция для определения функчии действия (см. [NotificationsList](##LIBS.STAND             | stand:header-components-notificationslist-stable)) |
+| `getGroupLabel?`      | `NotificationsListPropGetGroupLabel`          | `defaultGetGroupLabel`      | Функция для определения заголовка группы (см. [NotificationsList](##LIBS.STAND             | stand:header-components-notificationslist-stable)) |
+| `getGroupId?`         | `NotificationsListPropGetGroupId`             | `defaultGetGroupId`         | Функция для определения уникального ключа группы (см. [NotificationsList](##LIBS.STAND     | stand:header-components-notificationslist-stable)) |
+| `isMobile?`           | `boolean`                                     | -                           | Мобильный вид                                                                              |
+| `className?`          | `string`                                      | -                           | Дополнительный CSS-класс для кнопки, по которой открываются уведомления                    |
+| `listClassName?`      | `string`                                      | -                           | Дополнительный CSS-класс списка уведомлений (см. [NotificationsList](##LIBS.STAND          | stand:header-components-notificationslist-stable)) |
+| `ref?`                | `React.Ref<HTMLButtonElement>`                | -                           | Ссылка на корневой DOM-элемент (см. [NotificationsList](##LIBS.STAND                       | stand:header-components-notificationslist-stable)) |

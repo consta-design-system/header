@@ -1,0 +1,180 @@
+import { MdxMenu } from '@consta/stand';
+import {
+  TileMenuExample,
+  TileMenuExampleMobile,
+} from './examples/TileMenuExample';
+import {
+  TileMenuExampleViewCards,
+  TileMenuExampleViewTwoLines,
+} from './examples/TileMenuExampleView';
+
+<MdxMenu>
+
+- [Пункты меню](#пункты-меню)
+- [Меню с кастомным типом данных](#меню-с-кастомным-типом-данных)
+- [Заголовок](#заголовок)
+- [Вид меню](#вид-меню)
+- [Мобильное меню](#мобильное-меню)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+## Пункты меню
+
+За пункты меню отвечает свойство `items` (тип [DefaultItem](#свойства)). В него входит:
+
+- `title` — заголовок пункта меню (обязательный),
+- `description` — описание пункта,
+- `href` — ссылка, по которой с него можно перейти,
+- `onClick` — возвращает клик на этот пункт.
+
+```tsx
+import { TileMenu, DefaultItem } from '@consta/header/TileMenu';
+
+const items: DefaultItem[] = [
+  {
+    title: 'Портал',
+    description: 'Сводная информация обо мне и подразделении, новости компании',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  // и так далее
+];
+
+export const TileMenuExample = () => (
+  <TileMenu items={items} title={'Заголовок'} />
+);
+```
+
+<TileMenuExample />
+
+### Меню с кастомным типом данных
+
+Вы можете сделать меню с кастомным типом данных, отличающимся от [DefaultItem](#свойства).
+В этом случае используйте геттеры
+`getItemTitle`, `getItemDescription`, `getItemHref`, `getItemOnClick`,
+чтобы компонент понимал, откуда брать данные.
+
+## Заголовок
+
+Заголовок для меню можно указать в свойстве `title`. Он виден только в [мобильном меню](#мобильное-меню).
+
+## Вид меню
+
+Плитки в меню можно расположить разными способами, за это отвечает свойство `view`. Варианты:
+
+- в одну колонку — `lines` (по умолчанию),
+- в две колонки — `twoLines`,
+- в виде карточек — `cards`.
+
+#### В одну колонку
+
+```tsx
+<TileMenu items={items} title={'Заголовок'} view="lines" />
+```
+
+<TileMenuExample />
+
+#### В две колонки
+
+```tsx
+<TileMenu items={items} title={'Заголовок'} view="twoLines" />
+```
+
+<TileMenuExampleViewTwoLines />
+
+#### В виде карточек
+
+```tsx
+<TileMenu items={items} title={'Заголовок'} view="cards" />
+```
+
+<TileMenuExampleViewCards />
+
+## Мобильное меню
+
+Чтобы меню правильно отображалось на мобильном устройстве, добавьте `isMobile={true}`. Тогда по клику на иконку меню откроется на весь экран.
+
+```tsx
+import { TileMenu, DefaultItem } from '@consta/header/TileMenu';
+
+const items: DefaultItem[] = [
+  {
+    title: 'Портал',
+    description: 'Сводная информация обо мне и подразделении, новости компании',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  // и так далее
+];
+
+export const TileMenuExampleMobile = () => (
+  <TileMenu items={items} title={'Заголовок'} isMobile={true} />
+);
+```
+
+<TileMenuExampleMobile />
+
+## Импорт
+
+```tsx
+import { TileMenu } from '@consta/header/TileMenu';
+```
+
+## Свойства
+
+```tsx
+type DefaultItem = {
+  title: string;
+  image?: string;
+  description?: string;
+  href?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+};
+
+type TileMenuPropGetItemImage<ITEM> = (
+  item: ITEM,
+) => string | React.FC | undefined;
+
+type TileMenuPropGetItemTitle<ITEM> = (item: ITEM) => string;
+
+type TileMenuPropGetItemDescription<ITEM> = (item: ITEM) => string | undefined;
+
+type TileMenuPropGetItemHref<ITEM> = (item: ITEM) => string | undefined;
+
+type TileMenuPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler<HTMLAnchorElement> | undefined;
+
+type TileMenuPropOnItemClick<ITEM> = (props: {
+  e: React.MouseEvent<HTMLAnchorElement>;
+  item: ITEM;
+}) => void;
+
+const defaultGetItemImage: TileMenuPropGetItemImage<DefaultItem> = (item) =>
+  item.image;
+const defaultGetItemTitle: TileMenuPropGetItemTitle<DefaultItem> = (item) =>
+  item.title;
+const defaultGetItemHref: TileMenuPropGetItemHref<DefaultItem> = (item) =>
+  item.href;
+const defaultGetItemOnClick: TileMenuPropGetItemOnClick<DefaultItem> = (item) =>
+  item.onClick;
+const defaultGetItemDescription: TileMenuPropGetItemDescription<DefaultItem> = (
+  item,
+) => item.description;
+```
+
+| Свойство              | Тип                              | По умолчанию                | Описание                                                         |
+| --------------------- | -------------------------------- | --------------------------- | ---------------------------------------------------------------- |
+| `items`               | `ITEM[]`                         | -                           | Элементы меню                                                    |
+| `view?`               | `'lines', 'twoLines', 'cards'`   | `'lines'`                   | Вид                                                              |
+| `onItemClick?`        | `TileMenuPropOnItemClick`        | -                           | Событие клика на элемент списка                                  |
+| `getItemImage?`       | `TileMenuPropGetItemImage`       | `defaultGetItemImage`       | Функция для определения изображения элемента                     |
+| `getItemTitle?`       | `TileMenuPropGetItemTitle`       | `defaultGetItemTitle`       | Функция для определения названия элемента                        |
+| `getItemDescription?` | `TileMenuPropGetItemDescription` | `defaultGetItemDescription` | Функция для определения описания элемента                        |
+| `getItemHref?`        | `TileMenuPropGetItemDescription` | `defaultGetItemHref`        | Функция для определения ссылки элемента                          |
+| `getItemOnClick?`     | `TileMenuPropGetItemOnClick`     | `defaultGetItemOnClick`     | Функция для определения события клика по элементу                |
+| `title?`              | `string`                         | -                           | Заголовок меню                                                   |
+| `isMobile?`           | `boolean`                        | -                           | Мобильный вид                                                    |
+| `className?`          | `string`                         | -                           | Дополнительный CSS-класс для кнопки, по которой открывается меню |
+| `listClassName?`      | `string`                         | -                           | Дополнительный CSS-класс для списка карточек                     |
+| `ref?`                | `React.Ref<HTMLDivElement>`      | -                           | Ссылка на корневой DOM-элемент                                   |
