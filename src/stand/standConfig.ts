@@ -10,11 +10,10 @@ const groups = [
 ] as const;
 
 export const { createStand } = createConfig({
-  title: 'Consta header',
+  title: 'Consta Header',
   id: 'header',
   groups,
   group: 'Библиотеки компонентов',
   image,
-  description:
-    '[тут описание что это такое] Ультра топчик библиотеки с пацанскими кнопками и графиками, качай.',
+  description: 'Библиотека компонентов, из которых собирается шапка проекта.',
 });
