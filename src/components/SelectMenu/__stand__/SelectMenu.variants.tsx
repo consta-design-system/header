@@ -8,7 +8,7 @@ const menu = ['Все ресурсы портала знаний', 'Закупк
 const getLabel = (item: string) => item;
 
 export const Variants = () => {
-  const label = useText('label', 'Выберите');
+  const label = useText('label', 'Выберите') || '';
 
   return (
     <div style={{ height: '100vh' }}>
