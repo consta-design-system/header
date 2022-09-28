@@ -1,4 +1,5 @@
 import { useText } from '@consta/stand';
+import { cnMixSpace } from '@consta/uikit/MixSpace';
 import React from 'react';
 
 import { MobileMenu } from '../MobileMenu';
@@ -55,10 +56,7 @@ const menu: MenuItem[] = [
 ];
 
 export const Variants = () => {
-  const header = useText(
-    'header',
-    '<div className="myClass">Заголовок меню</div>',
-  );
+  const header = useText('header', 'Заголовок меню');
 
   return (
     <div>
@@ -66,7 +64,9 @@ export const Variants = () => {
         items={menu}
         getItemLabel={(item) => item.name}
         getItemSubMenu={(item) => item.sub}
-        header={header}
+        header={
+          <div className={cnMixSpace({ pH: 'xl', pV: 'm' })}>{header}</div>
+        }
       />
     </div>
   );

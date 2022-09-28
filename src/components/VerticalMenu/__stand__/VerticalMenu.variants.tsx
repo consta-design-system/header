@@ -67,15 +67,14 @@ export const Variants = () => {
   );
 
   return (
-    <div style={{ width: 200 }}>
-      <VerticalMenu
-        items={menu}
-        getItemLabel={(item) => item.name}
-        getItemSubMenu={(item) => item.sub}
-        header={header}
-        footer={footer}
-      />
-    </div>
+    <VerticalMenu
+      style={{ width: 260, height: 300 }}
+      items={menu}
+      getItemLabel={(item) => item.name}
+      getItemSubMenu={(item) => item.sub}
+      header={header}
+      footer={footer}
+    />
   );
 };
 

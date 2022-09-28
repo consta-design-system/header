@@ -55,9 +55,11 @@ export const Variants = () => {
       rowTop={{ left: 'left', center: 'center', right: 'right' }}
       rowCenter={{
         left: (
-          <div className={cnMixSpace({ mL: 'm' })}>
-            <Menu items={menu} style={{ width: 200 }} />
-          </div>
+          <Menu
+            className={cnMixSpace({ mL: 'm' })}
+            items={menu}
+            style={{ width: '100%', height: `var(--header-height)` }}
+          />
         ),
         center: <Notifications items={notifications} />,
         right: 'right',
