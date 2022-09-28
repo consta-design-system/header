@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   DefaultItem,
   NotificationsActionsPropGetItemIcon,
@@ -26,19 +24,5 @@ export function withDefaultGetters<ITEM>(
     getItemIcon: props.getItemIcon || defaultGetItemIcon,
     getItemLabel: props.getItemLabel || defaultGetItemLabel,
     getItemOnClick: props.getItemOnClick || defaultGetItemOnClick,
-  };
-}
-
-export function menuGetItemLeftSideBar<ITEM>(
-  getIcon: NotificationsActionsPropGetItemIcon<ITEM>,
-) {
-  return (item: ITEM) => {
-    const Icon = getIcon(item);
-
-    if (!Icon) {
-      return undefined;
-    }
-
-    return <Icon size="s" />;
   };
 }

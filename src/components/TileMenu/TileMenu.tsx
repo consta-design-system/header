@@ -6,6 +6,7 @@ import {
   animateTimeout,
   cnMixPopoverAnimate,
 } from '@consta/uikit/MixPopoverAnimate';
+import { cnMixPopoverArrow } from '@consta/uikit/MixPopoverArrow';
 import { Direction, Popover } from '@consta/uikit/Popover';
 import { useFlag } from '@consta/uikit/useFlag';
 import { useForkRef } from '@consta/uikit/useForkRef';
@@ -13,7 +14,6 @@ import React, { forwardRef, useRef, useState } from 'react';
 import { Transition } from 'react-transition-group';
 
 import { Sidebar } from '##/components/Sidebar';
-import { cnMixPopoverArrow } from '##/mixs/MixPopoverArrow/MixPopoverArrow';
 import { cn } from '##/utils/bem';
 
 import { TileMenuList } from './TileMenuList/TileMenuList';

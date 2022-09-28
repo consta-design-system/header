@@ -1,4 +1,5 @@
 import { Button } from '@consta/uikit/Button';
+import { ContextMenu } from '@consta/uikit/ContextMenu';
 import { IconMeatball } from '@consta/uikit/IconMeatball';
 import { useForkRef } from '@consta/uikit/useForkRef';
 import { useMutableRef } from '@consta/uikit/useMutableRef';
@@ -11,9 +12,9 @@ import React, {
   useState,
 } from 'react';
 
-import { AnimatedContextMenu } from '##/components/AnimatedContextMenu/AnimatedContextMenu';
+import { getItemClick } from '##/helpers/getItemClick';
 
-import { menuGetItemLeftSideBar, withDefaultGetters } from './helpers';
+import { withDefaultGetters } from './helpers';
 import {
   NotificationsActionsComponent,
   NotificationsActionsProps,
@@ -116,13 +117,15 @@ const NotificationsActionsRender = (
         ref={menuRef}
         onClick={toogleMenu}
       />
-      <AnimatedContextMenu
+      <ContextMenu
         isOpen={visibleMenu}
         items={items}
-        getLabel={getItemLabel}
-        getOnClick={getOnItemClick}
-        getKey={getItemLabel}
-        getLeftSideBar={menuGetItemLeftSideBar(getItemIcon)}
+        getItemLabel={getItemLabel}
+        onItemClick={({ e, item }) =>
+          getItemClick(item, getItemOnClick, onItemClick)(e)
+        }
+        getItemKey={getItemLabel}
+        getItemLeftIcon={getItemIcon}
         anchorRef={buttonRef}
         onClickOutside={closeMenu}
         possibleDirections={['downStartRight', 'upStartRight']}

@@ -7,7 +7,7 @@ import {
   BreadcrumbsPropGetItemSubMenu,
   BreadcrumbsPropOnItemClick,
   DefaultItem as BreadcrumbsDefaultItem,
-} from '@consta/uikit/BreadcrumbsCanary';
+} from '@consta/uikit/Breadcrumbs';
 import { IconComponent } from '@consta/uikit/Icon';
 import {
   ThemeTogglerItemDefault,

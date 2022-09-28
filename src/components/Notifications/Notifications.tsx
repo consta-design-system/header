@@ -6,6 +6,7 @@ import {
   animateTimeout,
   cnMixPopoverAnimate,
 } from '@consta/uikit/MixPopoverAnimate';
+import { cnMixPopoverArrow } from '@consta/uikit/MixPopoverArrow';
 import { Direction, Popover } from '@consta/uikit/Popover';
 import { useFlag } from '@consta/uikit/useFlag';
 import { useForkRef } from '@consta/uikit/useForkRef';
@@ -14,7 +15,6 @@ import { Transition } from 'react-transition-group';
 
 import { NotificationsList } from '##/components/NotificationsList';
 import { Sidebar } from '##/components/Sidebar';
-import { cnMixPopoverArrow } from '##/mixs/MixPopoverArrow/MixPopoverArrow';
 import { cn } from '##/utils/bem';
 
 import { NotificationsComponent, NotificationsProps } from './types';

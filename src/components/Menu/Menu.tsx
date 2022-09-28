@@ -1,6 +1,7 @@
 import './Menu.css';
 
 import { Button } from '@consta/uikit/Button';
+import { ContextMenu } from '@consta/uikit/ContextMenu';
 import { IconMeatball } from '@consta/uikit/IconMeatball';
 import { IconSelect } from '@consta/uikit/IconSelect';
 import { animateTimeout } from '@consta/uikit/MixPopoverAnimate';
@@ -16,7 +17,6 @@ import React, {
   useState,
 } from 'react';
 
-import { AnimatedContextMenu } from '##/components/AnimatedContextMenu/AnimatedContextMenu';
 import { getItemClick } from '##/helpers/getItemClick';
 import { cn } from '##/utils/bem';
 
@@ -121,14 +121,14 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
                 {label}
               </Tag>
               {subItems && <IconSelect size="s" className={cnMenu('Arrow')} />}
-              <AnimatedContextMenu
+              <ContextMenu
                 isOpen={subItems && subItems.length > 0 && opened}
                 items={subItems || []}
-                getLabel={getItemLabel}
-                getSubItems={getItemSubMenu}
+                getItemLabel={getItemLabel}
+                getItemSubMenu={getItemSubMenu}
                 anchorRef={itemsRefs[index]}
-                getOnClick={(contextMenuItem) =>
-                  getItemClick(contextMenuItem, getItemOnClick, onItemClick)
+                onItemClick={({ e, item }) =>
+                  getItemClick(item, getItemOnClick, onItemClick)(e)
                 }
                 direction="downStartLeft"
                 possibleDirections={[
@@ -139,7 +139,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
                 ]}
                 spareDirection="downStartLeft"
                 getItemAs={getItemAs}
-                getItemHTMLAttributes={getItemHTMLAttributes}
+                getItemAttributes={getItemHTMLAttributes}
                 style={{ zIndex: elementZIndex }}
               />
             </li>
@@ -158,14 +158,14 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
               size="xs"
               view="clear"
             />
-            <AnimatedContextMenu
+            <ContextMenu
               isOpen={openedSubMenu === 'more'}
               items={hiddenItems}
-              getLabel={getItemLabel}
-              getSubItems={getItemSubMenu}
+              getItemLabel={getItemLabel}
+              getItemSubMenu={getItemSubMenu}
               anchorRef={moreButtonRef}
-              getOnClick={(contextMenuItem) =>
-                getItemClick(contextMenuItem, getItemOnClick, onItemClick)
+              onItemClick={({ e, item }) =>
+                getItemClick(item, getItemOnClick, onItemClick)(e)
               }
               direction="downStartLeft"
               possibleDirections={[
@@ -176,7 +176,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
               ]}
               spareDirection="downStartRight"
               getItemAs={getItemAs}
-              getItemHTMLAttributes={getItemHTMLAttributes}
+              getItemAttributes={getItemHTMLAttributes}
               style={{ zIndex: elementZIndex }}
               offset={8}
             />

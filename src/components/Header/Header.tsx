@@ -1,6 +1,6 @@
 import './Header.css';
 
-import { Breadcrumbs } from '@consta/uikit/BreadcrumbsCanary';
+import { Breadcrumbs } from '@consta/uikit/Breadcrumbs';
 import { ThemeToggler } from '@consta/uikit/ThemeToggler';
 import { useBreakpoints } from '@consta/uikit/useBreakpoints';
 import React, { forwardRef, useState } from 'react';

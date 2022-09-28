@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import './SelectMenu.css';
 
+import { ContextMenu } from '@consta/uikit/ContextMenu';
 import { IconSelect } from '@consta/uikit/IconSelect';
 import { Text } from '@consta/uikit/Text';
 import { useFlag } from '@consta/uikit/useFlag';
@@ -9,7 +10,7 @@ import { useForkRef } from '@consta/uikit/useForkRef';
 import { useMutableRef } from '@consta/uikit/useMutableRef';
 import React, { forwardRef, useCallback, useRef } from 'react';
 
-import { AnimatedContextMenu } from '##/components/AnimatedContextMenu/AnimatedContextMenu';
+import { getItemClick } from '##/helpers/getItemClick';
 import { cn } from '##/utils/bem';
 
 import { withDefaultGetters } from './helpers';
@@ -87,17 +88,18 @@ const SelectMenuRender = (
         </span>
       </div>
       {items && (
-        <AnimatedContextMenu
+        <ContextMenu
           className={cnSelectMenu('Menu')}
           anchorRef={ref}
           isOpen={open}
           items={items}
-          getLabel={getItemLabel}
-          getItemOnClick={getItemOnClick}
+          getItemLabel={getItemLabel}
           getItemAs={getItemAs}
-          getItemHTMLAttributes={getItemHTMLAttributes}
+          getItemAttributes={getItemHTMLAttributes}
           onClickOutside={setOpen.off}
-          onItemClick={onItemClick}
+          onItemClick={({ e, item }) =>
+            getItemClick(item, getItemOnClick, onItemClick)(e)
+          }
           direction="rightStartDown"
           possibleDirections={[
             'downStartLeft',
@@ -105,7 +107,7 @@ const SelectMenuRender = (
             'downStartRight',
             'upStartRight',
           ]}
-          getSubItems={getItemSubMenu}
+          getItemSubMenu={getItemSubMenu}
           style={{
             zIndex:
               typeof style?.zIndex === 'number' ? style.zIndex + 1 : 'auto',

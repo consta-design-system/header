@@ -1,6 +1,6 @@
 {
   "name": "@consta/header",
-  "version": "0.4.4",
+  "version": "1.0.0",
   "scripts": {
     "postinstall": "husky install",
     "tsc-dry-run": "tsc --noEmit",
@@ -50,7 +50,7 @@
     "Chrome >= 75"
   ],
   "peerDependencies": {
-    "@consta/uikit": ">= 3.22.0"
+    "@consta/uikit": "^4.0.1"
   },
   "config": {
     "commitizen": {
@@ -91,8 +91,8 @@
     "@babel/preset-typescript": "^7.18.6",
     "@bem/sdk.naming.cell.match": "^0.1.3",
     "@bem/sdk.naming.presets": "^0.2.3",
-    "@consta/stand": "^0.0.50",
-    "@consta/uikit": ">= 3.22.0",
+    "@consta/stand": "^0.0.53",
+    "@consta/uikit": "^4.0.1",
     "@oclif/command": "^1.8.16",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/core": "^6.3.1",
