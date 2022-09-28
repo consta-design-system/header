@@ -5,7 +5,7 @@ export default createStand({
   id: 'Notifications',
   group: 'components',
   description: 'Уведомления.',
-  version: '0.4.4',
+  version: '0.4.0',
   status: 'stable',
   sandbox: 'header-notifications-ui3ve7',
   figma:

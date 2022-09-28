@@ -6,7 +6,7 @@ export default createStand({
   group: 'components',
   description:
     'Список уведомлений с бейджиками, статусом, возможными действиями и группировкой.',
-  version: '0.4.4',
+  version: '0.4.0',
   status: 'stable',
   sandbox: 'header-notofocationslist-ndzxb8',
   figma:

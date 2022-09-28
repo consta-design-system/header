@@ -5,7 +5,7 @@ export default createStand({
   id: 'Header',
   group: 'components',
   description: 'Готовая шапка для проекта с жёсткой структурой.',
-  version: '0.4.4',
+  version: '0.4.0',
   status: 'stable',
   order: 10,
   sandbox: 'header-header-kq7wdl',

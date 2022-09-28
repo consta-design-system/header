@@ -5,7 +5,7 @@ export default createStand({
   id: 'ButtonMenu',
   group: 'components',
   description: 'Меню в виде кнопок.',
-  version: '0.4.4',
+  version: '0.4.0',
   status: 'stable',
   sandbox: 'header-buttonmenu-uhdepq',
   figma:
