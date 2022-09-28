@@ -5,7 +5,7 @@ export default createStand({
   id: 'Layout',
   group: 'components',
   description: 'Каркас.',
-  version: '0.4.4',
+  version: '0.4.0',
   status: 'stable',
   sandbox: 'header-layout-msszrn',
   figma:
