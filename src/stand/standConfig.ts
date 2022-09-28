@@ -2,19 +2,17 @@ import { createConfig } from '@consta/stand';
 
 import image from './ConstaImage.png';
 
-const groups = [
-  {
-    title: 'Компоненты',
-    id: 'components',
-  },
-] as const;
-
 export const { createStand } = createConfig({
-  title: 'Consta header',
+  title: 'Consta Header',
   id: 'header',
-  groups,
+  groups: [
+    {
+      title: 'Компоненты',
+      id: 'components',
+      view: 'card',
+    },
+  ],
   group: 'Библиотеки компонентов',
   image,
-  description:
-    '[тут описание что это такое] Ультра топчик библиотеки с пацанскими кнопками и графиками, качай.',
+  description: 'Библиотека компонентов, из которых собирается шапка проекта.',
 });

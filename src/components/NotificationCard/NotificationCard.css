@@ -38,6 +38,7 @@
   }
 
   &-Badges {
+    position: relative;
     flex: 1;
     margin-right: var(--space-xs);
   }
