@@ -1,0 +1,10 @@
+.che--Sidebar {
+  &-Header {
+    display: flex;
+    flex: none;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: var(--space-l) var(--space-xl);
+    border-bottom: 1px solid var(--color-bg-border);
+  }
+}

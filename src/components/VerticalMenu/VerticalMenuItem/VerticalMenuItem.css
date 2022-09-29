@@ -1,0 +1,22 @@
+.che--VerticalMenuItem {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+
+  &_active {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--space-3xs);
+      height: 100%;
+      background: var(--color-typo-link);
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.che--VerticalMenu {
+  position: relative;
+
+  &_animationBack {
+    .che--VerticalMenu-Level {
+      &_animate {
+        &_enter {
+          transform: translate(-100%);
+        }
+
+        &_enterActive {
+          transform: translate(0);
+        }
+
+        &_exit {
+          transform: translate(0);
+        }
+
+        &_exitActive {
+          transform: translate(100%);
+        }
+      }
+    }
+  }
+
+  &-Level {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+
+    &_current {
+      pointer-events: all;
+    }
+
+    &_animate {
+      &_enter,
+      &_enterActive,
+      &_exit,
+      &_exitActive {
+        transition: transform 0.25s, opacity 0.25s;
+      }
+
+      &_enter {
+        opacity: 0;
+        transform: translate(100%);
+      }
+
+      &_enterActive {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      &_exit {
+        opacity: 1;
+        transform: translate(0);
+      }
+
+      &_exitActive {
+        opacity: 0;
+        transform: translate(-100%);
+      }
+    }
+  }
+}

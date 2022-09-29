@@ -1,0 +1,47 @@
+.che--TileMenuItem {
+  --tile-menu-item-image-size: calc(var(--space-4xl) - var(--space-2xs));
+  display: flex;
+  color: var(--color-typo-primary);
+  text-decoration: none;
+  cursor: pointer;
+
+  &_view {
+    &_card {
+      --tile-menu-item-image-margin: 0 auto var(--space-xs) auto;
+      flex-direction: column;
+      border-radius: var(--control-radius);
+      transition: background 0.2s;
+
+      &:hover {
+        background: var(--color-control-bg-clear-hover);
+      }
+    }
+
+    &_line {
+      --tile-menu-item-image-margin: 0 var(--space-xs) 0 0;
+
+      &:hover {
+        --tile-menu-item-title-color: var(--color-typo-link-hover);
+      }
+    }
+  }
+
+  &-ImageWrapper {
+    overflow: hidden;
+    flex: none;
+    width: var(--tile-menu-item-image-size);
+    height: var(--tile-menu-item-image-size);
+    margin: var(--tile-menu-item-image-margin);
+    border-radius: 50%;
+
+    & > * {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &-Title {
+    color: var(--tile-menu-item-title-color);
+    transition: color 0.2s;
+  }
+}

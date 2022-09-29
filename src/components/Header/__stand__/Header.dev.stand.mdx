@@ -1,0 +1,542 @@
+import { MdxMenu } from '@consta/stand';
+import {
+  HeaderExampleBasic,
+  HeaderExampleNotLogined,
+  HeaderExampleThemeToggler,
+  HeaderExampleFixed,
+  HeaderExampleBreadcrumbs,
+} from './examples/HeaderExample';
+
+> Если вам нужна более гибкая структура, используйте [Layout](##LIBS.STAND|stand:header-components-layout-stable)
+
+```tsx
+import { Header } from '@consta/header/Header';
+```
+
+<MdxMenu>
+
+- [Меню](#меню)
+- [Логотип](#логотип)
+- [Уведомления](#уведомления)
+- [Выпадающее меню с плиткой](#выпадающее-меню-с-плиткой)
+- [Логин](#логин)
+- [Переключатель тем](#переключатель-тем)
+- [Зафиксировать шапку](#зафиксированная-шапка)
+- [Хлебные крошки](#хлебные-крошки)
+- [Адаптивность](#адаптивность)
+- [Список свойств](#свойства)
+- [Пример использования](#пример)
+
+</MdxMenu>
+
+## Меню
+
+Выпадающее меню, работает на основе `MobileMenu` или `Menu` (зависит от ширины экрана).
+
+Добавить пункты меню можно с помощью свойства `menu`, подробности — в [документации компонента меню](##LIBS.STAND|stand:header-components-menu-stable).
+
+## Логотип
+
+За логотип отвечает свойство `logo`. В него можно поместить что угодно.
+
+Чтобы поставить ссылку с логотипа, используйте `logoHref`.
+
+## Уведомления
+
+Этот компонент работает на основе `NotificationsList`. Как его настроить:
+
+- данные для уведомлений передаются в `notifications`,
+- действия, которые можно с этими уведомлениями совершать, можно указать в `notificationsActions`,
+- заголовок для выпадающего блока с уведомлениями — `notificationsTitle`.
+
+Чтобы сгруппировать уведомления по дням, добавьте `notificationsGroupByDay`.
+
+[Подробнее об уведомлениях](##LIBS.STAND|stand:header-components-notificationslist-stable)
+
+## Выпадающее меню с плиткой
+
+Это выпадающее меню работает на основе `TileMenu`.
+
+[Посмотреть документацию](##LIBS.STAND|stand:header-components-tilemenu-stable)
+
+## Логин
+
+Блок с кнопкой для входа и информацией о пользователе.
+
+У блока есть два состояния:
+
+- пользователь вошёл в систему — `userLogined={true}`, в блоке будет видна информация об этом пользователе,
+- пользователь может войти — `userLogined={false}`, в блоке будет кнопка для входа.
+
+```tsx
+<Header userLogined={false} />
+```
+
+<HeaderExampleNotLogined />
+
+Вы можете указать данные о пользователе:
+
+- имя пользователя — в свойстве `userName`,
+- изображение — `userAvatar`,
+- дополнительную информацию — в `userInfo`.
+
+За текст на кнопке для входа отвечает свойство `loginButtonLabel`.
+
+```tsx
+<Header
+  userName="Иванов Иван"
+  userInfo="Владелец"
+  loginButtonLabel="Войти"
+  userLogined={true}
+/>
+```
+
+<HeaderExampleBasic />
+
+## Переключатель тем
+
+С помощью переключателя тем можно поменять можно менять оформление страницы. Для этого нужно:
+
+- подключить темы и пресеты из компонента [Theme](##LIBS.STAND/stand:uikit-components-theme-stable) (или свои),
+- передать описание тем, названий и иконок для переключателя в свойстве `themeItems`,
+- указать текущую тему в свойстве `theme`,
+- добавить функцию для изменения темы в свойстве `onThemeChange`.
+
+Для работы переключателя нужны:
+
+- `key` — уникальный идентификатор темы,
+- `label` — название темы,
+- `icon` — [иконка](##LIBS.STAND/stand:uikit-components-icon-stable), по нажатию на которую переключается тема.
+
+Можно использовать геттеры `getThemeTogglerItemKey`, `getThemeTogglerItemLabel`, `getThemeTogglerItemIcon`.
+
+Переключатель работает так же, как стандартный компонент для переключения тем — [ThemeToggler](##LIBS.STAND/stand:uikit-components-themetoggler-stable).
+
+```tsx
+import {
+  ThemePreset,
+  presetGpnDefault,
+  presetGpnDark,
+  presetGpnDisplay,
+} from '@consta/uikit/Theme';
+import { IconLightningBolt } from '@consta/uikit/IconLightningBolt';
+import { IconMoon } from '@consta/uikit/IconMoon';
+import { IconSun } from '@consta/uikit/IconSun';
+
+export type ThemeItem = {
+  icon: IconComponent;
+  key: string;
+  label: string;
+  preset: ThemePreset;
+};
+
+export const themes: ThemeItem[] = [
+  {
+    key: '1',
+    label: 'Светлая',
+    icon: IconSun,
+    preset: presetGpnDefault,
+  },
+  {
+    key: '2',
+    label: 'Темная',
+    icon: IconMoon,
+    preset: presetGpnDark,
+  },
+  {
+    key: '3',
+    preset: presetGpnDisplay,
+    label: 'Системная',
+    icon: IconLightningBolt,
+  },
+];
+
+export const HeaderExampleThemeToggler = () => {
+  const [theme, setTheme] = useState<ThemeItem>(themes[0]);
+  return (
+    <Theme preset={theme.preset}>
+      <Header
+        logo={<ConstaLogo />}
+        userName="Иванов Иван"
+        userInfo="Владелец"
+        loginButtonLabel="Войти"
+        userLogined={true}
+        notifications={notifications}
+        notificationsActions={notificationsActions}
+        notificationsTitle="Уведомления"
+        notificationsGroupByDay={true}
+        tileMenu={tileMenu}
+        tileMenuTitle="Сервисы"
+        style={{ zIndex: 100 }}
+        themeItems={themes}
+        theme={theme}
+        onThemeChange={({ value }: { value: ThemeItem | null }) =>
+          value && setTheme(value)
+        }
+      />
+    </Theme>
+  );
+};
+```
+
+<HeaderExampleThemeToggler />
+
+## Зафиксированная шапка
+
+Чтобы зафиксировать шапку при прокрутке страницы у верхнего края экрана, используйте свойство `fixed`.
+
+```tsx
+<Header
+  logo={<ConstaLogo />}
+  userName="Иванов Иван"
+  userInfo="Владелец"
+  loginButtonLabel="Войти"
+  userLogined={true}
+  notifications={notifications}
+  notificationsActions={notificationsActions}
+  notificationsTitle="Уведомления"
+  notificationsGroupByDay={true}
+  tileMenu={tileMenu}
+  tileMenuTitle="Сервисы"
+  menu={menu}
+  style={{ zIndex: 100 }}
+  fixed
+/>
+```
+
+<HeaderExampleFixed />
+
+## Хлебные крошки
+
+Чтобы добавить под шапкой хлебные крошки, используйте `breadcrumbs`. Это свойство ведёт себя так же, как компонент [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable) из библиотеки @consta.uikit.
+
+```tsx
+type Page = {
+  icon?: IconComponent;
+  href: string;
+  label: string;
+  subMenu?: Page[];
+};
+
+export const breadcrumbs: Page[] = [
+  {
+    icon: IconHome,
+    label: 'Главная',
+    href: 'https://url.com/page-1',
+    subMenu: [
+      {
+        label: 'Основное',
+        href: 'https://url.com/page-1-1',
+      },
+      {
+        label: 'Другое',
+        href: 'https://url.com/page-1-2',
+      },
+    ],
+  },
+  {
+    label: 'Раздел',
+    href: 'https://url.com/page-2',
+    subMenu: [
+      {
+        label: 'Раздел 1',
+        href: 'https://url.com/page-2-1',
+      },
+    ],
+  },
+  {
+    label: 'Подраздел',
+    href: 'https://url.com/page-3',
+  },
+  {
+    label: 'Элемент подраздела',
+    href: 'https://url.com/page-4',
+  },
+  {
+    label: 'Дополнительные свойства элемента подраздела',
+    href: 'https://url.com/page-5',
+  },
+  {
+    label: 'Детальное описание свойства элемента подраздела',
+    href: 'https://url.com/page-6',
+  },
+];
+
+export const HeaderExampleBreadcrumbs = () => (
+  <Header
+    // ...
+    breadcrumbs={breadcrumbs}
+  />
+);
+```
+
+<HeaderExampleBreadcrumbs />
+
+## Адаптивность
+
+На мобильных экранах в шапке остаются только логотип или название сервиса и кнопка-гамбургер. Если нажать на кнопку, открывается боковая панель, в которую «спрятались» все остальные компоненты. Меню становится вертикальным, другие компоненты отображаются выше.
+
+> Чтобы посмотреть, как это работает, уменьшите ширину окна браузера
+
+<HeaderExampleBasic />
+
+## Свойства
+
+| Свойство                                          | Тип                                                                     | По умолчанию                | Описание                                                                                                                                              |
+| ------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fixed?`                                          | `boolean`                                                               | -                           | Фиксирует `Header` к верху экрана                                                                                                                     |
+| `logo?`                                           | `React.ReactNode`                                                       | -                           | Логотип                                                                                                                                               |
+| `onLogoClick?`                                    | `React.MouseEventHandler`                                               | -                           | Функция отработает по нажатию на логотип                                                                                                              |
+| `logoHref?`                                       | `string`                                                                | -                           | Атрибут `href` на логотипе                                                                                                                            |
+| `menu?`                                           | `MENU_ITEM[]`                                                           | -                           | Элементы меню (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                                                         |
+| `onMenuItemClick?`                                | `MenuPropOnItemClick`                                                   | -                           | Функция клика по элементу (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                                             |
+| `getMenuItemTarget?`                              | `MenuPropGetItemTarget`                                                 | `defaultGetItemTarget`      | Функция для определения `target` элемента (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                             |
+| `getMenuItemHref?`                                | `MenuPropGetItemTarget`                                                 | `defaultGetItemHref`        | Функция для определения `href` элемента (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                               |
+| `getMenuItemLabel?`                               | `MenuPropGetItemLabel`                                                  | `defaultGetItemLabel`       | Функция для определения заголовка элемента (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                            |
+| `getMenuItemActive?`                              | `MenuPropGetItemActive`                                                 | `defaultGetItemActive`      | Функция для определения активности элемента (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                           |
+| `getMenuItemOnClick?`                             | `MenuPropGetItemOnClick`                                                | `defaultGetItemOnClick`     | Функция для определения функции клика элемента (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                        |
+| `getMenuItemSubMenu?`                             | `MenuPropGetItemSubMenu`                                                | `defaultGetItemSubMenu`     | Функция для определения подменю элемента (см. [Menu](##LIBS.STAND/stand:header-components-menu-stable) )                                              |
+| [`userName?`](#логин)                             | `string`                                                                | -                           | Имя пользователя                                                                                                                                      |
+| [`userAvatar?`](#логин)                           | `string`                                                                | -                           | Аватар пользователя                                                                                                                                   |
+| [`userInfo?`](#логин)                             | `string`                                                                | -                           | Информация о пользователе                                                                                                                             |
+| [`userLogined?`](#логин)                          | `boolean`                                                               | -                           | Флаг вхождения в систему                                                                                                                              |
+| `onLoginButtonClick?`                             | `React.MouseEventHandler`                                               | -                           | Клик по кнопке для входа                                                                                                                              |
+| `onUserClick?`                                    | `React.MouseEventHandler`                                               | -                           | Клик по пользователю                                                                                                                                  |
+| [`loginButtonLabel?`](#логин)                     | `string`                                                                | -                           | Текст на кнопке для входа                                                                                                                             |
+| `notifications`                                   | `NOTIFICATION_ITEM[]`                                                   | -                           | Уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                                                  |
+| `notificationsActions?`                           | `NOTIFICATION_ACTION[]`                                                 | -                           | Действия списка уведомлений (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                                  |
+| `notificationsGroupByDay?`                        | `boolean`                                                               | -                           | Групировка уведомлений по дням (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                               |
+| `notificationsGroupLabelFormat?`                  | `NotificationsListPropGroupLabelFormat`                                 | `defaultGroupLabelFormat`   | Групировка уведомлений по дням (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                               |
+| `notificationsGroups?`                            | `NOTIFICATION_GROUP_BY_DAY extends true ? never : NOTIFICATION_GROUP[]` | -                           | Группы уведомлений (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                                           |
+| `notificationsTitle?`                             | `string`                                                                | -                           | Заголовок уведомлений (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                                        |
+| `notificationsDateFormat`                         | `NotificationsListPropItemDateFormat`                                   | `defaultDateFormat`         | Функция форматирования даты уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                      |
+| `getNotificationsItemLabel?`                      | `NotificationsListPropGetItemLabel`                                     | `defaultGetItemLabel`       | Функция для определения заголовка уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                |
+| `getNotificationsItemDescription?`                | `NotificationsListPropGetItemDescription`                               | `defaultGetItemDescription` | Функция для определения описания уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                 |
+| `getNotificationsItemImage?`                      | `NotificationsListPropGetItemImage`                                     | `defaultGetItemImage`       | Функция для определения изображения уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))              |
+| `getNotificationsItemRead?`                       | `NotificationsListPropGetItemRead`                                      | `defaultGetItemRead`        | Функция для определения статуса "прочитано" уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))      |
+| `getNotificationsItemDate?`                       | `NotificationsListPropGetItemDate`                                      | `defaultGetItemDate`        | Функция для определения даты уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                     |
+| `getNotificationsItemBadges?`                     | `NotificationsListPropGetItemBadges`                                    | `defaultGetItemBadges`      | Функция для определения бейджов уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                  |
+| `getNotificationsItemActions?`                    | `NotificationsListPropGetItemActions`                                   | `defaultGetItemActions`     | Функция для определения действий уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                 |
+| `getNotificationsItemGroup?`                      | `NotificationsListPropGetItemGroup`                                     | `defaultGetItemGroup`       | Функция для определения группы уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                   |
+| `getNotificationsItemView?`                       | `NotificationsListPropGetItemView`                                      | `defaultGetItemView`        | Функция для определения вида уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                     |
+| `getNotificationsActionLabel?`                    | `NotificationsListPropGetActionLabel`                                   | `defaultGetActionLabel`     | Функция для определения заголовка действия уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))       |
+| `getNotificationsActionIcon?`                     | `NotificationsListPropGetActionIcon`                                    | `defaultGetActionIcon`      | Функция для определения иконки уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                   |
+| `getNotificationsActionOnClick?`                  | `NotificationsListPropGetActionOnClick`                                 | `defaultGetActionOnClick`   | Функция для определения функчии уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))                  |
+| `getNotificationsGroupLabel?`                     | `NotificationsListPropGetGroupLabel`                                    | `defaultGetGroupLabel`      | Функция для определения заголовка группы уведомления (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable))         |
+| `getNotificationsGroupId?`                        | `NotificationsListPropGetGroupId`                                       | `defaultGetGroupId`         | Функция для определения уникального ключа группы уведомлений (см. [NotificationsList](##LIBS.STAND/stand:header-components-notificationslist-stable)) |
+| `tileMenu`                                        | `ITEM[]`                                                                | -                           | Элементы `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                                                            |
+| `tileMenuView?`                                   | `'lines', 'twoLines', 'cards'`                                          | `lines`                     | Вид `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                                                                 |
+| `onTileMenuItemClick?`                            | `TileMenuPropOnItemClick`                                               | -                           | Событие клика на элемент списка `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                                     |
+| `getTileMenuItemImage?`                           | `TileMenuPropGetItemImage`                                              | `defaultGetItemImage`       | Функция для определения изображения элемента `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                        |
+| `getTileMenuItemTitle?`                           | `TileMenuPropGetItemTitle`                                              | `defaultGetItemTitle`       | Функция для определения названия элемента `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                           |
+| `getTileMenuItemDescription?`                     | `TileMenuPropGetItemDescription`                                        | `defaultGetItemDescription` | Функция для определения описания элемента `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                           |
+| `getTileMenuItemHref?`                            | `TileMenuPropGetItemDescription`                                        | `defaultGetItemHref`        | Функция для определения ссылки элемента `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                             |
+| `getTileMenuItemOnClick?`                         | `TileMenuPropGetItemOnClick`                                            | `defaultGetItemOnClick`     | Функция для определения события клика по элементу `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                   |
+| `tileMenuTitle?`                                  | `string`                                                                | `string`                    | Заголовок `tileMenu` (см. [TileMenu](##LIBS.STAND/stand:header-components-tilemenu-stable))                                                           |
+| [`breadcrumbs?`](#хлебные-крошки)                 | `BREADCRUMBS_ITEM[]`                                                    | -                           | Хлебные крошки (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                                                            |
+| `getBreadcrumbsItemLabel?`                        | `BreadcrumbsPropGetItemLabel`                                           | `defaultGetItemLabel`       | Функция для определения названия хлебной крошки (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                           |
+| `getBreadcrumbsItemHref?`                         | `BreadcrumbsPropGetItemHref`                                            | `defaultGetItemHref`        | Функция для определения ссылки хлебной крошки (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                             |
+| `getBreadcrumbsItemIcon?`                         | `BreadcrumbsPropGetItemIcon`                                            | `defaultGetItemIcon`        | Функция для определения иконки хлебной крошки (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                             |
+| `getBreadcrumbsItemOnClick?`                      | `BreadcrumbsPropGetItemOnClick`                                         | `defaultGetItemOnClick`     | Функция для пределения события клика по хлебной крошки (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                    |
+| `getBreadcrumbsItemSubMenu?`                      | `BreadcrumbsPropGetItemSubMenu`                                         | `defaultGetItemSubMenu`     | Функция для получения вложенного меню (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                                     |
+| `breadcrumbsOnlyIconRoot?`                        | `boolean`                                                               | `false`                     | Показывать иконку вместо названия первой страницы в крошках (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))               |
+| `onBreadcrumbsItemClick?`                         | `BreadcrumbsPropOnItemClick`                                            | -                           | Обработчик клика по хлебным крошкам (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                                       |
+| `breadcrumbsFitMode?`                             | `'dropdown', 'scroll'`                                                  | `'dropdown'`                | Тип подсраивания хлебных крошек под ширину контейнера (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                     |
+| `breadcrumbsLastItemIsLink?`                      | `boolean`                                                               | `false`                     | Последняя хлебная крошка будет отображена как ссылка (см. [Breadcrumbs](##LIBS.STAND/stand:uikit-components-breadcrumbs-stable))                      |
+| `secondaryMenu`                                   | `SECONDARY_MENU_ITEM[]`                                                 | -                           | Элементы второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                                                      |
+| `secondaryMenuLabel`                              | `string`                                                                | -                           | Заголовок второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                                                     |
+| `onSecondaryMenuItemClick`                        | `SelectMenuPropOnItemClick`                                             | -                           | Функция клика по элементу второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                                     |
+| `getSecondaryMenuItemHref`                        | `SelectMenuPropGetItemHref`                                             | `defaultGetItemHref`        | Функция для определения `href` элемента второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                       |
+| `getSecondaryMenuItemLabel`                       | `SelectMenuPropGetItemLabel`                                            | `defaultGetItemLabel`       | Функция для определения заголовка элемента второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                    |
+| `getSecondaryMenuItemTarget`                      | `SelectMenuPropGetItemTarget`                                           | `defaultGetItemTarget`      | Функция для определения `target` элемента второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                     |
+| `getSecondaryMenuItemOnClick`                     | `SelectMenuPropGetItemOnClick`                                          | `defaultGetItemOnClick`     | Функция для определения функции клика элемента второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                |
+| `getSecondaryMenuItemSubMenu`                     | `SelectMenuPropGetItemSubMenu`                                          | `defaultGetItemSubMenu`     | Функция для определения подменю второго меню (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                               |
+| `languages`                                       | `LANGUAGES_ITEM[]`                                                      | -                           | Список языков (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                                                              |
+| `languagesLabel`                                  | `string`                                                                | `'Сменить язык'`            | Заголовок для выбора языков (только в мобильной версии)                                                                                               |
+| `languageValue`                                   | `LANGUAGES_ITEM`                                                        | -                           | Выбранный язык                                                                                                                                        |
+| `onLanguageChange`                                | `SelectMenuPropOnItemClick`                                             | -                           | Функция клика по языков списка языков (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                                      |
+| `getLanguagesItemHref`                            | `SelectMenuPropGetItemHref`                                             | `defaultGetItemHref`        | Функция для определения `href` элемента списка языков (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                      |
+| `getLanguagesItemLabel`                           | `SelectMenuPropGetItemLabel`                                            | `defaultGetItemLabel`       | Функция для определения заголовка элемента списка языков (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                   |
+| `getLanguagesItemTarget`                          | `SelectMenuPropGetItemTarget`                                           | `defaultGetItemTarget`      | Функция для определения `target` элемента списка языков (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))                    |
+| `getLanguagesItemOnClick`                         | `SelectMenuPropGetItemOnClick`                                          | `defaultGetItemOnClick`     | Функция для определения функции клика элемента списка языков (см. [SelectMenu](##LIBS.STAND/stand:header-components-selectmenu-stable))               |
+| `socialMedia`                                     | `SOCIAL_MEDIA_ITEM[]`                                                   | -                           | Социальные сети (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                                                            |
+| `onSocialMediaItemClick`                          | `ButtonMenuPropOnItemClick`                                             | -                           | Функция клика по элементу социальных сетей (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                                 |
+| `getSocialMediaItemHref`                          | `ButtonMenuPropGetItemHref`                                             | `defaultGetItemHref`        | Функция для определения `href` элемента социальных сетей (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                   |
+| `getSocialMediaItemLabel`                         | `ButtonMenuPropGetItemLabel`                                            | `defaultGetItemLabel`       | Функция для определения заголовка элемента социальных сетей (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                |
+| `getSocialMediaItemTarget`                        | `ButtonMenuPropGetItemTarget`                                           | `defaultGetItemTarget`      | Функция для определения `target` элемента социальных сетей (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                 |
+| `getSocialMediaItemOnClick`                       | `ButtonMenuPropGetItemOnClick`                                          | `defaultGetItemOnClick`     | Функция для определения функции клика элемента социальных сетей (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))            |
+| `getSocialMediaItemIcon`                          | `ButtonMenuPropGetItemIcon`                                             | `defaultGetItemOnClick`     | Функция для определения иконки элемента социальных сетей (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                   |
+| `additionalButtons`                               | `ADDITIONAL_BUTTONS_ITEM[]`                                             | -                           | Дополнительные кнопки (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                                                      |
+| `onAdditionalButtonsItemClick`                    | `ButtonMenuPropOnItemClick`                                             | -                           | Функция клика по дополнительной кнопки (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                                     |
+| `getAdditionalButtonsItemHref`                    | `ButtonMenuPropGetItemHref`                                             | `defaultGetItemHref`        | Функция для определения `href` дополнительной кнопки (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                       |
+| `getAdditionalButtonsItemLabel`                   | `ButtonMenuPropGetItemLabel`                                            | `defaultGetItemLabel`       | Функция для определения заголовка дополнительной кнопки (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                    |
+| `getAdditionalButtonsItemTarget`                  | `ButtonMenuPropGetItemTarget`                                           | `defaultGetItemTarget`      | Функция для определения `target` дополнительной кнопки (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                     |
+| `getAdditionalButtonsItemOnClick`                 | `ButtonMenuPropGetItemOnClick`                                          | `defaultGetItemOnClick`     | Функция для определения функции клика дополнительной кнопки (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                |
+| `getAdditionalButtonsItemIcon`                    | `ButtonMenuPropGetItemIcon`                                             | `defaultGetItemIcon`        | Функция для определения иконки дополнительной кнопки (см. [ButtonMenu](##LIBS.STAND/stand:header-components-buttonmenu-stable))                       |
+| [`themeItems?`](#переключатель-тем)               | `THEME_TOGGLER_ITEM[]`                                                  | -                           | Список тем (см. [ThemeToggler](##LIBS.STAND/stand:uikit-components-themetoggler-stable))                                                              |
+| [`theme?`](#переключатель-тем)                    | `THEME_TOGGLER_ITEM`                                                    | -                           | Текущая тема (см. [ThemeToggler](##LIBS.STAND/stand:uikit-components-themetoggler-stable))                                                            |
+| [`getThemeTogglerItemKey?`](#переключатель-тем)   | `ThemeTogglerPropGetItemKey`                                            | -                           | Функция для определения ключа элемента темы (см. [ThemeToggler](##LIBS.STAND/stand:uikit-components-themetoggler-stable))                             |
+| [`getThemeTogglerItemLabel?`](#переключатель-тем) | `ThemeTogglerPropGetItemLabel`                                          | -                           | Функция для определения заголовка элемента темы (см. [ThemeToggler](##LIBS.STAND/stand:uikit-components-themetoggler-stable))                         |
+| [`getThemeTogglerItemIcon?`](#переключатель-тем)  | `ThemeTogglerPropGetItemIcon`                                           | -                           | Функция для определения иконки элемента темы (см. [ThemeToggler](##LIBS.STAND/stand:uikit-components-themetoggler-stable))                            |
+| [`onThemeChange?`](#переключатель-тем)            | `ThemeTogglerPropSetValue`                                              | -                           | Функция для изменения темы (см. [ThemeToggler](##LIBS.STAND/stand:uikit-components-themetoggler-stable))                                              |
+| `className?`                                      | `string`                                                                | -                           | Дополнительный класс                                                                                                                                  |
+| `ref?`                                            | `React.Ref<HTMLDivElement>`                                             | -                           | Ссылка на корневой DOM-элемент                                                                                                                        |
+
+## Пример
+
+```tsx
+import { IconTrash } from '@consta/uikit/IconTrash';
+import { IconEye } from '@consta/uikit/IconEye';
+import { Header } from '@consta/header/Header';
+
+export const notifications: DefaultItem[] = [
+  {
+    label: 'Андриевский Дмитрий Олегович',
+    description: 'Добавил файлы в проект, план/факт по расчету предварительные',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    date: new Date(),
+    read: true,
+    badges: [
+      {
+        label: 'отчеты',
+        status: 'normal',
+      },
+      {
+        label: 'файлы',
+        status: 'warning',
+      },
+      {
+        label: 'система',
+        status: 'success',
+      },
+      {
+        label: 'отчеты 4',
+        status: 'normal',
+      },
+      {
+        label: 'файлы',
+        status: 'warning',
+      },
+      {
+        label: 'система',
+        status: 'success',
+      },
+    ],
+    onClick: emptyFunction,
+    actions: [
+      {
+        label: 'Удалить',
+        onClick: emptyFunction,
+        icon: IconTrash,
+      },
+      {
+        label: 'Отметить как прочитанное',
+        onClick: emptyFunction,
+        icon: IconEye,
+      },
+    ],
+    view: 'user',
+  },
+  // и так далее
+];
+
+export const notificationsActions: DefaultAction[] = [
+  {
+    label: 'Отметить все как прочитанное',
+    onClick: emptyFunction,
+    icon: IconEye,
+  },
+  {
+    label: 'Удалить все',
+    onClick: emptyFunction,
+    icon: IconTrash,
+  },
+];
+
+type MenuItem = {
+  label: string;
+  subMenu?: MenuItem[];
+  href?: string;
+  onClick?: React.EventHandler<React.MouseEvent>;
+};
+
+export const menu: MenuItem[] = [
+  {
+    label: 'Пункт меню 1',
+    href: '#',
+    onClick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+    subMenu: [{ label: 'Пункт меню 1-1' }, { label: 'Пункт меню 1-2' }],
+  },
+  { label: 'Пункт меню 2', subMenu: [{ label: 'Пункт меню 2-1' }] },
+  {
+    label: 'Пункт меню 3',
+    subMenu: [
+      { label: 'Пункт меню 3-1', subMenu: [{ label: 'Пункт меню 3-1-1' }] },
+      { label: 'Пункт меню 3-2', subMenu: [{ label: 'Пункт меню 3-2-1' }] },
+      {
+        label: 'Пункт меню 3-3',
+        subMenu: [
+          { label: 'Пункт меню 3-1', subMenu: [{ label: 'Пункт меню 3-1-1' }] },
+          { label: 'Пункт меню 3-2', subMenu: [{ label: 'Пункт меню 3-2-1' }] },
+          {
+            label: 'Пункт меню 3-3',
+            subMenu: [
+              {
+                label: 'Пункт меню 3-3-1',
+                subMenu: [{ label: 'Пункт меню 3-3-1-1' }],
+              },
+              {
+                label: 'Пункт меню 3-3-2',
+                subMenu: [{ label: 'Пункт меню 3-3-2-1' }],
+              },
+              {
+                label: 'Пункт меню 3-3-3',
+                subMenu: [{ label: 'Пункт меню 3-3-3-1' }],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+type TileMenuItem = {
+  title: string;
+  description: string;
+  image: string;
+};
+
+export const tileMenu: TileMenuItem[] = [
+  {
+    title: 'Портал',
+    description: 'Сводная информация обо мне и подразделении, новости компании',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  // и так далее
+];
+
+export const HeaderExampleBasic = () => (
+  <Header
+    logo={
+      //some image
+    }
+    userName="Иванов Иван"
+    userInfo="Владелец"
+    loginButtonLabel="Войти"
+    userLogined={true}
+    notifications={notifications}
+    notificationsActions={notificationsActions}
+    notificationsTitle="Уведомления"
+    notificationsGroupByDay={true}
+    tileMenu={tileMenu}
+    tileMenuTitle="Сервисы"
+    menu={menu}
+  />
+);
+```
+
+<HeaderExampleBasic />

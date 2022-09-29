@@ -1,0 +1,5 @@
+.che--MobileMenuExample {
+  &-SideBar.Sidebar-Window {
+    top: var(--header-height);
+  }
+}

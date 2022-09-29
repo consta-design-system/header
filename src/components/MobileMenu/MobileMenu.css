@@ -1,0 +1,14 @@
+.che--MobileMenu {
+  &-Sidebar.Sidebar-Window_position_right,
+  &-Sidebar.Sidebar-Window_position_left {
+    overflow: hidden;
+    width: 380px;
+    max-width: calc(100% - var(--space-4xl));
+  }
+
+  &-Menu {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+  }
+}
