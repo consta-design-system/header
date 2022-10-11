@@ -92,7 +92,7 @@ export const NotificationsListExample = () => (
 передайте в свойстве `badges` массив с данными типа [`Badge`](#свойства). Что внутри:
 
 - `label` — надпись на бейджике (обязательно),
-- `status` — статус бейджика, варианты: `'success'`, `'error'`, `'warning'`, `'normal'`, `'system'` (см. [Badge](##LIBS.STAND|stand:uikit-components-badge-stable)). По умолчанию `'normal'`.
+- `status` — статус бейджика, варианты: `'success'`, `'error'`, `'warning'`, `'normal'`, `'system'` (см. [Badge](##LIBS.LIB.STAND/lib:uikit/stand:components-badge-stable)). По умолчанию `'normal'`.
 
 ```tsx
 import {
@@ -142,7 +142,7 @@ export const NotificationsListExample = () => (
 ## Изображение или аватар
 
 По умолчанию уведомление ведёт себя как обычный текст с заголовком и изображением.
-Если укажете `view='user'`, уведомление будет вести себя как компонент [User](##LIBS.STAND|stand:uikit-components-user-stable): `title` превратится в имя пользователя, а `image` — в его аватарку.
+Если укажете `view='user'`, уведомление будет вести себя как компонент [User](##LIBS.LIB.STAND/lib:uikit/stand:components-user-stable): `title` превратится в имя пользователя, а `image` — в его аватарку.
 
 Это не сильно влияет на весь компонент, но если не укажете картинку, аватарка сформируется из имени пользователя (цвет подбирается автоматически).
 
@@ -179,7 +179,7 @@ export const NotificationsListExample = () => <NotificationsList items={itemsVie
 Чтобы создать уведомления, используйте объект типа [DefaultAction](#свойства). Что внутри:
 
 - `label` — название действия (например, «Удалить»),
-- `icon` — иконка из [библиотеки иконок](##LIBS.STAND|stand:uikit-components-icon-stable),
+- `icon` — иконка из [библиотеки иконок](##LIBS.LIB.STAND/lib:uikit/stand:components-icon-stable),
 - `onClick` — функция для получения клика по этому элементу.
 
 Вы можете создать уведомления с кастомным типом данных, отличающимся от [DefaultItem](#свойства). В этом случае используйте геттеры
