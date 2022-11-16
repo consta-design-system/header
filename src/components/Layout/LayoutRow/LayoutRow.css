@@ -32,7 +32,6 @@
       }
 
       &_center {
-        flex: 0;
         justify-content: center;
       }
     }

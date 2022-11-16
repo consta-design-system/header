@@ -13,7 +13,7 @@ const cnLayoutVariants = cn('LayoutVariants');
 
 const menu: MenuDefaultItem[] = [
   {
-    label: 'Пункт 1werwerwerwerwer',
+    label: 'Пункт 1',
     active: true,
     subMenu: [{ label: 'Пункт 1-1' }],
   },
@@ -54,14 +54,14 @@ export const Variants = () => {
       className={cnLayoutVariants()}
       rowTop={{ left: 'left', center: 'center', right: 'right' }}
       rowCenter={{
-        left: (
+        left: <Notifications items={notifications} />,
+        center: (
           <Menu
-            className={cnMixSpace({ mL: 'm' })}
+            className={cnLayoutVariants('Menu', [cnMixSpace({ mL: 'm' })])}
             items={menu}
             style={{ width: '100%', height: `var(--header-height)` }}
           />
         ),
-        center: <Notifications items={notifications} />,
         right: 'right',
       }}
       rowBottom={{ left: 'left', center: 'center', right: 'right' }}

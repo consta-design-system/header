@@ -1,0 +1,5 @@
+.che--LayoutExample {
+  &-Menu > ul {
+    justify-content: center;
+  }
+}

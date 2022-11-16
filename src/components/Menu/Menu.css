@@ -1,4 +1,8 @@
 .che--Menu {
+  &_width_full {
+    width: 100%;
+  }
+
   &-List {
     display: flex;
     align-items: center;

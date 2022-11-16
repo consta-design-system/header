@@ -7,4 +7,8 @@
     display: flex;
     color: var(--color-control-typo-clear);
   }
+
+  &-Menu > ul {
+    justify-content: center;
+  }
 }
