@@ -25,6 +25,7 @@ export type MenuPropOnItemClick<ITEM> = (props: {
 export type MenuProps<ITEM = MenuDefaultItem> = PropsWithHTMLAttributesAndRef<
   {
     items: ITEM[];
+    width?: 'full';
     onItemClick?: MenuPropOnItemClick<ITEM>;
     getItemHref?: MenuPropGetItemHref<ITEM>;
     getItemLabel?: MenuPropGetItemLabel<ITEM>;

@@ -29,6 +29,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   const {
     items,
     className,
+    width,
     getItemActive,
     getItemHref,
     getItemLabel,
@@ -90,7 +91,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   return (
     <nav
       {...otherProps}
-      className={cnMenu(null, [className])}
+      className={cnMenu({ width }, [className])}
       onMouseLeave={setMouseOnMenu.off}
       onMouseEnter={setMouseOnMenu.on}
       ref={ref}

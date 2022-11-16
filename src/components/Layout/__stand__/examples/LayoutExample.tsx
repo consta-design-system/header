@@ -1,10 +1,12 @@
-import { cnMixSpace } from '@consta/uikit/MixSpace';
+import './LayoutExample.css';
+
 import React from 'react';
 
 import { Layout } from '##/components/Layout';
 import { Menu, MenuDefaultItem } from '##/components/Menu';
 import { Notifications } from '##/components/Notifications';
 import { Example } from '##/stand/components/Example';
+import { cn } from '##/utils/bem';
 
 const menu: MenuDefaultItem[] = [
   {
@@ -27,9 +29,12 @@ const notifications: NOTIFICATIONS[] = [
   },
 ];
 
+const cnLayoutExample = cn('LayoutExample');
+
 export const LayoutExampleBasic = () => (
   <Example>
     <Layout
+      className={cnLayoutExample()}
       rowTop={{ left: 'Левый модуль', center: 'Центральный', right: 'Правый' }}
       rowCenter={{
         left: 'Левый модуль',
@@ -48,14 +53,13 @@ export const LayoutExampleBasic = () => (
 export const LayoutExample = () => (
   <Example>
     <Layout
+      className={cnLayoutExample()}
       rowTop={{ left: 'лево', center: 'центер', right: 'право' }}
       rowCenter={{
-        left: (
-          <div className={cnMixSpace({ mL: 'm' })}>
-            <Menu items={menu} />
-          </div>
+        left: <Notifications items={notifications} />,
+        center: (
+          <Menu className={cnLayoutExample('Menu')} items={menu} width="full" />
         ),
-        center: <Notifications items={notifications} />,
         right: 'право',
       }}
       rowBottom={{ left: 'лево', center: 'центер', right: 'право' }}
