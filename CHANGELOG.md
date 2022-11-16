@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.0.1 (16/11/2022)
+Самое важное:
+- Исправлена проблема исчезновения `Menu` при встраивании его в `Layout`
+- Доработана документация
+
+---
+
+- [fix(layout): fix grid of layout and add prop width for menu (#37)](https://github.com/consta-design-system/header/commit/6955ae899a0172c60f44a37ecca3b7a9690aed25) - [@N1MBER](https://github.com/N1MBER)
+- [docs(portal): readme links, version, stand (#36)](https://github.com/consta-design-system/header/commit/8bee0096ebb3081172731133697497687a491b0a) - [@arhayka](https://github.com/arhayka)
+- [docs: links, menu, readme, start (#35)](https://github.com/consta-design-system/header/commit/96f32b17b1f9310c06dc9692723b62ecfc92557a) - [@arhayka](https://github.com/arhayka)
+- [chore(deps): update @consta/stand](https://github.com/consta-design-system/header/commit/d9ca8c347a9fa8a260babecb0016573b450e6ca9) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v1.0.0 (29/09/2022)
 Самое важное:
 Выкладываем новый стенд и сборщик.
