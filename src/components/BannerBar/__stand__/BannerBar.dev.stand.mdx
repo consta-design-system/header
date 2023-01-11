@@ -1,0 +1,81 @@
+import { BannerBarExample } from './examples/BannerBarExample/BannerBarExample';
+
+```tsx
+import { BannerBar } from '@consta/header/BannerBar';
+```
+
+Боковое меню
+
+```tsx
+import React from 'react';
+import { BannerBar } from '@consta/header/BannerBar';
+
+type Item = {
+  label: string;
+  description: string;
+  image?: string;
+};
+
+const items: Item[] = [
+  {
+    label: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
+
+export const BannerBarExample = () => {
+  return <BannerBar items={items} />;
+};
+```
+
+<BannerBarExample />
+
+```tsx
+export type BannerBarDefaultItem = {
+  onClick?: React.MouseEventHandler;
+  label: string;
+  description?: string;
+  image?: string;
+  as?: keyof JSX.IntrinsicElements;
+  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+};
+
+export type BannerBarPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type BannerBarPropGetItemDescription<ITEM> = (
+  item: ITEM,
+) => string | undefined;
+export type BannerBarPropGetItemImage<ITEM> = (
+  item: ITEM,
+) => string | undefined;
+export type BannerBarPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+export type BannerBarPropGetItemAs<ITEM> = (
+  item: ITEM,
+) => keyof JSX.IntrinsicElements | undefined;
+export type BannerBarPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+
+export type BannerBarPropOnItemClick<ITEM> = (params: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+```
+
+| Свойство              | Тип                               | По умолчанию                | Описание                                                                |
+| --------------------- | --------------------------------- | --------------------------- | ----------------------------------------------------------------------- |
+| `items`               | `ITEM[]`                          | -                           | Пункты меню                                                             |
+| `onItemClick?`        | `BannerBarPropOnItemClick`        | -                           | Событие по нажаьию на элемент                                           |
+| `getItemLabel?`       | `BannerBarPropGetItemLabel`       | `defaultGetItemLabel`       | Функция для определения заголовка элемента                              |
+| `getItemOnClick?`     | `BannerBarPropGetItemOnClick`     | `defaultGetItemOnClick`     | Функция для определения события по нажатию на элемент                   |
+| `getItemDescription?` | `BannerBarPropGetItemDescription` | `defaultGetItemDescription` | Функция для определения описания элемениа                               |
+| `getItemImage?`       | `BannerBarPropGetItemImage`       | `defaultGetItemImage`       | Функция для определения картинки элемента                               |
+| `getItemAs?`          | `BannerBarPropGetItemAs`          | `defaultGetItemAs`          | Функция для определения тэга элемента                                   |
+| `getItemAttributes?`  | `BannerBarPropGetItemAttributes`  | `defaultGetItemAttributes`  | Функция для определения атрибутов элемента                              |
+| `className?`          | `string`                          | -                           | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| `listClassName?`      | `string`                          | -                           | Дополнительный CSS-класс списка уведомлений                             |
+| `ref?`                | `React.Ref<HTMLButtonElement>`    | -                           | Ссылка на корневой DOM-элемент                                          |

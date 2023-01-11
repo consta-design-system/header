@@ -1,0 +1,37 @@
+.che--NavBarItem {
+  --nav-bar-item-color: var(--color-control-typo-clear);
+  --nav-bar-item-background: var(--color-bg-clear);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-s) var(--space-l);
+  color: var(--nav-bar-item-color);
+  background: var(--nav-bar-item-background);
+  font-size: var(--size-text-m);
+  line-height: var(--line-height-text-2xs);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    --nav-bar-item-background: var(--color-control-bg-ghost-hover);
+  }
+
+  &_active {
+    --nav-bar-item-background: var(--color-control-bg-ghost);
+    --nav-bar-item-color: var(--color-control-typo-ghost);
+  }
+
+  &-Icon {
+    color: var(--nav-bar-item-color);
+    transition: color 0.3s;
+  }
+
+  &-Content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+}

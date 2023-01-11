@@ -1,0 +1,28 @@
+.che--GlobalMenuGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-s);
+
+  &-Content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: calc(var(--space-xs) + var(--space-3xs));
+  }
+
+  &-Button {
+    width: max-content;
+    padding: 0;
+
+    & > .Button-Icon {
+      transition: transform 0.3s;
+    }
+
+    &_open {
+      & > .Button-Icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

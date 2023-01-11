@@ -1,0 +1,142 @@
+import { GlobalMenuExample } from './examples/GlobalMenuExample/GlobalMenuExample';
+
+```tsx
+import { GlobalMenu } from '@consta/header/GlobalMenu';
+```
+
+Боковое меню
+
+```tsx
+import React from 'react';
+import { GlobalMenu } from '@consta/header/GlobalMenu';
+
+type Item = {
+  label: string;
+  groupId: number;
+};
+
+type Group = {
+    label: string;
+    id: number;
+}
+
+const items: Item[] = [
+ {
+    label: 'Ветряные электростанции',
+    groupId: 1,
+  },
+  {
+    label: 'Солнечные электростанции',
+    groupId: 1,
+  },
+  {
+    label: 'Гидроэлектростанции',
+    groupId: 1,
+  },
+  {
+    label: 'Гидроаккумулирующие электростанции',
+    groupId: 1,
+  },
+  {
+    label: 'Теплоэлектроцентрали',
+    groupId: 1,
+  },
+  {
+    label: 'Газопоршневые станции',
+    groupId: 1,
+  },
+  {
+    label: 'Бошняково',
+    groupId: 2,
+  },
+  {
+    label: 'ГорнозаводскаяГорнозаводская',
+    groupId: 2,
+  },
+  ...
+];
+
+const groups: Group[] = [
+  {
+    id: 1,
+    label: 'Электростанции',
+  },
+  {
+    id: 2,
+    label: 'Угольные шахты и разрезы',
+  },
+  {
+    id: 3,
+    label: 'Трубопровод',
+  },
+  {
+    id: 4,
+    label: 'Перерабатывающие заводы',
+  },
+]
+
+export const GlobalMenuExample = () => {
+  return <GlobalMenu items={items} groups={groups} columns={3} title="Объекты" maxElements={5} />;
+};
+```
+
+<GlobalMenuExample />
+
+```tsx
+export type GlobalMenuDefaultItem = {
+  as?: keyof JSX.IntrinsicElements;
+  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  onClick?: React.MouseEventHandler;
+  label: string;
+  groupId?: string | number;
+};
+
+export type GlobalMenuDefaultGroup = {
+  label: string;
+  id?: string | number;
+};
+
+export type GlobalMenuPropGetItemAs<ITEM> = (
+  item: ITEM,
+) => keyof JSX.IntrinsicElements | undefined;
+export type GlobalMenuPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+export type GlobalMenuPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+export type GlobalMenuPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type GlobalMenuPropGetItemGroupId<ITEM> = (
+  item: ITEM,
+) => string | number | undefined;
+
+export type GlobalMenuPropGetGroupId<ITEM> = (
+  item: ITEM,
+) => number | string | undefined;
+export type GlobalMenuPropGetGroupLabel<ITEM> = (item: ITEM) => string;
+
+export type GlobalMenuPropOnItemClick<ITEM> = (params: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+```
+
+| Свойство             | Тип                               | По умолчанию               | Описание                                                                |
+| -------------------- | --------------------------------- | -------------------------- | ----------------------------------------------------------------------- |
+| `title?`             | `string`                          | -                          | Заголовок меню                                                          |
+| `maxElements?`       | `number`                          | -                          | Колечестов отображаемых элементов в группе                              |
+| `columns?`           | `number`                          | 3                          | Количестов колонок с группами                                           |
+| `showButtonText?`    | `string`                          | `Ещё`                      | Текст для кнопки в состоянии свернутого списка                          |
+| `hideButtonText?`    | `string`                          | `Скрыть`                   | Текст для кнопки в состоянии раскрытого списка                          |
+| `items`              | `ITEM[]`                          | -                          | Пункты меню                                                             |
+| `onItemClick?`       | `GlobalMenuPropOnItemClick`       | -                          | Событие по нажатию на элемент меню                                      |
+| `getItemLabel?`      | `GlobalMenuPropGetItemLabel`      | `defaultGetItemLabel`      | Функция для определения заголовка элемента меню                         |
+| `getItemOnClick?`    | `GlobalMenuPropGetItemOnClick`    | `defaultGetItemOnClick`    | Функция для определения события по нажатию на элемент меню              |
+| `getItemGroupId?`    | `GlobalMenuPropGetItemGroupId`    | `defaultGetItemGroupId`    | Функция для определения описания элемениа меню                          |
+| `getItemAs?`         | `GlobalMenuPropGetItemAs`         | `defaultGetItemAs`         | Функция для определения тэга элемента меню                              |
+| `getItemAttributes?` | `GlobalMenuPropGetItemAttributes` | `defaultGetItemAttributes` | Функция для определения атрибутов элемента меню                         |
+| `groups?`            | `GROUP[]`                         | -                          | Пункты меню                                                             |
+| `getGroupId?`        | `GlobalMenuPropGetGroupId`        | `defaultGetGroupId`        | Функция для определения ключа группы                                    |
+| `getGroupLabel?`     | `GlobalMenuPropGetGroupLabel`     | `defaultGetGroupLabel`     | Функция для определения заголовка группы                                |
+| `className?`         | `string`                          | -                          | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| `ref?`               | `React.Ref<HTMLButtonElement>`    | -                          | Ссылка на корневой DOM-элемент                                          |

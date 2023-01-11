@@ -1,0 +1,27 @@
+.che--BannerBar {
+  display: flex;
+  overflow: auto;
+  flex-direction: var(--banner-bar-direction);
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: var(--banner-bar-vertical-space) var(--banner-bar-horizontal-space);
+  background: var(--color-bg-secondary);
+  gap: var(--space-m);
+
+  &_view {
+    &_horizontal {
+      --banner-bar-vertical-space: var(--space-xl);
+      --banner-bar-horizontal-space: var(--space-2xl);
+      --banner-bar-direction: row;
+    }
+
+    &_vertical {
+      --banner-bar-vertical-space: var(--space-2xl);
+      --banner-bar-horizontal-space: var(--space-xl);
+      --banner-bar-direction: column;
+    }
+  }
+}

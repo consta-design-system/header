@@ -1,0 +1,169 @@
+import { MegaMenuExample } from './examples/MegaMenuExample/MegaMenuExample';
+
+```tsx
+import { MegaMenu } from '@consta/header/MegaMenu';
+```
+
+Боковое меню
+
+```tsx
+import React from 'react';
+import { IconArrowRight } from '@consta/uikit/IconArrowRight';
+import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
+import { IconFolders } from '@consta/uikit/IconFolders';
+import { IconGas } from '@consta/uikit/IconGas';
+import { IconInfo } from '@consta/uikit/IconInfo';
+import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
+import { IconMail } from '@consta/uikit/IconMail';
+import { IconMap } from '@consta/uikit/IconMap';
+import { MegaMenuDefaultItem, MegaMenu } from '@consta/header/MegaMenu';
+
+const banners = [
+  {
+    label: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+  {
+    label: 'Особенности разведки',
+    description: 'Лицензии на пользование недрами (далее для настоящ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
+
+const getSubMenu = (prefix?: string) => [
+  {
+    key: `${prefix ? `${prefix}.` : ''}1`,
+    label: 'Электростанции',
+    subMenu: [
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.1`,
+        label: 'Ветряные электростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.2`,
+        label: 'Солнечные электростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.3`,
+        label: 'Гидроэлектростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.4`,
+        label: 'Гидроаккумулирующие электростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.5`,
+        label: 'Теплоэлектроцентрали',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.6`,
+        label: 'Газопоршневые станции',
+      },
+    ],
+  },
+  ...
+];
+
+const items = [
+  {
+    key: '1',
+    label: 'Объекты',
+    iconLeft: IconFlagFilled,
+    subMenu: getSubMenu('1'),
+  },
+  {
+    key: '2',
+    label: 'Нефть и газ',
+    iconLeft: IconGas,
+    subMenu: getSubMenu('2'),
+  },
+  ...
+];
+
+export const MegaMenuExample = () => {
+  return (
+    <div>
+      <MegaMenu
+        onClickOutside={setIsOpen.off}
+        isOpen={isOpen}
+        offset={60}
+        items={items}
+        banners={banners}
+        menuMaxElements={4}
+      />
+      <Button label="Открыть" onClick={setIsOpen.toogle} />
+    </div>
+  );
+};
+```
+
+<MegaMenuExample />
+
+```tsx
+export type MegaMenuPropOnItemClick<ITEM> = (params: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+
+export type MegaMenuDefaultItem = {
+  key: string | number;
+  label: string;
+  iconLeft?: IconComponent;
+  as?: keyof JSX.IntrinsicElements;
+  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  subMenu?: MegaMenuDefaultItem[];
+  onClick?: React.MouseEventHandler;
+};
+
+export type MegaMenuPropGetItemKey<ITEM> = (item: ITEM) => string | number;
+export type MegaMenuPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type MegaMenuPropGetItemIconLeft<ITEM> = (
+  item: ITEM,
+) => IconComponent | undefined;
+export type MegaMenuPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+export type MegaMenuPropGetItemAs<ITEM> = (
+  item: ITEM,
+) => keyof JSX.IntrinsicElements | undefined;
+export type MegaMenuPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+export type MegaMenuPropGetItemSubMenu<ITEM> = (
+  item: ITEM,
+) => ITEM[] | undefined;
+```
+
+| Свойство                | Тип                               | По умолчанию                  | Описание                                                                |
+| ----------------------- | --------------------------------- | ----------------------------- | ----------------------------------------------------------------------- |
+| `isOpen?`               | `boolean`                         | -                             | Флаг открыто ли меню                                                    |
+| `onClickOutside?`       | `(event: MouseEvent) => void`     | -                             | Событие по нажатию за пределами меню                                    |
+| `onEsc?`                | `(event: KeyboardEvent) => void`  | -                             | Событие по нажатию кнопки `ESC`                                         |
+| `menuTitle?`            | `string`                          | -                             | Заголовок меню                                                          |
+| `offset?`               | `number`                          | 0                             | Отступ меню сверху                                                      |
+| `menuShowButtonText?`   | `string`                          | `'Ещё'`                       | Текст кнопки для разворачивания списка пунктов меню                     |
+| `menuHideButtonText?`   | `string`                          | `'Скрыть'`                    | Текст кнопки для сворачиванию списка пунктов меню                       |
+| `menuMaxElements?`      | `number`                          | -                             | Максимальное число отображаемых элементов пункта меню                   |
+| `view?`                 | `'vertical', 'horizontal'`        | `vertical`                    | Вид меню                                                                |
+| `items`                 | `ITEM[]`                          | -                             | Пункты меню                                                             |
+| `banners?`              | `BANNER[]`                        | -                             | Список баннеров                                                         |
+| `onItemClick?`          | `MegaMenuPropOnItemClick`         | -                             | Событие по нажаьию на элемент                                           |
+| `onBannerClick?`        | `MegaMenuPropOnItemClick`         | -                             | Событие по нажаьию на баннер                                            |
+| `getItemKey?`           | `MegaMenuPropGetItemLabel`        | `defaultGetItemKey`           | Функция для определения ключа элемента                                  |
+| `getItemLabel?`         | `MegaMenuPropGetItemLabel`        | `defaultGetItemLabel`         | Функция для определения заголовка элемента                              |
+| `getItemOnClick?`       | `MegaMenuPropGetItemOnClick`      | `defaultGetItemOnClick`       | Функция для определения события по нажатию на элемент                   |
+| `getItemIconLeft?`      | `MegaMenuPropGetItemIconLeft`     | `defaultGetItemIconLeft`      | Функция для определения левой иконки                                    |
+| `getItemAs?`            | `MegaMenuPropGetItemAs`           | `defaultGetItemAs`            | Функция для определения тэга элемента                                   |
+| `getItemAttributes?`    | `MegaMenuPropGetItemAttributes`   | `defaultGetItemAttributes`    | Функция для определения атрибутов элемента                              |
+| `getItemSubMenu?`       | `MegaMenuPropGetItemSubMenu`      | `defaultGetItemSubMenu`       | Функция для определения дочернего меню элемента                         |
+| `getBannerLabel?`       | `BannerBarPropGetItemLabel`       | `defaultGetBannerLabel`       | Функция для определения заголовка элемента                              |
+| `getBannerDescription?` | `BannerBarPropGetItemDescription` | `defaultGetBannerDescription` | Функция для определения заголовка элемента                              |
+| `getBannerImage?`       | `BannerBarPropGetItemImage`       | `defaultGetBannerImage`       | Функция для определения заголовка элемента                              |
+| `getBannerOnClick?`     | `BannerBarPropGetItemOnClick`     | `defaultGetBannerOnClick`     | Функция для определения заголовка элемента                              |
+| `getBannerAs?`          | `BannerBarPropGetItemAs`          | `defaultGetBannerAs`          | Функция для определения заголовка элемента                              |
+| `getBannerAttributes?`  | `BannerBarPropGetItemAttributes`  | `defaultGetBannerAttributes`  | Функция для определения заголовка элемента                              |
+| `className?`            | `string`                          | -                             | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
