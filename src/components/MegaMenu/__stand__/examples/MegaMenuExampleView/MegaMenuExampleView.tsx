@@ -1,3 +1,4 @@
+import { Example } from '@consta/stand';
 import { Button } from '@consta/uikit/Button';
 import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
 import { IconFolders } from '@consta/uikit/IconFolders';
@@ -6,11 +7,25 @@ import { IconInfo } from '@consta/uikit/IconInfo';
 import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
 import { IconMail } from '@consta/uikit/IconMail';
 import { IconMap } from '@consta/uikit/IconMap';
-import { useFlag } from '@consta/uikit/useFlag';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
-import { Example } from '##/stand/components';
+
+const banners = [
+  {
+    label: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+  {
+    label: 'Особенности разведки',
+    description: 'Лицензии на пользование недрами (далее для настоящ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
 
 const getSubMenu = (prefix?: string) => [
   {
@@ -154,19 +169,30 @@ const items = [
   },
 ];
 
-export const MegaMenuExample = () => {
-  const [isOpen, setIsOpen] = useFlag();
+type View = 'vertical' | 'horizontal';
+const views: View[] = ['vertical', 'horizontal'];
+
+export const MegaMenuExampleView = () => {
+  const [openType, setOpenType] = useState<View | undefined>();
 
   return (
-    <Example>
-      <MegaMenu
-        onClickOutside={setIsOpen.off}
-        isOpen={isOpen}
-        offset={60}
-        items={items}
-        menuMaxElements={4}
-      />
-      <Button label="Открыть" onClick={setIsOpen.toogle} />
-    </Example>
+    <Example
+      items={views}
+      getItemLabel={(view) => `view=${view}`}
+      getItemNode={(view: View) => (
+        <>
+          <MegaMenu
+            onClickOutside={() => setOpenType(undefined)}
+            isOpen={openType === view}
+            offset={60}
+            items={items}
+            view={view}
+            banners={banners}
+            menuMaxElements={4}
+          />
+          <Button label="Открыть" onClick={() => setOpenType(view)} />
+        </>
+      )}
+    />
   );
 };

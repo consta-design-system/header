@@ -1,14 +1,37 @@
 import { NavBarExample } from './examples/NavBarExample/NavBarExample';
+import { MdxMenu } from '@consta/stand';
+import { NavBarExampleCustomTypes } from './examples/NavBarExampleCustomTypes/NavBarExampleCustomTypes';
 
 ```tsx
 import { NavBar } from '@consta/header/NavBar';
 ```
 
-Боковое меню
+<MdxMenu>
+
+- [Содержимое](#содержимое)
+  - [Пример обычного меню](#пример-обычного-меню)
+  - [Пример меню с кастомным типом](#пример-меню-с-кастомным-типом)
+- [Внешний вид](#внешний-вид)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+## Содержимое
+
+За данные для пунктов меню отвечает свойство `items` (тип [NavBarDefaultItem](#свойства)). В него входит:
+
+- `label` — заголовок меню
+- `iconLeft` — иконка с левой стороны
+- `iconRight` — иконка с правой стороны
+- `active` — отмечает активный пункт меню
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
+
+##### Пример обычного меню
 
 ```tsx
-import React from 'react';
-import { IconArrowRight } from '@consta/uikit/IconArrowRight';
 import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
 import { IconFolders } from '@consta/uikit/IconFolders';
 import { IconGas } from '@consta/uikit/IconGas';
@@ -16,33 +39,31 @@ import { IconInfo } from '@consta/uikit/IconInfo';
 import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
 import { IconMail } from '@consta/uikit/IconMail';
 import { IconMap } from '@consta/uikit/IconMap';
-import { NavBarDefaultItem, NavBar } from '@consta/header/NavBar';
+import React from 'react';
 
-export const items: NavBarDefaultItem[] = [
+import { NavBar } from '@consta/header/NavBar';
+
+export const items = [
   {
     label: 'Объекты',
     iconLeft: IconFlagFilled,
-    iconRight: IconArrowRight,
   },
   {
     label: 'Нефть и газ',
     iconLeft: IconGas,
-    iconRight: IconArrowRight,
   },
   {
     label: 'Электроэнергетика',
     iconLeft: IconLineAndBarChart,
-    iconRight: IconArrowRight,
   },
   {
     label: 'Карта',
     iconLeft: IconMap,
-    iconRight: IconArrowRight,
+    active: true,
   },
   {
     label: 'Отображение данных',
     iconLeft: IconFolders,
-    iconRight: IconArrowRight,
   },
   {
     label: 'Информация',
@@ -53,17 +74,87 @@ export const items: NavBarDefaultItem[] = [
     iconLeft: IconMail,
   },
 ];
-
 export const NavBarExample = () => {
-  return (
-    <Example>
-      <NavBar items={items} />
-    </Example>
-  );
+  return <NavBar items={items} />;
 };
 ```
 
 <NavBarExample />
+
+##### Пример меню с кастомным типом
+
+```tsx
+import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
+import { IconFolders } from '@consta/uikit/IconFolders';
+import { IconGas } from '@consta/uikit/IconGas';
+import { IconComponent } from '@consta/uikit/Icon';
+import { IconInfo } from '@consta/uikit/IconInfo';
+import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
+import { IconMail } from '@consta/uikit/IconMail';
+import { IconMap } from '@consta/uikit/IconMap';
+import React from 'react';
+
+import { NavBar } from '@consta/header/NavBar';
+
+type Item = {
+  text: string;
+  left: IconComponent;
+  checked?: boolean;
+};
+
+export const items: Item[] = [
+  {
+    text: 'Объекты',
+    left: IconFlagFilled,
+  },
+  {
+    text: 'Нефть и газ',
+    left: IconGas,
+  },
+  {
+    text: 'Электроэнергетика',
+    left: IconLineAndBarChart,
+  },
+  {
+    text: 'Карта',
+    left: IconMap,
+    checked: true,
+  },
+  {
+    text: 'Отображение данных',
+    left: IconFolders,
+  },
+  {
+    text: 'Информация',
+    left: IconInfo,
+  },
+  {
+    text: 'Сообщения',
+    left: IconMail,
+  },
+];
+
+export const NavBarExampleCustomTypes = () => {
+  return (
+    <NavBar
+      getItemLabel={(item) => item.text}
+      getItemIconLeft={(item) => item.left}
+      getItemActive={(item) => item.checked}
+      items={items}
+    />
+  );
+};
+```
+
+<NavBarExampleCustomTypes />
+
+## Импорт
+
+```tsx
+import { NavBar } from '@consta/header/NavBar';
+```
+
+## Свойства
 
 ```tsx
 export type NavBarDefaultItem = {

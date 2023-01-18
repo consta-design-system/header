@@ -1,14 +1,8 @@
 .che--GlobalMenu {
   box-sizing: border-box;
   width: 100%;
-  padding:
-    var(--space-2xl) calc(var(--space-3xl) * 1.5)
-    calc(var(--space-2xs) * 1.5);
+  padding: var(--space-2xl) calc(var(--space-3xl) * 1.5);
   background: var(--color-bg-default);
-
-  &-Title {
-    margin-bottom: var(--space-xl);
-  }
 
   &-Content {
     display: grid;

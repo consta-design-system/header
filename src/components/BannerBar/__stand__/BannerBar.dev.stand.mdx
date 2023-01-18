@@ -1,22 +1,41 @@
+import { MdxMenu } from '@consta/stand';
 import { BannerBarExample } from './examples/BannerBarExample/BannerBarExample';
+import { BannerBarExampleCustomTypes } from './examples/BannerBarExampleCustomTypes/BannerBarExampleCustomTypes';
+import { BannerBarExampleView } from './examples/BannerBarExampleView/BannerBarExampleView';
 
 ```tsx
 import { BannerBar } from '@consta/header/BannerBar';
 ```
 
-Боковое меню
+<MdxMenu>
+
+- [Содержимое](#содержимое)
+  - [Пример обычных баннеров](#пример-обычных-баннеров)
+  - [Пример баннеров с кастомным типом](#пример-баннеров-с-кастомным-типом)
+- [Внешний вид](#внешний-вид)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+## Содержимое
+
+За данные для баннеров отвечает свойство `items` (тип [BannerBarDefaultItem](#свойства)). В него входит:
+
+- `label` — заголовок баннера
+- `description` — описание для баннера
+- `image` — картинка
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
+
+##### Пример обычных баннеров
 
 ```tsx
 import React from 'react';
 import { BannerBar } from '@consta/header/BannerBar';
 
-type Item = {
-  label: string;
-  description: string;
-  image?: string;
-};
-
-const items: Item[] = [
+const items = [
   {
     label: 'Особенности разведки',
     description:
@@ -27,11 +46,66 @@ const items: Item[] = [
 ];
 
 export const BannerBarExample = () => {
-  return <BannerBar items={items} />;
+  return <BannerBar items={items} view="horizontal" />;
 };
 ```
 
 <BannerBarExample />
+
+##### Пример баннеров с кастомным типом
+
+```tsx
+import React from 'react';
+import { BannerBar } from '@consta/header/BannerBar';
+
+type Item = {
+  text: string;
+  description: string;
+  photo?: string;
+};
+
+const items: Item[] = [
+  {
+    text: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    photo:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
+
+export const BannerBarExample = () => {
+  return (
+    <BannerBar
+      items={items}
+      getItemLabel={(item) => item.text}
+      getItemImage={(item) => item.photo}
+      view="horizontal"
+    />
+  );
+};
+```
+
+<BannerBarExampleCustomTypes />
+
+## Внешний вид
+
+За внешний вид компонента отвечает свойство `view`.
+
+```tsx
+<BannerBar items={items} view="vertical" />
+<BannerBar items={items} view="horizontal" />
+```
+
+<BannerBarExampleView />
+
+## Импорт
+
+```tsx
+import { BannerBar } from '@consta/header/BannerBar';
+```
+
+## Свойства
 
 ```tsx
 export type BannerBarDefaultItem = {
@@ -42,6 +116,8 @@ export type BannerBarDefaultItem = {
   as?: keyof JSX.IntrinsicElements;
   attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
 };
+
+export type BannerBarPropView = 'vertical' | 'horizontal';
 
 export type BannerBarPropGetItemLabel<ITEM> = (item: ITEM) => string;
 export type BannerBarPropGetItemDescription<ITEM> = (
@@ -68,6 +144,7 @@ export type BannerBarPropOnItemClick<ITEM> = (params: {
 
 | Свойство              | Тип                               | По умолчанию                | Описание                                                                |
 | --------------------- | --------------------------------- | --------------------------- | ----------------------------------------------------------------------- |
+| `view?`               | `BannerBarPropView`               | `vertical`                  | Внешний вид баннеров                                                    |
 | `items`               | `ITEM[]`                          | -                           | Пункты меню                                                             |
 | `onItemClick?`        | `BannerBarPropOnItemClick`        | -                           | Событие по нажаьию на элемент                                           |
 | `getItemLabel?`       | `BannerBarPropGetItemLabel`       | `defaultGetItemLabel`       | Функция для определения заголовка элемента                              |
@@ -77,5 +154,4 @@ export type BannerBarPropOnItemClick<ITEM> = (params: {
 | `getItemAs?`          | `BannerBarPropGetItemAs`          | `defaultGetItemAs`          | Функция для определения тэга элемента                                   |
 | `getItemAttributes?`  | `BannerBarPropGetItemAttributes`  | `defaultGetItemAttributes`  | Функция для определения атрибутов элемента                              |
 | `className?`          | `string`                          | -                           | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
-| `listClassName?`      | `string`                          | -                           | Дополнительный CSS-класс списка уведомлений                             |
 | `ref?`                | `React.Ref<HTMLButtonElement>`    | -                           | Ссылка на корневой DOM-элемент                                          |

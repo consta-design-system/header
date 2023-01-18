@@ -1,6 +1,7 @@
 import './GlobalMenu.css';
 
 import { getGroups } from '@consta/uikit/__internal__/src/utils/getGroups';
+import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
 import React, { forwardRef, useMemo } from 'react';
 
@@ -63,7 +64,7 @@ const GlobalMenuRender = (
         <Text
           weight="semibold"
           transform="uppercase"
-          className={cnGlobalMenu('Title')}
+          className={cnMixSpace({ mB: 'xl' })}
           lineHeight="m"
           size="xl"
         >

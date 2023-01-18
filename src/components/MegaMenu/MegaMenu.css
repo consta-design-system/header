@@ -1,19 +1,17 @@
 .che--MegaMenu {
-  --mega-menu-items-width: 100%;
   --mega-menu-width: 100%;
 
   &_view {
     &_vertical {
-      --mega-menu-height: max-content;
       --mega-menu-direction: row;
-      --mega-menu-banner-space: 344px;
+      --mega-menu-grid-columns: 100%;
 
-      &.che--MegaMenu_withBannersBar {
-        --mega-menu-banner-space: 0;
-      }
+      &.che--MegaMenu_withNavBar {
+        --mega-menu-grid-columns: 275px max-content;
 
-      &:not(.che--MegaMenu_withBannersBar) {
-        --mega-menu-width: calc(100% - 370px);
+        &.che--MegaMenu_withBannersBar {
+          --mega-menu-grid-columns: 275px auto;
+        }
       }
 
       & .che--MegaMenu-BannerBar {
@@ -23,12 +21,11 @@
     }
 
     &_horizontal {
-      --mega-menu-height: -webkit-fill-available;
-      --mega-menu-banner-space: 216px;
       --mega-menu-direction: column;
+      --mega-menu-grid-columns: 100%;
 
-      &.che--MegaMenu_withBannersBar {
-        --mega-menu-banner-space: 0;
+      &.che--MegaMenu_withNavBar {
+        --mega-menu-grid-columns: 275px auto;
       }
 
       & .che--MegaMenu-BannerBar {
@@ -38,18 +35,23 @@
     }
   }
 
+  &-BannerBar {
+    max-height: var(--mega-menu-banners-height);
+  }
+
   &:not(.che--MegaMenu_withGlobalMenu) {
     --mega-menu-width: max-content;
   }
 
   &_withNavBar {
-    --mega-menu-items-width: calc(100% - 275px);
+    --mega-menu-grid-columns: 275px auto;
   }
 
   &-Wrapper {
     display: flex;
+    overflow: auto;
     flex-direction: var(--mega-menu-direction);
-    width: var(--mega-menu-items-width);
+    width: 100%;
     background: var(--color-bg-default);
   }
 
@@ -57,21 +59,22 @@
     position: absolute;
     z-index: 2;
     top: var(--mega-menu-offset);
-    display: flex;
+    display: grid;
     overflow: hidden;
+    grid-template-columns: var(--mega-menu-grid-columns);
     flex-direction: row;
     width: 100%;
     max-width: var(--mega-menu-width);
-    height: var(--mega-menu-height);
+    height: max-content;
     transition: transform 0.24s ease, opacity 0.4s;
 
     &_view {
       &_horizontal {
-        --mega-menu-transform: translate3d(-100%, 0, 0);
+        --mega-menu-transform: translate3d(-20%, 0, 0);
       }
 
       &_vertical {
-        --mega-menu-transform: translate3d(0, -100%, 0);
+        --mega-menu-transform: translate3d(0, -20%, 0);
       }
     }
 
@@ -132,6 +135,8 @@
     overflow: overlay;
     overflow-x: hidden;
     width: 100%;
+    min-width: max-content;
+    max-width: 100%;
     height: max-content;
   }
 }

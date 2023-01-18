@@ -8,34 +8,36 @@ import { IconMap } from '@consta/uikit/IconMap';
 
 import { MegaMenuDefaultItem } from '../types';
 
-export const getSubMenu = (prefix?: string): MegaMenuDefaultItem[] => [
+export const getSubMenu: (prefix?: string) => MegaMenuDefaultItem[] = (
+  prefix = '',
+) => [
   {
     key: `${prefix ? `${prefix}.` : ''}1`,
     label: 'Электростанции',
     subMenu: [
       {
         key: `${prefix ? `${prefix}.` : ''}1.1`,
-        label: 'Ветряные электростанции',
+        label: `Ветряные электростанции ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}1.2`,
-        label: 'Солнечные электростанции',
+        label: `Солнечные электростанции ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}1.3`,
-        label: 'Гидроэлектростанции',
+        label: `Гидроэлектростанции ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}1.4`,
-        label: 'Гидроаккумулирующие электростанции',
+        label: `Гидроаккумулирующие электростанции ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}1.5`,
-        label: 'Теплоэлектроцентрали',
+        label: `Теплоэлектроцентрали ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}1.6`,
-        label: 'Газопоршневые станции',
+        label: `Газопоршневые станции ${prefix}`,
       },
     ],
   },
@@ -45,23 +47,23 @@ export const getSubMenu = (prefix?: string): MegaMenuDefaultItem[] => [
     subMenu: [
       {
         key: `${prefix ? `${prefix}.` : ''}2.1`,
-        label: 'Бошняково',
+        label: `Бошняково ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}2.2`,
-        label: 'ГорнозаводскаяГорнозаводская',
+        label: `Горнозаводская ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}2.3`,
-        label: 'Гундоровская',
+        label: `Гундоровская ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}2.4`,
-        label: 'Мгачи',
+        label: `Мгачи ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}2.5`,
-        label: 'Коркинский угольный разрез',
+        label: `Коркинский угольный разрез ${prefix}`,
       },
     ],
   },
@@ -71,37 +73,37 @@ export const getSubMenu = (prefix?: string): MegaMenuDefaultItem[] => [
     subMenu: [
       {
         key: `${prefix ? `${prefix}.` : ''}3.1`,
-        label: 'Газопроводы',
+        label: `Газопроводы ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}3.2`,
-        label: 'Нефтепроводы',
+        label: `Нефтепроводы ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}3.3`,
-        label: 'Продуктопроводы',
+        label: `Продуктопроводы ${prefix}`,
       },
     ],
   },
   {
     key: `${prefix ? `${prefix}.` : ''}4`,
-    label: 'Перерабатывающие завводы',
+    label: `Перерабатывающие заводы`,
     subMenu: [
       {
         key: `${prefix ? `${prefix}.` : ''}4.1`,
-        label: 'Нефтепереработка',
+        label: `Нефтепереработка ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}4.2`,
-        label: 'Газопереработка',
+        label: `Газопереработка ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}4.3`,
-        label: 'Нефтехимическая переработка',
+        label: `Нефтехимическая переработка ${prefix}`,
       },
       {
         key: `${prefix ? `${prefix}.` : ''}4.4`,
-        label: 'Заводы по производству СПГ',
+        label: `Заводы по производству СПГ ${prefix}`,
       },
     ],
   },

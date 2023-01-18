@@ -1,5 +1,6 @@
 import './GlobalMenuGroup.css';
 
+import { List } from '@consta/uikit/__internal__/src/components/ListCanary';
 import { Button } from '@consta/uikit/Button';
 import { IconArrowDown } from '@consta/uikit/IconArrowDown';
 import { Text } from '@consta/uikit/Text';
@@ -54,25 +55,28 @@ const GlobalMenuGroupRender = (
           {title}
         </Text>
       )}
-      <div className={cnGlobalMenuGroup('Content')}>
-        {items.map((item, index) => {
-          const label = getItemLabel(item);
+      <List
+        className={cnGlobalMenuGroup('Content')}
+        items={items}
+        size="m"
+        getItemKey={getItemLabel}
+        getItemLabel={getItemLabel}
+        renderItem={(item) => {
           const onClick: React.MouseEventHandler = (e) => {
             getItemOnClick(item)?.(e);
             onItemClick?.({ e, item });
           };
           return (
             <GlobalMenuItem
-              key={cnGlobalMenuGroup('Item', { label, index })}
               as={getItemAs(item)}
-              label={label}
+              label={getItemLabel(item)}
               className={cnGlobalMenuGroup('Item')}
               onClick={onClick}
               {...(getItemAttributes(item) ?? {})}
             />
           );
-        })}
-      </div>
+        }}
+      />
       {maxElements && maxElements < itemsProp.length && (
         <Button
           label={showList ? hideButtonText : showButtonText}

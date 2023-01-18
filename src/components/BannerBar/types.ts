@@ -12,6 +12,8 @@ export type BannerBarDefaultItem = {
   attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
 };
 
+export type BannerBarPropView = 'vertical' | 'horizontal';
+
 export type BannerBarPropGetItemLabel<ITEM> = (item: ITEM) => string;
 export type BannerBarPropGetItemDescription<ITEM> = (
   item: ITEM,
@@ -45,7 +47,7 @@ export type BannerBarProps<ITEM = BannerBarDefaultItem> =
       getItemAs?: BannerBarPropGetItemAs<ITEM>;
       getItemAttributes?: BannerBarPropGetItemAttributes<ITEM>;
       onItemClick?: BannerBarPropOnItemClick<ITEM>;
-      view?: 'vertical' | 'horizontal';
+      view?: BannerBarPropView;
     },
     HTMLDivElement
   >;
@@ -62,7 +64,7 @@ export type BannerBarItemProps<AS extends keyof JSX.IntrinsicElements = 'div'> =
       description?: string;
       image?: string;
       onClick?: React.MouseEventHandler;
-      view?: 'vertical' | 'horizontal';
+      view?: BannerBarPropView;
     },
     AS
   >;

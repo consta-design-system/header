@@ -1,3 +1,4 @@
+import { Example } from '@consta/stand';
 import { Button } from '@consta/uikit/Button';
 import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
 import { IconFolders } from '@consta/uikit/IconFolders';
@@ -6,11 +7,9 @@ import { IconInfo } from '@consta/uikit/IconInfo';
 import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
 import { IconMail } from '@consta/uikit/IconMail';
 import { IconMap } from '@consta/uikit/IconMap';
-import { useFlag } from '@consta/uikit/useFlag';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
-import { Example } from '##/stand/components';
 
 const getSubMenu = (prefix?: string) => [
   {
@@ -111,36 +110,36 @@ const getSubMenu = (prefix?: string) => [
   },
 ];
 
-const items = [
+const getItems = (withSubMenu?: boolean) => [
   {
     key: '1',
     label: 'Объекты',
     iconLeft: IconFlagFilled,
-    subMenu: getSubMenu('1'),
+    subMenu: withSubMenu ? getSubMenu('1') : undefined,
   },
   {
     key: '2',
     label: 'Нефть и газ',
     iconLeft: IconGas,
-    subMenu: getSubMenu('2'),
+    subMenu: withSubMenu ? getSubMenu('2') : undefined,
   },
   {
     key: '3',
     label: 'Электроэнергетика',
     iconLeft: IconLineAndBarChart,
-    subMenu: getSubMenu('3'),
+    subMenu: withSubMenu ? getSubMenu('3') : undefined,
   },
   {
     key: '4',
     label: 'Карта',
     iconLeft: IconMap,
-    subMenu: getSubMenu('4'),
+    subMenu: withSubMenu ? getSubMenu('4') : undefined,
   },
   {
     key: '5',
     label: 'Отображение данных',
     iconLeft: IconFolders,
-    subMenu: getSubMenu('5'),
+    subMenu: withSubMenu ? getSubMenu('5') : undefined,
   },
   {
     key: '6',
@@ -154,19 +153,44 @@ const items = [
   },
 ];
 
-export const MegaMenuExample = () => {
-  const [isOpen, setIsOpen] = useFlag();
+export const MegaMenuExampleSubMenu = () => {
+  const [openType, setOpenType] = useState<string | undefined>();
 
   return (
-    <Example>
-      <MegaMenu
-        onClickOutside={setIsOpen.off}
-        isOpen={isOpen}
-        offset={60}
-        items={items}
-        menuMaxElements={4}
-      />
-      <Button label="Открыть" onClick={setIsOpen.toogle} />
-    </Example>
+    <Example
+      items={['one', 'two', 'three']}
+      col={{ 1: 0, flex: 400 }}
+      getItemLabel={(type) => {
+        if (type === 'one') {
+          return 'depth=1';
+        }
+        if (type === 'two') {
+          return 'depth=2';
+        }
+        return 'depth=3';
+      }}
+      getItemNode={(type) => {
+        let items = [];
+        if (type === 'one') {
+          items = getItems(false);
+        } else if (type === 'two') {
+          items = getSubMenu();
+        } else {
+          items = getItems(true);
+        }
+        return (
+          <>
+            <MegaMenu
+              onClickOutside={() => setOpenType(undefined)}
+              isOpen={openType === type}
+              offset={60}
+              items={items}
+              menuMaxElements={4}
+            />
+            <Button label="Открыть" onClick={() => setOpenType(type)} />
+          </>
+        );
+      }}
+    />
   );
 };

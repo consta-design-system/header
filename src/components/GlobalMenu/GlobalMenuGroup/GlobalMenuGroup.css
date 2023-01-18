@@ -4,22 +4,29 @@
   width: 100%;
   gap: var(--space-s);
 
-  &-Content {
+  &-Content.List {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 0;
     gap: calc(var(--space-xs) + var(--space-3xs));
   }
 
-  &-Button {
+  &-Button.Button {
     width: max-content;
     padding: 0;
+    color: var(--color-typo-secondary);
+
+    &:hover {
+      color: var(--color-control-bg-primary);
+      background-color: transparent;
+    }
 
     & > .Button-Icon {
       transition: transform 0.3s;
     }
 
-    &_open {
+    &.che--GlobalMenuGroup-Button_open {
       & > .Button-Icon {
         transform: rotate(180deg);
       }

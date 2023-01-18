@@ -1,10 +1,35 @@
 import { MegaMenuExample } from './examples/MegaMenuExample/MegaMenuExample';
+import { MdxMenu } from '@consta/stand';
+import { MegaMenuExampleBanners } from './examples/MegaMenuExampleBanners/MegaMenuExampleBanners';
+import { MegaMenuExampleSubMenu } from './examples/MegaMenuExampleSubMenu/MegaMenuExampleSubMenu';
+import { MegaMenuExampleView } from './examples/MegaMenuExampleView/MegaMenuExampleView';
 
 ```tsx
 import { MegaMenu } from '@consta/header/MegaMenu';
 ```
 
-Боковое меню
+<MdxMenu>
+
+- [Меню](#меню)
+- [Баннеры](#баннеры)
+- [Вложенное меню](#вложенное-меню)
+- [Внешний вид](#внешний-вид)
+- [Импорт](#импорт)
+- [Свойства](#свойства)
+
+</MdxMenu>
+
+## Меню
+
+За данные пунктов меню отвечает свойство `items` (тип [MegaMenuDefaultItem](#свойства)). В него входит:
+
+- `key` — идентификатор элемента
+- `label` — заголовок баннера
+- `iconLeft` — иконка с левой стороны
+- `subMenu` — дочерние пункты меню
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
 
 ```tsx
 import React from 'react';
@@ -17,22 +42,6 @@ import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
 import { IconMail } from '@consta/uikit/IconMail';
 import { IconMap } from '@consta/uikit/IconMap';
 import { MegaMenuDefaultItem, MegaMenu } from '@consta/header/MegaMenu';
-
-const banners = [
-  {
-    label: 'Особенности разведки',
-    description:
-      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
-    image:
-      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
-  },
-  {
-    label: 'Особенности разведки',
-    description: 'Лицензии на пользование недрами (далее для настоящ...',
-    image:
-      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
-  },
-];
 
 const getSubMenu = (prefix?: string) => [
   {
@@ -92,7 +101,6 @@ export const MegaMenuExample = () => {
         isOpen={isOpen}
         offset={60}
         items={items}
-        banners={banners}
         menuMaxElements={4}
       />
       <Button label="Открыть" onClick={setIsOpen.toogle} />
@@ -102,6 +110,75 @@ export const MegaMenuExample = () => {
 ```
 
 <MegaMenuExample />
+
+## Баннеры
+
+За данные для баннеров отвечает свойство `banners` (тип [BannerBarDefaultItem](##LIBS.LIB.STAND/lib:header/stand:components-bannerbar-canary)).
+
+```tsx
+import React from 'react';
+import { MegaMenu } from '@consta/header/MegaMenu';
+
+...
+
+const banners = [
+  {
+    label: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+  {
+    label: 'Особенности разведки',
+    description: 'Лицензии на пользование недрами (далее для настоящ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
+
+export const MegaMenuExample = () => {
+  return (
+    <div>
+      <MegaMenu
+        onClickOutside={setIsOpen.off}
+        isOpen={isOpen}
+        offset={60}
+        items={items}
+        menuMaxElements={4}
+      />
+      <Button label="Открыть" onClick={setIsOpen.toogle} />
+    </div>
+  );
+};
+```
+
+<MegaMenuExampleBanners />
+
+## Вложенное меню
+
+Если поля `subMenu` у элементов нет, то будет ренериться только [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-navbar-canary), если есть и уровень вложенности 1, то будет рендериться [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-globalmenu-canary), иначе оба компонента сразу.
+
+<MegaMenuExampleSubMenu />
+
+## Внешний вид
+
+За внешний вид компонента отвечает свойство `view`.
+
+```tsx
+<MegaMenu items={items} view="vertical" />
+<MegaMenu items={items} view="horizontal" />
+```
+
+<MegaMenuExampleView />
+
+## Импорт
+
+```tsx
+import { MegaMenu } from '@consta/header/MegaMenu';
+```
+
+## Свойства
 
 ```tsx
 export type MegaMenuPropOnItemClick<ITEM> = (params: {

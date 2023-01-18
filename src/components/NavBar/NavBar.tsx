@@ -1,5 +1,6 @@
 import './NavBar.css';
 
+import { List } from '@consta/uikit/__internal__/src/components/ListCanary';
 import React, { forwardRef } from 'react';
 
 import { cn } from '##/utils/bem';
@@ -26,15 +27,20 @@ const NavBarRender = (props: NavBarProps, ref: React.Ref<HTMLDivElement>) => {
   } = withDefaultGetters(props);
 
   return (
-    <div className={cnNavBar(null, [className])} ref={ref} {...otherProps}>
-      {items.map((item, index) => {
+    <List
+      items={items}
+      size="m"
+      getItemKey={getItemLabel}
+      getItemLabel={getItemLabel}
+      className={cnNavBar(null, [className])}
+      ref={ref}
+      renderItem={(item) => {
         const onClick: React.MouseEventHandler = (e) => {
           getItemOnClick(item)?.(e);
           onItemClick?.({ e, item });
         };
         return (
           <NavBarItem
-            key={cnNavBar('Item', { index })}
             label={getItemLabel(item)}
             active={getItemActive(item)}
             iconLeft={getItemIconLeft(item)}
@@ -45,8 +51,9 @@ const NavBarRender = (props: NavBarProps, ref: React.Ref<HTMLDivElement>) => {
             {...(getItemAttributes(item) ?? {})}
           />
         );
-      })}
-    </div>
+      }}
+      {...otherProps}
+    />
   );
 };
 

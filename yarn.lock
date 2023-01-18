@@ -1701,6 +1701,22 @@
     react-textarea-autosize "^8.3.4"
     react-transition-group "^4.4.5"
 
+"@consta/uikit@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.7.0.tgz#1777678b20641dd2038d4c40fe7b308e633b37ee"
+  integrity sha512-vQ0YYxlITzpfWsDcqS+aXONAghcYH46U1WKnnuR6SQNIZUFBqr9PFjdOuO5Plofb/AupOLhttSJdOzv8R17KMA==
+  dependencies:
+    "@bem-react/classname" "^1.5.12"
+    "@bem-react/classnames" "^1.3.10"
+    "@consta/icons" "^0.0.2"
+    compute-scroll-into-view "^1.0.17"
+    date-fns "^2.29.1"
+    focus-trap-react "8.7.0"
+    imask "^6.4.2"
+    react-dropzone "11.3.4"
+    react-textarea-autosize "^8.3.4"
+    react-transition-group "^4.4.5"
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz#00629c35a688e05a88b1cda684fb9d5e73f000a1"

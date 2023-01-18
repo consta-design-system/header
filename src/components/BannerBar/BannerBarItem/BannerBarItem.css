@@ -55,8 +55,13 @@
     -webkit-box-orient: vertical;
   }
 
-  &-Button {
+  &-Button.Button {
     margin-top: var(--space-xs);
     padding: 0;
+
+    &:hover {
+      color: var(--color-control-bg-primary);
+      background-color: transparent;
+    }
   }
 }

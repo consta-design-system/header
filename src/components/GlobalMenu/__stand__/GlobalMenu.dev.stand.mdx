@@ -1,86 +1,160 @@
 import { GlobalMenuExample } from './examples/GlobalMenuExample/GlobalMenuExample';
+import { MdxMenu } from '@consta/stand';
+import { GlobalMenuExampleCustomTypes } from './examples/GlobalMenuExampleCustomTypes/GlobalMenuExampleCustomTypes';
 
 ```tsx
 import { GlobalMenu } from '@consta/header/GlobalMenu';
 ```
 
-Боковое меню
+<MdxMenu>
+
+- [Содержимое](#содержимое)
+  - [Пример обычного меню](#пример-обычного-меню)
+  - [Пример меню с кастомным типом](#пример-меню-с-кастомным-типом)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+## Содержимое
+
+За данные пунктов меню отвечает свойство `items` (тип [GlobalMenuDefaultItem](#свойства)). В него входит:
+
+- `label` — заголовок баннера
+- `groupId` — идентификатор группы
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
+
+##### Пример обычного меню
+
+```tsx
+import React from 'react';
+import { GlobalMenu } from '@consta/header/GlobalMenu';
+
+const items = [
+  {
+    label: 'Пункт 1.1',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 1.2',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 1.3',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 1.4',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 2.1',
+    groupId: 2,
+  },
+  {
+    label: 'Пункт 2.2',
+    groupId: 2,
+  },
+  {
+    label: 'Пункт 2.3',
+    groupId: 2,
+  },
+];
+
+const groups = [
+  { label: 'Первая группа', id: 1 },
+  { label: 'Вторая группа', id: 2 },
+];
+
+export const GlobalMenuExample = () => {
+  return (
+    <GlobalMenu items={items} groups={groups} title="Объекты" columns={2} />
+  );
+};
+```
+
+<GlobalMenuExample />
+
+##### Пример меню с кастомным типом
 
 ```tsx
 import React from 'react';
 import { GlobalMenu } from '@consta/header/GlobalMenu';
 
 type Item = {
-  label: string;
-  groupId: number;
+  text: string;
+  group: number;
 };
 
 type Group = {
-    label: string;
-    id: number;
-}
+  key: number;
+  name: string;
+};
 
 const items: Item[] = [
- {
-    label: 'Ветряные электростанции',
-    groupId: 1,
+  {
+    text: 'Пункт 1.1',
+    group: 1,
   },
   {
-    label: 'Солнечные электростанции',
-    groupId: 1,
+    text: 'Пункт 1.2',
+    group: 1,
   },
   {
-    label: 'Гидроэлектростанции',
-    groupId: 1,
+    text: 'Пункт 1.3',
+    group: 1,
   },
   {
-    label: 'Гидроаккумулирующие электростанции',
-    groupId: 1,
+    text: 'Пункт 1.4',
+    group: 1,
   },
   {
-    label: 'Теплоэлектроцентрали',
-    groupId: 1,
+    text: 'Пункт 2.1',
+    group: 2,
   },
   {
-    label: 'Газопоршневые станции',
-    groupId: 1,
+    text: 'Пункт 2.2',
+    group: 2,
   },
   {
-    label: 'Бошняково',
-    groupId: 2,
+    text: 'Пункт 2.3',
+    group: 2,
   },
-  {
-    label: 'ГорнозаводскаяГорнозаводская',
-    groupId: 2,
-  },
-  ...
 ];
 
 const groups: Group[] = [
-  {
-    id: 1,
-    label: 'Электростанции',
-  },
-  {
-    id: 2,
-    label: 'Угольные шахты и разрезы',
-  },
-  {
-    id: 3,
-    label: 'Трубопровод',
-  },
-  {
-    id: 4,
-    label: 'Перерабатывающие заводы',
-  },
-]
+  { name: 'Первая группа', key: 1 },
+  { name: 'Вторая группа', key: 2 },
+];
 
-export const GlobalMenuExample = () => {
-  return <GlobalMenu items={items} groups={groups} columns={3} title="Объекты" maxElements={5} />;
+export const GlobalMenuExampleCustomTypes = () => {
+  return (
+    <GlobalMenu
+      items={items}
+      groups={groups}
+      title="Объекты"
+      getItemLabel={(item) => item.text}
+      getItemGroupId={(item) => item.group}
+      getGroupLabel={(group) => group.name}
+      getGroupKey={(group) => group.key}
+      maxElements={5}
+      columns={3}
+    />
+  );
 };
 ```
 
 <GlobalMenuExample />
+
+## Импорт
+
+```tsx
+import { GlobalMenu } from '@consta/header/GlobalMenu';
+```
+
+## Свойства
 
 ```tsx
 export type GlobalMenuDefaultItem = {

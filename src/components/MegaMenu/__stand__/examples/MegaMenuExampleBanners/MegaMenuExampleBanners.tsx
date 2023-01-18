@@ -12,6 +12,22 @@ import React from 'react';
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
 import { Example } from '##/stand/components';
 
+const banners = [
+  {
+    label: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+  {
+    label: 'Особенности разведки',
+    description: 'Лицензии на пользование недрами (далее для настоящ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
+
 const getSubMenu = (prefix?: string) => [
   {
     key: `${prefix ? `${prefix}.` : ''}1`,
@@ -154,7 +170,7 @@ const items = [
   },
 ];
 
-export const MegaMenuExample = () => {
+export const MegaMenuExampleBanners = () => {
   const [isOpen, setIsOpen] = useFlag();
 
   return (
@@ -164,6 +180,7 @@ export const MegaMenuExample = () => {
         isOpen={isOpen}
         offset={60}
         items={items}
+        banners={banners}
         menuMaxElements={4}
       />
       <Button label="Открыть" onClick={setIsOpen.toogle} />

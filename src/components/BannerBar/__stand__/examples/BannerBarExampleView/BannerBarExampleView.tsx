@@ -1,7 +1,9 @@
+import { Example } from '@consta/stand';
 import React from 'react';
 
-import { BannerBar } from '##/components/BannerBar/BannerBar';
-import { Example } from '##/stand/components';
+import { BannerBar, BannerBarPropView } from '##/components/BannerBar';
+
+const views: BannerBarPropView[] = ['vertical', 'horizontal'];
 
 const items = [
   {
@@ -13,10 +15,14 @@ const items = [
   },
 ];
 
-export const BannerBarExample = () => {
+export const BannerBarExampleView = () => {
   return (
-    <Example>
-      <BannerBar items={items} view="horizontal" />
-    </Example>
+    <Example
+      items={views}
+      getItemLabel={(view) => `view=${view}`}
+      getItemNode={(view: BannerBarPropView) => (
+        <BannerBar items={items} view={view} />
+      )}
+    />
   );
 };

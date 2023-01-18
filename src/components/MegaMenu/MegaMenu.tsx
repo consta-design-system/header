@@ -7,6 +7,8 @@ import {
 } from '@consta/uikit/PortalWithTheme';
 import { useTheme } from '@consta/uikit/Theme';
 import { useClickOutside } from '@consta/uikit/useClickOutside';
+import { useComponentBreakpoints } from '@consta/uikit/useComponentBreakpoints';
+import { useComponentSize } from '@consta/uikit/useComponentSize';
 import { useGlobalKeys } from '@consta/uikit/useGlobalKeys';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Transition } from 'react-transition-group';
@@ -22,7 +24,6 @@ import {
   withDefaultGetters,
 } from './helper';
 import { MegaMenuProps } from './types';
-import { useComponentBreakpoints } from './useComponentBreakpoints';
 
 const cnMegaMenu = cn('MegaMenu');
 
@@ -80,7 +81,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
     view = 'vertical',
     ...otherProps
   } = withDefaultGetters(props);
-  type ITEM = typeof itemsProp[number];
+  type ITEM = (typeof itemsProp)[number];
 
   const [activeItem, setActiveItem] = useState<ITEM | undefined>();
 
@@ -118,6 +119,8 @@ export const MegaMenu = (props: MegaMenuProps) => {
       }),
     [itemsProp, activeItem],
   );
+
+  const { height: globalMenuHeight } = useComponentSize(globalMenuRef);
 
   const { navItems, items, groups } = useMemo(() => {
     return {
@@ -229,6 +232,11 @@ export const MegaMenu = (props: MegaMenuProps) => {
                   <BannerBar
                     className={cnMegaMenu('BannerBar')}
                     items={banners}
+                    style={{
+                      ['--mega-menu-banners-height' as string]: globalMenuHeight
+                        ? `${globalMenuHeight}px`
+                        : 'auto',
+                    }}
                     view={view}
                     onItemClick={onBannerClick}
                     getItemAs={getBannerAs}
