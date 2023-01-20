@@ -21,7 +21,8 @@ import { MegaMenu } from '@consta/header/MegaMenu';
 
 ## Меню
 
-За данные пунктов меню отвечает свойство `items` (тип [MegaMenuDefaultItem](#свойства)). В него входит:
+За данные пунктов меню отвечает свойство `items` (тип [MegaMenuDefaultItem](#свойства)).
+Значения:
 
 - `key` — идентификатор элемента
 - `label` — заголовок баннера
@@ -157,7 +158,7 @@ export const MegaMenuExample = () => {
 
 ## Вложенное меню
 
-Если поля `subMenu` у элементов нет, то будет ренериться только [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-navbar-canary), если есть и уровень вложенности 1, то будет рендериться [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-globalmenu-canary), иначе оба компонента сразу.
+Если у элементов нет поля `subMenu`, то будет ренериться только [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-navbar-canary). Если есть уровень вложенности 1, то рендериться будет [`GlobalMenu`](##LIBS.LIB.STAND/lib:header/stand:components-globalmenu-canary). В ином случае оба компонента сразу.
 
 <MegaMenuExampleSubMenu />
 
@@ -217,7 +218,7 @@ export type MegaMenuPropGetItemSubMenu<ITEM> = (
 
 | Свойство                | Тип                               | По умолчанию                  | Описание                                                                |
 | ----------------------- | --------------------------------- | ----------------------------- | ----------------------------------------------------------------------- |
-| `isOpen?`               | `boolean`                         | -                             | Флаг открыто ли меню                                                    |
+| `isOpen?`               | `boolean`                         | -                             | Возвращает состояние меню: открыто/закрыто                              |
 | `onClickOutside?`       | `(event: MouseEvent) => void`     | -                             | Событие по нажатию за пределами меню                                    |
 | `onEsc?`                | `(event: KeyboardEvent) => void`  | -                             | Событие по нажатию кнопки `ESC`                                         |
 | `menuTitle?`            | `string`                          | -                             | Заголовок меню                                                          |
@@ -228,19 +229,19 @@ export type MegaMenuPropGetItemSubMenu<ITEM> = (
 | `view?`                 | `'vertical', 'horizontal'`        | `vertical`                    | Вид меню                                                                |
 | `items`                 | `ITEM[]`                          | -                             | Пункты меню                                                             |
 | `banners?`              | `BANNER[]`                        | -                             | Список баннеров                                                         |
-| `onItemClick?`          | `MegaMenuPropOnItemClick`         | -                             | Событие по нажаьию на элемент                                           |
-| `onBannerClick?`        | `MegaMenuPropOnItemClick`         | -                             | Событие по нажаьию на баннер                                            |
+| `onItemClick?`          | `MegaMenuPropOnItemClick`         | -                             | Событие по нажатию на элемент                                           |
+| `onBannerClick?`        | `MegaMenuPropOnItemClick`         | -                             | Событие по нажатию на баннер                                            |
 | `getItemKey?`           | `MegaMenuPropGetItemLabel`        | `defaultGetItemKey`           | Функция для определения ключа элемента                                  |
 | `getItemLabel?`         | `MegaMenuPropGetItemLabel`        | `defaultGetItemLabel`         | Функция для определения заголовка элемента                              |
 | `getItemOnClick?`       | `MegaMenuPropGetItemOnClick`      | `defaultGetItemOnClick`       | Функция для определения события по нажатию на элемент                   |
 | `getItemIconLeft?`      | `MegaMenuPropGetItemIconLeft`     | `defaultGetItemIconLeft`      | Функция для определения левой иконки                                    |
-| `getItemAs?`            | `MegaMenuPropGetItemAs`           | `defaultGetItemAs`            | Функция для определения тэга элемента                                   |
+| `getItemAs?`            | `MegaMenuPropGetItemAs`           | `defaultGetItemAs`            | Функция для определения тега элемента                                   |
 | `getItemAttributes?`    | `MegaMenuPropGetItemAttributes`   | `defaultGetItemAttributes`    | Функция для определения атрибутов элемента                              |
 | `getItemSubMenu?`       | `MegaMenuPropGetItemSubMenu`      | `defaultGetItemSubMenu`       | Функция для определения дочернего меню элемента                         |
-| `getBannerLabel?`       | `BannerBarPropGetItemLabel`       | `defaultGetBannerLabel`       | Функция для определения заголовка элемента                              |
-| `getBannerDescription?` | `BannerBarPropGetItemDescription` | `defaultGetBannerDescription` | Функция для определения заголовка элемента                              |
-| `getBannerImage?`       | `BannerBarPropGetItemImage`       | `defaultGetBannerImage`       | Функция для определения заголовка элемента                              |
-| `getBannerOnClick?`     | `BannerBarPropGetItemOnClick`     | `defaultGetBannerOnClick`     | Функция для определения заголовка элемента                              |
-| `getBannerAs?`          | `BannerBarPropGetItemAs`          | `defaultGetBannerAs`          | Функция для определения заголовка элемента                              |
-| `getBannerAttributes?`  | `BannerBarPropGetItemAttributes`  | `defaultGetBannerAttributes`  | Функция для определения заголовка элемента                              |
+| `getBannerLabel?`       | `BannerBarPropGetItemLabel`       | `defaultGetBannerLabel`       | Функция для определения заголовка баннера                               |
+| `getBannerDescription?` | `BannerBarPropGetItemDescription` | `defaultGetBannerDescription` | Функция для определения описания баннера                                |
+| `getBannerImage?`       | `BannerBarPropGetItemImage`       | `defaultGetBannerImage`       | Функция для определения картинки баннера                                |
+| `getBannerOnClick?`     | `BannerBarPropGetItemOnClick`     | `defaultGetBannerOnClick`     | Функция для определения события по нажатию на баннер                    |
+| `getBannerAs?`          | `BannerBarPropGetItemAs`          | `defaultGetBannerAs`          | Функция для определения тега баннера                                    |
+| `getBannerAttributes?`  | `BannerBarPropGetItemAttributes`  | `defaultGetBannerAttributes`  | Функция для определения атрибутов баннера                               |
 | `className?`            | `string`                          | -                             | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
