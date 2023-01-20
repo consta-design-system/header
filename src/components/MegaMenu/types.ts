@@ -80,6 +80,8 @@ export type MegaMenuProps<
     menuHideButtonText?: string;
     menuMaxElements?: number;
     view?: 'vertical' | 'horizontal';
+    position?: 'absolute' | 'fixed';
+    anchorRef?: React.RefObject<HTMLElement>;
     onItemClick?: MegaMenuPropOnItemClick<ITEM>;
     onBannerClick?: MegaMenuPropOnItemClick<BANNER>;
   } & BannerMappers<BANNER> &

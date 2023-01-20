@@ -180,6 +180,7 @@ export const MegaMenuExampleBanners = () => {
         isOpen={isOpen}
         offset={60}
         items={items}
+        position="fixed"
         banners={banners}
         menuMaxElements={4}
       />

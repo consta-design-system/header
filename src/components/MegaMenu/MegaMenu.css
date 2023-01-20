@@ -1,5 +1,7 @@
 .che--MegaMenu {
   --mega-menu-width: 100%;
+  --mega-menu-max-height: auto;
+  --mega-menu-wrapper-grid-columns: 100%;
 
   &_view {
     &_vertical {
@@ -11,6 +13,7 @@
 
         &.che--MegaMenu_withBannersBar {
           --mega-menu-grid-columns: 275px auto;
+          --mega-menu-wrapper-grid-columns: auto 344px;
         }
       }
 
@@ -29,6 +32,7 @@
       }
 
       & .che--MegaMenu-BannerBar {
+        width: 100%;
         min-height: 216px;
         max-height: 216px;
       }
@@ -41,6 +45,10 @@
 
   &:not(.che--MegaMenu_withGlobalMenu) {
     --mega-menu-width: max-content;
+
+    &.che--MegaMenu_withBannerBar {
+      --mega-menu-wrapper-grid-columns: 344px;
+    }
   }
 
   &_withNavBar {
@@ -48,25 +56,29 @@
   }
 
   &-Wrapper {
-    display: flex;
+    display: grid;
     overflow: auto;
     flex-direction: var(--mega-menu-direction);
     width: 100%;
+    max-height: var(--mega-menu-max-height);
     background: var(--color-bg-default);
+    pointer-events: all;
+    grid-template-columns: var(--mega-menu-wrapper-grid-columns);
   }
 
   &-Window {
-    position: absolute;
+    position: var(--mega-menu-window-position);
     z-index: 2;
     top: var(--mega-menu-offset);
     display: grid;
     overflow: hidden;
-    grid-template-columns: var(--mega-menu-grid-columns);
     flex-direction: row;
     width: 100%;
     max-width: var(--mega-menu-width);
     height: max-content;
+    pointer-events: none;
     transition: transform 0.24s ease, opacity 0.4s;
+    grid-template-columns: var(--mega-menu-grid-columns);
 
     &_view {
       &_horizontal {
@@ -75,6 +87,17 @@
 
       &_vertical {
         --mega-menu-transform: translate3d(0, -20%, 0);
+      }
+    }
+
+    &_position {
+      &_absolute {
+        --mega-menu-window-position: absolute;
+      }
+
+      &_fixed {
+        --mega-menu-window-position: fixed;
+        --mega-menu-max-height: calc(100vh - var(--mega-menu-offset));
       }
     }
 
@@ -98,7 +121,8 @@
     min-width: 275px;
     max-width: 275px;
     height: auto;
-    max-height: 100%;
+    max-height: var(--mega-menu-max-height);
+    pointer-events: all;
   }
 
   &-Overlay {

@@ -163,6 +163,7 @@ export const MegaMenuExample = () => {
         onClickOutside={setIsOpen.off}
         isOpen={isOpen}
         offset={60}
+        position="fixed"
         items={items}
         menuMaxElements={4}
       />

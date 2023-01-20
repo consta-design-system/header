@@ -21,6 +21,7 @@ const Variants = () => {
   );
   const withBanners = useBoolean('withBanners', false);
   const view = useSelect('view', ['vertical', 'horizontal'], 'vertical');
+  const position = useSelect('position', ['absolute', 'fixed'], 'absolute');
   const menuMaxElements = useNumber('menuMaxElements', 4);
   const menuHideButtonText = useText('menuHideButtonText', 'Скрыть');
   const menuShowButtonText = useText('menuShowButtonText', 'Ещё');
@@ -43,6 +44,7 @@ const Variants = () => {
       <MegaMenu
         view={view}
         isOpen={isOpen}
+        position={position}
         menuMaxElements={menuMaxElements}
         menuHideButtonText={menuHideButtonText}
         menuShowButtonText={menuShowButtonText}

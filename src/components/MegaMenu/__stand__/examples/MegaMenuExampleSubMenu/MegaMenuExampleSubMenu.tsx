@@ -185,6 +185,7 @@ export const MegaMenuExampleSubMenu = () => {
               isOpen={openType === type}
               offset={60}
               items={items}
+              position="fixed"
               menuMaxElements={4}
             />
             <Button label="Открыть" onClick={() => setOpenType(type)} />

@@ -101,6 +101,7 @@ export const MegaMenuExample = () => {
         onClickOutside={setIsOpen.off}
         isOpen={isOpen}
         offset={60}
+        position="fixed"
         items={items}
         menuMaxElements={4}
       />
@@ -146,6 +147,7 @@ export const MegaMenuExample = () => {
         isOpen={isOpen}
         offset={60}
         items={items}
+        position="fixed"
         menuMaxElements={4}
       />
       <Button label="Открыть" onClick={setIsOpen.toogle} />
@@ -158,7 +160,7 @@ export const MegaMenuExample = () => {
 
 ## Вложенное меню
 
-Если у элементов нет поля `subMenu`, то будет ренериться только [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-navbar-canary). Если есть уровень вложенности 1, то рендериться будет [`GlobalMenu`](##LIBS.LIB.STAND/lib:header/stand:components-globalmenu-canary). В ином случае оба компонента сразу.
+Если у элементов нет поля `subMenu`, то будет рендериться только [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-navbar-canary). Если есть уровень вложенности 1, то рендериться будет [`GlobalMenu`](##LIBS.LIB.STAND/lib:header/stand:components-globalmenu-canary). В ином случае оба компонента сразу.
 
 <MegaMenuExampleSubMenu />
 
@@ -167,8 +169,8 @@ export const MegaMenuExample = () => {
 За внешний вид компонента отвечает свойство `view`.
 
 ```tsx
-<MegaMenu items={items} view="vertical" />
-<MegaMenu items={items} view="horizontal" />
+<MegaMenu items={items} view="vertical" position="fixed" />
+<MegaMenu items={items} view="horizontal" position="fixed" />
 ```
 
 <MegaMenuExampleView />
@@ -218,6 +220,8 @@ export type MegaMenuPropGetItemSubMenu<ITEM> = (
 
 | Свойство                | Тип                               | По умолчанию                  | Описание                                                                |
 | ----------------------- | --------------------------------- | ----------------------------- | ----------------------------------------------------------------------- |
+| `position?`             | `'absolute', 'fixed'`             | `'absolute'`                  | Позиционирование компонента меню                                        |
+| `anchorRef?`            | `React.RefObject<HTMLElement>`    | -                             | Элемент, относительно которого будет позиционироваться меню             |
 | `isOpen?`               | `boolean`                         | -                             | Возвращает состояние меню: открыто/закрыто                              |
 | `onClickOutside?`       | `(event: MouseEvent) => void`     | -                             | Событие по нажатию за пределами меню                                    |
 | `onEsc?`                | `(event: KeyboardEvent) => void`  | -                             | Событие по нажатию кнопки `ESC`                                         |

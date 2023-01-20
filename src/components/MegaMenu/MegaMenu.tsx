@@ -73,11 +73,13 @@ export const MegaMenu = (props: MegaMenuProps) => {
     getBannerOnClick,
     // Others
     isOpen,
+    position = 'absolute',
+    anchorRef,
     onClickOutside,
     onEsc,
     className,
     style,
-    offset = 0,
+    offset: offsetProp = 0,
     view = 'vertical',
     ...otherProps
   } = withDefaultGetters(props);
@@ -136,6 +138,14 @@ export const MegaMenu = (props: MegaMenuProps) => {
     return 1;
   }, [two, three]);
 
+  const offset = useMemo(() => {
+    return (
+      (anchorRef?.current?.offsetTop ?? 0) +
+      (anchorRef?.current?.offsetHeight ?? 0) +
+      offsetProp
+    );
+  }, [offsetProp, anchorRef?.current]);
+
   useEffect(() => {
     if (depth > 2 && getItemSubMenu(itemsProp[0])) {
       setActiveItem(itemsProp[0]);
@@ -181,7 +191,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
           >
             <div
               ref={menuRef}
-              className={cnMegaMenu('Window', { animate, view })}
+              className={cnMegaMenu('Window', { animate, view, position })}
             >
               {navItems && (
                 <NavBar

@@ -187,6 +187,7 @@ export const MegaMenuExampleView = () => {
             offset={60}
             items={items}
             view={view}
+            position="fixed"
             banners={banners}
             menuMaxElements={4}
           />
