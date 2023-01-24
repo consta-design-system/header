@@ -14,6 +14,7 @@ export type GlobalMenuDefaultItem = {
 export type GlobalMenuDefaultGroup = {
   label: string;
   id?: string | number;
+  onClick?: React.MouseEventHandler;
 };
 
 export type GlobalMenuPropGetItemAs<ITEM> = (
@@ -34,10 +35,18 @@ export type GlobalMenuPropGetGroupId<ITEM> = (
   item: ITEM,
 ) => number | string | undefined;
 export type GlobalMenuPropGetGroupLabel<ITEM> = (item: ITEM) => string;
+export type GlobalMenuPropGetGroupOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
 
 export type GlobalMenuPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;
   item: ITEM;
+}) => void;
+
+export type GlobalMenuPropOnGroupClick<GROUP> = (params: {
+  e: React.MouseEvent;
+  group: GROUP;
 }) => void;
 
 export type MappersItem<ITEM = GlobalMenuDefaultItem> = {
@@ -57,7 +66,9 @@ export type GlobalMenuProps<
     groups?: GROUP[];
     getGroupKey?: GlobalMenuPropGetGroupId<GROUP>;
     getGroupLabel?: GlobalMenuPropGetGroupLabel<GROUP>;
+    getGroupOnClick?: GlobalMenuPropGetGroupOnClick<GROUP>;
     maxElements?: number;
+    onGroupClick?: GlobalMenuPropOnGroupClick<GROUP>;
     onItemClick?: GlobalMenuPropOnItemClick<ITEM>;
     columns?: number;
     title?: string;

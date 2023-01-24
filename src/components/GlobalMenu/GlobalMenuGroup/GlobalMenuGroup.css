@@ -4,6 +4,17 @@
   width: 100%;
   gap: var(--space-s);
 
+  &-Title {
+    &_clickable {
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: var(--color-control-bg-primary);
+      }
+    }
+  }
+
   &-Content.List {
     display: flex;
     flex-direction: column;

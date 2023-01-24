@@ -27,6 +27,7 @@ const GlobalMenuGroupRender = (
     getItemOnClick,
     getItemGroupId,
     className,
+    onClick,
     maxElements: maxElementsProp,
     showButtonText,
     hideButtonText,
@@ -51,7 +52,13 @@ const GlobalMenuGroupRender = (
       {...otherProps}
     >
       {title && (
-        <Text size="m" lineHeight="m" weight="bold">
+        <Text
+          onClick={onClick}
+          className={cnGlobalMenuGroup('Title', { clickable: !!onClick })}
+          size="m"
+          lineHeight="m"
+          weight="bold"
+        >
           {title}
         </Text>
       )}

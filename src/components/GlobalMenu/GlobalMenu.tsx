@@ -29,8 +29,10 @@ const GlobalMenuRender = (
     getItemOnClick,
     getGroupKey,
     onItemClick,
+    onGroupClick,
     getGroupLabel,
-    groups: groupsProp,
+    getGroupOnClick,
+    groups: groupsProp = [],
     showButtonText = 'Ещё',
     hideButtonText = 'Скрыть',
     maxElements,
@@ -82,23 +84,36 @@ const GlobalMenuRender = (
             key={cnGlobalMenu('Column', { index })}
             className={cnGlobalMenu('Column')}
           >
-            {groups.map((group, i) => (
-              <GlobalMenuGroup
-                title={group.group ? getGroupLabel(group.group) : undefined}
-                key={cnGlobalMenu('Group', { index, i })}
-                className={cnGlobalMenu('Group')}
-                items={group.items}
-                showButtonText={showButtonText}
-                hideButtonText={hideButtonText}
-                onItemClick={onItemClick}
-                maxElements={maxElements}
-                getItemAs={getItemAs}
-                getItemAttributes={getItemAttributes}
-                getItemGroupId={getItemGroupId}
-                getItemLabel={getItemLabel}
-                getItemOnClick={getItemOnClick}
-              />
-            ))}
+            {groups.map((group, i) => {
+              const onClickGroup = group.group
+                ? getGroupOnClick(group.group)
+                : undefined;
+              const hasClickableGroup =
+                group.group && (!!onClickGroup || !!onGroupClick);
+              const onClick = (e: React.MouseEvent) => {
+                onClickGroup?.(e);
+                group.group && onGroupClick?.({ e, group: group.group });
+              };
+
+              return (
+                <GlobalMenuGroup
+                  title={group.group ? getGroupLabel(group.group) : undefined}
+                  key={cnGlobalMenu('Group', { index, i })}
+                  onClick={hasClickableGroup ? onClick : undefined}
+                  className={cnGlobalMenu('Group')}
+                  items={group.items}
+                  showButtonText={showButtonText}
+                  hideButtonText={hideButtonText}
+                  onItemClick={onItemClick}
+                  maxElements={maxElements}
+                  getItemAs={getItemAs}
+                  getItemAttributes={getItemAttributes}
+                  getItemGroupId={getItemGroupId}
+                  getItemLabel={getItemLabel}
+                  getItemOnClick={getItemOnClick}
+                />
+              );
+            })}
           </div>
         ))}
       </div>

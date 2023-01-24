@@ -163,6 +163,18 @@ export const MegaMenu = (props: MegaMenuProps) => {
     }
   };
 
+  const handleNavBarMouseEnter = (
+    e: React.MouseEvent<HTMLDivElement>,
+    item: ITEM,
+  ) => {
+    const onMouseEnter = getItemAttributes(item)
+      ?.onMouseEnter as JSX.IntrinsicElements['div']['onMouseEnter'];
+    onMouseEnter?.(e);
+    if (getItemSubMenu(item)) {
+      setActiveItem(item);
+    }
+  };
+
   return (
     <Transition in={isOpen} unmountOnExit timeout={240} nodeRef={containerRef}>
       {(animate) => (
@@ -199,7 +211,13 @@ export const MegaMenu = (props: MegaMenuProps) => {
                   className={cnMegaMenu('NavBar')}
                   getItemActive={({ item }) => getItemActive(item)}
                   getItemAs={({ item }) => getItemAs(item)}
-                  getItemAttributes={({ item }) => getItemAttributes(item)}
+                  getItemAttributes={({ item }) =>
+                    ({
+                      ...getItemAttributes(item),
+                      onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) =>
+                        handleNavBarMouseEnter(e, item),
+                    } as JSX.IntrinsicElements['div'])
+                  }
                   getItemIconLeft={({ item }) => getItemIconLeft(item)}
                   getItemLabel={({ item }) => getItemLabel(item)}
                   getItemOnClick={({ item }) => getItemOnClick(item)}
@@ -230,6 +248,10 @@ export const MegaMenu = (props: MegaMenuProps) => {
                     getItemGroupId={({ groupId }) => groupId}
                     getItemLabel={({ item }) => getItemLabel(item)}
                     getItemOnClick={({ item }) => getItemOnClick(item)}
+                    getGroupOnClick={({ item }) => getItemOnClick(item)}
+                    onGroupClick={({ e, group: { item } }) => {
+                      onItemClickProp?.({ e, item });
+                    }}
                     onItemClick={({ e, item: { item } }) =>
                       onItemClickProp?.({ e, item })
                     }

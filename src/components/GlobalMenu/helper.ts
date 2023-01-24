@@ -3,6 +3,7 @@ import {
   GlobalMenuDefaultItem,
   GlobalMenuPropGetGroupId,
   GlobalMenuPropGetGroupLabel,
+  GlobalMenuPropGetGroupOnClick,
   GlobalMenuPropGetItemAs,
   GlobalMenuPropGetItemAttributes,
   GlobalMenuPropGetItemGroupId,
@@ -33,6 +34,9 @@ const defaultGetGroupId: GlobalMenuPropGetGroupId<GlobalMenuDefaultGroup> = (
 const defaultGetGroupLabel: GlobalMenuPropGetGroupLabel<
   GlobalMenuDefaultGroup
 > = (group) => group.label;
+const defaultGetGroupOnClick: GlobalMenuPropGetGroupOnClick<
+  GlobalMenuDefaultGroup
+> = (group) => group.onClick;
 
 export const withDefaultGetters = (props: GlobalMenuProps) => {
   return {
@@ -44,5 +48,6 @@ export const withDefaultGetters = (props: GlobalMenuProps) => {
     getItemAttributes: props.getItemAttributes || defaultGetItemAttributes,
     getGroupKey: props.getGroupKey || defaultGetGroupId,
     getGroupLabel: props.getGroupLabel || defaultGetGroupLabel,
+    getGroupOnClick: props.getGroupOnClick || defaultGetGroupOnClick,
   };
 };
