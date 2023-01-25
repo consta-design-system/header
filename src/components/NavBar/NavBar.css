@@ -1,0 +1,24 @@
+.che--NavBar {
+  &.ListBox {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: var(--space-2xl) 0;
+    background: var(--color-bg-default);
+    border-right: 1px solid var(--color-bg-border);
+  }
+
+  &-Item.ListItemGrid {
+    color: var(--color-control-typo-clear);
+    line-height: var(--line-height-text-2xs);
+
+    &:hover {
+      background: var(--color-control-bg-ghost-hover);
+    }
+
+    &.che--NavBar-Item_active {
+      color: var(--color-control-typo-ghost);
+      background: var(--color-control-bg-ghost);
+    }
+  }
+}

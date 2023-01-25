@@ -1,0 +1,43 @@
+.che--MegaMenu {
+  display: grid;
+  width: 100%;
+  grid-template-columns: var(--mega-menu-grid-columns);
+
+  &_withNavBar {
+    --mega-menu-grid-columns: 275px auto;
+  }
+
+  &_bannerPosition {
+    &_right {
+      --mega-menu-wrapper-grid-columns: 100%;
+
+      &.che--MegaMenu_withBannersBar {
+        --mega-menu-wrapper-grid-columns: auto 344px;
+      }
+    }
+
+    &_bottom {
+      --mega-menu-wrapper-grid-columns: 100%;
+    }
+  }
+
+  &-Wrapper {
+    display: grid;
+    width: 100%;
+    background: var(--color-bg-default);
+    grid-template-columns: var(--mega-menu-wrapper-grid-columns);
+  }
+
+  &-NavBar.che--NavBar {
+    min-width: 275px;
+    max-width: 275px;
+    height: auto;
+    max-height: var(--mega-menu-max-height);
+  }
+
+  &-GlobalMenu {
+    width: 100%;
+    max-width: 100%;
+    height: max-content;
+  }
+}

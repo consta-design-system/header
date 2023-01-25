@@ -49,7 +49,7 @@
     "Chrome >= 75"
   ],
   "peerDependencies": {
-    "@consta/uikit": "^4.0.1"
+    "@consta/uikit": "^4.7.1"
   },
   "config": {
     "commitizen": {
@@ -90,21 +90,16 @@
     "@babel/preset-typescript": "^7.18.6",
     "@bem/sdk.naming.cell.match": "^0.1.3",
     "@bem/sdk.naming.presets": "^0.2.3",
-    "@consta/stand": "^0.0.58",
-    "@consta/uikit": "^4.0.1",
+    "@consta/stand": "^0.0.95",
+    "@mdx-js/loader": "^2.1.5",
     "@oclif/command": "^1.8.16",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
-    "@svgr/core": "^6.3.1",
-    "@svgr/plugin-jsx": "^6.3.1",
-    "@svgr/plugin-prettier": "^6.3.1",
-    "@svgr/plugin-svgo": "^6.3.1",
-    "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.0",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^27.4.1",
     "@types/node": "^16.7.13",
-    "@types/react": "^18.0.17",
+    "@types/react": "^18.0.16",
     "@types/react-dom": "^18.0.6",
     "@types/react-transition-group": "^4.4.5",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
@@ -144,7 +139,6 @@
     "jest-environment-jsdom": "^28.1.3",
     "lint-staged": "^13.0.3",
     "mini-css-extract-plugin": "^2.6.0",
-    "moment": "^2.29.3",
     "postcss": "^8.4.12",
     "postcss-cli": "^10.0.0",
     "postcss-color-function": "^4.1.0",

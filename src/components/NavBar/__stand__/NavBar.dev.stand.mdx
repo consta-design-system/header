@@ -1,0 +1,206 @@
+import { NavBarExample } from './examples/NavBarExample/NavBarExample';
+import { MdxMenu } from '@consta/stand';
+import { NavBarExampleCustomTypes } from './examples/NavBarExampleCustomTypes/NavBarExampleCustomTypes';
+
+```tsx
+import { NavBar } from '@consta/header/NavBar';
+```
+
+<MdxMenu>
+
+- [Содержимое](#содержимое)
+  - [Пример обычного меню](#пример-обычного-меню)
+  - [Пример меню с кастомным типом](#пример-меню-с-кастомным-типом)
+- [Внешний вид](#внешний-вид)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+## Содержимое
+
+За данные для пунктов меню отвечает свойство `items` (тип [NavBarDefaultItem](#свойства)). В него входит:
+
+- `label` — заголовок меню
+- `iconLeft` — иконка с левой стороны
+- `iconRight` — иконка с правой стороны
+- `active` — отмечает активный пункт меню
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
+
+##### Пример обычного меню
+
+```tsx
+import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
+import { IconFolders } from '@consta/uikit/IconFolders';
+import { IconGas } from '@consta/uikit/IconGas';
+import { IconInfo } from '@consta/uikit/IconInfo';
+import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
+import { IconMail } from '@consta/uikit/IconMail';
+import { IconMap } from '@consta/uikit/IconMap';
+import React from 'react';
+
+import { NavBar } from '@consta/header/NavBar';
+
+export const items = [
+  {
+    label: 'Объекты',
+    iconLeft: IconFlagFilled,
+  },
+  {
+    label: 'Нефть и газ',
+    iconLeft: IconGas,
+  },
+  {
+    label: 'Электроэнергетика',
+    iconLeft: IconLineAndBarChart,
+  },
+  {
+    label: 'Карта',
+    iconLeft: IconMap,
+    active: true,
+  },
+  {
+    label: 'Отображение данных',
+    iconLeft: IconFolders,
+  },
+  {
+    label: 'Информация',
+    iconLeft: IconInfo,
+  },
+  {
+    label: 'Сообщения',
+    iconLeft: IconMail,
+  },
+];
+export const NavBarExample = () => {
+  return <NavBar items={items} />;
+};
+```
+
+<NavBarExample />
+
+##### Пример меню с кастомным типом
+
+```tsx
+import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
+import { IconFolders } from '@consta/uikit/IconFolders';
+import { IconGas } from '@consta/uikit/IconGas';
+import { IconComponent } from '@consta/uikit/Icon';
+import { IconInfo } from '@consta/uikit/IconInfo';
+import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
+import { IconMail } from '@consta/uikit/IconMail';
+import { IconMap } from '@consta/uikit/IconMap';
+import React from 'react';
+
+import { NavBar } from '@consta/header/NavBar';
+
+type Item = {
+  text: string;
+  left: IconComponent;
+  checked?: boolean;
+};
+
+export const items: Item[] = [
+  {
+    text: 'Объекты',
+    left: IconFlagFilled,
+  },
+  {
+    text: 'Нефть и газ',
+    left: IconGas,
+  },
+  {
+    text: 'Электроэнергетика',
+    left: IconLineAndBarChart,
+  },
+  {
+    text: 'Карта',
+    left: IconMap,
+    checked: true,
+  },
+  {
+    text: 'Отображение данных',
+    left: IconFolders,
+  },
+  {
+    text: 'Информация',
+    left: IconInfo,
+  },
+  {
+    text: 'Сообщения',
+    left: IconMail,
+  },
+];
+
+export const NavBarExampleCustomTypes = () => {
+  return (
+    <NavBar
+      getItemLabel={(item) => item.text}
+      getItemIconLeft={(item) => item.left}
+      getItemActive={(item) => item.checked}
+      items={items}
+    />
+  );
+};
+```
+
+<NavBarExampleCustomTypes />
+
+## Импорт
+
+```tsx
+import { NavBar } from '@consta/header/NavBar';
+```
+
+## Свойства
+
+```tsx
+export type NavBarDefaultItem = {
+  label: string;
+  iconLeft?: IconComponent;
+  iconRight?: IconComponent;
+  active?: boolean;
+  as?: keyof JSX.IntrinsicElements;
+  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  onClick?: React.MouseEventHandler;
+};
+
+export type NavBarPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type NavBarPropGetItemIconLeft<ITEM> = (
+  item: ITEM,
+) => IconComponent | undefined;
+export type NavBarPropGetItemIconRight<ITEM> = (
+  item: ITEM,
+) => IconComponent | undefined;
+export type NavBarPropGetItemActive<ITEM> = (item: ITEM) => boolean | undefined;
+export type NavBarPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+export type NavBarPropGetItemAs<ITEM> = (
+  item: ITEM,
+) => keyof JSX.IntrinsicElements | undefined;
+export type NavBarPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+
+export type NavBarPropOnItemClick<ITEM> = (params: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+```
+
+| Свойство             | Тип                            | По умолчанию               | Описание                                                                |
+| -------------------- | ------------------------------ | -------------------------- | ----------------------------------------------------------------------- |
+| `items`              | `ITEM[]`                       | -                          | Пункты меню                                                             |
+| `onItemClick?`       | `NavBarPropOnItemClick`        | -                          | Событие по нажаьию на элемент                                           |
+| `getItemLabel?`      | `NavBarPropGetItemLabel`       | `defaultGetItemLabel`      | Функция для определения заголовка элемента                              |
+| `getItemOnClick?`    | `NavBarPropGetItemOnClick`     | `defaultGetItemOnClick`    | Функция для определения события по нажатию на элемент                   |
+| `getItemActive?`     | `NavBarPropGetItemActive`      | `defaultGetItemActive`     | Функция для определения активен элемент или нет                         |
+| `getItemIconLeft?`   | `NavBarPropGetItemIconLeft`    | `defaultGetItemIconLeft`   | Функция для определения левой иконки                                    |
+| `getItemIconRight?`  | `NavBarPropGetItemIconRight`   | `defaultGetItemIconRight`  | Функция для определения правой иконки                                   |
+| `getItemAs?`         | `NavBarPropGetItemAs`          | `defaultGetItemAs`         | Функция для определения тега элемента                                   |
+| `getItemAttributes?` | `NavBarPropGetItemAttributes`  | `defaultGetItemAttributes` | Функция для определения атрибутов элемента                              |
+| `className?`         | `string`                       | -                          | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| `ref?`               | `React.Ref<HTMLButtonElement>` | -                          | Ссылка на корневой DOM-элемент                                          |
