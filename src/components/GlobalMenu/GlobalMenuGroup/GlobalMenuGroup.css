@@ -15,7 +15,14 @@
     }
   }
 
-  &-Content.List {
+  &-Item {
+    &:hover {
+      color: var(--color-control-bg-primary);
+      background: transparent;
+    }
+  }
+
+  &-Content.ListBox {
     display: flex;
     flex-direction: column;
     width: 100%;

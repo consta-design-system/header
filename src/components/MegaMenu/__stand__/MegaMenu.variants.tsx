@@ -1,5 +1,3 @@
-import './MegaMenu.variants.css';
-
 import { useBoolean, useNumber, useSelect, useText } from '@consta/stand';
 import { Button } from '@consta/uikit/Button';
 import { useFlag } from '@consta/uikit/useFlag';
@@ -52,13 +50,14 @@ const Variants = () => {
           menuHideButtonText={menuHideButtonText}
           menuShowButtonText={menuShowButtonText}
           menuTitle={menuTitle}
+          onItemClick={(item) => console.log(item)}
           items={items}
           banners={
             withBanners && contentType !== 'onlynav' ? banners : undefined
           }
         />
       </MegaMenuBox>
-      <Button label="Открыть" onClick={setIsOpen.toogle} />
+      <Button label="Открыть" onClick={setIsOpen.toggle} />
     </div>
   );
 };

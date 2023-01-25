@@ -23,7 +23,7 @@
       &_exited,
       &_exiting {
         opacity: 0;
-        transform: var(--mega-menu-transform);
+        transform: translate3d(0, -20%, 0);
       }
 
       &_entered,

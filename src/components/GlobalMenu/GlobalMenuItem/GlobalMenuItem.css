@@ -1,9 +1,0 @@
-.che--GlobalMenuItem {
-  width: 100%;
-  cursor: pointer;
-  transition: color 0.3s;
-
-  &:hover {
-    color: var(--color-control-bg-primary);
-  }
-}

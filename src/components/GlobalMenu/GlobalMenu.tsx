@@ -3,7 +3,12 @@ import './GlobalMenu.css';
 import { getGroups } from '@consta/uikit/__internal__/src/utils/getGroups';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
-import React, { forwardRef, useMemo } from 'react';
+import {
+  getLastPoint,
+  useComponentBreakpoints,
+} from '@consta/uikit/useComponentBreakpoints';
+import { useForkRef } from '@consta/uikit/useForkRef';
+import React, { forwardRef, useMemo, useRef } from 'react';
 
 import { cn } from '##/utils/bem';
 
@@ -25,7 +30,7 @@ const GlobalMenuRender = (
     getItemGroupId,
     title,
     getItemLabel,
-    columns = 3,
+    columns: columnsProp,
     getItemOnClick,
     getGroupKey,
     onItemClick,
@@ -40,7 +45,20 @@ const GlobalMenuRender = (
     ...otherProps
   } = withDefaultGetters(props);
 
+  const globalMenuRef = useRef<HTMLDivElement>(null);
+
+  const columns = getLastPoint(
+    useComponentBreakpoints(globalMenuRef, {
+      1: 0,
+      2: 600,
+      3: 1000,
+      4: 1600,
+    }),
+  );
+
   const sortedGroups = useMemo(() => {
+    const cols = columnsProp ?? Number(columns);
+
     const groups = getGroups(
       items,
       getItemGroupId,
@@ -51,17 +69,21 @@ const GlobalMenuRender = (
     );
     const arr: Array<typeof groups> = [];
     groups.forEach((group, i) => {
-      const index = i % columns;
+      const index = i % cols;
       if (!arr[index]) {
         arr[index] = [];
       }
       arr[index].push(group);
     });
     return arr;
-  }, [items, groupsProp, columns]);
+  }, [items, groupsProp, columns, columnsProp]);
 
   return (
-    <div ref={ref} className={cnGlobalMenu(null, [className])} {...otherProps}>
+    <div
+      ref={useForkRef([ref, globalMenuRef])}
+      className={cnGlobalMenu(null, [className])}
+      {...otherProps}
+    >
       {title && (
         <Text
           weight="semibold"

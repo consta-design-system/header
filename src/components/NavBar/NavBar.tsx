@@ -1,12 +1,11 @@
 import './NavBar.css';
 
-import { List } from '@consta/uikit/__internal__/src/components/ListCanary';
+import { List, ListBox } from '@consta/uikit/ListCanary';
 import React, { forwardRef } from 'react';
 
 import { cn } from '##/utils/bem';
 
 import { withDefaultGetters } from './helper';
-import { NavBarItem } from './NavBarItem';
 import { NavBarComponent, NavBarProps } from './types';
 
 const cnNavBar = cn('NavBar');
@@ -26,34 +25,31 @@ const NavBarRender = (props: NavBarProps, ref: React.Ref<HTMLDivElement>) => {
     ...otherProps
   } = withDefaultGetters(props);
 
+  type ITEM = (typeof items)[number];
+
+  const onClick = (item: ITEM) => (e: React.MouseEvent) => {
+    getItemOnClick(item)?.(e);
+    onItemClick?.({ e, item });
+  };
+
   return (
-    <List
-      items={items}
-      size="m"
-      getItemKey={getItemLabel}
-      getItemLabel={getItemLabel}
-      className={cnNavBar(null, [className])}
-      ref={ref}
-      renderItem={(item) => {
-        const onClick: React.MouseEventHandler = (e) => {
-          getItemOnClick(item)?.(e);
-          onItemClick?.({ e, item });
-        };
-        return (
-          <NavBarItem
-            label={getItemLabel(item)}
-            active={getItemActive(item)}
-            iconLeft={getItemIconLeft(item)}
-            iconRight={getItemIconRight(item)}
-            onClick={onClick}
-            className={cnNavBar('Item')}
-            as={getItemAs(item)}
-            {...(getItemAttributes(item) ?? {})}
-          />
-        );
-      }}
-      {...otherProps}
-    />
+    <ListBox ref={ref} className={cnNavBar(null, [className])} {...otherProps}>
+      <List
+        items={items}
+        size="m"
+        getItemLabel={getItemLabel}
+        getItemActive={getItemActive}
+        getItemLeftIcon={getItemIconLeft}
+        getItemRightIcon={getItemIconRight}
+        getItemOnClick={(item) => onClick(item)}
+        getItemAs={getItemAs}
+        itemSpase={{ pV: 's', pH: 'l' }}
+        getItemAttributes={getItemAttributes}
+        getItemAdditionalClassName={(item) =>
+          cnNavBar('Item', { active: getItemActive(item) })
+        }
+      />
+    </ListBox>
   );
 };
 

@@ -1,11 +1,7 @@
 import './MegaMenu.css';
 
 import { IconArrowRight } from '@consta/uikit/IconArrowRight';
-import {
-  getLastPoint,
-  useComponentBreakpoints,
-} from '@consta/uikit/useComponentBreakpoints';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { cn } from '##/utils/bem';
 
@@ -62,8 +58,6 @@ export const MegaMenu = (props: MegaMenuProps) => {
     return false;
   };
 
-  const globalMenuRef = useRef<HTMLDivElement>(null);
-
   const depth = useMemo(
     () => getItemsDepth(itemsProp, getItemSubMenu),
     [itemsProp],
@@ -88,15 +82,6 @@ export const MegaMenu = (props: MegaMenuProps) => {
       items: depth < 3 ? secondLevel : thirdLevel,
     };
   }, [depth, firstLevel, secondLevel, thirdLevel]);
-
-  const columns = getLastPoint(
-    useComponentBreakpoints(globalMenuRef, {
-      1: 0,
-      2: 600,
-      3: 1000,
-      4: 1600,
-    }),
-  );
 
   useEffect(() => {
     if (depth > 2 && getItemSubMenu(itemsProp[0])) {
@@ -163,8 +148,6 @@ export const MegaMenu = (props: MegaMenuProps) => {
           <GlobalMenu
             className={cnMegaMenu('GlobalMenu')}
             items={items}
-            ref={globalMenuRef}
-            columns={Number(columns)}
             groups={groups}
             title={
               menuTitle ?? (activeItem ? getItemLabel(activeItem) : undefined)
@@ -177,11 +160,17 @@ export const MegaMenu = (props: MegaMenuProps) => {
             getItemLabel={({ item }) => getItemLabel(item)}
             getItemOnClick={({ item }) => getItemOnClick(item)}
             getGroupOnClick={({ item }) => getItemOnClick(item)}
-            onGroupClick={({ e, group: { item } }) => {
-              onItemClickProp?.({ e, item });
-            }}
-            onItemClick={({ e, item: { item } }) =>
-              onItemClickProp?.({ e, item })
+            onGroupClick={
+              onItemClickProp
+                ? ({ e, group: { item } }) => {
+                    onItemClickProp?.({ e, item });
+                  }
+                : undefined
+            }
+            onItemClick={
+              onItemClickProp
+                ? ({ e, item: { item } }) => onItemClickProp?.({ e, item })
+                : undefined
             }
             maxElements={menuMaxElements}
             showButtonText={menuShowButtonText}
