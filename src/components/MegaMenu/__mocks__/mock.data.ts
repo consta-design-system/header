@@ -69,7 +69,7 @@ export const getSubMenu: (prefix?: string) => MegaMenuDefaultItem[] = (
   },
   {
     key: `${prefix ? `${prefix}.` : ''}3`,
-    label: 'Трубопровод',
+    label: 'Трубопроводы',
     subMenu: [
       {
         key: `${prefix ? `${prefix}.` : ''}3.1`,

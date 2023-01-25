@@ -54,7 +54,7 @@ const getSubMenu = (prefix?: string) => [
       },
       {
         key: `${prefix ? `${prefix}.` : ''}2.2`,
-        label: 'ГорнозаводскаяГорнозаводская',
+        label: 'Горнозаводская',
       },
       {
         key: `${prefix ? `${prefix}.` : ''}2.3`,
@@ -72,7 +72,7 @@ const getSubMenu = (prefix?: string) => [
   },
   {
     key: `${prefix ? `${prefix}.` : ''}3`,
-    label: 'Трубопровод',
+    label: 'Трубопроводы',
     subMenu: [
       {
         key: `${prefix ? `${prefix}.` : ''}3.1`,
@@ -90,7 +90,7 @@ const getSubMenu = (prefix?: string) => [
   },
   {
     key: `${prefix ? `${prefix}.` : ''}4`,
-    label: 'Перерабатывающие завводы',
+    label: 'Перерабатывающие заводы',
     subMenu: [
       {
         key: `${prefix ? `${prefix}.` : ''}4.1`,

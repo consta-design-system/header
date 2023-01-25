@@ -30,7 +30,7 @@ export const items: GlobalMenuDefaultItem[] = [
     groupId: 2,
   },
   {
-    label: 'ГорнозаводскаяГорнозаводская',
+    label: 'Горнозаводская',
     groupId: 2,
   },
   {
@@ -86,7 +86,7 @@ export const groups: GlobalMenuDefaultGroup[] = [
   },
   {
     id: 3,
-    label: 'Трубопровод',
+    label: 'Трубопроводы',
   },
   {
     id: 4,
