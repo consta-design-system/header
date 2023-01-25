@@ -1,7 +1,7 @@
+import { Example } from '@consta/stand';
 import React from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
-import { Example } from '##/stand/components';
 
 const banners = [
   {
@@ -118,10 +118,22 @@ const items = [
   },
 ];
 
-export const MegaMenuExampleBanners = () => {
+type View = 'right' | 'bottom';
+const views: View[] = ['right', 'bottom'];
+
+export const MegaMenuExampleBannersPosition = () => {
   return (
-    <Example>
-      <MegaMenu items={items} banners={banners} menuMaxElements={4} />
-    </Example>
+    <Example
+      items={views}
+      getItemLabel={(view) => `bannerPosition=${view}`}
+      getItemNode={(view: View) => (
+        <MegaMenu
+          items={items}
+          bannerPosition={view}
+          banners={banners}
+          menuMaxElements={4}
+        />
+      )}
+    />
   );
 };

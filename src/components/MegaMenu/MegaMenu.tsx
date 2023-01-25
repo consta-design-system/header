@@ -2,16 +2,10 @@ import './MegaMenu.css';
 
 import { IconArrowRight } from '@consta/uikit/IconArrowRight';
 import {
-  PortalWithTheme,
-  usePortalContext,
-} from '@consta/uikit/PortalWithTheme';
-import { useTheme } from '@consta/uikit/Theme';
-import { useClickOutside } from '@consta/uikit/useClickOutside';
-import { useComponentBreakpoints } from '@consta/uikit/useComponentBreakpoints';
-import { useComponentSize } from '@consta/uikit/useComponentSize';
-import { useGlobalKeys } from '@consta/uikit/useGlobalKeys';
+  getLastPoint,
+  useComponentBreakpoints,
+} from '@consta/uikit/useComponentBreakpoints';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Transition } from 'react-transition-group';
 
 import { cn } from '##/utils/bem';
 
@@ -26,25 +20,6 @@ import {
 import { MegaMenuProps } from './types';
 
 const cnMegaMenu = cn('MegaMenu');
-
-const ContextConsumer: React.FC<{
-  onClickOutside?: (event: MouseEvent) => void;
-  ignoreClicksInsideRefs?: ReadonlyArray<React.RefObject<HTMLElement>>;
-  children: React.ReactNode;
-}> = ({ onClickOutside, children, ignoreClicksInsideRefs }) => {
-  const { refs } = usePortalContext();
-
-  useClickOutside({
-    isActive: !!onClickOutside,
-    ignoreClicksInsideRefs: [
-      ...(ignoreClicksInsideRefs || []),
-      ...(refs || []),
-    ],
-    handler: onClickOutside,
-  });
-
-  return children as React.ReactElement;
-};
 
 export const MegaMenu = (props: MegaMenuProps) => {
   const {
@@ -64,6 +39,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
     getItemOnClick,
     // BannerBar
     banners,
+    bannerPosition = 'right',
     onBannerClick,
     getBannerAs,
     getBannerAttributes,
@@ -72,15 +48,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
     getBannerLabel,
     getBannerOnClick,
     // Others
-    isOpen,
-    position = 'absolute',
-    anchorRef,
-    onClickOutside,
-    onEsc,
     className,
-    style,
-    offset: offsetProp = 0,
-    view = 'vertical',
     ...otherProps
   } = withDefaultGetters(props);
   type ITEM = (typeof itemsProp)[number];
@@ -95,20 +63,11 @@ export const MegaMenu = (props: MegaMenuProps) => {
   };
 
   const globalMenuRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { theme } = useTheme();
 
   const depth = useMemo(
     () => getItemsDepth(itemsProp, getItemSubMenu),
     [itemsProp],
   );
-
-  const { two, three } = useComponentBreakpoints(globalMenuRef, {
-    two: 600,
-    three: 1000,
-  });
 
   const [firstLevel, secondLevel, thirdLevel] = useMemo(
     () =>
@@ -122,8 +81,6 @@ export const MegaMenu = (props: MegaMenuProps) => {
     [itemsProp, activeItem],
   );
 
-  const { height: globalMenuHeight } = useComponentSize(globalMenuRef);
-
   const { navItems, items, groups } = useMemo(() => {
     return {
       navItems: depth < 2 || depth > 2 ? firstLevel : undefined,
@@ -132,29 +89,20 @@ export const MegaMenu = (props: MegaMenuProps) => {
     };
   }, [depth, firstLevel, secondLevel, thirdLevel]);
 
-  const columns = useMemo(() => {
-    if (three) return 3;
-    if (two) return 2;
-    return 1;
-  }, [two, three]);
-
-  const offset = useMemo(() => {
-    return (
-      (anchorRef?.current?.offsetTop ?? 0) +
-      (anchorRef?.current?.offsetHeight ?? 0) +
-      offsetProp
-    );
-  }, [offsetProp, anchorRef?.current]);
+  const columns = getLastPoint(
+    useComponentBreakpoints(globalMenuRef, {
+      1: 0,
+      2: 600,
+      3: 1000,
+      4: 1600,
+    }),
+  );
 
   useEffect(() => {
     if (depth > 2 && getItemSubMenu(itemsProp[0])) {
       setActiveItem(itemsProp[0]);
     }
   }, [depth]);
-
-  useGlobalKeys({
-    Escape: (e) => isOpen && onEsc?.(e),
-  });
 
   const handleNavBarClick = (e: React.MouseEvent, item: ITEM) => {
     onItemClickProp?.({ e, item });
@@ -176,115 +124,86 @@ export const MegaMenu = (props: MegaMenuProps) => {
   };
 
   return (
-    <Transition in={isOpen} unmountOnExit timeout={240} nodeRef={containerRef}>
-      {(animate) => (
-        <PortalWithTheme
-          preset={theme}
-          style={{
-            ['--mega-menu-offset' as string]: `${offset}px`,
-            ...style,
-          }}
-          className={cnMegaMenu(
-            {
-              view,
-              withGlobalMenu: depth > 1,
-              withBannersBar: (banners ?? []).length > 0,
-              withNavBar: depth !== 2,
-            },
-            [className],
-          )}
-          ref={containerRef}
-          {...otherProps}
-        >
-          <div className={cnMegaMenu('Overlay', { animate })} />
-          <ContextConsumer
-            onClickOutside={onClickOutside}
-            ignoreClicksInsideRefs={[menuRef]}
-          >
-            <div
-              ref={menuRef}
-              className={cnMegaMenu('Window', { animate, view, position })}
-            >
-              {navItems && (
-                <NavBar
-                  items={navItems}
-                  className={cnMegaMenu('NavBar')}
-                  getItemActive={({ item }) => getItemActive(item)}
-                  getItemAs={({ item }) => getItemAs(item)}
-                  getItemAttributes={({ item }) =>
-                    ({
-                      ...getItemAttributes(item),
-                      onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) =>
-                        handleNavBarMouseEnter(e, item),
-                    } as JSX.IntrinsicElements['div'])
-                  }
-                  getItemIconLeft={({ item }) => getItemIconLeft(item)}
-                  getItemLabel={({ item }) => getItemLabel(item)}
-                  getItemOnClick={({ item }) => getItemOnClick(item)}
-                  onItemClick={({ e, item: { item } }) =>
-                    handleNavBarClick(e, item)
-                  }
-                  getItemIconRight={({ item }) =>
-                    getItemSubMenu(item) ? IconArrowRight : undefined
-                  }
-                />
-              )}
-              <div className={cnMegaMenu('Wrapper')}>
-                {depth >= 2 && (
-                  <GlobalMenu
-                    ref={globalMenuRef}
-                    className={cnMegaMenu('GlobalMenu')}
-                    items={items}
-                    columns={columns}
-                    groups={groups}
-                    title={
-                      menuTitle ??
-                      (activeItem ? getItemLabel(activeItem) : undefined)
-                    }
-                    getGroupKey={({ item }) => getItemKey(item)}
-                    getGroupLabel={({ item }) => getItemLabel(item)}
-                    getItemAs={({ item }) => getItemAs(item)}
-                    getItemAttributes={({ item }) => getItemAttributes(item)}
-                    getItemGroupId={({ groupId }) => groupId}
-                    getItemLabel={({ item }) => getItemLabel(item)}
-                    getItemOnClick={({ item }) => getItemOnClick(item)}
-                    getGroupOnClick={({ item }) => getItemOnClick(item)}
-                    onGroupClick={({ e, group: { item } }) => {
-                      onItemClickProp?.({ e, item });
-                    }}
-                    onItemClick={({ e, item: { item } }) =>
-                      onItemClickProp?.({ e, item })
-                    }
-                    maxElements={menuMaxElements}
-                    showButtonText={menuShowButtonText}
-                    hideButtonText={menuHideButtonText}
-                  />
-                )}
-                {banners && (
-                  <BannerBar
-                    className={cnMegaMenu('BannerBar')}
-                    items={banners}
-                    style={{
-                      ['--mega-menu-banners-height' as string]: globalMenuHeight
-                        ? `${globalMenuHeight}px`
-                        : 'auto',
-                    }}
-                    view={view}
-                    onItemClick={onBannerClick}
-                    getItemAs={getBannerAs}
-                    getItemAttributes={getBannerAttributes}
-                    getItemDescription={getBannerDescription}
-                    getItemImage={getBannerImage}
-                    getItemLabel={getBannerLabel}
-                    getItemOnClick={getBannerOnClick}
-                  />
-                )}
-              </div>
-            </div>
-          </ContextConsumer>
-        </PortalWithTheme>
+    <div
+      className={cnMegaMenu(
+        {
+          withGlobalMenu: depth > 1,
+          withBannersBar: (banners ?? []).length > 0,
+          withNavBar: depth !== 2,
+          bannerPosition,
+        },
+        [className],
       )}
-    </Transition>
+      {...otherProps}
+    >
+      {navItems && (
+        <NavBar
+          items={navItems}
+          className={cnMegaMenu('NavBar')}
+          getItemActive={({ item }) => getItemActive(item)}
+          getItemAs={({ item }) => getItemAs(item)}
+          getItemAttributes={({ item }) =>
+            ({
+              ...getItemAttributes(item),
+              onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) =>
+                handleNavBarMouseEnter(e, item),
+            } as JSX.IntrinsicElements['div'])
+          }
+          getItemIconLeft={({ item }) => getItemIconLeft(item)}
+          getItemLabel={({ item }) => getItemLabel(item)}
+          getItemOnClick={({ item }) => getItemOnClick(item)}
+          onItemClick={({ e, item: { item } }) => handleNavBarClick(e, item)}
+          getItemIconRight={({ item }) =>
+            getItemSubMenu(item) ? IconArrowRight : undefined
+          }
+        />
+      )}
+      <div className={cnMegaMenu('Wrapper')}>
+        {depth >= 2 && (
+          <GlobalMenu
+            className={cnMegaMenu('GlobalMenu')}
+            items={items}
+            ref={globalMenuRef}
+            columns={Number(columns)}
+            groups={groups}
+            title={
+              menuTitle ?? (activeItem ? getItemLabel(activeItem) : undefined)
+            }
+            getGroupKey={({ item }) => getItemKey(item)}
+            getGroupLabel={({ item }) => getItemLabel(item)}
+            getItemAs={({ item }) => getItemAs(item)}
+            getItemAttributes={({ item }) => getItemAttributes(item)}
+            getItemGroupId={({ groupId }) => groupId}
+            getItemLabel={({ item }) => getItemLabel(item)}
+            getItemOnClick={({ item }) => getItemOnClick(item)}
+            getGroupOnClick={({ item }) => getItemOnClick(item)}
+            onGroupClick={({ e, group: { item } }) => {
+              onItemClickProp?.({ e, item });
+            }}
+            onItemClick={({ e, item: { item } }) =>
+              onItemClickProp?.({ e, item })
+            }
+            maxElements={menuMaxElements}
+            showButtonText={menuShowButtonText}
+            hideButtonText={menuHideButtonText}
+          />
+        )}
+        {banners && (
+          <BannerBar
+            className={cnMegaMenu('BannerBar')}
+            items={banners}
+            view={bannerPosition === 'right' ? 'vertical' : 'horizontal'}
+            onItemClick={onBannerClick}
+            getItemAs={getBannerAs}
+            getItemAttributes={getBannerAttributes}
+            getItemDescription={getBannerDescription}
+            getItemImage={getBannerImage}
+            getItemLabel={getBannerLabel}
+            getItemOnClick={getBannerOnClick}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 

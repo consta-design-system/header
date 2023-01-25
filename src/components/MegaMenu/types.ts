@@ -69,19 +69,13 @@ export type MegaMenuProps<
   BANNER = BannerBarDefaultItem,
 > = PropsWithHTMLAttributesAndRef<
   {
-    isOpen?: boolean;
-    onClickOutside?: (event: MouseEvent) => void;
-    onEsc?: (event: KeyboardEvent) => void;
     banners?: BANNER[];
     items: ITEM[];
     menuTitle?: string;
-    offset?: number;
     menuShowButtonText?: string;
     menuHideButtonText?: string;
     menuMaxElements?: number;
-    view?: 'vertical' | 'horizontal';
-    position?: 'absolute' | 'fixed';
-    anchorRef?: React.RefObject<HTMLElement>;
+    bannerPosition?: 'right' | 'bottom';
     onItemClick?: MegaMenuPropOnItemClick<ITEM>;
     onBannerClick?: MegaMenuPropOnItemClick<BANNER>;
   } & BannerMappers<BANNER> &

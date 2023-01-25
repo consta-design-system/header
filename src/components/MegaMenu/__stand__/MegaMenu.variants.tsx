@@ -10,6 +10,7 @@ import { cn } from '##/utils/bem';
 
 import { getItems, getSubMenu } from '../__mocks__/mock.data';
 import { MegaMenu } from '../MegaMenu';
+import { MegaMenuBox } from '../MegaMenuBox';
 
 const cnMegaMenuVariants = cn('MegaMenuVariants');
 
@@ -17,11 +18,14 @@ const Variants = () => {
   const contentType = useSelect(
     'contentType',
     ['onlynav', 'onlymenu', 'full'],
-    'onlynav',
+    'full',
   );
-  const withBanners = useBoolean('withBanners', false);
-  const view = useSelect('view', ['vertical', 'horizontal'], 'vertical');
-  const position = useSelect('position', ['absolute', 'fixed'], 'absolute');
+  const withBanners = useBoolean('withBanners', true);
+  const bannerPosition = useSelect(
+    'bannerPosition',
+    ['right', 'bottom'],
+    'right',
+  );
   const menuMaxElements = useNumber('menuMaxElements', 4);
   const menuHideButtonText = useText('menuHideButtonText', 'Скрыть');
   const menuShowButtonText = useText('menuShowButtonText', 'Ещё');
@@ -41,18 +45,19 @@ const Variants = () => {
 
   return (
     <div className={cnMegaMenuVariants()}>
-      <MegaMenu
-        view={view}
-        isOpen={isOpen}
-        position={position}
-        menuMaxElements={menuMaxElements}
-        menuHideButtonText={menuHideButtonText}
-        menuShowButtonText={menuShowButtonText}
-        menuTitle={menuTitle}
-        onClickOutside={setIsOpen.off}
-        items={items}
-        banners={withBanners ? banners : undefined}
-      />
+      <MegaMenuBox isOpen={isOpen} onClickOutside={setIsOpen.off}>
+        <MegaMenu
+          bannerPosition={bannerPosition}
+          menuMaxElements={menuMaxElements}
+          menuHideButtonText={menuHideButtonText}
+          menuShowButtonText={menuShowButtonText}
+          menuTitle={menuTitle}
+          items={items}
+          banners={
+            withBanners && contentType !== 'onlynav' ? banners : undefined
+          }
+        />
+      </MegaMenuBox>
       <Button label="Открыть" onClick={setIsOpen.toogle} />
     </div>
   );

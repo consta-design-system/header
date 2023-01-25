@@ -2,7 +2,8 @@ import { MegaMenuExample } from './examples/MegaMenuExample/MegaMenuExample';
 import { MdxMenu } from '@consta/stand';
 import { MegaMenuExampleBanners } from './examples/MegaMenuExampleBanners/MegaMenuExampleBanners';
 import { MegaMenuExampleSubMenu } from './examples/MegaMenuExampleSubMenu/MegaMenuExampleSubMenu';
-import { MegaMenuExampleView } from './examples/MegaMenuExampleView/MegaMenuExampleView';
+import { MegaMenuExampleBannersPosition } from './examples/MegaMenuExampleBannersPosition/MegaMenuExampleBannersPosition';
+import { MegaMenuBoxExample } from './examples/MegaMenuBoxExample/MegaMenuBoxExample';
 
 ```tsx
 import { MegaMenu } from '@consta/header/MegaMenu';
@@ -12,8 +13,10 @@ import { MegaMenu } from '@consta/header/MegaMenu';
 
 - [Меню](#меню)
 - [Баннеры](#баннеры)
+  - [Позиционирование](#позиционирование-баннеров)
 - [Вложенное меню](#вложенное-меню)
-- [Внешний вид](#внешний-вид)
+- [Обертка](#обертка)
+  - [Свойства](#свойства-megamenubox)
 - [Импорт](#импорт)
 - [Свойства](#свойства)
 
@@ -96,17 +99,10 @@ const items = [
 
 export const MegaMenuExample = () => {
   return (
-    <div>
-      <MegaMenu
-        onClickOutside={setIsOpen.off}
-        isOpen={isOpen}
-        offset={60}
-        position="fixed"
+    <MegaMenu
         items={items}
         menuMaxElements={4}
       />
-      <Button label="Открыть" onClick={setIsOpen.toogle} />
-    </div>
   );
 };
 ```
@@ -141,22 +137,27 @@ const banners = [
 
 export const MegaMenuExample = () => {
   return (
-    <div>
-      <MegaMenu
-        onClickOutside={setIsOpen.off}
-        isOpen={isOpen}
-        offset={60}
+   <MegaMenu
         items={items}
-        position="fixed"
         menuMaxElements={4}
+        banners={banners}
       />
-      <Button label="Открыть" onClick={setIsOpen.toogle} />
-    </div>
   );
 };
 ```
 
 <MegaMenuExampleBanners />
+
+### Позиционирование баннеров
+
+За позицию баннеров в менб отвечает свойство `bannerPosition`.
+
+```tsx
+<MegaMenu items={items} banners={banners} bannerPosition="left"  />
+<MegaMenu items={items} banners={banners} bannerPosition="bottom"  />
+```
+
+<MegaMenuExampleBannersPosition />
 
 ## Вложенное меню
 
@@ -164,21 +165,107 @@ export const MegaMenuExample = () => {
 
 <MegaMenuExampleSubMenu />
 
-## Внешний вид
+## Обертка
 
-За внешний вид компонента отвечает свойство `view`.
+Для того чтобы ваш компонент имел оверлей, а также абсолютное позиционирование с анимацией необходимо использовать компонент `MegaMenuBox`.
 
 ```tsx
-<MegaMenu items={items} view="vertical" position="fixed" />
-<MegaMenu items={items} view="horizontal" position="fixed" />
+import { Button } from '@consta/uikit/Button';
+import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
+import { IconFolders } from '@consta/uikit/IconFolders';
+import { IconGas } from '@consta/uikit/IconGas';
+import { IconInfo } from '@consta/uikit/IconInfo';
+import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
+import { IconMail } from '@consta/uikit/IconMail';
+import { IconMap } from '@consta/uikit/IconMap';
+import { useFlag } from '@consta/uikit/useFlag';
+import React from 'react';
+
+import { MegaMenu, MegaMenuBox } from '@consta/header/MegaMenu';
+
+const getSubMenu = (prefix?: string) => [
+  {
+    key: `${prefix ? `${prefix}.` : ''}1`,
+    label: 'Электростанции',
+    subMenu: [
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.1`,
+        label: 'Ветряные электростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.2`,
+        label: 'Солнечные электростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.3`,
+        label: 'Гидроэлектростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.4`,
+        label: 'Гидроаккумулирующие электростанции',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.5`,
+        label: 'Теплоэлектроцентрали',
+      },
+      {
+        key: `${prefix ? `${prefix}.` : ''}1.6`,
+        label: 'Газопоршневые станции',
+      },
+    ],
+  },
+  ...
+];
+
+const items = [
+  {
+    key: '1',
+    label: 'Объекты',
+    iconLeft: IconFlagFilled,
+    subMenu: getSubMenu('1'),
+  },
+  {
+    key: '2',
+    label: 'Нефть и газ',
+    iconLeft: IconGas,
+    subMenu: getSubMenu('2'),
+  },
+  ...
+];
+
+export const MegaMenuBoxExample = () => {
+  const [isOpen, setIsOpen] = useFlag();
+  return (
+    <div>
+      <MegaMenuBox isOpen={isOpen} onClickOutside={setIsOpen.off}>
+        <MegaMenu items={items} menuMaxElements={4} />
+      </MegaMenuBox>
+      <Button label="Открыть" onClick={setIsOpen.on} />
+    </div>
+  );
+};
 ```
 
-<MegaMenuExampleView />
+<MegaMenuBoxExample />
+
+> Так как пример позиционируется абсолютно сверху, он будет находится сверху страницы
+
+### Свойства MegaMenuBox
+
+| Свойство           | Тип                              | По умолчанию | Описание                                                                |
+| ------------------ | -------------------------------- | ------------ | ----------------------------------------------------------------------- |
+| `anchorRef?`       | `React.RefObject<HTMLElement>`   | -            | Элемент, относительно которого будет позиционироваться меню             |
+| `isOpen?`          | `boolean`                        | -            | Возвращает состояние меню: открыто/закрыто                              |
+| `onClickOutside?`  | `(event: MouseEvent) => void`    | -            | Событие по нажатию за пределами меню                                    |
+| `onEsc?`           | `(event: KeyboardEvent) => void` | -            | Событие по нажатию кнопки `ESC`                                         |
+| `offset?`          | `number`                         | 0            | Отступ меню сверху                                                      |
+| `maxContentWidth?` | `number`                         | -            | Максимальная ширина контента                                            |
+| `className?`       | `string`                         | -            | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
 
 ## Импорт
 
 ```tsx
-import { MegaMenu } from '@consta/header/MegaMenu';
+import { MegaMenu, MegaMenuBox } from '@consta/header/MegaMenu';
 ```
 
 ## Свойства
@@ -220,17 +307,11 @@ export type MegaMenuPropGetItemSubMenu<ITEM> = (
 
 | Свойство                | Тип                               | По умолчанию                  | Описание                                                                |
 | ----------------------- | --------------------------------- | ----------------------------- | ----------------------------------------------------------------------- |
-| `position?`             | `'absolute', 'fixed'`             | `'absolute'`                  | Позиционирование компонента меню                                        |
-| `anchorRef?`            | `React.RefObject<HTMLElement>`    | -                             | Элемент, относительно которого будет позиционироваться меню             |
-| `isOpen?`               | `boolean`                         | -                             | Возвращает состояние меню: открыто/закрыто                              |
-| `onClickOutside?`       | `(event: MouseEvent) => void`     | -                             | Событие по нажатию за пределами меню                                    |
-| `onEsc?`                | `(event: KeyboardEvent) => void`  | -                             | Событие по нажатию кнопки `ESC`                                         |
 | `menuTitle?`            | `string`                          | -                             | Заголовок меню                                                          |
-| `offset?`               | `number`                          | 0                             | Отступ меню сверху                                                      |
 | `menuShowButtonText?`   | `string`                          | `'Ещё'`                       | Текст кнопки для разворачивания списка пунктов меню                     |
 | `menuHideButtonText?`   | `string`                          | `'Скрыть'`                    | Текст кнопки для сворачиванию списка пунктов меню                       |
 | `menuMaxElements?`      | `number`                          | -                             | Максимальное число отображаемых элементов пункта меню                   |
-| `view?`                 | `'vertical', 'horizontal'`        | `vertical`                    | Вид меню                                                                |
+| `bannerPosition?`       | `'right', 'bottom'`               | `right`                       | Позиция баннеров                                                        |
 | `items`                 | `ITEM[]`                          | -                             | Пункты меню                                                             |
 | `banners?`              | `BANNER[]`                        | -                             | Список баннеров                                                         |
 | `onItemClick?`          | `MegaMenuPropOnItemClick`         | -                             | Событие по нажатию на элемент                                           |

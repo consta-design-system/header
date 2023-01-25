@@ -1,5 +1,4 @@
 import { Example } from '@consta/stand';
-import { Button } from '@consta/uikit/Button';
 import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
 import { IconFolders } from '@consta/uikit/IconFolders';
 import { IconGas } from '@consta/uikit/IconGas';
@@ -7,7 +6,7 @@ import { IconInfo } from '@consta/uikit/IconInfo';
 import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
 import { IconMail } from '@consta/uikit/IconMail';
 import { IconMap } from '@consta/uikit/IconMap';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
 
@@ -154,12 +153,10 @@ const getItems = (withSubMenu?: boolean) => [
 ];
 
 export const MegaMenuExampleSubMenu = () => {
-  const [openType, setOpenType] = useState<string | undefined>();
-
   return (
     <Example
       items={['one', 'two', 'three']}
-      col={{ 1: 0, flex: 400 }}
+      col={1}
       getItemLabel={(type) => {
         if (type === 'one') {
           return 'depth=1';
@@ -178,19 +175,7 @@ export const MegaMenuExampleSubMenu = () => {
         } else {
           items = getItems(true);
         }
-        return (
-          <>
-            <MegaMenu
-              onClickOutside={() => setOpenType(undefined)}
-              isOpen={openType === type}
-              offset={60}
-              items={items}
-              position="fixed"
-              menuMaxElements={4}
-            />
-            <Button label="Открыть" onClick={() => setOpenType(type)} />
-          </>
-        );
+        return <MegaMenu items={items} menuMaxElements={4} />;
       }}
     />
   );

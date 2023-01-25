@@ -7,25 +7,11 @@ import { IconInfo } from '@consta/uikit/IconInfo';
 import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
 import { IconMail } from '@consta/uikit/IconMail';
 import { IconMap } from '@consta/uikit/IconMap';
-import React, { useState } from 'react';
+import { useFlag } from '@consta/uikit/useFlag';
+import React from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
-
-const banners = [
-  {
-    label: 'Особенности разведки',
-    description:
-      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
-    image:
-      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
-  },
-  {
-    label: 'Особенности разведки',
-    description: 'Лицензии на пользование недрами (далее для настоящ...',
-    image:
-      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
-  },
-];
+import { MegaMenuBox } from '##/components/MegaMenu/MegaMenuBox';
 
 const getSubMenu = (prefix?: string) => [
   {
@@ -169,31 +155,14 @@ const items = [
   },
 ];
 
-type View = 'vertical' | 'horizontal';
-const views: View[] = ['vertical', 'horizontal'];
-
-export const MegaMenuExampleView = () => {
-  const [openType, setOpenType] = useState<View | undefined>();
-
+export const MegaMenuBoxExample = () => {
+  const [isOpen, setIsOpen] = useFlag();
   return (
-    <Example
-      items={views}
-      getItemLabel={(view) => `view=${view}`}
-      getItemNode={(view: View) => (
-        <>
-          <MegaMenu
-            onClickOutside={() => setOpenType(undefined)}
-            isOpen={openType === view}
-            offset={60}
-            items={items}
-            view={view}
-            position="fixed"
-            banners={banners}
-            menuMaxElements={4}
-          />
-          <Button label="Открыть" onClick={() => setOpenType(view)} />
-        </>
-      )}
-    />
+    <Example>
+      <MegaMenuBox offset={60} isOpen={isOpen} onClickOutside={setIsOpen.off}>
+        <MegaMenu items={items} menuMaxElements={4} />
+      </MegaMenuBox>
+      <Button label="Открыть" onClick={setIsOpen.on} />
+    </Example>
   );
 };

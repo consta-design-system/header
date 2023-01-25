@@ -1,4 +1,3 @@
-import { Button } from '@consta/uikit/Button';
 import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
 import { IconFolders } from '@consta/uikit/IconFolders';
 import { IconGas } from '@consta/uikit/IconGas';
@@ -6,7 +5,6 @@ import { IconInfo } from '@consta/uikit/IconInfo';
 import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
 import { IconMail } from '@consta/uikit/IconMail';
 import { IconMap } from '@consta/uikit/IconMap';
-import { useFlag } from '@consta/uikit/useFlag';
 import React from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
@@ -155,19 +153,9 @@ const items = [
 ];
 
 export const MegaMenuExample = () => {
-  const [isOpen, setIsOpen] = useFlag();
-
   return (
     <Example>
-      <MegaMenu
-        onClickOutside={setIsOpen.off}
-        isOpen={isOpen}
-        offset={60}
-        position="fixed"
-        items={items}
-        menuMaxElements={4}
-      />
-      <Button label="Открыть" onClick={setIsOpen.toogle} />
+      <MegaMenu items={items} menuMaxElements={4} />
     </Example>
   );
 };
