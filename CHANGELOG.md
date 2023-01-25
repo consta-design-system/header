@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.0 (25/01/2023)
+- Добавлен компонент MegaMenu, для организации меню с большим количеством пунктов.
+
+---
+
+- [chore(deps): update @consta/stand](https://github.com/consta-design-system/header/commit/b9a50961de3058333e0908432a87fed0f2468b12) - [@gizeasy](https://github.com/gizeasy)
+- [feat(megamenu): add new compoenent (#38)](https://github.com/consta-design-system/header/commit/cab07dfda2f9a4735355991715c047628aaaefdb) - [@N1MBER](https://github.com/N1MBER)
+
+--------------------
+
 ## v1.0.1 (16/11/2022)
 Самое важное:
 - Исправлена проблема исчезновения `Menu` при встраивании его в `Layout`
