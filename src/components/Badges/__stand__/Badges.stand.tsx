@@ -6,6 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Ряд бейджиков.',
   version: '0.4.0',
+  alias: ['badge', 'бэйджик'],
   status: 'stable',
   sandbox: 'header-badges-cecvnc',
   figma:

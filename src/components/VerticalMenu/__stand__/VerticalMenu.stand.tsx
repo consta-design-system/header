@@ -5,6 +5,7 @@ export default createStand({
   id: 'VerticalMenu',
   group: 'components',
   description: 'Вертикальное выпадающее меню.',
+  alias: ['меню', 'список', 'навигация'],
   version: '0.4.0',
   status: 'stable',
   sandbox: 'header-verticalmenu-k0k8f2',

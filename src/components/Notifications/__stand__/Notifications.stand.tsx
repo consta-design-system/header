@@ -5,6 +5,7 @@ export default createStand({
   id: 'Notifications',
   group: 'components',
   description: 'Уведомления.',
+  alias: ['уведомления', 'список', 'группа'],
   version: '0.4.0',
   status: 'stable',
   sandbox: 'header-notifications-ui3ve7',

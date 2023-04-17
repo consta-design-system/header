@@ -5,6 +5,7 @@ export default createStand({
   id: 'MobileMenu',
   group: 'components',
   description: 'Мобильное меню.',
+  alias: ['меню', 'сайдбар', 'sidebar', 'мобильный', 'навигация'],
   version: '0.4.0',
   status: 'stable',
   sandbox: 'header-mobilemenu-fo64o4',
