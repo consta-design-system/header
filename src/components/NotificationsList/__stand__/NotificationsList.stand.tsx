@@ -4,6 +4,7 @@ export default createStand({
   title: 'NotificationsList',
   id: 'NotificationsList',
   group: 'components',
+  alias: ['уведомления', 'список', 'группа'],
   description:
     'Список уведомлений с бейджиками, статусом, возможными действиями и группировкой.',
   version: '0.4.0',

@@ -5,6 +5,7 @@ export default createStand({
   id: 'SelectMenu',
   group: 'components',
   description: 'Меню в виде выпадающего списка.',
+  alias: ['меню', 'список', 'навигация'],
   version: '0.4.0',
   status: 'stable',
   sandbox: 'header-selectmenu-om39gd',

@@ -5,6 +5,7 @@ export default createStand({
   id: 'GlobalMenu',
   group: 'components',
   description: 'Глобальное меню с группами',
+  alias: ['меню', 'группы', 'навигация'],
   version: '1.0.2',
   status: 'canary',
   sandbox: 'header-globalmenu-eozui5',

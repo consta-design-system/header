@@ -5,6 +5,7 @@ export default createStand({
   id: 'NavBar',
   group: 'components',
   description: 'NavBar',
+  alias: ['меню', 'навигация'],
   version: '1.0.2',
   status: 'canary',
   sandbox: 'header-navbar-ut51f0',

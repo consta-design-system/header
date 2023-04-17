@@ -5,6 +5,7 @@ export default createStand({
   id: 'MegaMenu',
   group: 'components',
   description: 'Мега меню',
+  alias: ['меню', 'баннер', 'баннеры', 'группа', 'группы', 'навигация'],
   version: '1.0.2',
   status: 'canary',
   sandbox: 'header-megamenu-dm0dqt',

@@ -5,6 +5,7 @@ export default createStand({
   id: 'Layout',
   group: 'components',
   description: 'Каркас.',
+  alias: ['каркас', 'лаяут', 'структура'],
   version: '0.4.0',
   status: 'stable',
   sandbox: 'header-layout-msszrn',

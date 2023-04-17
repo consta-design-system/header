@@ -5,6 +5,7 @@ export default createStand({
   id: 'BannerBar',
   group: 'components',
   description: 'Ряд банеров',
+  alias: ['баннер', 'баннеры', 'карточка'],
   version: '1.0.2',
   status: 'canary',
   sandbox: 'header-bannerbar-2h9ce0',

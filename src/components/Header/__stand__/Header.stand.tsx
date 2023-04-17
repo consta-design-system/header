@@ -6,6 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Готовая шапка для проекта с жёсткой структурой.',
   version: '0.4.0',
+  alias: ['заголовок', 'шапка', 'меню', 'навигация'],
   status: 'stable',
   order: 10,
   sandbox: 'header-header-kq7wdl',
