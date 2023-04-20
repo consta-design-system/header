@@ -18,7 +18,7 @@ export const { createStand } = createConfig({
       initialOpen: true,
     },
   ],
-  group: 'Отдельные компоненты',
+  group: 'Специальные компоненты',
   image,
   description: 'Библиотека компонентов, из которых собирается шапка проекта.',
   repositoryUrl: 'https://github.com/consta-design-system/header',
