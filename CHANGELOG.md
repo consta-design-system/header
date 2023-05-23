@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.2.1 (23/05/2023)
+Запускать локальный сервер разработки и сборку пакетов теперь можно и на ОС Windows.
+
+---
+
+- [chore: configure build for windows (#49)](https://github.com/consta-design-system/header/commit/d4f1147302d7a7123699c033bcf865b4d01db6c5) - [@gizeasy](https://github.com/gizeasy)
+- [docs: edit stand group](https://github.com/consta-design-system/header/commit/029823a1f44c3cc3675629ccb0a3e00a4cb29696) - [@gizeasy](https://github.com/gizeasy)
+- [chore(deps): bump decode-uri-component from 0.2.0 to 0.2.2 (#47)](https://github.com/consta-design-system/header/commit/25652a8f31eefa795b94aefa51274ba205aacc14) - [@dependabot[bot]](https://github.com/dependabot[bot])
+- [chore(deps): bump loader-utils from 2.0.2 to 2.0.4 (#48)](https://github.com/consta-design-system/header/commit/def4092898293224daf2803ddd466e5fd2e95360) - [@dependabot[bot]](https://github.com/dependabot[bot])
+- [chore: update @consta/stand](https://github.com/consta-design-system/header/commit/480d603f9262918ebf8bf8a15b6242500195598b) - [@gizeasy](https://github.com/gizeasy)
+- [docs(header): add aliases (#46)](https://github.com/consta-design-system/header/commit/f693d36a77108ff55eb3a702c57a2ad7608083f8) - [@N1MBER](https://github.com/N1MBER)
+- [chore(deps-dev): bump webpack from 5.75.0 to 5.76.0 (#45)](https://github.com/consta-design-system/header/commit/eac517ceac97e88b62cc7db1b74c14ff8b072e45) - [@dependabot[bot]](https://github.com/dependabot[bot])
+- [docs(sandbox): add links to sandbox for new components (#42)](https://github.com/consta-design-system/header/commit/50836b1c63c09a38c23436770cb86199bb8e9908) - [@N1MBER](https://github.com/N1MBER)
+- [docs(megamenu): add link to sandbox (#41)](https://github.com/consta-design-system/header/commit/d6cfd75d17cb660ddd63b6399b836bbb5e3d74c5) - [@N1MBER](https://github.com/N1MBER)
+
+--------------------
+
 ## v1.2.0 (25/01/2023)
 - Добавлен компонент MegaMenu, для организации меню с большим количеством пунктов.
 
