@@ -23,5 +23,5 @@ export const { createStand } = createConfig({
   description: 'Библиотека компонентов, из которых собирается шапка проекта.',
   repositoryUrl: 'https://github.com/consta-design-system/header',
   figmaUrl:
-    'https://www.figma.com/file/LKYyjgQ3khFHvXraZAG1n1/Consta-Components?type=design&node-id=1127-48741&t=SVltkNKB1jSuFlbr-0',
+    'https://www.figma.com/file/3RsiLTgTuXpdnqG7gW8UwL/Consta-Components-(Community)?type=design&node-id=1127-48741&t=ponDmJar7RUOypIn-0',
 });
