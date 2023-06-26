@@ -7,7 +7,7 @@ export default createStand({
   description: 'Готовая шапка для проекта с жёсткой структурой.',
   version: '0.4.0',
   alias: ['заголовок', 'шапка', 'меню', 'навигация'],
-  status: 'stable',
+  status: 'deprecated',
   order: 10,
   sandbox: 'header-header-kq7wdl',
   figma:
