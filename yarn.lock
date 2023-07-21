@@ -1603,11 +1603,6 @@
   resolved "https://registry.yarnpkg.com/@consta/header/-/header-1.2.0.tgz#0cefdb72a150fc3b2cf56b60c33e800e69573d32"
   integrity sha512-80ovc6u9JHbfwSdeRwo0y2luK2STDVkO1L6ZP5ZHHKcSwVP8WKPdi3Em6lnQRO1HJ+TEgBz6flKx1NidehNpdQ==
 
-"@consta/icons@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@consta/icons/-/icons-0.1.1.tgz#454461a9acf3dc8b42e1654b4298e5f929c42937"
-  integrity sha512-55NsjyaXFuYyr6CiptXuFMe/AUd7HMs8IgSaOGfV+wbMbSVg88u8dwJ5km3sPaHNFiD0vg8FNqGFc1F37K18zQ==
-
 "@consta/icons@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@consta/icons/-/icons-0.2.0.tgz#1277aa2f0a40769f80f51be965b62fb42070a5fd"
@@ -1694,30 +1689,14 @@
     webpack-manifest-plugin "^5.0.0"
     workbox-webpack-plugin "^6.4.1"
 
-"@consta/uikit@4.23":
-  version "4.23.0"
-  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.23.0.tgz#d1759728d4096868f5e87d92021352517def5eaf"
-  integrity sha512-IDt6lH7y5JBJ1yt+6gw7ZCOmqxhQcS3FfBl858IbjtisIxiIObPimiMwrQDJXtcAAtzL+MurLUJ4oYbCM35LYg==
+"@consta/uikit@^4.14.2":
+  version "4.23.1"
+  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.23.1.tgz#0d2002568da420ac589a08d9a525e60d1a296c0c"
+  integrity sha512-KaHTNGXBZ5Dx1+oVyHV2ulLFdyUapkQ3DbMxLk/h1e9b2sQIBZCeHiNSVB4kHBfC7PTm36Rxhjua+lurAmCvyw==
   dependencies:
     "@bem-react/classname" "^1.5.12"
     "@bem-react/classnames" "^1.3.10"
     "@consta/icons" "^0.5.2"
-    compute-scroll-into-view "^1.0.17"
-    date-fns "^2.29.1"
-    focus-trap-react "8.7.0"
-    imask "^6.4.3"
-    react-dropzone "11.3.4"
-    react-textarea-autosize "^8.3.4"
-    react-transition-group "^4.4.5"
-
-"@consta/uikit@^4.14.2":
-  version "4.15.0"
-  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.15.0.tgz#a40becc818b00ee396947b6d61b6a029b1ce4427"
-  integrity sha512-uAmcUnWCgOewg8Zu6/f+hp4OU2b2Fxg9upH/2h31GRnDiSmwOc60v/X+QbfW6toY4cNad3t6UAGFG6XLendg1w==
-  dependencies:
-    "@bem-react/classname" "^1.5.12"
-    "@bem-react/classnames" "^1.3.10"
-    "@consta/icons" "^0.1.1"
     compute-scroll-into-view "^1.0.17"
     date-fns "^2.29.1"
     focus-trap-react "8.7.0"

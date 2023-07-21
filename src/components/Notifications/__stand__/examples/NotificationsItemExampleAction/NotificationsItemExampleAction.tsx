@@ -1,6 +1,6 @@
+import { IconEye } from '@consta/icons/IconEye';
+import { IconTrash } from '@consta/icons/IconTrash';
 import { Example } from '@consta/stand';
-import { IconEye } from '@consta/uikit/IconEye';
-import { IconTrash } from '@consta/uikit/IconTrash';
 import React from 'react';
 
 import { NotificationsItem } from '##/components/Notifications/NotificationsItem';

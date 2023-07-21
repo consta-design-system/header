@@ -1,6 +1,6 @@
 import './Notifications.css';
 
-import { IconRing } from '@consta/uikit/IconRing';
+import { IconRing } from '@consta/icons/IconRing';
 import React, { forwardRef } from 'react';
 
 import { cn } from '##/utils/bem';

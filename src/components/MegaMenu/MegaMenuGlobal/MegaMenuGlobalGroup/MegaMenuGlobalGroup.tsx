@@ -1,7 +1,7 @@
 import './MegaMenuGlobalGroup.css';
 
+import { IconArrowDown } from '@consta/icons/IconArrowDown';
 import { Button } from '@consta/uikit/Button';
-import { IconArrowDown } from '@consta/uikit/IconArrowDown';
 import { List, ListBox } from '@consta/uikit/ListCanary';
 import { Text } from '@consta/uikit/Text';
 import { useFlag } from '@consta/uikit/useFlag';

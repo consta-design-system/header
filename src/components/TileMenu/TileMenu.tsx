@@ -1,6 +1,6 @@
 import './TileMenu.css';
 
-import { IconBento } from '@consta/uikit/IconBento';
+import { IconBento } from '@consta/icons/IconBento';
 import React, { forwardRef } from 'react';
 
 import { cn } from '##/utils/bem';

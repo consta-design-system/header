@@ -1,3 +1,4 @@
+import { IconDinosaur } from '@consta/icons/IconDinosaur';
 import { useBoolean, useSelect } from '@consta/stand';
 import {
   buttonPropForm,
@@ -7,7 +8,6 @@ import {
   buttonPropView,
   buttonPropViewDefault,
 } from '@consta/uikit/Button';
-import { IconDinosaur } from '@consta/uikit/IconDinosaur';
 import React from 'react';
 
 import { ButtonMenu } from '../ButtonMenu';

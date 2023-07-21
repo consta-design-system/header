@@ -1,5 +1,5 @@
+import { IconProps } from '@consta/icons/Icon';
 import { BadgePropStatus } from '@consta/uikit/Badge';
-import { IconProps } from '@consta/uikit/Icon';
 import React from 'react';
 
 import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';

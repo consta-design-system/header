@@ -1,10 +1,10 @@
-import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
-import { IconFolders } from '@consta/uikit/IconFolders';
-import { IconGas } from '@consta/uikit/IconGas';
-import { IconInfo } from '@consta/uikit/IconInfo';
-import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
-import { IconMail } from '@consta/uikit/IconMail';
-import { IconMap } from '@consta/uikit/IconMap';
+import { IconFlagFilled } from '@consta/icons/IconFlagFilled';
+import { IconFolders } from '@consta/icons/IconFolders';
+import { IconGas } from '@consta/icons/IconGas';
+import { IconInfo } from '@consta/icons/IconInfo';
+import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
+import { IconMail } from '@consta/icons/IconMail';
+import { IconMapFilled } from '@consta/icons/IconMapFilled';
 
 import { MegaMenuBannerBarDefaultItem } from '../MegaMenuBannerBar';
 import { MegaMenuDefaultItem } from '../types';
@@ -131,7 +131,7 @@ export const getItems = (withSubmenu: boolean): MegaMenuDefaultItem[] => [
   {
     key: '4',
     label: 'Карта',
-    iconLeft: IconMap,
+    iconLeft: IconMapFilled,
     subMenu: withSubmenu ? getSubMenu('4') : undefined,
   },
   {

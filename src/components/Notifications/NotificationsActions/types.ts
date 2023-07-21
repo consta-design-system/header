@@ -1,4 +1,4 @@
-import { IconComponent } from '@consta/uikit/Icon';
+import { IconComponent } from '@consta/icons/Icon';
 
 import { PropsWithHTMLAttributes } from '##/utils/types/PropsWithHTMLAttributes';
 

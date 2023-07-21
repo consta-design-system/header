@@ -1,12 +1,12 @@
+import { IconComponent } from '@consta/icons/Icon';
+import { IconFlagFilled } from '@consta/icons/IconFlagFilled';
+import { IconFolders } from '@consta/icons/IconFolders';
+import { IconGas } from '@consta/icons/IconGas';
+import { IconInfo } from '@consta/icons/IconInfo';
+import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
+import { IconMail } from '@consta/icons/IconMail';
+import { IconMapFilled } from '@consta/icons/IconMapFilled';
 import { Example } from '@consta/stand';
-import { IconComponent } from '@consta/uikit/Icon';
-import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
-import { IconFolders } from '@consta/uikit/IconFolders';
-import { IconGas } from '@consta/uikit/IconGas';
-import { IconInfo } from '@consta/uikit/IconInfo';
-import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
-import { IconMail } from '@consta/uikit/IconMail';
-import { IconMap } from '@consta/uikit/IconMap';
 import React from 'react';
 
 import { MegaMenuNavBar } from '##/components/MegaMenu/MegaMenuNavBar';
@@ -32,7 +32,7 @@ export const items: Item[] = [
   },
   {
     text: 'Карта',
-    left: IconMap,
+    left: IconMapFilled,
     checked: true,
   },
   {

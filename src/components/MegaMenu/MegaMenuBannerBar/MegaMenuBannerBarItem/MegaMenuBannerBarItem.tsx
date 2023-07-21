@@ -1,7 +1,7 @@
 import './MegaMenuBannerBarItem.css';
 
+import { IconForward } from '@consta/icons/IconForward';
 import { Button } from '@consta/uikit/Button';
-import { IconForward } from '@consta/uikit/IconForward';
 import { cnMixCard } from '@consta/uikit/MixCard';
 import { Text } from '@consta/uikit/Text';
 import React, { forwardRef } from 'react';

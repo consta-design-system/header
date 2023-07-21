@@ -1,12 +1,12 @@
+import { IconFlagFilled } from '@consta/icons/IconFlagFilled';
+import { IconFolders } from '@consta/icons/IconFolders';
+import { IconGas } from '@consta/icons/IconGas';
+import { IconInfo } from '@consta/icons/IconInfo';
+import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
+import { IconMail } from '@consta/icons/IconMail';
+import { IconMapFilled } from '@consta/icons/IconMapFilled';
 import { Example } from '@consta/stand';
 import { Button } from '@consta/uikit/Button';
-import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
-import { IconFolders } from '@consta/uikit/IconFolders';
-import { IconGas } from '@consta/uikit/IconGas';
-import { IconInfo } from '@consta/uikit/IconInfo';
-import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
-import { IconMail } from '@consta/uikit/IconMail';
-import { IconMap } from '@consta/uikit/IconMap';
 import { useFlag } from '@consta/uikit/useFlag';
 import React from 'react';
 
@@ -134,7 +134,7 @@ const items = [
   {
     key: '4',
     label: 'Карта',
-    iconLeft: IconMap,
+    iconLeft: IconMapFilled,
     subMenu: getSubMenu('4'),
   },
   {

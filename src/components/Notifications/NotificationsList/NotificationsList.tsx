@@ -1,7 +1,7 @@
 import './NotificationsList.css';
 
+import { IconClose } from '@consta/icons/IconClose';
 import { Button } from '@consta/uikit/Button';
-import { IconClose } from '@consta/uikit/IconClose';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
 import React, { forwardRef, Fragment } from 'react';

@@ -1,6 +1,6 @@
+import { IconMeatball } from '@consta/icons/IconMeatball';
 import { Button } from '@consta/uikit/Button';
 import { ContextMenu } from '@consta/uikit/ContextMenu';
-import { IconMeatball } from '@consta/uikit/IconMeatball';
 import { useFlag } from '@consta/uikit/useFlag';
 import { useForkRef } from '@consta/uikit/useForkRef';
 import { useMutableRef } from '@consta/uikit/useMutableRef';

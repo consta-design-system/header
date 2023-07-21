@@ -1,9 +1,9 @@
 import './Menu.css';
 
+import { IconMeatball } from '@consta/icons/IconMeatball';
+import { IconSelect } from '@consta/icons/IconSelect';
 import { Button } from '@consta/uikit/Button';
 import { ContextMenu } from '@consta/uikit/ContextMenu';
-import { IconMeatball } from '@consta/uikit/IconMeatball';
-import { IconSelect } from '@consta/uikit/IconSelect';
 import { animateTimeout } from '@consta/uikit/MixPopoverAnimate';
 import { useDebounce } from '@consta/uikit/useDebounce';
 import { useFlag } from '@consta/uikit/useFlag';

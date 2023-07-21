@@ -1,6 +1,6 @@
 import './MegaMenu.css';
 
-import { IconArrowRight } from '@consta/uikit/IconArrowRight';
+import { IconArrowRight } from '@consta/icons/IconArrowRight';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { cn } from '##/utils/bem';

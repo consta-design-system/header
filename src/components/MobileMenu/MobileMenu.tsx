@@ -1,7 +1,7 @@
 import './MobileMenu.css';
 
+import { IconHamburger } from '@consta/icons/IconHamburger';
 import { Button } from '@consta/uikit/Button';
-import { IconHamburger } from '@consta/uikit/IconHamburger';
 import { Sidebar } from '@consta/uikit/Sidebar';
 import { useFlag } from '@consta/uikit/useFlag';
 import React, { forwardRef } from 'react';

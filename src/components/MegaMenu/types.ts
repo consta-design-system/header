@@ -1,4 +1,4 @@
-import { IconComponent } from '@consta/uikit/Icon';
+import { IconComponent } from '@consta/icons/Icon';
 import React from 'react';
 
 import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';

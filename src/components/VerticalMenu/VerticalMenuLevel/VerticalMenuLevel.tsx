@@ -1,9 +1,9 @@
 import './VerticalMenuLevel.css';
 
+import { IconArrowLeft } from '@consta/icons/IconArrowLeft';
 import { fabricIndex } from '@consta/uikit/__internal__/src/utils/fabricIndex';
 import { getGroups } from '@consta/uikit/__internal__/src/utils/getGroups';
 import { Button } from '@consta/uikit/Button';
-import { IconArrowLeft } from '@consta/uikit/IconArrowLeft';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
 import React, { forwardRef } from 'react';
