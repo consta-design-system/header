@@ -1,3 +1,4 @@
+import { Example } from '@consta/stand';
 import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
 import { IconFolders } from '@consta/uikit/IconFolders';
 import { IconGas } from '@consta/uikit/IconGas';
@@ -8,7 +9,6 @@ import { IconMap } from '@consta/uikit/IconMap';
 import React from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
-import { Example } from '##/stand/components';
 
 const getSubMenu = (prefix?: string) => [
   {

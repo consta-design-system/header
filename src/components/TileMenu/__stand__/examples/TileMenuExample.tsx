@@ -1,9 +1,9 @@
+import { Example } from '@consta/stand';
 import React from 'react';
 
-import { TileMenu, TileMenuDefaultItem } from '##/components/TileMenu';
-import { Example } from '##/stand/components/Example';
+import { TileMenu, TileMenuListDefaultItem } from '##/components/TileMenu';
 
-const items: TileMenuDefaultItem[] = [
+const items: TileMenuListDefaultItem[] = [
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',

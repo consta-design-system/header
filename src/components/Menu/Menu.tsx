@@ -47,7 +47,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
 
   const { visibleItems, itemsRefs, wrapperRef, hiddenItems, moreRef } =
     useHideElementsInLine<
-      typeof items[number],
+      (typeof items)[number],
       HTMLLIElement,
       HTMLUListElement
     >(items);
@@ -57,14 +57,14 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
   const getItemHrefRef = useMutableRef(getItemHref);
   const getItemTargetRef = useMutableRef(getItemTarget);
 
-  const getItemAs = useCallback((item: typeof items[number]) => {
+  const getItemAs = useCallback((item: (typeof items)[number]) => {
     if (getItemHrefRef.current(item)) {
       return 'a';
     }
     return 'span';
   }, []);
 
-  const getItemHTMLAttributes = useCallback((item: typeof items[number]) => {
+  const getItemHTMLAttributes = useCallback((item: (typeof items)[number]) => {
     const href = getItemHrefRef.current(item);
     const target = getItemTargetRef.current(item);
 

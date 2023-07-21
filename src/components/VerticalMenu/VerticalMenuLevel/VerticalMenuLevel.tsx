@@ -43,6 +43,7 @@ export const VerticalMenuLevel: VerticalMenuLevelComponent = forwardRef(
       undefined,
       undefined,
     );
+
     const getIndex = fabricIndex(-1);
 
     return (
@@ -75,13 +76,13 @@ export const VerticalMenuLevel: VerticalMenuLevelComponent = forwardRef(
           {groups.map((group, groupIndex) => {
             return (
               <>
-                {groupIndex ? (
+                {!!groupIndex && (
                   <div
                     className={cnVerticalMenuLevel('Divider', [
                       cnMixSpace({ mV: 's', mH: 'xl' }),
                     ])}
                   />
-                ) : undefined}
+                )}
                 {group.items.map((item, index) => {
                   const levelId = getIndex();
                   const subMenu = getItemSubMenu(item);

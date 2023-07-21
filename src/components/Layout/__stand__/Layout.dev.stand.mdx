@@ -1,8 +1,11 @@
 import { MdxMenu } from '@consta/stand';
-import { LayoutExampleBasic, LayoutExample } from './examples/LayoutExample';
+import {
+  LayoutExampleBasic,
+  LayoutExample,
+} from './examples/LayoutExample/LayoutExample';
 
 ```tsx
-import { layout } from '@consta/header/Layout';
+import { Layout } from '@consta/header/Layout';
 ```
 
 <MdxMenu>
@@ -11,6 +14,7 @@ import { layout } from '@consta/header/Layout';
   - [Структура](#структура)
   - [Размер](#размер)
 - [Наполнение](#наполнение)
+- [Импорт](#импорт)
 - [Список свойств](#свойства)
 
 </MdxMenu>
@@ -51,21 +55,21 @@ export const LayoutExampleBasic = () => (
 
 В лейаут можно добавить готовые модули из этой библиотеки:
 
-- горизонтальное меню — [Menu](?path=/docs/components-menu--playground),
-- мобильное меню — [MobileMenu](?path=/docs/components-mobilemenu--playground),
-- меню-плитка — [TileMenu](?path=/docs/components-tilemenu--playground)
-- уведомления — [Notifications](?path=/docs/components-notifications--playground).
+- горизонтальное меню — [Menu](##LIBS.LIB.STAND/lib:header/stand:components-menu-stable),
+- мобильное меню — [MobileMenu](##LIBS.LIB.STAND/lib:header/stand:components-mobilemenu-stable),
+- меню-плитка — [TileMenu](##LIBS.LIB.STAND/lib:header/stand:components-tilemenu-stable)
+- уведомления — [Notifications](##LIBS.LIB.STAND/lib:header/stand:components-notifications-stable).
 
 А также — любые компоненты и блоки, собранные из компонентов Consta, изображения и другой контент.
 
-> Блок с логином можно собрать из компонентов [Button](http://uikit.consta.design/?path=/docs/components-button--playground) и [User](http://uikit.consta.design/?path=/docs/components-user--playground)
+> Блок с логином можно собрать из компонентов [Button](##LIBS.LIB.STAND/lib:uikit/stand:components-button-stable) и [User](##LIBS.LIB.STAND/lib:uikit/stand:components-user-stable)
 
 ```tsx
-import { DefaultItem, Menu } from '@consta/header/Menu';
+import { MenuDefaultItem, Menu } from '@consta/header/Menu';
 import { Notifications } from '@consta/header/Notifications';
 import { Layout } from '@consta/header/Layout';
 
-const menu: DefaultItem[] = [
+const menu: MenuDefaultItem[] = [
   {
     label: 'Пункт 1',
     subMenu: [{ label: 'Пункт 1-1' }, { label: 'Пункт 1-2' }],
@@ -101,6 +105,12 @@ export const LayoutExample = () => (
 
 <LayoutExample />
 
+## Импорт
+
+```tsx
+import { Layout } from '@consta/header/Layout';
+```
+
 ## Свойства
 
 ```tsx
@@ -118,10 +128,10 @@ type LayoutPropRowTop = React.ReactNode | Omit<LayoutRow, 'height'>;
 type LayoutPropRowBottom = React.ReactNode | Omit<LayoutRow, 'height'>;
 ```
 
-| Свойство     | Тип                         | По умолчанию | Описание                       |
-| ------------ | --------------------------- | ------------ | ------------------------------ |
-| `rowCenter?` | `LayoutPropRowCenter`       | -            | Центральная строка             |
-| `rowTop?`    | `LayoutPropRowTop`          | -            | Верхняя строка                 |
-| `rowBottom?` | `LayoutPropRowBottom`       | -            | Нижняя строка                  |
-| `className?` | `string`                    | -            | Дополнительный CSS-класс       |
-| `ref?`       | `React.Ref<HTMLDivElement>` | -            | Ссылка на корневой DOM-элемент |
+| Свойство                   | Тип                         | По умолчанию | Описание                       |
+| -------------------------- | --------------------------- | ------------ | ------------------------------ |
+| [`rowCenter?`](#структура) | `LayoutPropRowCenter`       | -            | Центральная строка             |
+| [`rowTop?`](#структура)    | `LayoutPropRowTop`          | -            | Верхняя строка                 |
+| [`rowBottom?`](#структура) | `LayoutPropRowBottom`       | -            | Нижняя строка                  |
+| `className?`               | `string`                    | -            | Дополнительный CSS-класс       |
+| `ref?`                     | `React.Ref<HTMLDivElement>` | -            | Ссылка на корневой DOM-элемент |

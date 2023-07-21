@@ -1,12 +1,12 @@
 import {
-  BannerBarDefaultItem,
-  BannerBarPropGetItemAs,
-  BannerBarPropGetItemAttributes,
-  BannerBarPropGetItemDescription,
-  BannerBarPropGetItemImage,
-  BannerBarPropGetItemLabel,
-  BannerBarPropGetItemOnClick,
-} from '../BannerBar/types';
+  MegaMenuBannerBarDefaultItem,
+  MegaMenuBannerBarPropGetItemAs,
+  MegaMenuBannerBarPropGetItemAttributes,
+  MegaMenuBannerBarPropGetItemDescription,
+  MegaMenuBannerBarPropGetItemImage,
+  MegaMenuBannerBarPropGetItemLabel,
+  MegaMenuBannerBarPropGetItemOnClick,
+} from './MegaMenuBannerBar';
 import {
   MegaMenuDefaultItem,
   MegaMenuPropGetItemAs,
@@ -40,24 +40,24 @@ const defaultGetItemSubMenu: MegaMenuPropGetItemSubMenu<MegaMenuDefaultItem> = (
   item,
 ) => item.subMenu;
 
-// BannerBar
-const defaultGetBannerLabel: BannerBarPropGetItemLabel<BannerBarDefaultItem> = (
-  item,
-) => item.label;
-const defaultGetBannerOnClick: BannerBarPropGetItemOnClick<
-  BannerBarDefaultItem
+// MegaMenuBannerBar
+const defaultGetBannerLabel: MegaMenuBannerBarPropGetItemLabel<
+  MegaMenuBannerBarDefaultItem
+> = (item) => item.label;
+const defaultGetBannerOnClick: MegaMenuBannerBarPropGetItemOnClick<
+  MegaMenuBannerBarDefaultItem
 > = (item) => item.onClick;
-const defaultGetBannerDescription: BannerBarPropGetItemDescription<
-  BannerBarDefaultItem
+const defaultGetBannerDescription: MegaMenuBannerBarPropGetItemDescription<
+  MegaMenuBannerBarDefaultItem
 > = (item) => item.description;
-const defaultGetBannerImage: BannerBarPropGetItemImage<BannerBarDefaultItem> = (
-  item,
-) => item.image;
-const defaultGetBannerAs: BannerBarPropGetItemAs<BannerBarDefaultItem> = (
-  item,
-) => item.as;
-const defaultGetBannerAttributees: BannerBarPropGetItemAttributes<
-  BannerBarDefaultItem
+const defaultGetBannerImage: MegaMenuBannerBarPropGetItemImage<
+  MegaMenuBannerBarDefaultItem
+> = (item) => item.image;
+const defaultGetBannerAs: MegaMenuBannerBarPropGetItemAs<
+  MegaMenuBannerBarDefaultItem
+> = (item) => item.as;
+const defaultGetBannerAttributees: MegaMenuBannerBarPropGetItemAttributes<
+  MegaMenuBannerBarDefaultItem
 > = (item) => item.attributes;
 
 export const withDefaultGetters = (props: MegaMenuProps) => ({
@@ -70,7 +70,7 @@ export const withDefaultGetters = (props: MegaMenuProps) => ({
   getItemOnClick: props.getItemOnClick || defaultGetItemOnClick,
   getItemIconLeft: props.getItemIconLeft || defaultGetItemIconLeft,
   getItemSubMenu: props.getItemSubMenu || defaultGetItemSubMenu,
-  // BannerBar
+  // MegaMenuBannerBar
   getBannerAs: props.getBannerAs || defaultGetBannerAs,
   getBannerAttributes: props.getBannerAttributes || defaultGetBannerAttributees,
   getBannerLabel: props.getBannerLabel || defaultGetBannerLabel,

@@ -1,0 +1,19 @@
+.che--MegaMenuGlobal {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-2xl) calc(var(--space-3xl) * 1.5);
+  background: var(--color-bg-default);
+
+  &-Content {
+    display: grid;
+    grid-template-columns: repeat(var(--global-menu-columns), 1fr);
+    gap: var(--space-3xl);
+  }
+
+  &-Column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--space-3xl);
+  }
+}

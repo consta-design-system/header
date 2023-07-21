@@ -3,7 +3,7 @@ import {
   SelectMenuExample,
   SelectMenuExample30,
   SelectMenuExample200,
-} from './examples/SelectMenuExample';
+} from './examples/SelectMenuExample/SelectMenuExample';
 
 ```tsx
 import { SelectMenu } from '@consta/header/SelectMenu';
@@ -103,15 +103,15 @@ const defaultGetItemSubMenu: SelectMenuPropGetItemSubMenu<
 > = (item) => item.subMenu;
 ```
 
-| Свойство         | Тип                            | По умолчанию            | Описание                                       |
-| ---------------- | ------------------------------ | ----------------------- | ---------------------------------------------- |
-| `items`          | `ITEM[]`                       | -                       | Элементы                                       |
-| `label`          | `string`                       | -                       | Надпись                                        |
-| `onItemClick`    | `SelectMenuPropOnItemClick`    | -                       | Функция клика по элементу                      |
-| `getItemHref`    | `SelectMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента        |
-| `getItemLabel`   | `SelectMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента     |
-| `getItemTarget`  | `SelectMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента      |
-| `getItemOnClick` | `SelectMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
-| `getItemSubMenu` | `SelectMenuPropGetItemSubMenu` | `defaultGetItemSubMenu` | Функция для определения подменю                |
-| `className?`     | `string`                       | -                       | Дополнительный CSS-класс                       |
-| `ref?`           | `React.Ref<HTMLDivElement>`    | -                       | Ссылка на корневой DOM-элемент                 |
+| Свойство                          | Тип                            | По умолчанию            | Описание                                       |
+| --------------------------------- | ------------------------------ | ----------------------- | ---------------------------------------------- |
+| [`items`](#пункты-меню)           | `ITEM[]`                       | -                       | Элементы                                       |
+| `label`                           | `string`                       | -                       | Надпись                                        |
+| `onItemClick?`                    | `SelectMenuPropOnItemClick`    | -                       | Функция клика по элементу                      |
+| [`getItemHref?`](#пункты-меню)    | `SelectMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента        |
+| [`getItemLabel?`](#пункты-меню)   | `SelectMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента     |
+| [`getItemTarget?`](#пункты-меню)  | `SelectMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента      |
+| [`getItemOnClick?`](#пункты-меню) | `SelectMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
+| [`getItemSubMenu?`](#пункты-меню) | `SelectMenuPropGetItemSubMenu` | `defaultGetItemSubMenu` | Функция для определения подменю                |
+| `className?`                      | `string`                       | -                       | Дополнительный CSS-класс                       |
+| `ref?`                            | `React.Ref<HTMLDivElement>`    | -                       | Ссылка на корневой DOM-элемент                 |

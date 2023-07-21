@@ -1,4 +1,4 @@
-import { MobileMenuExampleBasic } from './examples/MobileMenuExample';
+import { MobileMenuExampleBasic } from './examples/MobileMenuExample/MobileMenuExample';
 
 ```tsx
 import { MobileMenu } from '@consta/header/MobileMenu';
@@ -33,21 +33,21 @@ export const MobileMenuExampleBasic = () => <MobileMenu items={items} />;
 Вы можете добавить дополнительный CSS-класс для кнопки-гамбургера с помощью свойства
 `sidebarClassName`.
 
-В остальном компонент ведёт себя так же, как вертикальное меню. [Посмотреть документацию](/?path=/docs/components-verticalmenu--playground)
+В остальном компонент ведёт себя так же, как вертикальное меню. [Посмотреть документацию](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable)
 
 ## Свойства
 
-| Свойство            | Тип                              | По умолчанию            | Описание                                                                                                                   |
-| ------------------- | -------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `items`             | `ITEM[]`                         | -                       | Элементы (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))                                            |
-| `onItemClick`       | `VerticalMenuPropOnItemClick`    | -                       | Функция клика по элементу (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))                           |
-| `getItemHref`       | `VerticalMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))             |
-| `getItemLabel`      | `VerticalMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))          |
-| `getItemTarget`     | `VerticalMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))           |
-| `getItemActive`     | `VerticalMenuPropGetItemActive`  | `defaultGetItemActive`  | Функция для определения статуса активности элемента (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground)) |
-| `getItemOnClick`    | `VerticalMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))      |
-| `getItemSubMenu`    | `VerticalMenuPropGetItemSubMenu` | `defaultGetItemSubMenu` | Функция для определения подменю элемента (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))            |
-| `header`            | `React.ReactNode`                | -                       | Шапка меню (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))                                          |
-| `className?`        | `string`                         | -                       | Дополнительный CSS-класс для пунктов меню                                                                                  |
-| `sidebarClassName?` | `string`                         | -                       | Дополнительный CSS-класс для кнопки вызова меню («гамбургера»)                                                             |
-| `ref?`              | `React.Ref<HTMLDivElement>`      | -                       | Ссылка на корневой DOM-элемент (см. [VerticalMenu](/?path=/docs/components-verticalmenu--playground))                      |
+| Свойство            | Тип                              | По умолчанию            | Описание                                                                                                                                   |
+| ------------------- | -------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `items`             | `ITEM[]`                         | -                       | Элементы (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))                                            |
+| `onItemClick`       | `VerticalMenuPropOnItemClick`    | -                       | Функция клика по элементу (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))                           |
+| `getItemHref`       | `VerticalMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))             |
+| `getItemLabel`      | `VerticalMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))          |
+| `getItemTarget`     | `VerticalMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))           |
+| `getItemActive`     | `VerticalMenuPropGetItemActive`  | `defaultGetItemActive`  | Функция для определения статуса активности элемента (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable)) |
+| `getItemOnClick`    | `VerticalMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))      |
+| `getItemSubMenu`    | `VerticalMenuPropGetItemSubMenu` | `defaultGetItemSubMenu` | Функция для определения подменю элемента (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))            |
+| `header`            | `React.ReactNode`                | -                       | Шапка меню (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))                                          |
+| `className?`        | `string`                         | -                       | Дополнительный CSS-класс для пунктов меню                                                                                                  |
+| `sidebarClassName?` | `string`                         | -                       | Дополнительный CSS-класс для кнопки вызова меню («гамбургера»)                                                                             |
+| `ref?`              | `React.Ref<HTMLDivElement>`      | -                       | Ссылка на корневой DOM-элемент (см. [VerticalMenu](##LIBS.LIB.STAND/lib:header/stand:components-verticalmenu-stable))                      |

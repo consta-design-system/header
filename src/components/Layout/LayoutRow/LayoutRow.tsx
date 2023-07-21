@@ -1,5 +1,6 @@
 import './LayoutRow.css';
 
+import { cnMixSpace } from '@consta/uikit/MixSpace';
 import React from 'react';
 
 import { cn } from '##/utils/bem';
@@ -27,7 +28,12 @@ export const LayoutRow: React.FC<LayoutRowProps> = (props) => {
   if (LayoutRowIsObject(content)) {
     const { left, center, right } = content;
     return (
-      <div className={cnLayoutRow({ height }, [className])}>
+      <div
+        className={cnLayoutRow({ height }, [
+          className,
+          cnMixSpace({ pH: 'xl' }),
+        ])}
+      >
         {left && (
           <div className={cnLayoutRow('Side', { position: 'left' })}>
             {left}

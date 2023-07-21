@@ -5,13 +5,13 @@ import React from 'react';
 
 import {
   TileMenu,
-  TileMenuDefaultItem,
-  tileMenuPropView,
-  tileMenuPropViewDefault,
+  TileMenuListDefaultItem,
+  tileMenuListPropView,
+  tileMenuListPropViewDefault,
 } from '##/components/TileMenu';
 import { cn } from '##/utils/bem';
 
-const items: TileMenuDefaultItem[] = [
+const items: TileMenuListDefaultItem[] = [
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
@@ -57,7 +57,11 @@ const items: TileMenuDefaultItem[] = [
 const cnTileMenuVariants = cn('TileMenuVariants');
 
 export const Variants = () => {
-  const view = useSelect('view', tileMenuPropView, tileMenuPropViewDefault);
+  const view = useSelect(
+    'view',
+    tileMenuListPropView,
+    tileMenuListPropViewDefault,
+  );
   const isMobile = useBoolean('isMobile', false);
   const listClassName = useText('listClassName', 'CustomListClassName');
   const title = useText('title', 'Заголовок');

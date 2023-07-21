@@ -1,6 +1,7 @@
 import { createConfig } from '@consta/stand';
 
 import image from './ConstaImage.png';
+import { StandPageDecoration as standPageDecoration } from './standPageDecoration';
 
 export const { createStand } = createConfig({
   title: 'Consta Header',
@@ -18,6 +19,7 @@ export const { createStand } = createConfig({
       initialOpen: true,
     },
   ],
+  standPageDecoration,
   group: 'Специальные компоненты',
   image,
   description: 'Библиотека компонентов, из которых собирается шапка проекта.',

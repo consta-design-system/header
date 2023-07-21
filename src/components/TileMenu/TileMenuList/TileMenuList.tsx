@@ -4,17 +4,18 @@ import { getByMap } from '@consta/uikit/__internal__/src/utils/getByMap';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import React from 'react';
 
+import { getItemClick } from '##/helpers/getItemClick';
 import { cn } from '##/utils/bem';
 
-import { withDefaultGetters } from '../helpers';
-import { TileMenuItem } from '../TileMenuItem/TileMenuItem';
-import { TileMenuListComponent, TileMenuListProps } from '../types';
+import { TileMenuItem } from '../TileMenuItem';
+import { withDefaultGetters } from './helpers';
+import { TileMenuListComponent, TileMenuListProps } from './types';
 
 export const cnTileMenuList = cn('TileMenuList');
 
 const itemViewMap = {
-  lines: 'line',
-  twoLines: 'line',
+  lines: 'default',
+  twoLines: 'default',
   cards: 'card',
 } as const;
 
@@ -48,10 +49,7 @@ export const TileMenuList = ((props: TileMenuListProps) => {
             title={getItemLabel(item)}
             description={getItemDescription(item)}
             href={getItemHref(item)}
-            onClick={(e) => {
-              onItemClick?.({ item, e });
-              getItemOnClick(item)?.(e);
-            }}
+            onClick={getItemClick(item, getItemOnClick, onItemClick)}
             as="a"
           />
         );
@@ -59,3 +57,5 @@ export const TileMenuList = ((props: TileMenuListProps) => {
     </div>
   );
 }) as TileMenuListComponent;
+
+export * from './types';

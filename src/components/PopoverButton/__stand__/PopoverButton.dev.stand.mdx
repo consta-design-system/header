@@ -1,0 +1,75 @@
+import { MdxMenu } from '@consta/stand';
+import { PopoverButtonExample } from './examples/PopoverButtonExample/PopoverButtonExample';
+import { PopoverButtonExampleMobile } from './examples/PopoverButtonExampleMobile/PopoverButtonExampleMobile';
+
+```tsx
+import { PopoverButton } from '@consta/header/PopoverButton';
+```
+
+<MdxMenu>
+
+- [Контент](#контент)
+- [Мобильный вид](#мобильный-вид)
+- [Импорт](#импорт)
+- [Список свойств](#свойства)
+
+</MdxMenu>
+
+Данный компонент является надстрокой над компонентом [Button](##LIBS.LIB.STAND/lib:uikit/stand:components-button-stable) и принимает все его свойства.
+
+## Контент
+
+Для того чтобы указать контенты вложенного меню, необходимо определить `children` компонента.
+
+```tsx
+<PopoverButton onlyIcon iconLeft={IconRing}>
+  <NotificationsList
+    items={items}
+    title="Уведомления"
+    actions={actions}
+    groupByDay
+  />
+</PopoverButton>
+```
+
+<PopoverButtonExample />
+
+## Мобильный вид
+
+Чтобы контент правильно отображался на мобильном устройстве, добавьте `isMobile={true}`. Тогда при клике на кнопку контент откроется в сайдбаре.
+
+> Для того чтобы добавить / удалить крестик или заголовок в сайдбар определите свойства `withCloseButton` и `title` соответствено.
+
+```tsx
+<PopoverButton withCloseButton={false} isMobile onlyIcon iconLeft={IconRing}>
+  {(onClose) => (
+    <NotificationsList
+      items={items}
+      title="Уведомления"
+      actions={actions}
+      onClose={onClose}
+      groupByDay
+    />
+  )}
+</PopoverButton>
+```
+
+<PopoverButtonExampleMobile />
+
+## Импорт
+
+```tsx
+import { PopoverButton } from '@consta/header/PopoverButton';
+```
+
+## Свойства
+
+| Свойство                             | Тип                                                                              | По умолчанию | Описание                                                         |
+| ------------------------------------ | -------------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------- |
+| `children?`                          | `React.ReactNode`<code>&#124;</code>`((onClose: () => void) => React.ReactNode)` | -            | Выпадающий контент                                               |
+| [`isMobile?`](#мобильный-вид)        | `boolean`                                                                        | -            | Мобильный вид                                                    |
+| `popoverClassName?`                  | `string`                                                                         | -            | Дополнительный CSS-класс для выпадающего контента                |
+| [`withCloseButton?`](#мобильный-вид) | `boolean`                                                                        | `true`       | Флаг, отвечающий за появление кнопки закрытия в мобильном виде   |
+| [`title?`](#мобильный-вид)           | `string`                                                                         | -            | Заголовок в мобильном виде                                       |
+| `className?`                         | `string`                                                                         | -            | Дополнительный CSS-класс для кнопки, по которой открывается меню |
+| `ref?`                               | `React.Ref<HTMLButtonElement>`                                                   | -            | Ссылка на корневой DOM-элемент                                   |

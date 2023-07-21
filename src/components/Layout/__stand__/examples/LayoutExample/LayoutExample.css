@@ -1,0 +1,7 @@
+.che--LayoutExample {
+  min-width: min(400px, 90vw);
+
+  &-Menu > ul {
+    justify-content: center;
+  }
+}

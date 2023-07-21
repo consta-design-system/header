@@ -11,13 +11,6 @@ import { ButtonMenuComponent, ButtonMenuProps } from './types';
 
 export const cnButtonMenu = cn('ButtonMenu');
 
-const gapMap = {
-  xs: '2xs',
-  s: 'xs',
-  m: 's',
-  l: 'm',
-} as const;
-
 const ButtonMenuRender = (
   props: ButtonMenuProps,
   ref: React.Ref<HTMLDivElement>,
@@ -35,19 +28,14 @@ const ButtonMenuRender = (
     size = buttonPropSizeDefault,
     view,
     onlyIcon,
-    style,
     ...otherProps
   } = withDefaultGetters(props);
 
   return (
     <div
-      {...otherProps}
-      className={cnButtonMenu(null, [className])}
+      className={cnButtonMenu({ size }, [className])}
       ref={ref}
-      style={{
-        ...style,
-        ['--button-menu-gap' as string]: `var(--space-${gapMap[size]})`,
-      }}
+      {...otherProps}
     >
       {items.map((item, index) => {
         const target = getItemTarget(item);

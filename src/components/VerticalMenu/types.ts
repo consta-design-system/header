@@ -5,13 +5,13 @@ import {
   PropsWithHTMLAttributesAndRef,
 } from '##/utils/types/PropsWithHTMLAttributes';
 
-export type DefaultItem = {
+export type VerticalMenuDefaultItem = {
   label: string;
   href?: string;
   target?: string;
   active?: boolean;
   onClick?: React.EventHandler<React.MouseEvent>;
-  subMenu?: DefaultItem[];
+  subMenu?: VerticalMenuDefaultItem[];
   groupId?: string;
 };
 
@@ -39,37 +39,38 @@ export type VerticalMenuPropGetItemGroup<ITEM> = (
   item: ITEM,
 ) => string | number | undefined;
 
-export type VerticalMenuProps<ITEM = DefaultItem> = PropsWithHTMLAttributes<
-  {
-    items: ITEM[];
-    getItemHref?: VerticalMenuPropGetItemHref<ITEM>;
-    getItemLabel?: VerticalMenuPropGetItemLabel<ITEM>;
-    getItemTarget?: VerticalMenuPropGetItemTarget<ITEM>;
-    getItemActive?: VerticalMenuPropGetItemActive<ITEM>;
-    getItemOnClick?: VerticalMenuPropGetItemOnClick<ITEM>;
-    getItemSubMenu?: VerticalMenuPropGetItemSubMenu<ITEM>;
-    onItemClick?: VerticalMenuPropOnItemClick<ITEM>;
-    getItemGroup?: VerticalMenuPropGetItemGroup<ITEM>;
-    header?: React.ReactNode;
-    footer?: React.ReactNode;
-  },
-  HTMLDivElement
-> &
-  (ITEM extends { label: DefaultItem['label'] }
-    ? {}
-    : { getItemLabel: VerticalMenuPropGetItemLabel<ITEM> });
+export type VerticalMenuProps<ITEM = VerticalMenuDefaultItem> =
+  PropsWithHTMLAttributes<
+    {
+      items: ITEM[];
+      getItemHref?: VerticalMenuPropGetItemHref<ITEM>;
+      getItemLabel?: VerticalMenuPropGetItemLabel<ITEM>;
+      getItemTarget?: VerticalMenuPropGetItemTarget<ITEM>;
+      getItemActive?: VerticalMenuPropGetItemActive<ITEM>;
+      getItemOnClick?: VerticalMenuPropGetItemOnClick<ITEM>;
+      getItemSubMenu?: VerticalMenuPropGetItemSubMenu<ITEM>;
+      onItemClick?: VerticalMenuPropOnItemClick<ITEM>;
+      getItemGroup?: VerticalMenuPropGetItemGroup<ITEM>;
+      header?: React.ReactNode;
+      footer?: React.ReactNode;
+    },
+    HTMLDivElement
+  > &
+    (ITEM extends { label: VerticalMenuDefaultItem['label'] }
+      ? {}
+      : { getItemLabel: VerticalMenuPropGetItemLabel<ITEM> });
 
-export type VerticalMenuComponent = <ITEM = DefaultItem>(
+export type VerticalMenuComponent = <ITEM = VerticalMenuDefaultItem>(
   props: VerticalMenuProps<ITEM>,
 ) => React.ReactElement | null;
 
-export type Level<ITEM> = {
+export type VerticalMenuLevel<ITEM> = {
   items: ITEM[];
   id: string;
   label?: string;
 };
 
-export type VerticalMenuLevelProps<ITEM = DefaultItem> =
+export type VerticalMenuLevelProps<ITEM = VerticalMenuDefaultItem> =
   PropsWithHTMLAttributesAndRef<
     {
       id: string;
@@ -81,7 +82,7 @@ export type VerticalMenuLevelProps<ITEM = DefaultItem> =
       getItemOnClick: VerticalMenuPropGetItemOnClick<ITEM>;
       getItemSubMenu: VerticalMenuPropGetItemSubMenu<ITEM>;
       getItemGroup: VerticalMenuPropGetItemGroup<ITEM>;
-      addLevel: (level: Level<ITEM>) => void;
+      addLevel: (level: VerticalMenuLevel<ITEM>) => void;
       removeLevel: () => void;
       label?: string;
       header?: React.ReactNode;
@@ -90,7 +91,7 @@ export type VerticalMenuLevelProps<ITEM = DefaultItem> =
     HTMLDivElement
   >;
 
-export type VerticalMenuLevelComponent = <ITEM = DefaultItem>(
+export type VerticalMenuLevelComponent = <ITEM = VerticalMenuDefaultItem>(
   props: VerticalMenuLevelProps<ITEM>,
 ) => React.ReactElement | null;
 

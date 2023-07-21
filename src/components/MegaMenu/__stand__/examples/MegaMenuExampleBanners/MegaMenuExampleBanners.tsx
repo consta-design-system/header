@@ -1,7 +1,7 @@
+import { Example } from '@consta/stand';
 import React from 'react';
 
 import { MegaMenu } from '##/components/MegaMenu/MegaMenu';
-import { Example } from '##/stand/components';
 
 const banners = [
   {

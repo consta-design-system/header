@@ -1,5 +1,5 @@
 import {
-  DefaultItem,
+  VerticalMenuDefaultItem,
   VerticalMenuPropGetItemActive,
   VerticalMenuPropGetItemGroup,
   VerticalMenuPropGetItemHref,
@@ -10,27 +10,27 @@ import {
   VerticalMenuProps,
 } from './types';
 
-export const defaultGetItemLabel: VerticalMenuPropGetItemLabel<DefaultItem> = (
-  item,
-) => item.label;
+export const defaultGetItemLabel: VerticalMenuPropGetItemLabel<
+  VerticalMenuDefaultItem
+> = (item) => item.label;
 export const defaultGetItemActive: VerticalMenuPropGetItemActive<
-  DefaultItem
+  VerticalMenuDefaultItem
 > = (item) => item.active;
-export const defaultGetItemHref: VerticalMenuPropGetItemHref<DefaultItem> = (
-  item,
-) => item.href;
+export const defaultGetItemHref: VerticalMenuPropGetItemHref<
+  VerticalMenuDefaultItem
+> = (item) => item.href;
 export const defaultGetItemOnClick: VerticalMenuPropGetItemOnClick<
-  DefaultItem
+  VerticalMenuDefaultItem
 > = (item) => item.onClick;
 export const defaultGetItemTarget: VerticalMenuPropGetItemTarget<
-  DefaultItem
+  VerticalMenuDefaultItem
 > = (item) => item.target;
 export const defaultGetItemSubMenu: VerticalMenuPropGetItemSubMenu<
-  DefaultItem
+  VerticalMenuDefaultItem
 > = (item) => item.subMenu;
-export const defaultGetItemGroup: VerticalMenuPropGetItemGroup<DefaultItem> = (
-  item,
-) => item.groupId;
+export const defaultGetItemGroup: VerticalMenuPropGetItemGroup<
+  VerticalMenuDefaultItem
+> = (item) => item.groupId;
 
 export function withDefaultGetters<ITEM>(props: VerticalMenuProps<ITEM>) {
   return {

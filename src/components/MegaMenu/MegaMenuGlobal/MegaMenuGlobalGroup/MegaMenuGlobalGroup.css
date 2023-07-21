@@ -1,0 +1,53 @@
+.che--MegaMenuGlobalGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-s);
+
+  &-Title {
+    &_clickable {
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: var(--color-control-bg-primary);
+      }
+    }
+  }
+
+  &-Item {
+    &:hover {
+      color: var(--color-control-bg-primary);
+      background: transparent;
+    }
+  }
+
+  &-Content.ListBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    gap: calc(var(--space-xs) + var(--space-3xs));
+  }
+
+  &-Button.Button {
+    width: max-content;
+    padding: 0;
+    color: var(--color-typo-secondary);
+
+    &:hover {
+      color: var(--color-control-bg-primary);
+      background-color: transparent;
+    }
+
+    & > .Button-Icon {
+      transition: transform 0.3s;
+    }
+
+    &.che--MegaMenuGlobalGroup-Button_open {
+      & > .Button-Icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
