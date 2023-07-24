@@ -21,7 +21,7 @@
     "build:reexports": "node scripts/generateReExports.js --config=scripts/generateReExportsConfig.js",
     "build:copy-assets": "node scripts/copyAssets.js",
     "build": "yarn rm:dist && yarn build:css && yarn build:js && yarn build:types && yarn build:reexports && yarn build:package.json && yarn build:copy-assets",
-    "stand:generate": "node node_modules/@consta/stand/scripts/standGenerate.js --config=node_modules/@consta/stand/scripts/config.js",
+    "stand:generate": "node node_modules/@consta/stand/scripts/standGenerate.js --config=scripts/config.js",
     "stand:build": "yarn rm:build && yarn stand:generate && NODE_ENV=production webpack --mode production --config node_modules/@consta/stand/webpack.config.js",
     "stand:start": "cross-env NODE_ENV=development webpack serve --open --progress --mode development --hot --progress --config node_modules/@consta/stand/webpack.config.js",
     "start": "yarn stand:generate && yarn stand:start",

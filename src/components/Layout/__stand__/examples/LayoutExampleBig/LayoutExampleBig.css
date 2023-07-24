@@ -1,0 +1,44 @@
+.che--LayoutExampleBig {
+  min-width: 1000px;
+
+  &-Menu {
+    min-width: 500px;
+  }
+
+  &-TopButtons,
+  &-Controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  &-Links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  &-TopRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-l);
+  }
+
+  &-CenterRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  &-Crumbs {
+    min-width: 500px;
+  }
+
+  &-Logo {
+    width: 100px;
+  }
+}

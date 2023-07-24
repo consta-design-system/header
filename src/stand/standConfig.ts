@@ -26,4 +26,11 @@ export const { createStand } = createConfig({
   repositoryUrl: 'https://github.com/consta-design-system/header',
   figmaUrl:
     'https://www.figma.com/file/3RsiLTgTuXpdnqG7gW8UwL/Consta-Components-(Community)?type=design&node-id=1127-48741&t=ponDmJar7RUOypIn-0',
+  standTabs: [
+    // табы по умолчанию
+    { id: '', label: 'Обзор' },
+    { id: 'dev', label: 'Разработчикам' },
+    // свои табы
+    { id: 'use', label: 'Как использовать' },
+  ],
 });

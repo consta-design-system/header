@@ -1,1 +1,235 @@
-## Пример использования
+import { LayoutExampleBig } from './examples/LayoutExampleBig/LayoutExampleBig';
+
+# Пример собранной шапки
+
+```tsx
+import React, { useRef, useState } from 'react';
+import { IconSearchStroked } from '@consta/icons/IconSearchStroked';
+import { IconSelect } from '@consta/icons/IconSelect';
+import { IconVKontakte } from '@consta/icons/IconVKontakte';
+import { IconYandexDzen } from '@consta/icons/IconYandexDzen';
+import { IconYoutube } from '@consta/icons/IconYoutube';
+import { IconBento } from '@consta/icons/IconBento';
+import { IconEye } from '@consta/icons/IconEye';
+import { IconTrash } from '@consta/icons/IconTrash';
+import { Example } from '@consta/stand';
+import { Breadcrumbs } from '@consta/uikit/Breadcrumbs';
+import { Button } from '@consta/uikit/Button';
+import { ContextMenu } from '@consta/uikit/ContextMenu';
+import { cnMixSpace } from '@consta/uikit/MixSpace';
+import { useFlag } from '@consta/uikit/useFlag';
+import { User } from '@consta/uikit/User';
+import { Layout } from '@consta/header/Layout';
+import { Menu, MenuDefaultItem } from '@consta/header/Menu';
+import { Notifications, NotificationsListDefaultItem } from '@consta/header/Notifications';
+import { TileMenu, TileMenuListDefaultItem } from '@consta/header/TileMenu';
+import { DefaultItem } from '@consta/uikit/Breadcrumbs';
+
+const emptyFunction = () => {};
+
+type Language = 'En' | 'Ru';
+
+const languages: Language[] = ['Ru', 'En'];
+
+const tiles: TileMenuListDefaultItem[] = [
+  {
+    label: 'Портал',
+    description: 'Сводная информация обо мне и подразделении, новости компании',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+  },
+  ...
+];
+
+const notifications: NotificationsListDefaultItem[] = [
+  {
+    label: 'Иванов Иван Иванович',
+    description: 'Добавил файлы в проект, план/факт по расчету предварительные',
+    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    date: new Date(2021, 10, 12, 13, 57, 0),
+    read: false,
+    badges: [
+      {
+        label: 'отчеты 1',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 2',
+        status: 'warning',
+      },
+      {
+        label: 'система 3',
+        status: 'success',
+      },
+      {
+        label: 'отчеты 4',
+        status: 'normal',
+      },
+      {
+        label: 'файлы 5',
+        status: 'warning',
+      },
+      {
+        label: 'система 6',
+        status: 'success',
+      },
+    ],
+    onClick: emptyFunction,
+    actions: [
+      {
+        label: 'Удалить',
+        onClick: emptyFunction,
+        icon: IconTrash,
+      },
+      {
+        label: 'Отметить как прочитанное',
+        onClick: emptyFunction,
+        icon: IconEye,
+      },
+    ],
+    view: 'user',
+    group: 'd',
+  },
+  ...
+];
+
+const menu: MenuDefaultItem[] = [
+  {
+    label: 'Пункт меню 1',
+    href: '#',
+    onClick: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+    subMenu: [{ label: 'Пункт меню 1-1' }, { label: 'Пункт меню 1-2' }],
+    active: true,
+  },
+  ...
+];
+
+const breadcrumbs: DefaultItem[] = [
+  {
+    label: 'Главная',
+    icon: IconBento,
+  },
+  ...
+];
+
+
+const RowTopCenter = () => (
+  <div>
+    <Button
+      size="s"
+      view="clear"
+      form="round"
+      onlyIcon
+      iconLeft={IconVKontakte}
+    />
+    <Button
+      size="s"
+      view="clear"
+      form="round"
+      onlyIcon
+      iconLeft={IconYoutube}
+    />
+    <Button
+      size="s"
+      view="clear"
+      form="round"
+      onlyIcon
+      iconLeft={IconYandexDzen}
+    />
+  </div>
+);
+
+const RowTopRight = () => {
+  const [language, setLanguage] = useState<Language>('Ru');
+  const [isOpen, setIsOpen] = useFlag();
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  return (
+    <div>
+      <div>
+        <Button size="s" view="clear" form="round" label="Закупки" />
+        <Button size="s" view="clear" form="round" label="Контакты" />
+      </div>
+      <div>
+        <Button
+          size="s"
+          view="clear"
+          form="round"
+          label={language}
+          iconRight={IconSelect}
+          ref={buttonRef}
+          onClick={setIsOpen.toggle}
+        />
+        <ContextMenu
+          isOpen={isOpen}
+          onClickOutside={setIsOpen.off}
+          anchorRef={buttonRef}
+          items={languages}
+          style={{
+            zIndex: 1,
+          }}
+          getItemLabel={(item) => item.toUpperCase()}
+          onItemClick={({ item }) => setLanguage(item)}
+          size="m"
+        />
+        <Button
+          size="s"
+          view="clear"
+          form="round"
+          onlyIcon
+          iconLeft={IconSearchStroked}
+        />
+      </div>
+    </div>
+  );
+};
+
+const RowCenterRight = () => (
+  <div>
+    <Notifications items={notifications} />
+    <TileMenu items={tiles} />
+    <User
+      className={cnMixSpace({ mL: 'xs' })}
+      avatarUrl="https://avatars.githubusercontent.com/u/13190808?v=4"
+      name="Имя Фамилия"
+      info="Доп. информация"
+    />
+  </div>
+);
+
+export const LayoutExampleBig = () => {
+  return (
+    <Layout
+      rowTop={{
+        left: (
+          <div >
+            <Logo />
+          </div>
+        ),
+        center: <RowTopCenter />,
+        right: <RowTopRight />,
+      }}
+      rowCenter={{
+        left: <Menu items={menu} />,
+        center: undefined,
+        right: <RowCenterRight />,
+      }}
+      rowBottom={{
+        left: (
+          <Breadcrumbs
+            onlyIconRoot
+            items={breadcrumbs}
+          />
+        ),
+        center: undefined,
+        right: undefined,
+      }}
+    />
+  );
+};
+```
+
+<LayoutExampleBig />
