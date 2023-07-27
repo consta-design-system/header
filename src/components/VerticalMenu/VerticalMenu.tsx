@@ -22,7 +22,7 @@ import { VerticalMenuLevel } from './VerticalMenuLevel/VerticalMenuLevel';
 
 export const cnVerticalMenu = cn('VerticalMenu');
 
-const transitionCn = cnForCssTransition(cnVerticalMenu, 'VerticalMenuLevel');
+const transitionCn = cnForCssTransition(cnVerticalMenu, 'Level');
 
 const VerticalMenuRender = (
   props: VerticalMenuProps,
@@ -131,7 +131,7 @@ const VerticalMenuRender = (
                   label={level.label}
                   addLevel={addLevel}
                   removeLevel={removeLevel}
-                  className={cnVerticalMenu('VerticalMenuLevel', {
+                  className={cnVerticalMenu('Level', {
                     current: levelNum === levels.length,
                   })}
                   key={levelNum}
