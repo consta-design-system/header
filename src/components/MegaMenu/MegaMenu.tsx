@@ -54,7 +54,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
   const getItemActive = useCallback(
     (item: ITEM) =>
       activeItem ? getItemKey(activeItem) === getItemKey(item) : false,
-    [],
+    [activeItem],
   );
 
   const depth = useMemo(
