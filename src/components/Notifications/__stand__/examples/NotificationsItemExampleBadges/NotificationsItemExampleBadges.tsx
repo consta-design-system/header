@@ -2,6 +2,7 @@ import { Example } from '@consta/stand';
 import React from 'react';
 
 import { NotificationsItem } from '##/components/Notifications/NotificationsItem';
+import Image from '##/images/Gizeasy.image.jpeg';
 
 export const NotificationsItemExampleBadges = () => {
   return (
@@ -9,7 +10,7 @@ export const NotificationsItemExampleBadges = () => {
       <NotificationsItem
         title="Один человек"
         description="Принёс краску"
-        imageUrl="https://avatars.githubusercontent.com/u/13190808?v=4"
+        imageUrl={Image}
         badges={[
           {
             label: 'готов к работе',

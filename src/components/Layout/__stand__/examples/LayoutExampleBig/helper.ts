@@ -6,6 +6,7 @@ import { DefaultItem } from '@consta/uikit/Breadcrumbs';
 import { MenuDefaultItem } from '##/components/Menu';
 import { NotificationsListDefaultItem } from '##/components/Notifications';
 import { TileMenuListDefaultItem } from '##/components/TileMenu';
+import Image from '##/images/Gizeasy.image.jpeg';
 
 const emptyFunction = () => {};
 
@@ -13,32 +14,32 @@ export const tiles: TileMenuListDefaultItem[] = [
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
 ];
 
@@ -46,7 +47,7 @@ export const notifications: NotificationsListDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
     date: new Date(2021, 10, 12, 13, 57, 0),
     read: false,
     badges: [
@@ -94,7 +95,7 @@ export const notifications: NotificationsListDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
     date: new Date(),
     read: true,
     badges: [
@@ -141,7 +142,7 @@ export const notifications: NotificationsListDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
     date: new Date(),
     read: true,
     badges: [

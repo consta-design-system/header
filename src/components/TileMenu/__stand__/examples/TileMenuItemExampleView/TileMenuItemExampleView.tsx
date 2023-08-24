@@ -6,6 +6,7 @@ import {
   TileMenuItemPropView,
   tileMenuItemPropView,
 } from '##/components/TileMenu/TileMenuItem';
+import Image from '##/images/Arhayka.image.jpeg';
 
 export const TileMenuItemExampleView = () => {
   return (
@@ -17,7 +18,7 @@ export const TileMenuItemExampleView = () => {
           view={view}
           title="Пункт меню"
           description="Описание пункта меню"
-          image="https://avatars.githubusercontent.com/u/12581569?s=40&v=4"
+          image={Image}
         />
       )}
       getItemDescription={(view) => `view="${view}"`}

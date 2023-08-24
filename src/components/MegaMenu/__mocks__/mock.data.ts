@@ -6,6 +6,8 @@ import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
 import { IconMail } from '@consta/icons/IconMail';
 import { IconMapFilled } from '@consta/icons/IconMapFilled';
 
+import Image from '##/images/Brim.image.jpeg';
+
 import { MegaMenuBannerBarDefaultItem } from '../MegaMenuBannerBar';
 import { MegaMenuDefaultItem } from '../types';
 
@@ -157,13 +159,11 @@ export const banners: MegaMenuBannerBarDefaultItem[] = [
     label: 'Особенности разведки',
     description:
       'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
-    image:
-      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+    image: Image,
   },
   {
     label: 'Особенности разведки',
     description: 'Лицензии на пользование недрами (далее для настоящ...',
-    image:
-      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+    image: Image,
   },
 ];

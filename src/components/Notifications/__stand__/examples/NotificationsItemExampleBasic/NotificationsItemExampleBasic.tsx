@@ -2,6 +2,7 @@ import { Example } from '@consta/stand';
 import React from 'react';
 
 import { NotificationsItem } from '##/components/Notifications/NotificationsItem';
+import Image from '##/images/Arhayka.image.jpeg';
 
 const date = new Date(2021, 10, 12, 13, 57, 0);
 
@@ -15,7 +16,7 @@ export const NotificationsItemExampleBasic = () => {
         }}
         date={date}
         description="Описание"
-        imageUrl="https://avatars.githubusercontent.com/u/12581569?s=40&v=4"
+        imageUrl={Image}
       />
     </Example>
   );

@@ -18,6 +18,7 @@ import { Layout } from '##/components/Layout/Layout';
 import { Menu } from '##/components/Menu';
 import { Notifications } from '##/components/Notifications';
 import { TileMenu } from '##/components/TileMenu';
+import Image from '##/images/Gizeasy.image.jpeg';
 import { cn } from '##/utils/bem';
 
 import { breadcrumbs, menu, notifications, tiles } from './helper';
@@ -107,7 +108,7 @@ const RowCenterRight = () => (
     <TileMenu items={tiles} />
     <User
       className={cnMixSpace({ mL: 'xs' })}
-      avatarUrl="https://avatars.githubusercontent.com/u/13190808?v=4"
+      avatarUrl={Image}
       name="Имя Фамилия"
       info="Доп. информация"
     />
