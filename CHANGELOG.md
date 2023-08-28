@@ -1,5 +1,30 @@
 # Changelog
 
+## v2.0.0 (28/08/2023)
+Новая мажорная версия:
+
+- Обновили все иконки на пакет @consta/icons
+- Удалили `Badges`
+- `BannerBar`, `NavBar`, `GlobalMenu` стали дочерними компонентами MegaMenu (импортируются из него)
+- Поправили стили в `ButtonMenu`
+- Удалили `Header`
+- Удалили `Languages`
+- Поправили примеры и импорты в документации библиотеки Consta Header
+- Перенесли `NotificationsList` в `Notifications`, а также добавили компонент `NotificationsItem`
+- Добавили компонент `PopoverButton`, открывающий поповер, а для флага `isMobile` - сайдбар
+- В `TileMenu` добавили на экспорт `TileMenuList` и `TileMenuItem`
+- Убрали лишние системные компоненты и функции
+
+---
+
+- [chore(deps): edit package.json](https://github.com/consta-design-system/header/commit/6d597d8bff01afb282aa7a5f1c61b20b1655a3cd) - [@gizeasy](https://github.com/gizeasy)
+- [refactor: refactor lib (#55)](https://github.com/consta-design-system/header/commit/1d554975f32cac53bfaceffc891cfa552d23aeb7) - [@N1MBER](https://github.com/N1MBER)
+- [chore(deploy): edit config (#56)](https://github.com/consta-design-system/header/commit/eeb8f762cf9625991820a4f4b97d9b80d20110f9) - [@gizeasy](https://github.com/gizeasy)
+- [docs(header): marked as deprecated (#52)](https://github.com/consta-design-system/header/commit/3e6a415688d6ff0143cc647228cef5fbcde930b9) - [@N1MBER](https://github.com/N1MBER)
+- [docs(standConfig): add figmaUrl (#50)](https://github.com/consta-design-system/header/commit/8046cc8c14deb8e33944cc890232d33bbb225392) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v1.2.1 (23/05/2023)
 Запускать локальный сервер разработки и сборку пакетов теперь можно и на ОС Windows.
 
