@@ -7,15 +7,7 @@ import React from 'react';
 
 import { cn } from '##/utils/bem';
 
-export const tileMenuItemPropView = ['card', 'line'] as const;
-export type TileMenuItemPropView = typeof tileMenuItemPropView[number];
-
-type TileMenuItemProps = {
-  image?: string | React.FC;
-  title: string;
-  description?: string;
-  view?: TileMenuItemPropView;
-};
+import { TileMenuItemProps } from './types';
 
 const cnTileMenuItem = cn('TileMenuItem');
 
@@ -34,21 +26,19 @@ export const TileMenuItem = forwardRefWithAs<TileMenuItemProps>(
       className,
       title,
       description,
-      view = 'line',
+      view = 'default',
       as = 'div',
       ...otherProps
     } = props;
 
     const Tag = as as string;
-    const viewIsCard = view === 'card';
-    const viewIsLine = view === 'line';
 
     return (
       <Tag
         {...otherProps}
         ref={ref}
         className={cnTileMenuItem({ view }, [
-          viewIsCard
+          view === 'card'
             ? cnMixSpace({ p: 's', pT: 'm' })
             : cnMixSpace({ pV: 's' }),
           className,
@@ -61,15 +51,15 @@ export const TileMenuItem = forwardRefWithAs<TileMenuItemProps>(
         )}
         <div className={cnTileMenuItem('ContentWrapper')}>
           <Text
-            weight={viewIsLine ? 'bold' : undefined}
-            align={viewIsCard ? 'center' : undefined}
+            weight={view === 'default' ? 'bold' : undefined}
+            align={view === 'card' ? 'center' : undefined}
             className={cnTileMenuItem('Title', [
-              viewIsLine ? cnMixSpace({ pB: '2xs' }) : undefined,
+              view === 'default' ? cnMixSpace({ pB: '2xs' }) : undefined,
             ])}
           >
             {title}
           </Text>
-          {description && viewIsLine && (
+          {description && view === 'default' && (
             <Text view="secondary" className={cnTileMenuItem('Description')}>
               {description}
             </Text>
@@ -79,3 +69,5 @@ export const TileMenuItem = forwardRefWithAs<TileMenuItemProps>(
     );
   },
 );
+
+export * from './types';

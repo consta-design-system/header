@@ -1,16 +1,17 @@
-import { IconComponent } from '@consta/uikit/Icon';
+import { IconComponent } from '@consta/icons/Icon';
 import React from 'react';
 
-import {
-  BannerBarDefaultItem,
-  BannerBarPropGetItemAs,
-  BannerBarPropGetItemAttributes,
-  BannerBarPropGetItemDescription,
-  BannerBarPropGetItemImage,
-  BannerBarPropGetItemLabel,
-  BannerBarPropGetItemOnClick,
-} from '##/components/BannerBar/types';
 import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
+
+import {
+  MegaMenuBannerBarDefaultItem,
+  MegaMenuBannerBarPropGetItemAs,
+  MegaMenuBannerBarPropGetItemAttributes,
+  MegaMenuBannerBarPropGetItemDescription,
+  MegaMenuBannerBarPropGetItemImage,
+  MegaMenuBannerBarPropGetItemLabel,
+  MegaMenuBannerBarPropGetItemOnClick,
+} from './MegaMenuBannerBar';
 
 export type MegaMenuPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;
@@ -55,18 +56,18 @@ export type ItemMappers<ITEM = MegaMenuDefaultItem> = {
   getItemSubMenu?: MegaMenuPropGetItemSubMenu<ITEM>;
 };
 
-export type BannerMappers<ITEM = BannerBarDefaultItem> = {
-  getBannerLabel?: BannerBarPropGetItemLabel<ITEM>;
-  getBannerOnClick?: BannerBarPropGetItemOnClick<ITEM>;
-  getBannerDescription?: BannerBarPropGetItemDescription<ITEM>;
-  getBannerImage?: BannerBarPropGetItemImage<ITEM>;
-  getBannerAs?: BannerBarPropGetItemAs<ITEM>;
-  getBannerAttributes?: BannerBarPropGetItemAttributes<ITEM>;
+export type BannerMappers<ITEM = MegaMenuBannerBarDefaultItem> = {
+  getBannerLabel?: MegaMenuBannerBarPropGetItemLabel<ITEM>;
+  getBannerOnClick?: MegaMenuBannerBarPropGetItemOnClick<ITEM>;
+  getBannerDescription?: MegaMenuBannerBarPropGetItemDescription<ITEM>;
+  getBannerImage?: MegaMenuBannerBarPropGetItemImage<ITEM>;
+  getBannerAs?: MegaMenuBannerBarPropGetItemAs<ITEM>;
+  getBannerAttributes?: MegaMenuBannerBarPropGetItemAttributes<ITEM>;
 };
 
 export type MegaMenuProps<
   ITEM = MegaMenuDefaultItem,
-  BANNER = BannerBarDefaultItem,
+  BANNER = MegaMenuBannerBarDefaultItem,
 > = PropsWithHTMLAttributesAndRef<
   {
     banners?: BANNER[];
@@ -86,15 +87,15 @@ export type MegaMenuProps<
     (ITEM extends { label: MegaMenuDefaultItem['label'] }
       ? {}
       : { getItemLabel: MegaMenuPropGetItemLabel<ITEM> }) &
-    (BANNER extends { label: BannerBarDefaultItem['label'] | unknown }
+    (BANNER extends { label: MegaMenuBannerBarDefaultItem['label'] | unknown }
       ? {}
-      : { getBannerLabel: BannerBarPropGetItemLabel<ITEM> }),
+      : { getBannerLabel: MegaMenuBannerBarPropGetItemLabel<ITEM> }),
   HTMLDivElement
 >;
 
 export type MegaMenuComponent = <
   ITEM = MegaMenuDefaultItem,
-  BANNER = BannerBarDefaultItem,
+  BANNER = MegaMenuBannerBarDefaultItem,
 >(
   props: MegaMenuProps<ITEM, BANNER>,
   ref: React.Ref<HTMLDivElement>,

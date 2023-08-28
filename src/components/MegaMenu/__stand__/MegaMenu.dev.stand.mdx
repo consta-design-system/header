@@ -4,6 +4,13 @@ import { MegaMenuExampleBanners } from './examples/MegaMenuExampleBanners/MegaMe
 import { MegaMenuExampleSubMenu } from './examples/MegaMenuExampleSubMenu/MegaMenuExampleSubMenu';
 import { MegaMenuExampleBannersPosition } from './examples/MegaMenuExampleBannersPosition/MegaMenuExampleBannersPosition';
 import { MegaMenuBoxExample } from './examples/MegaMenuBoxExample/MegaMenuBoxExample';
+import { MegaMenuBannerBarExample } from './examples/MegaMenuBannerBarExample/MegaMenuBannerBarExample';
+import { MegaMenuBannerBarExampleCustomTypes } from './examples/MegaMenuBannerBarExampleCustomTypes/MegaMenuBannerBarExampleCustomTypes';
+import { MegaMenuBannerBarExampleView } from './examples/MegaMenuBannerBarExampleView/MegaMenuBannerBarExampleView';
+import { MegaMenuGlobalExample } from './examples/MegaMenuGlobalExample/MegaMenuGlobalExample';
+import { MegaMenuGlobalExampleCustomTypes } from './examples/MegaMenuGlobalExampleCustomTypes/MegaMenuGlobalExampleCustomTypes';
+import { MegaMenuNavBarExample } from './examples/MegaMenuNavBarExample/MegaMenuNavBarExample';
+import { MegaMenuNavBarExampleCustomTypes } from './examples/MegaMenuNavBarExampleCustomTypes/MegaMenuNavBarExampleCustomTypes';
 
 ```tsx
 import { MegaMenu } from '@consta/header/MegaMenu';
@@ -12,9 +19,29 @@ import { MegaMenu } from '@consta/header/MegaMenu';
 <MdxMenu>
 
 - [Меню](#меню)
+  - [Лист баннеров](#лист-баннеров)
+    - [Позиционирование баннеров](#позиционирование-баннеров)
+  - [Вложенное меню](#вложенное-меню)
 - [Баннеры](#баннеры)
-  - [Позиционирование](#позиционирование-баннеров)
-- [Вложенное меню](#вложенное-меню)
+  - [Содержимое баннеров](#содержимое-баннеров)
+    - [Пример обычных баннеров](#пример-обычных-баннеров)
+    - [Пример баннеров с кастомным типом](#пример-баннеров-с-кастомным-типом)
+  - [Внешний вид баннеров](#внешний-вид-баннеров)
+  - [Импорт баннеров](#импорт-баннеров)
+  - [Свойства MegaMenuBannerBar](#свойства-megamenubannerbar)
+  - [Свойства MegaMenuBannerBarItem](#свойства-megamenubannerbaritem)
+- [Основное меню](#основное-меню)
+  - [Содержимое меню](#содержимое-меню)
+    - [Пример обычного меню](#пример-обычного-меню)
+    - [Пример меню с кастомным типом](#пример-меню-с-кастомным-типом)
+  - [Импорт меню](#импорт-меню)
+  - [Свойства MegaMenuGlobal](#свойства-megamenuglobal)
+- [Навигация](#навигация)
+  - [Содержимое навигации](#содержимое-навигации)
+    - [Пример обычной навигации](#пример-обычной-навигации)
+    - [Пример навигации с кастомным типом](#пример-навигации-с-кастомным-типом)
+  - [Импорт навигации](#импорт-навигации)
+  - [Свойства MegaMenuNavBar](#свойства-megamenunavbar)
 - [Обёртка](#обертка)
   - [Свойства](#свойства-megamenubox)
 - [Импорт](#импорт)
@@ -37,14 +64,14 @@ import { MegaMenu } from '@consta/header/MegaMenu';
 
 ```tsx
 import React from 'react';
-import { IconArrowRight } from '@consta/uikit/IconArrowRight';
-import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
-import { IconFolders } from '@consta/uikit/IconFolders';
-import { IconGas } from '@consta/uikit/IconGas';
-import { IconInfo } from '@consta/uikit/IconInfo';
-import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
-import { IconMail } from '@consta/uikit/IconMail';
-import { IconMap } from '@consta/uikit/IconMap';
+import { IconArrowRight } from '@consta/icons/IconArrowRight';
+import { IconFlagFilled } from '@consta/icons/IconFlagFilled';
+import { IconFolders } from '@consta/icons/IconFolders';
+import { IconGas } from '@consta/icons/IconGas';
+import { IconInfo } from '@consta/icons/IconInfo';
+import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
+import { IconMail } from '@consta/icons/IconMail';
+import { IconMap } from '@consta/icons/IconMap';
 import { MegaMenuDefaultItem, MegaMenu } from '@consta/header/MegaMenu';
 
 const getSubMenu = (prefix?: string) => [
@@ -109,9 +136,9 @@ export const MegaMenuExample = () => {
 
 <MegaMenuExample />
 
-## Баннеры
+## Лист баннеров
 
-За данные для баннеров отвечает свойство `banners` (тип [BannerBarDefaultItem](##LIBS.LIB.STAND/lib:header/stand:components-bannerbar-canary)).
+За данные для баннеров отвечает свойство `banners` (тип [MegaMenuBannerBarDefaultItem](#свойства-megamenubannerbar)).
 
 ```tsx
 import React from 'react';
@@ -159,11 +186,574 @@ export const MegaMenuExample = () => {
 
 <MegaMenuExampleBannersPosition />
 
-## Вложенное меню
+### Вложенное меню
 
-Если у элементов нет поля `subMenu`, то будет рендериться только [`NavBar`](##LIBS.LIB.STAND/lib:header/stand:components-navbar-canary). Если есть уровень вложенности 1, то рендериться будет [`GlobalMenu`](##LIBS.LIB.STAND/lib:header/stand:components-globalmenu-canary). В ином случае оба компонента сразу.
+Если у элементов нет поля `subMenu`, то будет рендериться только [`MegaMenuNavBar`](#навигация). Если есть уровень вложенности 1, то рендериться будет [`MegaMenuGlobal`](#основное-меню). В ином случае оба компонента сразу.
 
 <MegaMenuExampleSubMenu />
+
+## Баннеры
+
+### Содержимое баннеров
+
+За данные для баннеров отвечает свойство `items` (тип [MegaMenuBannerBarDefaultItem](#свойства-megamenubannerbar)). В него входит:
+
+- `label` — заголовок баннера
+- `description` — описание для баннера
+- `image` — картинка
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
+
+#### Пример обычных баннеров
+
+```tsx
+import React from 'react';
+import { MegaMenuBannerBar } from '@consta/header/MegaMenu';
+
+const items = [
+  {
+    label: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    image:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
+
+export const MegaMenuBannerBarExample = () => {
+  return <MegaMenuBannerBar items={items} view="horizontal" />;
+};
+```
+
+<MegaMenuBannerBarExample />
+
+#### Пример баннеров с кастомным типом
+
+```tsx
+import React from 'react';
+import { MegaMenuBannerBar } from '@consta/header/MegaMenu';
+
+type Item = {
+  text: string;
+  description: string;
+  photo?: string;
+};
+
+const items: Item[] = [
+  {
+    text: 'Особенности разведки',
+    description:
+      'Лицензии на пользование недрами (далее для настоящей главы - лицензия) выдаются федеральным органом исполнительной власти ...',
+    photo:
+      'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=',
+  },
+];
+
+export const MegaMenuBannerBarExample = () => {
+  return (
+    <MegaMenuBannerBar
+      items={items}
+      getItemLabel={(item) => item.text}
+      getItemImage={(item) => item.photo}
+      view="horizontal"
+    />
+  );
+};
+```
+
+<MegaMenuBannerBarExampleCustomTypes />
+
+```tsx
+import { BannerBar } from '@consta/header/BannerBar';
+```
+
+### Импорт баннеров
+
+```tsx
+import {
+  MegaMenuBannerBar,
+  MegaMenuBannerBarItem,
+} from '@consta/header/MegaMenu';
+```
+
+### Внешний вид баннеров
+
+За внешний вид компонента отвечает свойство `view`.
+
+```tsx
+<MegaMenuBannerBar items={items} view="vertical" />
+<MegaMenuBannerBar items={items} view="horizontal" />
+```
+
+<MegaMenuBannerBarExampleView />
+
+### Свойства MegaMenuBannerBar
+
+```tsx
+export type MegaMenuBannerBarDefaultItem = {
+  onClick?: React.MouseEventHandler;
+  label: string;
+  description?: string;
+  image?: string;
+  as?: keyof JSX.IntrinsicElements;
+  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+};
+
+export type MegaMenuBannerBarPropView = 'vertical' | 'horizontal';
+
+export type MegaMenuBannerBarPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type MegaMenuBannerBarPropGetItemDescription<ITEM> = (
+  item: ITEM,
+) => string | undefined;
+export type MegaMenuBannerBarPropGetItemImage<ITEM> = (
+  item: ITEM,
+) => string | undefined;
+export type MegaMenuBannerBarPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+export type MegaMenuBannerBarPropGetItemAs<ITEM> = (
+  item: ITEM,
+) => keyof JSX.IntrinsicElements | undefined;
+export type MegaMenuBannerBarPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+
+export type MegaMenuBannerBarPropOnItemClick<ITEM> = (params: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+```
+
+| Свойство                         | Тип                                       | По умолчанию                | Описание                                                                |
+| -------------------------------- | ----------------------------------------- | --------------------------- | ----------------------------------------------------------------------- |
+| [`view?`](#внешний-вид-баннеров) | `MegaMenuBannerBarPropView`               | `vertical`                  | Внешний вид баннеров                                                    |
+| [`items`](#содержимое-баннеров)  | `ITEM[]`                                  | -                           | Пункты меню                                                             |
+| `onItemClick?`                   | `MegaMenuBannerBarPropOnItemClick`        | -                           | Событие по нажатию на элемент                                           |
+| `getItemLabel?`                  | `MegaMenuBannerBarPropGetItemLabel`       | `defaultGetItemLabel`       | Функция для определения заголовка элемента                              |
+| `getItemOnClick?`                | `MegaMenuBannerBarPropGetItemOnClick`     | `defaultGetItemOnClick`     | Функция для определения события по нажатию на элемент                   |
+| `getItemDescription?`            | `MegaMenuBannerBarPropGetItemDescription` | `defaultGetItemDescription` | Функция для определения описания элемениа                               |
+| `getItemImage?`                  | `MegaMenuBannerBarPropGetItemImage`       | `defaultGetItemImage`       | Функция для определения картинки элемента                               |
+| `getItemAs?`                     | `MegaMenuBannerBarPropGetItemAs`          | `defaultGetItemAs`          | Функция для определения тега элемента                                   |
+| `getItemAttributes?`             | `MegaMenuBannerBarPropGetItemAttributes`  | `defaultGetItemAttributes`  | Функция для определения атрибутов элемента                              |
+| `className?`                     | `string`                                  | -                           | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| `ref?`                           | `React.Ref<HTMLButtonElement>`            | -                           | Ссылка на корневой DOM-элемент                                          |
+
+### Свойства MegaMenuBannerBarItem
+
+| Свойство                               | Тип                            | По умолчанию | Описание                                                                |
+| -------------------------------------- | ------------------------------ | ------------ | ----------------------------------------------------------------------- |
+| [`view?`](#внешний-вид-баннеров)       | `MegaMenuBannerBarPropView`    | `vertical`   | Внешний вид баннера                                                     |
+| [`onClick?`](#содержимое-баннеров)     | `React.MouseEventHandler`      | -            | Событие по нажатию на баннер                                            |
+| [`label`](#содержимое-баннеров)        | `string`                       | -            | Заголовок баннера                                                       |
+| [`description?`](#содержимое-баннеров) | `string`                       | -            | Описание в баннере                                                      |
+| [`image?`](#содержимое-баннеров)       | `string`                       | -            | Картинка баннера                                                        |
+| [`as?`](#содержимое-баннеров)          | `keyof JSX.IntrinsicElements`  | `div`        | HTML-тег элемента                                                       |
+| `className?`                           | `string`                       | -            | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| `ref?`                                 | `React.Ref<HTMLButtonElement>` | -            | Ссылка на корневой DOM-элемент                                          |
+
+## Основное меню
+
+### Содержимое меню
+
+За данные пунктов меню отвечает свойство `items` (тип [MegaMenuGlobalDefaultItem](#свойства-megamenuglobal)). В него входит:
+
+- `label` — заголовок баннера
+- `groupId` — идентификатор группы
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
+
+##### Пример обычного меню
+
+```tsx
+import React from 'react';
+import { MegaMenuGlobal } from '@consta/header/MegaMenu';
+
+const items = [
+  {
+    label: 'Пункт 1.1',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 1.2',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 1.3',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 1.4',
+    groupId: 1,
+  },
+  {
+    label: 'Пункт 2.1',
+    groupId: 2,
+  },
+  {
+    label: 'Пункт 2.2',
+    groupId: 2,
+  },
+  {
+    label: 'Пункт 2.3',
+    groupId: 2,
+  },
+];
+
+const groups = [
+  { label: 'Первая группа', id: 1 },
+  { label: 'Вторая группа', id: 2 },
+];
+
+export const MegaMenuGlobalExample = () => {
+  return (
+    <MegaMenuGlobal items={items} groups={groups} title="Объекты" columns={2} />
+  );
+};
+```
+
+<MegaMenuGlobalExample />
+
+##### Пример меню с кастомным типом
+
+```tsx
+import React from 'react';
+import { MegaMenuGlobal } from '@consta/header/MegaMenu';
+
+type Item = {
+  text: string;
+  group: number;
+};
+
+type Group = {
+  key: number;
+  name: string;
+};
+
+const items: Item[] = [
+  {
+    text: 'Пункт 1.1',
+    group: 1,
+  },
+  {
+    text: 'Пункт 1.2',
+    group: 1,
+  },
+  {
+    text: 'Пункт 1.3',
+    group: 1,
+  },
+  {
+    text: 'Пункт 1.4',
+    group: 1,
+  },
+  {
+    text: 'Пункт 2.1',
+    group: 2,
+  },
+  {
+    text: 'Пункт 2.2',
+    group: 2,
+  },
+  {
+    text: 'Пункт 2.3',
+    group: 2,
+  },
+];
+
+const groups: Group[] = [
+  { name: 'Первая группа', key: 1 },
+  { name: 'Вторая группа', key: 2 },
+];
+
+export const MegaMenuGlobalExampleCustomTypes = () => {
+  return (
+    <MegaMenuGlobal
+      items={items}
+      groups={groups}
+      title="Объекты"
+      getItemLabel={(item) => item.text}
+      getItemGroupId={(item) => item.group}
+      getGroupLabel={(group) => group.name}
+      getGroupKey={(group) => group.key}
+      maxElements={5}
+      columns={3}
+    />
+  );
+};
+```
+
+<MegaMenuGlobalExample />
+
+### Импорт меню
+
+```tsx
+import { MegaMenuGlobal } from '@consta/header/MegaMenu';
+```
+
+### Свойства MegaMenuGlobal
+
+```tsx
+export type MegaMenuGlobalDefaultItem = {
+  as?: keyof JSX.IntrinsicElements;
+  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  onClick?: React.MouseEventHandler;
+  label: string;
+  groupId?: string | number;
+};
+
+export type MegaMenuGlobalDefaultGroup = {
+  label: string;
+  id?: string | number;
+  onClick?: React.MouseEventHandler;
+};
+
+export type MegaMenuGlobalPropGetItemAs<ITEM> = (
+  item: ITEM,
+) => keyof JSX.IntrinsicElements | undefined;
+export type MegaMenuGlobalPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+export type MegaMenuGlobalPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+export type MegaMenuGlobalPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type MegaMenuGlobalPropGetItemGroupId<ITEM> = (
+  item: ITEM,
+) => string | number | undefined;
+
+export type MegaMenuGlobalPropGetGroupId<ITEM> = (
+  item: ITEM,
+) => number | string | undefined;
+export type MegaMenuGlobalPropGetGroupLabel<ITEM> = (item: ITEM) => string;
+export type MegaMenuGlobalPropGetGroupOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+
+export type MegaMenuGlobalPropOnItemClick<ITEM> = (params: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+export type MegaMenuGlobalPropOnGroupClick<GROUP> = (params: {
+  e: React.MouseEvent;
+  group: GROUP;
+}) => void;
+```
+
+| Свойство                    | Тип                                   | По умолчанию               | Описание                                                                |
+| --------------------------- | ------------------------------------- | -------------------------- | ----------------------------------------------------------------------- |
+| `title?`                    | `string`                              | -                          | Заголовок меню                                                          |
+| `maxElements?`              | `number`                              | -                          | Колечестов отображаемых элементов в группе                              |
+| `columns?`                  | `number`                              | 3                          | Количестов колонок с группами                                           |
+| `showButtonText?`           | `string`                              | `Ещё`                      | Текст для кнопки в состоянии свернутого списка                          |
+| `hideButtonText?`           | `string`                              | `Скрыть`                   | Текст для кнопки в состоянии раскрытого списка                          |
+| [`items`](#содержимое-меню) | `ITEM[]`                              | -                          | Пункты меню                                                             |
+| `onItemClick?`              | `MegaMenuGlobalPropOnItemClick`       | -                          | Событие по нажатию на элемент меню                                      |
+| `onGroupClick?`             | `MegaMenuGlobalPropOnGroupClick`      | -                          | Событие по нажатию на группу меню                                       |
+| `getItemLabel?`             | `MegaMenuGlobalPropGetItemLabel`      | `defaultGetItemLabel`      | Функция для определения заголовка элемента меню                         |
+| `getItemOnClick?`           | `MegaMenuGlobalPropGetItemOnClick`    | `defaultGetItemOnClick`    | Функция для определения события по нажатию на элемент меню              |
+| `getItemGroupId?`           | `MegaMenuGlobalPropGetItemGroupId`    | `defaultGetItemGroupId`    | Функция для определения идентификатора группы                           |
+| `getItemAs?`                | `MegaMenuGlobalPropGetItemAs`         | `defaultGetItemAs`         | Функция для определения тега элемента меню                              |
+| `getItemAttributes?`        | `MegaMenuGlobalPropGetItemAttributes` | `defaultGetItemAttributes` | Функция для определения атрибутов элемента меню                         |
+| `groups?`                   | `GROUP[]`                             | -                          | Пункты меню                                                             |
+| `getGroupId?`               | `MegaMenuGlobalPropGetGroupId`        | `defaultGetGroupId`        | Функция для определения ключа группы                                    |
+| `getGroupLabel?`            | `MegaMenuGlobalPropGetGroupLabel`     | `defaultGetGroupLabel`     | Функция для определения заголовка группы                                |
+| `getGroupOnClick?`          | `MegaMenuGlobalPropGetGroupOnClick`   | `defaultGetGroupOnClick`   | Функция для определения события по нажатию на группу меню               |
+| `className?`                | `string`                              | -                          | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| `ref?`                      | `React.Ref<HTMLButtonElement>`        | -                          | Ссылка на корневой DOM-элемент                                          |
+
+## Навигация
+
+## Содержимое навигации
+
+За данные для пунктов меню отвечает свойство `items` (тип [MegaMenuNavBarDefaultItem](#свойства-megamenunavbar)). В него входит:
+
+- `label` — заголовок меню
+- `iconLeft` — иконка с левой стороны
+- `iconRight` — иконка с правой стороны
+- `active` — отмечает активный пункт меню
+- `onClick` — событие при клике на элементе
+- `as` — HTML-тег компонента
+- `attributes` — атрибуты элемента
+
+##### Пример обычной навигации
+
+```tsx
+import { IconFlagFilled } from '@consta/icons/IconFlagFilled';
+import { IconFolders } from '@consta/icons/IconFolders';
+import { IconGas } from '@consta/icons/IconGas';
+import { IconInfo } from '@consta/icons/IconInfo';
+import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
+import { IconMail } from '@consta/icons/IconMail';
+import { IconMap } from '@consta/icons/IconMap';
+import React from 'react';
+
+import { MegaMenuNavBar } from '@consta/header/MegaMenu';
+
+export const items = [
+  {
+    label: 'Объекты',
+    iconLeft: IconFlagFilled,
+  },
+  {
+    label: 'Нефть и газ',
+    iconLeft: IconGas,
+  },
+  {
+    label: 'Электроэнергетика',
+    iconLeft: IconLineAndBarChart,
+  },
+  {
+    label: 'Карта',
+    iconLeft: IconMap,
+    active: true,
+  },
+  {
+    label: 'Отображение данных',
+    iconLeft: IconFolders,
+  },
+  {
+    label: 'Информация',
+    iconLeft: IconInfo,
+  },
+  {
+    label: 'Сообщения',
+    iconLeft: IconMail,
+  },
+];
+export const MegaMenuNavBarExample = () => {
+  return <MegaMenuNavBar items={items} />;
+};
+```
+
+<MegaMenuNavBarExample />
+
+##### Пример навигации с кастомным типом
+
+```tsx
+import { IconFlagFilled } from '@consta/icons/IconFlagFilled';
+import { IconFolders } from '@consta/icons/IconFolders';
+import { IconGas } from '@consta/icons/IconGas';
+import { IconComponent } from '@consta/icons/Icon';
+import { IconInfo } from '@consta/icons/IconInfo';
+import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
+import { IconMail } from '@consta/icons/IconMail';
+import { IconMap } from '@consta/icons/IconMap';
+import React from 'react';
+
+import { MegaMenuNavBar } from '@consta/header/MegaMenu';
+
+type Item = {
+  text: string;
+  left: IconComponent;
+  checked?: boolean;
+};
+
+export const items: Item[] = [
+  {
+    text: 'Объекты',
+    left: IconFlagFilled,
+  },
+  {
+    text: 'Нефть и газ',
+    left: IconGas,
+  },
+  {
+    text: 'Электроэнергетика',
+    left: IconLineAndBarChart,
+  },
+  {
+    text: 'Карта',
+    left: IconMap,
+    checked: true,
+  },
+  {
+    text: 'Отображение данных',
+    left: IconFolders,
+  },
+  {
+    text: 'Информация',
+    left: IconInfo,
+  },
+  {
+    text: 'Сообщения',
+    left: IconMail,
+  },
+];
+
+export const MegaMenuNavBarExampleCustomTypes = () => {
+  return (
+    <MegaMenuNavBar
+      getItemLabel={(item) => item.text}
+      getItemIconLeft={(item) => item.left}
+      getItemActive={(item) => item.checked}
+      items={items}
+    />
+  );
+};
+```
+
+<MegaMenuNavBarExampleCustomTypes />
+
+## Импорт навигации
+
+```tsx
+import { MegaMenuNavBar } from '@consta/header/MegaMenu';
+```
+
+## Свойства MegaMenuNavBar
+
+```tsx
+export type MegaMenuNavBarDefaultItem = {
+  label: string;
+  iconLeft?: IconComponent;
+  iconRight?: IconComponent;
+  active?: boolean;
+  as?: keyof JSX.IntrinsicElements;
+  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  onClick?: React.MouseEventHandler;
+};
+
+export type MegaMenuNavBarPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type MegaMenuNavBarPropGetItemIconLeft<ITEM> = (
+  item: ITEM,
+) => IconComponent | undefined;
+export type MegaMenuNavBarPropGetItemIconRight<ITEM> = (
+  item: ITEM,
+) => IconComponent | undefined;
+export type MegaMenuNavBarPropGetItemActive<ITEM> = (
+  item: ITEM,
+) => boolean | undefined;
+export type MegaMenuNavBarPropGetItemOnClick<ITEM> = (
+  item: ITEM,
+) => React.MouseEventHandler | undefined;
+export type MegaMenuNavBarPropGetItemAs<ITEM> = (
+  item: ITEM,
+) => keyof JSX.IntrinsicElements | undefined;
+export type MegaMenuNavBarPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+
+export type MegaMenuNavBarPropOnItemClick<ITEM> = (params: {
+  e: React.MouseEvent;
+  item: ITEM;
+}) => void;
+```
+
+| Свойство                         | Тип                                   | По умолчанию               | Описание                                                                |
+| -------------------------------- | ------------------------------------- | -------------------------- | ----------------------------------------------------------------------- |
+| [`items`](#содержимое-навигации) | `ITEM[]`                              | -                          | Пункты меню                                                             |
+| `onItemClick?`                   | `MegaMenuNavBarPropOnItemClick`       | -                          | Событие по нажаьию на элемент                                           |
+| `getItemLabel?`                  | `MegaMenuNavBarPropGetItemLabel`      | `defaultGetItemLabel`      | Функция для определения заголовка элемента                              |
+| `getItemOnClick?`                | `MegaMenuNavBarPropGetItemOnClick`    | `defaultGetItemOnClick`    | Функция для определения события по нажатию на элемент                   |
+| `getItemActive?`                 | `MegaMenuNavBarPropGetItemActive`     | `defaultGetItemActive`     | Функция для определения активен элемент или нет                         |
+| `getItemIconLeft?`               | `MegaMenuNavBarPropGetItemIconLeft`   | `defaultGetItemIconLeft`   | Функция для определения левой иконки                                    |
+| `getItemIconRight?`              | `MegaMenuNavBarPropGetItemIconRight`  | `defaultGetItemIconRight`  | Функция для определения правой иконки                                   |
+| `getItemAs?`                     | `MegaMenuNavBarPropGetItemAs`         | `defaultGetItemAs`         | Функция для определения тега элемента                                   |
+| `getItemAttributes?`             | `MegaMenuNavBarPropGetItemAttributes` | `defaultGetItemAttributes` | Функция для определения атрибутов элемента                              |
+| `className?`                     | `string`                              | -                          | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| `ref?`                           | `React.Ref<HTMLButtonElement>`        | -                          | Ссылка на корневой DOM-элемент                                          |
 
 ## Обёртка
 
@@ -171,13 +761,13 @@ export const MegaMenuExample = () => {
 
 ```tsx
 import { Button } from '@consta/uikit/Button';
-import { IconFlagFilled } from '@consta/uikit/IconFlagFilled';
-import { IconFolders } from '@consta/uikit/IconFolders';
-import { IconGas } from '@consta/uikit/IconGas';
-import { IconInfo } from '@consta/uikit/IconInfo';
-import { IconLineAndBarChart } from '@consta/uikit/IconLineAndBarChart';
-import { IconMail } from '@consta/uikit/IconMail';
-import { IconMap } from '@consta/uikit/IconMap';
+import { IconFlagFilled } from '@consta/icons/IconFlagFilled';
+import { IconFolders } from '@consta/icons/IconFolders';
+import { IconGas } from '@consta/icons/IconGas';
+import { IconInfo } from '@consta/icons/IconInfo';
+import { IconLineAndBarChart } from '@consta/icons/IconLineAndBarChart';
+import { IconMail } from '@consta/icons/IconMail';
+import { IconMap } from '@consta/icons/IconMap';
 import { useFlag } from '@consta/uikit/useFlag';
 import React from 'react';
 
@@ -265,7 +855,14 @@ export const MegaMenuBoxExample = () => {
 ## Импорт
 
 ```tsx
-import { MegaMenu, MegaMenuBox } from '@consta/header/MegaMenu';
+import {
+  MegaMenu,
+  MegaMenuBox,
+  MegaMenuBannerBar,
+  MegaMenuBannerBarItem,
+  MegaMenuGlobal,
+  MegaMenuNavBar,
+} from '@consta/header/MegaMenu';
 ```
 
 ## Свойства
@@ -305,28 +902,28 @@ export type MegaMenuPropGetItemSubMenu<ITEM> = (
 ) => ITEM[] | undefined;
 ```
 
-| Свойство                | Тип                               | По умолчанию                  | Описание                                                                |
-| ----------------------- | --------------------------------- | ----------------------------- | ----------------------------------------------------------------------- |
-| `menuTitle?`            | `string`                          | -                             | Заголовок меню                                                          |
-| `menuShowButtonText?`   | `string`                          | `'Ещё'`                       | Текст кнопки для разворачивания списка пунктов меню                     |
-| `menuHideButtonText?`   | `string`                          | `'Скрыть'`                    | Текст кнопки для сворачиванию списка пунктов меню                       |
-| `menuMaxElements?`      | `number`                          | -                             | Максимальное число отображаемых элементов пункта меню                   |
-| `bannerPosition?`       | `'right', 'bottom'`               | `right`                       | Позиция баннеров                                                        |
-| `items`                 | `ITEM[]`                          | -                             | Пункты меню                                                             |
-| `banners?`              | `BANNER[]`                        | -                             | Список баннеров                                                         |
-| `onItemClick?`          | `MegaMenuPropOnItemClick`         | -                             | Событие по нажатию на элемент                                           |
-| `onBannerClick?`        | `MegaMenuPropOnItemClick`         | -                             | Событие по нажатию на баннер                                            |
-| `getItemKey?`           | `MegaMenuPropGetItemLabel`        | `defaultGetItemKey`           | Функция для определения ключа элемента                                  |
-| `getItemLabel?`         | `MegaMenuPropGetItemLabel`        | `defaultGetItemLabel`         | Функция для определения заголовка элемента                              |
-| `getItemOnClick?`       | `MegaMenuPropGetItemOnClick`      | `defaultGetItemOnClick`       | Функция для определения события по нажатию на элемент                   |
-| `getItemIconLeft?`      | `MegaMenuPropGetItemIconLeft`     | `defaultGetItemIconLeft`      | Функция для определения левой иконки                                    |
-| `getItemAs?`            | `MegaMenuPropGetItemAs`           | `defaultGetItemAs`            | Функция для определения тега элемента                                   |
-| `getItemAttributes?`    | `MegaMenuPropGetItemAttributes`   | `defaultGetItemAttributes`    | Функция для определения атрибутов элемента                              |
-| `getItemSubMenu?`       | `MegaMenuPropGetItemSubMenu`      | `defaultGetItemSubMenu`       | Функция для определения дочернего меню элемента                         |
-| `getBannerLabel?`       | `BannerBarPropGetItemLabel`       | `defaultGetBannerLabel`       | Функция для определения заголовка баннера                               |
-| `getBannerDescription?` | `BannerBarPropGetItemDescription` | `defaultGetBannerDescription` | Функция для определения описания баннера                                |
-| `getBannerImage?`       | `BannerBarPropGetItemImage`       | `defaultGetBannerImage`       | Функция для определения картинки баннера                                |
-| `getBannerOnClick?`     | `BannerBarPropGetItemOnClick`     | `defaultGetBannerOnClick`     | Функция для определения события по нажатию на баннер                    |
-| `getBannerAs?`          | `BannerBarPropGetItemAs`          | `defaultGetBannerAs`          | Функция для определения тега баннера                                    |
-| `getBannerAttributes?`  | `BannerBarPropGetItemAttributes`  | `defaultGetBannerAttributes`  | Функция для определения атрибутов баннера                               |
-| `className?`            | `string`                          | -                             | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
+| Свойство                                        | Тип                               | По умолчанию                  | Описание                                                                |
+| ----------------------------------------------- | --------------------------------- | ----------------------------- | ----------------------------------------------------------------------- |
+| `menuTitle?`                                    | `string`                          | -                             | Заголовок меню                                                          |
+| `menuShowButtonText?`                           | `string`                          | `'Ещё'`                       | Текст кнопки для разворачивания списка пунктов меню                     |
+| `menuHideButtonText?`                           | `string`                          | `'Скрыть'`                    | Текст кнопки для сворачиванию списка пунктов меню                       |
+| `menuMaxElements?`                              | `number`                          | -                             | Максимальное число отображаемых элементов пункта меню                   |
+| [`bannerPosition?`](#позиционирование-баннеров) | `'right', 'bottom'`               | `right`                       | Позиция баннеров                                                        |
+| [`items`](#меню)                                | `ITEM[]`                          | -                             | Пункты меню                                                             |
+| [`banners?`](#лист-баннеров)                    | `BANNER[]`                        | -                             | Список баннеров                                                         |
+| `onItemClick?`                                  | `MegaMenuPropOnItemClick`         | -                             | Событие по нажатию на элемент                                           |
+| `onBannerClick?`                                | `MegaMenuPropOnItemClick`         | -                             | Событие по нажатию на баннер                                            |
+| `getItemKey?`                                   | `MegaMenuPropGetItemLabel`        | `defaultGetItemKey`           | Функция для определения ключа элемента                                  |
+| `getItemLabel?`                                 | `MegaMenuPropGetItemLabel`        | `defaultGetItemLabel`         | Функция для определения заголовка элемента                              |
+| `getItemOnClick?`                               | `MegaMenuPropGetItemOnClick`      | `defaultGetItemOnClick`       | Функция для определения события по нажатию на элемент                   |
+| `getItemIconLeft?`                              | `MegaMenuPropGetItemIconLeft`     | `defaultGetItemIconLeft`      | Функция для определения левой иконки                                    |
+| `getItemAs?`                                    | `MegaMenuPropGetItemAs`           | `defaultGetItemAs`            | Функция для определения тега элемента                                   |
+| `getItemAttributes?`                            | `MegaMenuPropGetItemAttributes`   | `defaultGetItemAttributes`    | Функция для определения атрибутов элемента                              |
+| `getItemSubMenu?`                               | `MegaMenuPropGetItemSubMenu`      | `defaultGetItemSubMenu`       | Функция для определения дочернего меню элемента                         |
+| `getBannerLabel?`                               | `BannerBarPropGetItemLabel`       | `defaultGetBannerLabel`       | Функция для определения заголовка баннера                               |
+| `getBannerDescription?`                         | `BannerBarPropGetItemDescription` | `defaultGetBannerDescription` | Функция для определения описания баннера                                |
+| `getBannerImage?`                               | `BannerBarPropGetItemImage`       | `defaultGetBannerImage`       | Функция для определения картинки баннера                                |
+| `getBannerOnClick?`                             | `BannerBarPropGetItemOnClick`     | `defaultGetBannerOnClick`     | Функция для определения события по нажатию на баннер                    |
+| `getBannerAs?`                                  | `BannerBarPropGetItemAs`          | `defaultGetBannerAs`          | Функция для определения тега баннера                                    |
+| `getBannerAttributes?`                          | `BannerBarPropGetItemAttributes`  | `defaultGetBannerAttributes`  | Функция для определения атрибутов баннера                               |
+| `className?`                                    | `string`                          | -                             | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |

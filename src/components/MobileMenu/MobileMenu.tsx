@@ -1,7 +1,7 @@
 import './MobileMenu.css';
 
+import { IconHamburger } from '@consta/icons/IconHamburger';
 import { Button } from '@consta/uikit/Button';
-import { IconHamburger } from '@consta/uikit/IconHamburger';
 import { Sidebar } from '@consta/uikit/Sidebar';
 import { useFlag } from '@consta/uikit/useFlag';
 import React, { forwardRef } from 'react';
@@ -33,7 +33,7 @@ const MobileMenuRender = (
     ...otherProps
   } = props;
 
-  const [visibleMenu, { toogle, off }] = useFlag();
+  const [visibleMenu, setVisibleMenu] = useFlag();
 
   const elementZIndex =
     typeof props.style?.zIndex === 'number'
@@ -49,13 +49,13 @@ const MobileMenuRender = (
         className={cnMobileMenu(null, [className])}
         iconLeft={IconHamburger}
         ref={ref}
-        onClick={toogle}
+        onClick={setVisibleMenu.toggle}
       />
       <Sidebar
         className={cnMobileMenu('Sidebar', [sidebarClassName])}
         position="left"
         isOpen={visibleMenu}
-        onClickOutside={off}
+        onClickOutside={setVisibleMenu.off}
         size="m"
         style={{ zIndex: elementZIndex }}
       >

@@ -1,7 +1,8 @@
 import './Sidebar.css';
 
+import { IconClose } from '@consta/icons/IconClose';
 import { Button } from '@consta/uikit/Button';
-import { IconClose } from '@consta/uikit/IconClose';
+import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Sidebar as ConstaSidebar } from '@consta/uikit/Sidebar';
 import { Text } from '@consta/uikit/Text';
 import { useBreakpoints } from '@consta/uikit/useBreakpoints';
@@ -30,7 +31,9 @@ export const Sidebar = (props: SidebarProps) => {
       className={cnSidebar(null, [className])}
     >
       {(title || onClose) && (
-        <div className={cnSidebar('Header')}>
+        <div
+          className={cnSidebar('Header', [cnMixSpace({ pV: 'l', pH: 'xl' })])}
+        >
           <Text className={cnSidebar('Title')} size="xl" truncate>
             {title}
           </Text>

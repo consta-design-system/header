@@ -3,10 +3,9 @@ import { Button } from '@consta/uikit/Button';
 import { useFlag } from '@consta/uikit/useFlag';
 import React, { useMemo } from 'react';
 
-import { items as banners } from '##/components/BannerBar/__mocks__/mock.data';
 import { cn } from '##/utils/bem';
 
-import { getItems, getSubMenu } from '../__mocks__/mock.data';
+import { banners, getItems, getSubMenu } from '../__mocks__/mock.data';
 import { MegaMenu } from '../MegaMenu';
 import { MegaMenuBox } from '../MegaMenuBox';
 

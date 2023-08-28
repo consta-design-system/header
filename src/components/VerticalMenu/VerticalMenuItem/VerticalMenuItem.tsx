@@ -1,6 +1,6 @@
 import './VerticalMenuItem.css';
 
-import { IconArrowRight } from '@consta/uikit/IconArrowRight';
+import { IconArrowRight } from '@consta/icons/IconArrowRight';
 import { Text } from '@consta/uikit/Text';
 import React from 'react';
 

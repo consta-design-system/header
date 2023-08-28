@@ -1,18 +1,18 @@
 import './MegaMenu.css';
 
-import { IconArrowRight } from '@consta/uikit/IconArrowRight';
-import React, { useEffect, useMemo, useState } from 'react';
+import { IconArrowRight } from '@consta/icons/IconArrowRight';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { cn } from '##/utils/bem';
 
-import { BannerBar } from '../BannerBar';
-import { GlobalMenu } from '../GlobalMenu';
-import { NavBar } from '../NavBar';
 import {
   getItemsDepth,
   separateItemsByDepth,
   withDefaultGetters,
 } from './helper';
+import { MegaMenuBannerBar } from './MegaMenuBannerBar';
+import { MegaMenuGlobal } from './MegaMenuGlobal';
+import { MegaMenuNavBar } from './MegaMenuNavBar';
 import { MegaMenuProps } from './types';
 
 const cnMegaMenu = cn('MegaMenu');
@@ -51,12 +51,11 @@ export const MegaMenu = (props: MegaMenuProps) => {
 
   const [activeItem, setActiveItem] = useState<ITEM | undefined>();
 
-  const getItemActive = (item: ITEM) => {
-    if (activeItem) {
-      return getItemKey(activeItem) === getItemKey(item);
-    }
-    return false;
-  };
+  const getItemActive = useCallback(
+    (item: ITEM) =>
+      activeItem ? getItemKey(activeItem) === getItemKey(item) : false,
+    [activeItem],
+  );
 
   const depth = useMemo(
     () => getItemsDepth(itemsProp, getItemSubMenu),
@@ -83,12 +82,6 @@ export const MegaMenu = (props: MegaMenuProps) => {
     };
   }, [depth, firstLevel, secondLevel, thirdLevel]);
 
-  useEffect(() => {
-    if (depth > 2 && getItemSubMenu(itemsProp[0])) {
-      setActiveItem(itemsProp[0]);
-    }
-  }, [depth]);
-
   const handleNavBarClick = (e: React.MouseEvent, item: ITEM) => {
     onItemClickProp?.({ e, item });
     if (getItemSubMenu(item)) {
@@ -108,6 +101,12 @@ export const MegaMenu = (props: MegaMenuProps) => {
     }
   };
 
+  useEffect(() => {
+    if (depth > 2 && getItemSubMenu(itemsProp[0])) {
+      setActiveItem(itemsProp[0]);
+    }
+  }, [depth]);
+
   return (
     <div
       className={cnMegaMenu(
@@ -122,7 +121,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
       {...otherProps}
     >
       {navItems && (
-        <NavBar
+        <MegaMenuNavBar
           items={navItems}
           className={cnMegaMenu('NavBar')}
           getItemActive={({ item }) => getItemActive(item)}
@@ -145,7 +144,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
       )}
       <div className={cnMegaMenu('Wrapper')}>
         {depth >= 2 && (
-          <GlobalMenu
+          <MegaMenuGlobal
             className={cnMegaMenu('GlobalMenu')}
             items={items}
             groups={groups}
@@ -178,7 +177,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
           />
         )}
         {banners && (
-          <BannerBar
+          <MegaMenuBannerBar
             className={cnMegaMenu('BannerBar')}
             items={banners}
             view={bannerPosition === 'right' ? 'vertical' : 'horizontal'}

@@ -1,9 +1,9 @@
+import { IconComponent } from '@consta/icons/Icon';
 import {
   ButtonPropForm,
   ButtonPropSize,
   ButtonPropView,
 } from '@consta/uikit/Button';
-import { IconComponent } from '@consta/uikit/Icon';
 
 import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 

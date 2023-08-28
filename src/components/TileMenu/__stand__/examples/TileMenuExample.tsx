@@ -1,48 +1,49 @@
+import { Example } from '@consta/stand';
 import React from 'react';
 
-import { TileMenu, TileMenuDefaultItem } from '##/components/TileMenu';
-import { Example } from '##/stand/components/Example';
+import { TileMenu, TileMenuListDefaultItem } from '##/components/TileMenu';
+import Image from '##/images/Gizeasy.image.jpeg';
 
-const items: TileMenuDefaultItem[] = [
+const items: TileMenuListDefaultItem[] = [
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
+    image: Image,
   },
 ];
 

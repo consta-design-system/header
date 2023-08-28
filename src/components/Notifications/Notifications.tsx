@@ -1,26 +1,13 @@
 import './Notifications.css';
 
-import { Button } from '@consta/uikit/Button';
-import { IconRing } from '@consta/uikit/IconRing';
-import {
-  animateTimeout,
-  cnMixPopoverAnimate,
-} from '@consta/uikit/MixPopoverAnimate';
-import { cnMixPopoverArrow } from '@consta/uikit/MixPopoverArrow';
-import { Direction, Popover } from '@consta/uikit/Popover';
-import { useFlag } from '@consta/uikit/useFlag';
-import { useForkRef } from '@consta/uikit/useForkRef';
-import React, { forwardRef, useRef, useState } from 'react';
-import { Transition } from 'react-transition-group';
+import { IconRing } from '@consta/icons/IconRing';
+import React, { forwardRef } from 'react';
 
-import { NotificationsList } from '##/components/NotificationsList';
-import { Sidebar } from '##/components/Sidebar';
 import { cn } from '##/utils/bem';
 
+import { PopoverButton } from '../PopoverButton';
+import { NotificationsList } from './NotificationsList';
 import { NotificationsComponent, NotificationsProps } from './types';
-
-const ARROW_SIZE = 6;
-const ARROW_OFFSET = 10;
 
 export const cnNotifications = cn('Notifications');
 
@@ -56,11 +43,6 @@ const NotificationsRender = (
     ...otherProps
   } = props;
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [direction, setDirection] = useState<Direction | undefined>(undefined);
-
-  const [visibleMenu, { toogle, off }] = useFlag();
-
   const listProps = {
     className: cnNotifications('List', [listClassName]),
     items,
@@ -91,56 +73,25 @@ const NotificationsRender = (
       : undefined;
 
   return (
-    <>
-      <Button
-        {...otherProps}
-        size="s"
-        view="clear"
-        className={cnNotifications(null, [className])}
-        iconLeft={IconRing}
-        ref={useForkRef([ref, buttonRef])}
-        onClick={toogle}
-      />
-      {isMobile ? (
-        <Sidebar
-          isOpen={visibleMenu}
-          onClickOutside={off}
+    <PopoverButton
+      size="s"
+      view="clear"
+      iconLeft={IconRing}
+      ref={ref}
+      isMobile={isMobile}
+      withCloseButton={false}
+      className={cnNotifications(null, [className])}
+      popoverClassName={cnNotifications('Popover')}
+      {...otherProps}
+    >
+      {(onClose) => (
+        <NotificationsList
+          {...listProps}
+          onClose={isMobile ? onClose : undefined}
           style={{ zIndex: elementZIndex }}
-        >
-          <NotificationsList
-            {...listProps}
-            onClose={off}
-            style={{ zIndex: elementZIndex }}
-          />
-        </Sidebar>
-      ) : (
-        <Transition timeout={animateTimeout} unmountOnExit in={visibleMenu}>
-          {(animate) => (
-            <Popover
-              className={cnNotifications('Popover', [
-                cnMixPopoverAnimate({ animate, direction }),
-              ])}
-              anchorRef={buttonRef}
-              arrowOffset={ARROW_OFFSET + ARROW_SIZE}
-              offset={ARROW_SIZE + 4}
-              onSetDirection={setDirection}
-              style={{
-                ['--popover-arrow-size' as string]: `${ARROW_SIZE}px`,
-                ['--popover-arrow-offset' as string]: `${ARROW_OFFSET}px`,
-                zIndex: elementZIndex,
-              }}
-              onClickOutside={off}
-            >
-              <div className={cnMixPopoverArrow({ direction })} />
-              <NotificationsList
-                {...listProps}
-                style={{ zIndex: elementZIndex }}
-              />
-            </Popover>
-          )}
-        </Transition>
+        />
       )}
-    </>
+    </PopoverButton>
   );
 };
 

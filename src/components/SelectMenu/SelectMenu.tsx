@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import './SelectMenu.css';
 
+import { IconSelect } from '@consta/icons/IconSelect';
 import { ContextMenu } from '@consta/uikit/ContextMenu';
-import { IconSelect } from '@consta/uikit/IconSelect';
 import { Text } from '@consta/uikit/Text';
 import { useFlag } from '@consta/uikit/useFlag';
 import { useForkRef } from '@consta/uikit/useForkRef';
@@ -49,12 +49,11 @@ const SelectMenuRender = (
   const getItemTargetRef = useMutableRef(getItemTarget);
   const onClickRef = useMutableRef(onClickProp);
 
-  const getItemAs = useCallback((item: SelectMenuDefaultItem) => {
-    if (getItemHrefRef.current(item)) {
-      return 'a';
-    }
-    return 'span';
-  }, []);
+  const getItemAs = useCallback(
+    (item: SelectMenuDefaultItem) =>
+      getItemHrefRef.current(item) ? 'a' : 'span',
+    [],
+  );
 
   const getItemHTMLAttributes = useCallback((item: SelectMenuDefaultItem) => {
     const href = getItemHrefRef.current(item);
@@ -68,7 +67,7 @@ const SelectMenuRender = (
 
   const onClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     onClickRef.current?.(e);
-    setOpen.toogle();
+    setOpen.toggle();
   }, []);
 
   return (

@@ -2,6 +2,7 @@ import './VerticalMenu.css';
 
 import { cnForCssTransition } from '@consta/uikit/__internal__/src/utils/cnForCssTransition';
 import { useDebounce } from '@consta/uikit/useDebounce';
+import { useFlag } from '@consta/uikit/useFlag';
 import { useMutableRef } from '@consta/uikit/useMutableRef';
 import { useRefs } from '@consta/uikit/useRefs';
 import React, { forwardRef, useCallback, useEffect, useState } from 'react';
@@ -12,9 +13,9 @@ import { cn } from '##/utils/bem';
 
 import { withDefaultGetters } from './helpers';
 import {
-  DefaultItem,
-  Level,
   VerticalMenuComponent,
+  VerticalMenuDefaultItem,
+  VerticalMenuLevel as VerticalMenuLevelType,
   VerticalMenuProps,
 } from './types';
 import { VerticalMenuLevel } from './VerticalMenuLevel/VerticalMenuLevel';
@@ -43,17 +44,17 @@ const VerticalMenuRender = (
     ...otherProps
   } = withDefaultGetters(props);
 
-  const [levels, setLevels] = useState<Array<Level<DefaultItem>>>([
-    { items, id: '0' },
-  ]);
-  const [animationBack, setAnimationBack] = useState<boolean>(false);
+  const [levels, setLevels] = useState<
+    Array<VerticalMenuLevelType<VerticalMenuDefaultItem>>
+  >([{ items, id: '0' }]);
+  const [animationBack, setAnimationBack] = useFlag();
 
   const levelRefs = useRefs<HTMLDivElement>(levels.length);
 
-  const disableAnimationBack = useDebounce(() => setAnimationBack(false), 250);
+  const disableAnimationBack = useDebounce(setAnimationBack.off, 250);
 
   const addLevel = useCallback(
-    (level: Level<typeof items[number]>) =>
+    (level: VerticalMenuLevelType<(typeof items)[number]>) =>
       setLevels((l) => {
         const newLevels = Array.from(l);
         newLevels.push(level);
@@ -63,7 +64,7 @@ const VerticalMenuRender = (
   );
 
   const removeLevel = useCallback(() => {
-    setAnimationBack(true);
+    setAnimationBack.on();
     setLevels((l) => {
       const newLevels = Array.from(l);
       newLevels.pop();
@@ -81,7 +82,9 @@ const VerticalMenuRender = (
 
     let id = '0';
 
-    const newLevels: Array<Level<DefaultItem>> = [{ items, id }];
+    const newLevels: Array<VerticalMenuLevelType<VerticalMenuDefaultItem>> = [
+      { items, id },
+    ];
 
     keys.forEach((index) => {
       const item = newLevels[newLevels.length - 1].items[Number(index)];
@@ -147,6 +150,7 @@ const VerticalMenuRender = (
               </CSSTransition>
             );
           }
+          return null;
         })}
       </TransitionGroup>
     </div>

@@ -1,7 +1,7 @@
 import { MdxMenu } from '@consta/stand';
-import { VerticalMenuExampleBasic } from './examples/VerticalMenuExample';
-import { VerticalMenuExampleHeader } from './examples/VerticalMenuExampleHeader';
-import { VerticalMenuExampleCustom } from './examples/VerticalMenuExampleCustom';
+import { VerticalMenuExampleBasic } from './examples/VerticalMenuExampleBasic/VerticalMenuExampleBasic';
+import { VerticalMenuExampleHeader } from './examples/VerticalMenuExampleHeader/VerticalMenuExampleHeader';
+import { VerticalMenuExampleCustom } from './examples/VerticalMenuExampleCustom/VerticalMenuExampleCustom';
 
 ```tsx
 import { VerticalMenu } from '@consta/header/VerticalMenu';
@@ -21,7 +21,7 @@ import { VerticalMenu } from '@consta/header/VerticalMenu';
 
 ## Пункты меню
 
-За пункты меню отвечает свойство `items` (тип [DefaultItem](#свойства)). В него входит:
+За пункты меню отвечает свойство `items` (тип [VerticalMenuDefaultItem](#свойства)). В него входит:
 
 - `label` — текст пункта (обязательный),
 - `href` — ссылка, по которой с него можно перейти,
@@ -55,7 +55,7 @@ export const VerticalMenuExampleBasic = () => <VerticalMenu items={items} />;
 
 ##### Пример меню с кастомным типом
 
-Вы можете сделать меню с кастомным типом данных, отличающимся от [DefaultItem](#свойства).
+Вы можете сделать меню с кастомным типом данных, отличающимся от [VerticalMenuDefaultItem](#свойства).
 В этом случае используйте геттеры
 `getItemHref`, `getItemLabel`, `getItemActive`, `getItemOnClick`, `getItemSubMenu`,
 чтобы компонент понимал, откуда брать данные.
@@ -149,16 +149,22 @@ export const VerticalMenuExampleBasic = () => (
 
 <VerticalMenuExampleHeader />
 
+## Импорт
+
+```tsx
+import { VerticalMenu } from '@consta/header/VerticalMenu';
+```
+
 ## Свойства
 
 ```tsx
-type DefaultItem = {
+type VerticalMenuDefaultItem = {
   label: string;
   href?: string;
   target?: string;
   active?: boolean;
   onClick?: React.EventHandler<React.MouseEvent>;
-  subMenu?: DefaultItem[];
+  subMenu?: VerticalMenuDefaultItem[];
 };
 
 type VerticalMenuPropGetItemLabel<ITEM> = (item: ITEM) => string;
@@ -174,35 +180,37 @@ type VerticalMenuPropOnItemClick<ITEM> = (props: {
   item: ITEM;
 }) => void;
 
-const defaultGetItemLabel: VerticalMenuPropGetItemLabel<DefaultItem> = (item) =>
-  item.label;
-const defaultGetItemActive: VerticalMenuPropGetItemActive<DefaultItem> = (
-  item,
-) => item.active;
-const defaultGetItemHref: VerticalMenuPropGetItemHref<DefaultItem> = (item) =>
-  item.href;
-const defaultGetItemOnClick: VerticalMenuPropGetItemOnClick<DefaultItem> = (
-  item,
-) => item.onClick;
-const defaultGetItemTarget: VerticalMenuPropGetItemTarget<DefaultItem> = (
-  item,
-) => item.target;
-const defaultGetItemSubMenu: VerticalMenuPropGetItemSubMenu<DefaultItem> = (
-  item,
-) => item.subMenu;
+const defaultGetItemLabel: VerticalMenuPropGetItemLabel<
+  VerticalMenuDefaultItem
+> = (item) => item.label;
+const defaultGetItemActive: VerticalMenuPropGetItemActive<
+  VerticalMenuDefaultItem
+> = (item) => item.active;
+const defaultGetItemHref: VerticalMenuPropGetItemHref<
+  VerticalMenuDefaultItem
+> = (item) => item.href;
+const defaultGetItemOnClick: VerticalMenuPropGetItemOnClick<
+  VerticalMenuDefaultItem
+> = (item) => item.onClick;
+const defaultGetItemTarget: VerticalMenuPropGetItemTarget<
+  VerticalMenuDefaultItem
+> = (item) => item.target;
+const defaultGetItemSubMenu: VerticalMenuPropGetItemSubMenu<
+  VerticalMenuDefaultItem
+> = (item) => item.subMenu;
 ```
 
-| Свойство         | Тип                              | По умолчанию            | Описание                                            |
-| ---------------- | -------------------------------- | ----------------------- | --------------------------------------------------- |
-| `items`          | `ITEM[]`                         | -                       | Элементы                                            |
-| `onItemClick`    | `VerticalMenuPropOnItemClick`    | -                       | Функция клика по элементу                           |
-| `getItemHref`    | `VerticalMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента             |
-| `getItemLabel`   | `VerticalMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента          |
-| `getItemTarget`  | `VerticalMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента           |
-| `getItemActive`  | `VerticalMenuPropGetItemActive`  | `defaultGetItemActive`  | Функция для определения статуса активности элемента |
-| `getItemOnClick` | `VerticalMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента      |
-| `getItemSubMenu` | `VerticalMenuPropGetItemSubMenu` | `defaultGetItemSubMenu` | Функция для определения подменю элемента            |
-| `header?`        | `React.ReactNode`                | -                       | Шапка меню (от)                                     |
-| `footer?`        | `React.ReactNode`                | -                       | Подвал меню                                         |
-| `className?`     | `string`                         | -                       | Дополнительный  CSS-класс                           |
-| `ref?`           | `React.Ref<HTMLDivElement>`      | -                       | Ссылка на корневой DOM-элемент                      |
+| Свойство                                            | Тип                              | По умолчанию            | Описание                                            |
+| --------------------------------------------------- | -------------------------------- | ----------------------- | --------------------------------------------------- |
+| [`items`](#пункты-меню)                             | `ITEM[]`                         | -                       | Элементы                                            |
+| `onItemClick?`                                      | `VerticalMenuPropOnItemClick`    | -                       | Функция клика по элементу                           |
+| [`getItemHref?`](#пример-меню-с-кастомным-типом)    | `VerticalMenuPropGetItemHref`    | `defaultGetItemHref`    | Функция для определения `href` элемента             |
+| [`getItemLabel?`](#пример-меню-с-кастомным-типом)   | `VerticalMenuPropGetItemLabel`   | `defaultGetItemLabel`   | Функция для определения заголовка элемента          |
+| [`getItemTarget?`](#пример-меню-с-кастомным-типом)  | `VerticalMenuPropGetItemTarget`  | `defaultGetItemTarget`  | Функция для определения `target` элемента           |
+| [`getItemActive?`](#пример-меню-с-кастомным-типом)  | `VerticalMenuPropGetItemActive`  | `defaultGetItemActive`  | Функция для определения статуса активности элемента |
+| [`getItemOnClick?`](#пример-меню-с-кастомным-типом) | `VerticalMenuPropGetItemOnClick` | `defaultGetItemOnClick` | Функция для определения функции клика элемента      |
+| [`getItemSubMenu?`](#пример-меню-с-кастомным-типом) | `VerticalMenuPropGetItemSubMenu` | `defaultGetItemSubMenu` | Функция для определения подменю элемента            |
+| [`header?`](#шапка)                                 | `React.ReactNode`                | -                       | Шапка меню (от)                                     |
+| `footer?`                                           | `React.ReactNode`                | -                       | Подвал меню                                         |
+| `className?`                                        | `string`                         | -                       | Дополнительный  CSS-класс                           |
+| `ref?`                                              | `React.Ref<HTMLDivElement>`      | -                       | Ссылка на корневой DOM-элемент                      |

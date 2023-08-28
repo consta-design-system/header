@@ -1,0 +1,20 @@
+.che--MegaMenuBannerBar {
+  display: flex;
+  overflow: auto;
+  flex-direction: var(--banner-bar-direction);
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  background: var(--color-bg-secondary);
+  gap: var(--space-m);
+
+  &_view {
+    &_horizontal {
+      --banner-bar-direction: row;
+    }
+
+    &_vertical {
+      --banner-bar-direction: column;
+    }
+  }
+}

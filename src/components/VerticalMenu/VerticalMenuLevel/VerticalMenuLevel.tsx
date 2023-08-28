@@ -1,9 +1,9 @@
 import './VerticalMenuLevel.css';
 
+import { IconArrowLeft } from '@consta/icons/IconArrowLeft';
 import { fabricIndex } from '@consta/uikit/__internal__/src/utils/fabricIndex';
 import { getGroups } from '@consta/uikit/__internal__/src/utils/getGroups';
 import { Button } from '@consta/uikit/Button';
-import { IconArrowLeft } from '@consta/uikit/IconArrowLeft';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
 import React, { forwardRef } from 'react';
@@ -43,6 +43,7 @@ export const VerticalMenuLevel: VerticalMenuLevelComponent = forwardRef(
       undefined,
       undefined,
     );
+
     const getIndex = fabricIndex(-1);
 
     return (
@@ -75,13 +76,13 @@ export const VerticalMenuLevel: VerticalMenuLevelComponent = forwardRef(
           {groups.map((group, groupIndex) => {
             return (
               <>
-                {groupIndex ? (
+                {!!groupIndex && (
                   <div
                     className={cnVerticalMenuLevel('Divider', [
                       cnMixSpace({ mV: 's', mH: 'xl' }),
                     ])}
                   />
-                ) : undefined}
+                )}
                 {group.items.map((item, index) => {
                   const levelId = getIndex();
                   const subMenu = getItemSubMenu(item);

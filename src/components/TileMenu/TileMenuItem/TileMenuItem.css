@@ -17,7 +17,7 @@
       }
     }
 
-    &_line {
+    &_default {
       --tile-menu-item-image-margin: 0 var(--space-xs) 0 0;
 
       &:hover {
