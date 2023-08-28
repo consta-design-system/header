@@ -1,36 +1,19 @@
 Шапка (Header) — составной компонент, собирается из нескольких модулей.
 
-## Как собрать шапку
-
-Чтобы собрать шапку, используйте `Layout` в качестве каркаса, в который можно поместить компоненты, элементы и модули. Это очень гибкий вариант: вы можете добавить в каркас почти что угодно и расположить так, как это нужно для проекта. [Подробнее о кастомной шапке](##LIBS.LIB.STAND/lib:header/stand:components-layout-stable)
-
 ## Начало работы
 
 ### Установите пакет и зависимости
 
-`yarn add @consta/uikit @consta/header`
+`yarn add @consta/uikit @consta/icons @consta/header`
 
 или
 
-`npm install @consta/uikit @consta/header`
+`npm install @consta/uikit @consta/icons @consta/header`
 
 ### Подключите тему
 
 Тему обязательно нужно подключать в корне приложения, так, чтобы все компоненты были вложены в [компонент `Theme`](##LIBS.LIB.STAND/lib:uikit/stand:components-theme-stable).
 
-### Соберите шапку
+## Как собрать шапку
 
-Например, так:
-
-```js
-import { Theme, presetGpnDefault } from '@consta/uikit/Theme';
-import { Header } from '@consta/header/Header';
-
-const App = () => {
-  return (
-    <Theme preset={presetGpnDefault}>
-      <Header />
-    </Theme>
-  );
-};
-```
+Чтобы собрать шапку, используйте `Layout` в качестве каркаса, в который можно поместить компоненты, элементы и модули. Это очень гибкий вариант: вы можете добавить в каркас почти что угодно и расположить так, как это нужно для проекта. [Подробнее о кастомной шапке](##LIBS.LIB.STAND/lib:header/stand:components-layout-stable)
