@@ -2029,23 +2029,29 @@
   resolved "https://registry.yarnpkg.com/@consta/icons/-/icons-0.9.0.tgz#6f5af9e85176b545c9032ffd0fbfa0386e08dae3"
   integrity sha512-a8etwnWHbiKSUirXPD1pAKt+jdYmP1wexn2tLsIQRUNPlZdvUDmq0gpWOKh6TrEW2AThn4ClYPfgefkFyzcjfw==
 
-"@consta/stand@^0.0.122":
-  version "0.0.122"
-  resolved "https://registry.yarnpkg.com/@consta/stand/-/stand-0.0.122.tgz#13cd2e93083ea26c97021c9dcd28e4ffc3b33013"
-  integrity sha512-ubD4sh8Ymvkel4yCwdW8VuAaWrCEJ3czTrqDtAduCQy6A+WirxXM6ZApWFCSx77UlrENWdzmhFhW28EjU3uTHA==
+"@consta/icons@^0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@consta/icons/-/icons-0.9.2.tgz#e9aea3e08b7b910caf034e35802e450e861636fd"
+  integrity sha512-wg6p/laJBW124NrDgo1ye1fiauTmfx2agLFJLxdjy9EU6Ltd4XIVrpNsNZsYmCg11ecFuadclE36iC8byLpqjQ==
+
+"@consta/stand@^0.0.128":
+  version "0.0.128"
+  resolved "https://registry.yarnpkg.com/@consta/stand/-/stand-0.0.128.tgz#2fc5f91a07dfa8551185e1965c082f26780079d1"
+  integrity sha512-4hSMdk7pwYRDJ+RsK6oy+jkF3/o7e8wZYmKCajVgwInrUdiwm40No4vXFIhKy5tw/Dy8Z8+dePAZVZZyaBOZlQ==
   dependencies:
     "@bem-react/classname" "^1.5.12"
     "@bem-react/classnames" "^1.3.10"
     "@consta/header" "^1.2.1"
-    "@consta/icons" "^0.9.0"
-    "@consta/uikit" "^4.25.0"
+    "@consta/icons" "^0.9.2"
+    "@consta/uikit" "^4.28.0"
     "@consta/widgets-utils" "^0.2.15"
     "@mdx-js/loader" "^2.3.0"
     "@mdx-js/react" "^2.3.0"
     "@oclif/command" "^1.8.22"
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.10"
-    "@reatom/framework" "^3.1.31"
-    "@reatom/npm-react" "^3.3.2"
+    "@reatom/framework" "^3.4.17"
+    "@reatom/npm-react" "^3.6.0"
+    "@reatom/persist-web-storage" "^3.2.3"
     "@svgr/core" "^6.5.1"
     "@svgr/plugin-jsx" "^6.5.1"
     "@svgr/plugin-prettier" "^6.5.1"
@@ -2105,10 +2111,10 @@
     webpack-manifest-plugin "^5.0.0"
     workbox-webpack-plugin "^6.4.1"
 
-"@consta/uikit@^4.25.0":
-  version "4.25.0"
-  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.25.0.tgz#895b8370f845cb8834d781525c46d612a041c9f6"
-  integrity sha512-V7nwAQ4KSDFM92xW7DLwDQo8CkgPp3hv2PE5PTfmqjZt1DjqVco1n3qWRxxsHcqdyyVSU9gFzhtUp+tP32rAcg==
+"@consta/uikit@^4.28.0":
+  version "4.28.0"
+  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.28.0.tgz#97c9512ebf06e09cfdb60e519fd7d7950403f352"
+  integrity sha512-w+dibAFKp12WXZijzpNpzxFllxRPPRZmPgKkV+HhxPnDQyv8q1vS8agjpFeEo79x4upU4lbQan1bDu6aYE8tHA==
   dependencies:
     "@bem-react/classname" "^1.5.12"
     "@bem-react/classnames" "^1.3.10"
@@ -2862,45 +2868,45 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@reatom/async@^3.8.3":
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/@reatom/async/-/async-3.8.3.tgz#339701a941d61320754e7fc2105fb80b424a29a3"
-  integrity sha512-XDRfEi2rjuo5gQPYG3BlSEydrbss1XvkWPvqOd52qyVmZJO8so5pNZOzJ7d1LXYBugbZMvESMI2EBaAc1+um7g==
+"@reatom/async@^3.9.2":
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/@reatom/async/-/async-3.9.2.tgz#32a74ede81a363a7efb420907d3989d647af8cb7"
+  integrity sha512-M/NfyBmW1iZLMkmHFL0eoX5OnJ9fO1zt+bVgaL+/SZQkvC3rb6X8dVg9dbGYNEnRWeQbpXO0WUf33yw0eZRM3A==
   dependencies:
-    "@reatom/core" "^3.4.0"
-    "@reatom/effects" "^3.3.0"
+    "@reatom/core" "^3.5.0"
+    "@reatom/effects" "^3.5.0"
     "@reatom/hooks" "^3.2.0"
     "@reatom/primitives" "^3.1.0"
     "@reatom/utils" "^3.4.0"
 
-"@reatom/core@^3.1.0", "@reatom/core@^3.1.1", "@reatom/core@^3.2.0", "@reatom/core@^3.4.0", "@reatom/core@^3.5.0":
+"@reatom/core@^3.1.0", "@reatom/core@^3.1.1", "@reatom/core@^3.2.0", "@reatom/core@^3.3.0", "@reatom/core@^3.4.0", "@reatom/core@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@reatom/core/-/core-3.5.0.tgz#d5b6bf9611a18306336ca298e15a2cdcdc60f5c1"
   integrity sha512-zCprMJQY1rsQOc3MU91d0ij0hgR7MPyYyZKqg29vSlrPtulYKx8FFClP78zm/QYt3XOizq8wIyGfeRQiU1hKKw==
 
-"@reatom/effects@^3.2.0", "@reatom/effects@^3.3.0", "@reatom/effects@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@reatom/effects/-/effects-3.4.0.tgz#f612aa837ce4fe176f9c11d11938fd79a9dbe30c"
-  integrity sha512-1CRMVJaRSbvT+MnrJvvhjR6aZELacNwMTEQnG//Y+JalxlY1TOWJIbJzhcvwX9kMhPUuqdrWAzhag+1fspxYRw==
+"@reatom/effects@^3.2.0", "@reatom/effects@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@reatom/effects/-/effects-3.5.0.tgz#57a27e0090eba9132f1281db59dd6230af24136c"
+  integrity sha512-rR9xhaGUCEEhYP8EvLq6qYipmKlQQGSF5N0RmIHVzYorUTIK0a2BCMpq54PtHFKBMiEDhSu4UAsdd23yBIJmog==
   dependencies:
     "@reatom/core" "^3.2.0"
-    "@reatom/utils" "^3.2.0"
+    "@reatom/utils" "^3.5.0"
 
-"@reatom/framework@^3.1.31":
-  version "3.4.13"
-  resolved "https://registry.yarnpkg.com/@reatom/framework/-/framework-3.4.13.tgz#5532cfa254637ae5d1570fd79eaf3a809135e75f"
-  integrity sha512-0lKc+Ah7xQUS/c1q5k3MCFI6XBCyQscU8EdrqY8KQdzKJ+MU70E7iKqmMM80ZyZikbM8VAQQ3pMc0j9KvK+FQA==
+"@reatom/framework@^3.4.17":
+  version "3.4.17"
+  resolved "https://registry.yarnpkg.com/@reatom/framework/-/framework-3.4.17.tgz#69081b3f2daa1b86f2b008263d4d33ed7b895572"
+  integrity sha512-QEr9ZUcngyIPNYXHxEbV2kEJukMGuoJlhizGFKOxw6Xb4tTUQg0bg/kbogxr1sdVOTwYDrYlrGSDG5wdym8Peg==
   dependencies:
-    "@reatom/async" "^3.8.3"
+    "@reatom/async" "^3.9.2"
     "@reatom/core" "^3.5.0"
-    "@reatom/effects" "^3.4.0"
+    "@reatom/effects" "^3.5.0"
     "@reatom/hooks" "^3.4.2"
-    "@reatom/lens" "^3.6.1"
-    "@reatom/logger" "^3.4.5"
+    "@reatom/lens" "^3.6.2"
+    "@reatom/logger" "^3.5.0"
     "@reatom/primitives" "^3.2.1"
-    "@reatom/utils" "^3.4.0"
+    "@reatom/utils" "^3.5.0"
 
-"@reatom/hooks@^3.2.0", "@reatom/hooks@^3.3.1", "@reatom/hooks@^3.4.2":
+"@reatom/hooks@^3.2.0", "@reatom/hooks@^3.3.1", "@reatom/hooks@^3.4.0", "@reatom/hooks@^3.4.2":
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/@reatom/hooks/-/hooks-3.4.2.tgz#06b82cbab2a9e0c201d650fc5122fa997cd06839"
   integrity sha512-IWr2mNlCc9QtB1VGoiMy1fT9mTDyh/1CW12tJCD4FsrWmtHmXwUs1IuGJYCLFAhaJ7VIeBRnK53bHrjokHra2Q==
@@ -2908,31 +2914,49 @@
     "@reatom/core" "^3.2.0"
     "@reatom/utils" "^3.3.0"
 
-"@reatom/lens@^3.1.0", "@reatom/lens@^3.6.1":
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/@reatom/lens/-/lens-3.6.1.tgz#b4c9a918741980944e9ec58de42905cdde6bc5a5"
-  integrity sha512-RdYoVKf7zrT99Z51Bj8V1TvY/DjGM7E5WwfX+qYTwO/i99cbeqOl8K+boAo2DcljtMpOBcU1Hg+4wd5VCndHKQ==
+"@reatom/lens@^3.1.0", "@reatom/lens@^3.4.0", "@reatom/lens@^3.6.2":
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/@reatom/lens/-/lens-3.6.2.tgz#bfda0f4567baa0bc360b5fea77134a0b4e92a9a5"
+  integrity sha512-nyMZ98diwQ19RHDcXURY8k7F+oSSLFH+SAwoQn/MWjn7qkCleUc4fRP3NJHsKh7C4fCi1DtOFEqnerRVJf7rjQ==
   dependencies:
     "@reatom/core" "^3.4.0"
     "@reatom/effects" "^3.2.0"
     "@reatom/hooks" "^3.3.1"
     "@reatom/utils" "^3.1.0"
 
-"@reatom/logger@^3.4.5":
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/@reatom/logger/-/logger-3.4.5.tgz#9376b59de85677ca389489f360c6dddac427290c"
-  integrity sha512-mZU8ftIw6N8Fo9XwEBVXbDhfhW8z7O8QBd+5XL6tSZT+W3E8gU5h9VWevGH/wDGo/UENnZgNdPRSquUifRNSXQ==
+"@reatom/logger@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@reatom/logger/-/logger-3.5.0.tgz#1e0cdcaaecba403c7411368200d93d4450864848"
+  integrity sha512-kQQcx4CeT7eh5112AKwh8kCsAEFmWpCGqpT/goSldPC9nqyNxN121GwpOlDZcEgwqNEgxJ6mAu0/UPBCnvQiGw==
   dependencies:
     "@reatom/core" "^3.1.0"
 
-"@reatom/npm-react@^3.3.2":
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/@reatom/npm-react/-/npm-react-3.4.2.tgz#eb1fb54327876e17fe1061e0f82a365333e2cb26"
-  integrity sha512-41AtmuZLRHSlsIpzElNylzavA3l+uYNjyYqVGKvtBPZiHLRc+pSCx8XBcSaqIWueYfj6NsmX/5m8SXTvaYIRHw==
+"@reatom/npm-react@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@reatom/npm-react/-/npm-react-3.6.0.tgz#9adcd93a091240c7c767691cfce57c350464e613"
+  integrity sha512-4fliVRCm5MX7m2J0RaTuhTJgJT4WgfFUFG1jwJ6tChc0aK2CIHX1WEZBpL+dFRQHup2PWhsi4eHXIKJTA7M1iA==
   dependencies:
-    "@reatom/core" "^3.1.0"
+    "@reatom/core" "^3.5.0"
     "@reatom/lens" "^3.1.0"
     use-sync-external-store "^1.2.0"
+
+"@reatom/persist-web-storage@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@reatom/persist-web-storage/-/persist-web-storage-3.2.3.tgz#18000754b9cc77749af2f93280b08af061926d35"
+  integrity sha512-Vj60dDmyuJmKgN/+uP5UUjw0daU+TwoOjZ5ubcuLEbXyVjpqczDDD6ZEI9tNvcRT8a/toQmAu6MY1U5WSto9og==
+  dependencies:
+    "@reatom/core" "^3.3.0"
+    "@reatom/persist" "^3.1.0"
+
+"@reatom/persist@^3.1.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@reatom/persist/-/persist-3.3.0.tgz#1adafc5e04fb75cf586d89963bfc24e5fa3263a9"
+  integrity sha512-RM9PFxjwLje1FsMfBsborA9SyedsJIJVHqfuyoszLRv3J9SmTi4S2SJBd2EfZBbGF1hy0vwPncx1FYIHbgmU9g==
+  dependencies:
+    "@reatom/core" "^3.3.0"
+    "@reatom/hooks" "^3.4.0"
+    "@reatom/lens" "^3.4.0"
+    "@reatom/utils" "^3.4.0"
 
 "@reatom/primitives@^3.1.0", "@reatom/primitives@^3.2.1":
   version "3.2.1"
@@ -2942,10 +2966,10 @@
     "@reatom/core" "^3.1.1"
     "@reatom/utils" "^3.1.1"
 
-"@reatom/utils@^3.1.0", "@reatom/utils@^3.1.1", "@reatom/utils@^3.2.0", "@reatom/utils@^3.3.0", "@reatom/utils@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@reatom/utils/-/utils-3.4.0.tgz#f797c183306a43023282c8022596640e62976b1d"
-  integrity sha512-Zj148FL2rcGwQypMdul3zWR9lScrE2xdiwTEQLGvXFOWWRIX5MIn2fBy1NXMPBPok/tOsxmlkVxGjxmG9lF1Yg==
+"@reatom/utils@^3.1.0", "@reatom/utils@^3.1.1", "@reatom/utils@^3.3.0", "@reatom/utils@^3.4.0", "@reatom/utils@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@reatom/utils/-/utils-3.5.0.tgz#f7db4fc624cb240300edc1f32a92ba631338a4ab"
+  integrity sha512-E68mAlau+CBjxKL5oFUbKlEIP5eireHFp7Z62HRFrfmnekssgXHxh0wfUJQUMVdMl7KSGytHJBBDReq9j4Hr/w==
 
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
