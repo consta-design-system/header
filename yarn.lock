@@ -2106,9 +2106,9 @@
     workbox-webpack-plugin "^6.4.1"
 
 "@consta/uikit@^4.25.0":
-  version "4.25.0"
-  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.25.0.tgz#895b8370f845cb8834d781525c46d612a041c9f6"
-  integrity sha512-V7nwAQ4KSDFM92xW7DLwDQo8CkgPp3hv2PE5PTfmqjZt1DjqVco1n3qWRxxsHcqdyyVSU9gFzhtUp+tP32rAcg==
+  version "4.30.0"
+  resolved "https://registry.yarnpkg.com/@consta/uikit/-/uikit-4.30.0.tgz#232afee562ddf69308b0fb60d12ece556bd939b6"
+  integrity sha512-DLekYsjrBJwS0zdgIfE88GPg9bym5hsMXMrHcuOFfZFzVVQWRH4qO4UQe5AnfT83zvzYrjHL18dBMf8ktCGEEQ==
   dependencies:
     "@bem-react/classname" "^1.5.12"
     "@bem-react/classnames" "^1.3.10"

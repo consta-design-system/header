@@ -1,6 +1,7 @@
 import './MegaMenu.css';
 
 import { IconArrowRight } from '@consta/icons/IconArrowRight';
+import { AsTagAttribute } from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { cn } from '##/utils/bem';
@@ -94,7 +95,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
     item: ITEM,
   ) => {
     const onMouseEnter = getItemAttributes(item)
-      ?.onMouseEnter as JSX.IntrinsicElements['div']['onMouseEnter'];
+      ?.onMouseEnter as AsTagAttribute<'div'>['onMouseEnter'];
     onMouseEnter?.(e);
     if (getItemSubMenu(item)) {
       setActiveItem(item);
@@ -131,7 +132,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
               ...getItemAttributes(item),
               onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) =>
                 handleNavBarMouseEnter(e, item),
-            } as JSX.IntrinsicElements['div'])
+            } as AsTagAttribute<'div'>)
           }
           getItemIconLeft={({ item }) => getItemIconLeft(item)}
           getItemLabel={({ item }) => getItemLabel(item)}

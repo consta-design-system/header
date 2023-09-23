@@ -44,14 +44,14 @@ const MegaMenuBannerBarRender = (
     >
       {items.map((item, index) => (
         <MegaMenuBannerBarItem
+          {...(getItemAttributes(item) ?? {})}
           key={cnMegaMenuBannerBar('Item', { index })}
           label={getItemLabel(item)}
           description={getItemDescription(item)}
           image={getItemImage(item)}
-          as={getItemAs(item)}
           onClick={getItemClick(item, getItemOnClick, onItemClick)}
           view={view}
-          {...(getItemAttributes(item) ?? {})}
+          as={getItemAs(item)}
         />
       ))}
     </div>

@@ -1,3 +1,7 @@
+import {
+  AsAttributes,
+  AsTags,
+} from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
 import React from 'react';
 
@@ -8,8 +12,8 @@ export type MegaMenuBannerBarDefaultItem = {
   label: string;
   description?: string;
   image?: string;
-  as?: keyof JSX.IntrinsicElements;
-  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  as?: AsTags;
+  attributes?: AsAttributes;
 };
 
 export type MegaMenuBannerBarPropView = 'vertical' | 'horizontal';
@@ -26,10 +30,10 @@ export type MegaMenuBannerBarPropGetItemOnClick<ITEM> = (
 ) => React.MouseEventHandler | undefined;
 export type MegaMenuBannerBarPropGetItemAs<ITEM> = (
   item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+) => AsTags | undefined;
 export type MegaMenuBannerBarPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => AsAttributes | undefined;
 
 export type MegaMenuBannerBarPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;
@@ -57,22 +61,19 @@ export type MegaMenuBannerBarComponent = <ITEM = MegaMenuBannerBarDefaultItem>(
   ref: React.Ref<HTMLDivElement>,
 ) => React.ReactElement | null;
 
-export type MegaMenuBannerBarItemProps<
-  AS extends keyof JSX.IntrinsicElements = 'div',
-> = PropsWithAsAttributes<
-  {
-    label: string;
-    description?: string;
-    image?: string;
-    onClick?: React.MouseEventHandler;
-    view?: MegaMenuBannerBarPropView;
-  },
-  AS
->;
+export type MegaMenuBannerBarItemProps<AS extends AsTags = 'div'> =
+  PropsWithAsAttributes<
+    {
+      label: string;
+      description?: string;
+      image?: string;
+      onClick?: React.MouseEventHandler;
+      view?: MegaMenuBannerBarPropView;
+    },
+    AS
+  >;
 
-export type MegaMenuBannerBarItemComponent = <
-  AS extends keyof JSX.IntrinsicElements = 'div',
->(
+export type MegaMenuBannerBarItemComponent = <AS extends AsTags = 'div'>(
   props: MegaMenuBannerBarItemProps<AS>,
   ref: React.Ref<HTMLElement>,
 ) => React.ReactElement | null;
