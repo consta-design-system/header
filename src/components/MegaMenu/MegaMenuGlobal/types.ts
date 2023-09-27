@@ -1,11 +1,15 @@
+import {
+  AsAttributes,
+  AsTags,
+} from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
 import React from 'react';
 
 import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 export type MegaMenuGlobalDefaultItem = {
-  as?: keyof JSX.IntrinsicElements;
-  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  as?: AsTags;
+  attributes?: AsAttributes;
   onClick?: React.MouseEventHandler;
   label: string;
   groupId?: string | number;
@@ -19,10 +23,10 @@ export type MegaMenuGlobalDefaultGroup = {
 
 export type MegaMenuGlobalPropGetItemAs<ITEM> = (
   item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+) => AsTags | undefined;
 export type MegaMenuGlobalPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => AsAttributes | undefined;
 export type MegaMenuGlobalPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.MouseEventHandler | undefined;
@@ -114,19 +118,16 @@ export type MegaMenuGlobalGroupComponent = <ITEM = MegaMenuGlobalDefaultItem>(
   ref: React.Ref<HTMLDivElement>,
 ) => React.ReactElement | null;
 
-export type MegaMenuGlobalItemProps<
-  AS extends keyof JSX.IntrinsicElements = 'div',
-> = PropsWithAsAttributes<
-  {
-    label: string;
-    onClick?: React.MouseEventHandler;
-  },
-  AS
->;
+export type MegaMenuGlobalItemProps<AS extends AsTags = 'div'> =
+  PropsWithAsAttributes<
+    {
+      label: string;
+      onClick?: React.MouseEventHandler;
+    },
+    AS
+  >;
 
-export type MegaMenuGlobalItemComponent = <
-  AS extends keyof JSX.IntrinsicElements = 'div',
->(
+export type MegaMenuGlobalItemComponent = <AS extends AsTags = 'div'>(
   props: MegaMenuGlobalItemProps<AS>,
   ref: React.Ref<HTMLElement>,
 ) => React.ReactElement | null;
