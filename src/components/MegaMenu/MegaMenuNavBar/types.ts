@@ -1,5 +1,8 @@
 import { IconComponent } from '@consta/icons/Icon';
-import { AsTags } from '@consta/uikit/__internal__/src/utils/types/AsTags';
+import {
+  AsAttributes,
+  AsTags,
+} from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
 import React from 'react';
 
@@ -11,7 +14,7 @@ export type MegaMenuNavBarDefaultItem = {
   iconRight?: IconComponent;
   active?: boolean;
   as?: AsTags;
-  attributes?: JSX.IntrinsicElements[AsTags];
+  attributes?: AsAttributes;
   onClick?: React.MouseEventHandler;
 };
 
@@ -33,7 +36,7 @@ export type MegaMenuNavBarPropGetItemAs<ITEM> = (
 ) => AsTags | undefined;
 export type MegaMenuNavBarPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[AsTags] | undefined;
+) => AsAttributes | undefined;
 
 export type MegaMenuNavBarPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;

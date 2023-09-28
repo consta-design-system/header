@@ -1,4 +1,7 @@
-import { AsTags } from '@consta/uikit/__internal__/src/utils/types/AsTags';
+import {
+  AsAttributes,
+  AsTags,
+} from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
 import React from 'react';
 
@@ -10,7 +13,7 @@ export type MegaMenuBannerBarDefaultItem = {
   description?: string;
   image?: string;
   as?: AsTags;
-  attributes?: JSX.IntrinsicElements[AsTags];
+  attributes?: AsAttributes;
 };
 
 export type MegaMenuBannerBarPropView = 'vertical' | 'horizontal';
@@ -30,7 +33,7 @@ export type MegaMenuBannerBarPropGetItemAs<ITEM> = (
 ) => AsTags | undefined;
 export type MegaMenuBannerBarPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[AsTags] | undefined;
+) => AsAttributes | undefined;
 
 export type MegaMenuBannerBarPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;

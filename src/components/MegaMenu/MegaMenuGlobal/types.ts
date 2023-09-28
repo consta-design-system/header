@@ -1,4 +1,7 @@
-import { AsTags } from '@consta/uikit/__internal__/src/utils/types/AsTags';
+import {
+  AsAttributes,
+  AsTags,
+} from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
 import React from 'react';
 
@@ -6,7 +9,7 @@ import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttri
 
 export type MegaMenuGlobalDefaultItem = {
   as?: AsTags;
-  attributes?: JSX.IntrinsicElements[AsTags];
+  attributes?: AsAttributes;
   onClick?: React.MouseEventHandler;
   label: string;
   groupId?: string | number;
@@ -23,7 +26,7 @@ export type MegaMenuGlobalPropGetItemAs<ITEM> = (
 ) => AsTags | undefined;
 export type MegaMenuGlobalPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[AsTags] | undefined;
+) => AsAttributes | undefined;
 export type MegaMenuGlobalPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.MouseEventHandler | undefined;

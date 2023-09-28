@@ -1,5 +1,8 @@
 import { IconComponent } from '@consta/icons/Icon';
-import { AsTags } from '@consta/uikit/__internal__/src/utils/types/AsTags';
+import {
+  AsAttributes,
+  AsTags,
+} from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import React from 'react';
 
 import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
@@ -24,7 +27,7 @@ export type MegaMenuDefaultItem = {
   label: string;
   iconLeft?: IconComponent;
   as?: AsTags;
-  attributes?: JSX.IntrinsicElements[AsTags];
+  attributes?: AsAttributes;
   subMenu?: MegaMenuDefaultItem[];
   onClick?: React.MouseEventHandler;
 };
@@ -40,7 +43,7 @@ export type MegaMenuPropGetItemOnClick<ITEM> = (
 export type MegaMenuPropGetItemAs<ITEM> = (item: ITEM) => AsTags | undefined;
 export type MegaMenuPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[AsTags] | undefined;
+) => AsAttributes | undefined;
 export type MegaMenuPropGetItemSubMenu<ITEM> = (
   item: ITEM,
 ) => ITEM[] | undefined;
