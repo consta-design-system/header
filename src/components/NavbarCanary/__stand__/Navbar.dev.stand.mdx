@@ -1,0 +1,687 @@
+import { MdxMenu } from '@consta/stand';
+
+import {
+  NavbarDriverExample,
+  NavbarDriverFadeExample,
+} from './examples/NavbarDriverExample/NavbarDriverExample';
+
+import {
+  NavbarCustomTypesExample,
+  NavbarDefaultTypesExample,
+} from './examples/NavbarTypesExample/NavbarTypesExample';
+
+import { NavbarSizeExample } from './examples/NavbarSizeExample/NavbarSizeExample';
+import { NavbaFormExample } from './examples/NavbaFormExample/NavbaFormExample';
+import { NavbarOnClickExample } from './examples/NavbarOnClickExample/NavbarOnClickExample';
+import {
+  NavbarRailExample,
+  NavbarRailTooltipExample,
+} from './examples/NavbarRailExample/NavbarRailExample';
+
+```tsx
+import { Navbar } from '@consta/header/Navbar';
+```
+
+<MdxMenu>
+
+- [Содержимое](#содержимое-navbar)
+  - [Пример использования своего типа данных](#пример-использования-своего-типа-данных)
+  - [Пример использования типа DefaultNavbarItem](#пример-использования-типа-defaultnavbaritem)
+- [Размер](#размер)
+- [Форма](#форма)
+- [Взаимодействие](#взаимодействие)
+- [Cвойства](#свойства-navbar)
+- [NavbarRail](#navbarrail)
+  - [Содержимое](#содержимое-navbarrail)
+  - [Cвойства](#свойства-navbarrail)
+- [Организация плавных переходов Navbar и NavbarRail](#организация-плавных-переходов-navbar-и-navbarrail)
+  - [Миксин cnNavbarMixFadeAnimate](#миксин-cnnavbarmixfadeanimate)
+  - [Миксин cnNavbarMixDriverAnimate](#миксин-cnnavbarmixdriveranimate)
+
+</MdxMenu>
+
+## Содержимое Navbar
+
+Содерживое можно передать в поле `items` в объекте типа [`DefaultNavbarItem`](#свойства-navbar). Что можно указать:
+
+- лейбл — в поле `label` или с помощью функции `getItemLabel`,
+- статус — в поле `status` или с помощью функции `getItemStatus`,
+- исконка — в поле `icon` или с помощью функции `getItemIcon`,
+- статус активности — в поле `active` или с помощью функции `getItemActive`,
+- принадлежность к группе — в поле `groupId` или с помощью функции `getItemGroupKey`,
+- контент справа от заголовка — в поле `rightSide` или с помощью функции `getItemRightSide`,
+- подменю — в поле `subMenu` или с помощью функции `getItemSubMenu`,
+
+### Пример использования своего типа данных
+
+```tsx
+const menu = ['Пункт 1', 'Пункт 2', 'Пункт 3'];
+const getItemLabel = (item: string) => item;
+
+export const NavbarCustomTypesExample = () => (
+  <Navbar items={menu} getItemLabel={getItemLabel} />
+);
+```
+
+<NavbarCustomTypesExample />
+
+## Пример использования типа DefaultNavbarItem
+
+```tsx
+const defaultMenu: DefaultNavbarItem[] = [
+  {
+    label: 'Пункт 1',
+  },
+  {
+    label: 'Пункт 2',
+  },
+  {
+    label: 'Пункт 3',
+  },
+];
+
+export const NavbarDefaultTypesExample = () => <Navbar items={defaultMenu} />;
+```
+
+<NavbarDefaultTypesExample />
+
+## Размер
+
+Указать размер возможно через свойство `size`, может принимать
+
+<NavbarSizeExample />
+
+## Форма
+
+Указать форму возможно через свойство `from`
+
+<NavbaFormExample />
+
+## Взаимодействие
+
+Взаимодействие с пунктами меню осуществляется через `onItemClick` тип которого `(item: ITEM, params: { e: React.MouseEvent; }) => void`
+
+```tsx
+const menu = ['Пункт 1', 'Пункт 2', 'Пункт 3'];
+const getItemLabel = (item: string) => item;
+const onItemClick = (item: string) => alert(item);
+
+export const NavbarOnClickExample = () => (
+  <Navbar items={menu} getItemLabel={getItemLabel} onItemClick={onItemClick} />
+);
+```
+
+<NavbarOnClickExample />
+
+## Свойства Navbar
+
+```tsx
+type DefaultNavbarGroup = {
+  id: string | number;
+  label?: string;
+  rightSide?: React.ReactNode;
+};
+
+type DefaultNavbarItem = {
+  label: string;
+  status?: BadgePropStatus;
+  groupId?: string | number;
+  icon?: IconComponent;
+  rightSide?: React.ReactNode;
+  active?: boolean;
+  subMenu?: DefaultNavbarItem[];
+};
+
+type NavbarPropOnItemClick<ITEM> = (
+  item: ITEM,
+  params: {
+    e: React.MouseEvent;
+  },
+) => void;
+
+type NavbarPropGetItemLabel<ITEM> = (item: ITEM) => string;
+type NavbarPropGetItemAdditionalClassName<ITEM> = (item: ITEM) => string;
+
+type NavbarPropGetItemDisabled<ITEM> = (item: ITEM) => boolean | undefined;
+
+type NavbarPropGetItemActive<ITEM> = (item: ITEM) => boolean | undefined;
+
+type NavbarPropGetItemGroupId<ITEM> = (
+  item: ITEM,
+) => string | number | undefined;
+
+type NavbarPropGetItemLeftSide<ITEM> = (
+  item: ITEM,
+) => React.ReactNode | undefined;
+
+type NavbarPropGetItemIcon<ITEM> = (item: ITEM) => IconComponent | undefined;
+type NavbarPropGetItemRightSide<ITEM> = (
+  item: ITEM,
+) => React.ReactNode | undefined;
+
+type NavbarPropGetItemRightIcon<ITEM> = (
+  item: ITEM,
+) => IconComponent | undefined;
+
+type NavbarPropGetItemAs<ITEM> = (item: ITEM) => AsTags | undefined;
+
+type NavbarPropGetItemAttributes<ITEM> = (
+  item: ITEM,
+) => AsAttributes | undefined;
+
+type NavbarPropSortGroup<ITEM, GROUP> = (
+  a: Group<ITEM, GROUP>,
+  b: Group<ITEM, GROUP>,
+) => number;
+
+type NavbarPropGetGroupKey<GROUP> = (
+  item: GROUP,
+) => string | number | undefined;
+
+type NavbarPropGetGroupAdditionalClassName<GROUP> = (item: GROUP) => string;
+
+type NavbarPropGetGroupLabel<GROUP> = (item: GROUP) => string | undefined;
+type NavbarPropGetGroupRightSide<GROUP> = (
+  item: GROUP,
+) => React.ReactNode | undefined;
+
+type NavbarPropGetItemRef<ITEM> = (
+  item: ITEM,
+) => React.RefObject<HTMLElement> | undefined;
+
+type NavbarPropGetItemStatus<ITEM> = (
+  item: ITEM,
+) => BadgePropStatus | undefined;
+
+type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
+```
+
+| Свойство                      | Тип                                           | По умолчанию                 | Описание                                                                     |
+| ----------------------------- | --------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------- |
+| `items`                       | `ITEM[]`                                      | -                            | Элементы                                                                     |
+| `size`                        | `'s'` &#124; `'m'`                            | `'m'`                        | Размер                                                                       |
+| `form`                        | `'default'` &#124; `'brick'` &#124; `'round'` | `'default'`                  | Форма элементов                                                              |
+| `onItemClick`                 | `NavbarPropOnItemClick`                       | -                            | Функция клика по элементу                                                    |
+| `getItemLabel`                | `NavbarPropGetItemLabel`                      | `(item) => item.label`       | Функция для определения названия элемента                                    |
+| `getItemIcon`                 | `NavbarPropGetItemIcon`                       | `(item) => item.icon`        | Функция для определения иконки элемента                                      |
+| `getItemRightSide`            | `NavbarPropGetItemRightSide`                  | `(item) => item.rightSide`   | Функция для определения дополнительного контента справа от названия элемента |
+| `getItemStatus`               | `NavbarPropGetItemStatus`                     | `(item) => item.status`      | Функция для определения статуса элемента                                     |
+| `getItemActive`               | `NavbarPropGetItemActive`                     | `(item) => item.active`      | Функция для определения активности элемента                                  |
+| `getItemSubMenu`              | `NavbarPropGetItemSubMenu`                    | `(item) => item.subMenu`     | Функция для определения подменю элемента                                     |
+| `getItemGroupKey`             | `NavbarPropGetItemGroupId`                    | `(item) => item.groupId`     | Функция для определения группы элемента                                      |
+| `getItemAs`                   | `NavbarPropGetItemAs`                         | -                            | Функция для определения тэга элемента                                        |
+| `getItemAttributes`           | `NavbarPropGetItemAttributes`                 | -                            | Функция для определения дополнительных атрибутов элемента                    |
+| `getItemRef`                  | `NavbarPropGetItemRef`                        | -                            | Функция для определения ссылки на элемент                                    |
+| `getItemAdditionalClassName`  | `NavbarPropGetItemAdditionalClassName`        | -                            | Функция для определения дополнительного класса элемента                      |
+| `groups`                      | `GROUP[]`                                     | -                            | Группы                                                                       |
+| `getGroupKey`                 | `NavbarPropGetGroupKey`                       | `(group) => group.id`        | Функция для определения ключа группы                                         |
+| `getGroupLabel`               | `NavbarPropGetGroupLabel`                     | `(group) => group.label`     | Функция для определения названия группы                                      |
+| `getGroupRightSide`           | `NavbarPropGetGroupRightSide`                 | `(group) => group.rightSide` | Функция для определения дополнительного контента справа от названия группы   |
+| `sortGroup`                   | `NavbarPropSortGroup`                         | -                            | Функция сортировки групп                                                     |
+| `getGroupAdditionalClassName` | `NavbarPropGetGroupAdditionalClassName`       | -                            | Функция для определения дополнительного класса группы                        |
+| `className?`                  | `string`                                      | -                            | Дополнительный CSS-класс для пунктов меню                                    |
+| `ref?`                        | `React.Ref<HTMLDivElement>`                   | -                            | Ссылка на корневой DOM-элемент                                               |
+
+## NavbarRail
+
+```tsx
+import { NavbarRail } from '@consta/header/Navbar';
+```
+
+Компонент схожий с `Navbar`, представляет из себя меню из иконок.
+
+### Содержимое NavbarRail
+
+Содерживое можно передать в поле `items` в объекте типа [`DefaultNavbarRailItem`](#свойства). Что можно указать:
+
+- лейбл — в поле `label` или с помощью функции `getItemLabel`,
+- статус — в поле `status` или с помощью функции `getItemStatus`,
+- исконка — в поле `icon` или с помощью функции `getItemIcon`,
+- статус активности — в поле `active` или с помощью функции `getItemActive`,
+- tooltip — в поле `tooltip` или с помощью функции `getItemTooltip`,
+
+### Пример стипом DefaultNavbarRailItem
+
+```tsx
+const menu: DefaultNavbarRailItem[] = [
+  {
+    label: 'Входящие',
+    icon: IconDataNull,
+    status: 'warning',
+    active: true,
+  },
+  {
+    label: 'Отправленные',
+    icon: IconSendMessage,
+  },
+  {
+    label: 'Черновики',
+    icon: IconDocFilled,
+  },
+  {
+    label: 'Удаленные',
+    icon: IconTrash,
+  },
+  {
+    label: 'Спам',
+    icon: IconWarning,
+
+    status: 'warning',
+  },
+  {
+    label: 'Беседы',
+    icon: IconChatFilled,
+  },
+  {
+    label: 'Пункт меню 3',
+    icon: IconAlert,
+  },
+];
+
+const onItemClick = (item: DefaultNavbarRailItem) => alert(item.label);
+
+const NavbarRailExample = () => (
+  <NavbarRail items={menu} onItemClick={onItemClick} />
+);
+```
+
+<NavbarRailExample />
+
+### Пример с тултипом
+
+```tsx
+const menu: DefaultNavbarRailItem[] = [
+  {
+    label: 'Входящие',
+    icon: IconDataNull,
+    status: 'warning',
+    active: true,
+  },
+  {
+    label: 'Отправленные',
+    icon: IconSendMessage,
+  },
+  {
+    label: 'Черновики',
+    icon: IconDocFilled,
+  },
+  {
+    label: 'Удаленные',
+    icon: IconTrash,
+  },
+  {
+    label: 'Спам',
+    icon: IconWarning,
+
+    status: 'warning',
+  },
+  {
+    label: 'Беседы',
+    icon: IconChatFilled,
+  },
+  {
+    label: 'Пункт меню 3',
+    icon: IconAlert,
+  },
+];
+
+const getItemLabel = () => undefined;
+const getItemTooltip = (item: DefaultNavbarRailItem) => item.label;
+
+export const NavbarRailTooltipExample = () => (
+  <NavbarRail
+    items={menu}
+    getItemLabel={getItemLabel}
+    getItemTooltip={getItemTooltip}
+    onItemClick={onItemClick}
+  />
+);
+```
+
+<NavbarRailTooltipExample />
+
+### Свойства NavbarRail
+
+```ts
+type DefaultNavbarRailItem = {
+  label: string;
+  icon: IconComponent;
+  status?: BadgePropStatus;
+  active?: boolean;
+  tooltip?: React.ReactNode;
+};
+
+type TooltipProps = {
+  direction?: Direction;
+  spareDirection?: Direction;
+  possibleDirections?: readonly Direction[];
+  offset?: number;
+};
+```
+
+| Свойство                     | Тип                                           | По умолчанию                                                                                                                                               | Описание                                                                       |
+| ---------------------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `items`                      | `ITEM[]`                                      | -                                                                                                                                                          | Элементы                                                                       |
+| `size`                       | `'s'` &#124; `'m'`                            | `'m'`                                                                                                                                                      | Размер                                                                         |
+| `form`                       | `'default'` &#124; `'brick'` &#124; `'round'` | `'default'`                                                                                                                                                | Форма элементов                                                                |
+| `onItemClick`                | `NavbarPropOnItemClick`                       | -                                                                                                                                                          | Функция клика по элементу                                                      |
+| `getItemLabel`               | `NavbarPropGetItemLabel`                      | `(item) => item.label`                                                                                                                                     | Функция для определения названия элемента                                      |
+| `getItemIcon`                | `(item: ITEM) => IconComponent`               | `(item) => item.icon`                                                                                                                                      | Функция для определения иконки элемента                                        |
+| `getItemTooltip`             | `(item: ITEM) => React.ReactNode  undefined;` | `(item) => item.tooltip`                                                                                                                                   | Функция для определения тултипа элемента                                       |
+| `getItemStatus`              | `NavbarPropGetItemStatus`                     | `(item) => item.status`                                                                                                                                    | Функция для определения статуса элемента                                       |
+| `getItemActive`              | `NavbarPropGetItemActive`                     | `(item) => item.active`                                                                                                                                    | Функция для определения активности элемента                                    |
+| `getItemAs`                  | `NavbarPropGetItemAs`                         | -                                                                                                                                                          | Функция для определения тэга элемента                                          |
+| `getItemAttributes`          | `NavbarPropGetItemAttributes`                 | -                                                                                                                                                          | Функция для определения дополнительных атрибутов элемента                      |
+| `getItemRef`                 | `NavbarPropGetItemRef`                        | -                                                                                                                                                          | Функция для определения ссылки на элемент                                      |
+| `getItemAdditionalClassName` | `NavbarPropGetItemAdditionalClassName`        | -                                                                                                                                                          | Функция для определения дополнительного класса элемента                        |
+| `tooltipProps`               | `TooltipProps`                                | `{direction: 'rightCenter', possibleDirections: ['rightCenter', 'rightDown', 'rightUp', 'rightStartDown', 'rightStartUp'], spareDirection: 'rightCenter'}` | Свойства [тултипа](##LIBS.LIB.STAND/lib:uikit/stand:components-tooltip-stable) |
+| `className?`                 | `string`                                      | -                                                                                                                                                          | Дополнительный CSS-класс для пунктов меню                                      |
+| `ref?`                       | `React.Ref<HTMLDivElement>`                   | -                                                                                                                                                          | Ссылка на корневой DOM-элемент                                                 |
+
+## Организация плавных переходов Navbar и NavbarRail
+
+Для того чтобы организовать плавные переходы между `Navbar` и `NavbarRail` воспользуйтесь
+одним из миксинов анимации: `cnNavbarMixDriverAnimate` или `cnNavbarMixFadeAnimate`
+
+```tsx
+import {
+  cnNavbarMixDriverAnimate,
+  cnNavbarMixFadeAnimate,
+} from '@consta/header/Navbar';
+```
+
+### Миксин cnNavbarMixFadeAnimate
+
+Возможно использовать при переходах с одинаковыми пунктами меню в `Navbar` и `NavbarRail`
+
+**Тип**
+
+```ts
+type Mods = {
+  animate?: 'entered' | 'entering' | 'exiting' | 'exited' | 'unmounted';
+  menu: 'rail' | 'draver';
+};
+
+type CnNavbarMixFadeAnimate = (
+  mods?: Mods | null,
+  mix?: Array<string | undefined>,
+) => string;
+```
+
+**CSS свойства**
+
+```json
+--navbar-animate-menu-rail-width - ширина меню в свернутом состоянии
+--navbar-animate-menu-draver-width - ширина меню в развернутом состоянии
+--navbar-animate-transition-timeout - время анимации
+```
+
+**Пример**
+
+```tsx
+const menu = [
+  {
+    label: 'Входящие',
+    icon: IconDataNull,
+    status: 'warning',
+    active: true,
+  },
+  {
+    label: 'Отправленные',
+    icon: IconSendMessage,
+  },
+  {
+    label: 'Черновики',
+    icon: IconDocFilled,
+  },
+  {
+    label: 'Удаленные',
+    icon: IconTrash,
+  },
+  {
+    label: 'Спам',
+    icon: IconWarning,
+
+    status: 'warning',
+  },
+  {
+    label: 'Беседы',
+    icon: IconChatFilled,
+  },
+  {
+    label: 'Пункт меню 3',
+    icon: IconAlert,
+  },
+];
+
+const cnNavbarDriverFadeExample = cn('NavbarDriverFadeExample');
+
+export const NavbarDriverFadeExample = () => {
+  const [open, setOpen] = useFlag();
+  const menuRefs = useRefs<HTMLDivElement>(2);
+
+  return (
+    <div
+      className={cnNavbarDriverFadeExample({ open })}
+      onMouseEnter={setOpen.on}
+      onMouseLeave={setOpen.off}
+    >
+      <Transition in={!open} unmountOnExit timeout={300} nodeRef={menuRefs[0]}>
+        {(animate) => (
+          <NavbarRail
+            className={cnNavbarMixFadeAnimate({ animate, menu: 'rail' })}
+            getItemLabel={() => undefined}
+            items={menu}
+            ref={menuRefs[0]}
+          />
+        )}
+      </Transition>
+      <Transition in={open} unmountOnExit timeout={300} nodeRef={menuRefs[1]}>
+        {(animate) => (
+          <Navbar
+            className={cnNavbarMixFadeAnimate({ animate, menu: 'draver' })}
+            items={menu}
+            ref={menuRefs[1]}
+          />
+        )}
+      </Transition>
+    </div>
+  );
+};
+```
+
+```css
+.che--NavbarDriverFadeExample {
+  --navbar-animate-transition-timeout: 0.3s;
+  --navbar-animate-menu-rail-width: 56px;
+  --navbar-animate-menu-draver-width: 260px;
+
+  --navbar-driver-example-right-spase: var(--space-m);
+  --navbar-driver-example-width: var(--navbar-animate-menu-rail-width);
+
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  border-right: var(--control-border-width) solid var(
+      --color-control-bg-border-default
+    );
+  width: calc(
+    var(--navbar-driver-example-width) + var(
+        --navbar-driver-example-right-spase
+      ) + var(--control-border-width)
+  );
+  transition: width var(--navbar-animate-transition-timeout);
+  padding-right: var(--navbar-driver-example-right-spase);
+
+  &_open {
+    --navbar-driver-example-width: var(--navbar-animate-menu-draver-width);
+  }
+}
+```
+
+<NavbarDriverFadeExample />
+
+### Миксин cnNavbarMixDriverAnimate
+
+Возможно использовать с любым видом контанта в `Navbar` и `NavbarRail`
+
+```ts
+type Mods = {
+  animate?: 'entered' | 'entering' | 'exiting' | 'exited' | 'unmounted';
+  menu: 'rail' | 'draver';
+};
+
+type CnNavbarMixDriverAnimate = (
+  mods?: Mods | null,
+  mix?: Array<string | undefined>,
+) => string;
+```
+
+**CSS свойства**
+
+```json
+--navbar-animate-menu-rail-width - ширина меню в свернутом состоянии
+--navbar-animate-menu-draver-width - ширина меню в развернутом состоянии
+--navbar-animate-transition-timeout - время анимации
+```
+
+**Пример**
+
+```tsx
+const menuExapleDriver = [
+  {
+    label: 'Входящие',
+    icon: IconDataNull,
+    status: 'warning',
+    active: true,
+    subMenu: [
+      { label: 'Работа', icon: IconBag, counter: 20 },
+      { label: 'Личное', icon: IconSun, counter: 30 },
+      { label: 'Прочее', icon: IconDocFilled, counter: 50 },
+    ],
+  },
+  {
+    label: 'Отправленные',
+    icon: IconSendMessage,
+  },
+  {
+    label: 'Черновики',
+    icon: IconDocFilled,
+  },
+  {
+    label: 'Удаленные',
+    icon: IconTrash,
+  },
+  {
+    label: 'Спам',
+    icon: IconWarning,
+
+    status: 'warning',
+  },
+  {
+    label: 'Беседы',
+    icon: IconChatFilled,
+  },
+  {
+    label: 'Пункт меню 3',
+    icon: IconAlert,
+  },
+];
+
+const cnNavbarDriverExample = cn('NavbarDriverExample');
+
+export const NavbarDriverExample = () => {
+  const [open, setOpen] = useFlag();
+  const menuRefs = useRefs<HTMLDivElement>(3);
+
+  useClickOutside({
+    isActive: open,
+    ignoreClicksInsideRefs: [menuRefs[2]],
+    handler: setOpen.off,
+  });
+
+  return (
+    <div ref={menuRefs[2]} className={cnNavbarDriverExample({ open })}>
+      <Transition in={!open} unmountOnExit timeout={300} nodeRef={menuRefs[0]}>
+        {(animate) => (
+          <div
+            ref={menuRefs[0]}
+            className={cnNavbarDriverExample('Rail', [
+              cnNavbarMixDriverAnimate({ animate, menu: 'rail' }),
+            ])}
+          >
+            <Button
+              className={cnMixSpace({ mH: 'xs', mV: 'm' })}
+              iconLeft={IconHamburger}
+              view="clear"
+              onClick={setOpen.on}
+              onlyIcon
+            />
+            <NavbarRail
+              getItemLabel={() => undefined}
+              items={menuExapleDriver}
+              getItemTooltip={(item) => item.label}
+            />
+          </div>
+        )}
+      </Transition>
+      <Transition in={open} unmountOnExit timeout={300} nodeRef={menuRefs[1]}>
+        {(animate) => (
+          <div
+            ref={menuRefs[1]}
+            className={cnNavbarDriverExample('Draver', [
+              cnNavbarMixDriverAnimate({ animate, menu: 'draver' }),
+            ])}
+          >
+            <User
+              className={cnNavbarDriverExample('User', [
+                cnMixSpace({ mV: 'm' }),
+              ])}
+              name="Петр Уснувкин"
+              info="Главный звездочет"
+              size="l"
+            />
+            <Navbar items={menuExapleDriver} />
+          </div>
+        )}
+      </Transition>
+    </div>
+  );
+};
+```
+
+```css
+.che--NavbarDriverExample {
+  --navbar-animate-transition-timeout: 0.3s;
+  --navbar-animate-menu-rail-width: 56px;
+  --navbar-animate-menu-draver-width: 260px;
+
+  --navbar-driver-example-right-spase: var(--space-m);
+  --navbar-driver-example-width: var(--navbar-animate-menu-rail-width);
+
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  border-right: var(--control-border-width) solid var(
+      --color-control-bg-border-default
+    );
+  width: calc(
+    var(--navbar-driver-example-width) + var(
+        --navbar-driver-example-right-spase
+      ) + var(--control-border-width)
+  );
+  transition: width var(--navbar-animate-transition-timeout);
+  padding-right: var(--navbar-driver-example-right-spase);
+
+  &_open {
+    --navbar-driver-example-width: var(--navbar-animate-menu-draver-width);
+  }
+
+  &-User {
+    width: 100%;
+  }
+}
+```
+
+<NavbarDriverExample />

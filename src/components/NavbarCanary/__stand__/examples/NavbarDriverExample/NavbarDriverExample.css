@@ -1,0 +1,54 @@
+.che--NavbarDriverFadeExample {
+  --navbar-animate-transition-timeout: 0.3s;
+  --navbar-animate-menu-rail-width: 56px;
+  --navbar-animate-menu-draver-width: 260px;
+  --navbar-driver-example-right-spase: var(--space-m);
+  --navbar-driver-example-width: var(--navbar-animate-menu-rail-width);
+  position: relative;
+  overflow: hidden;
+  width:
+    calc(
+      var(--navbar-driver-example-width) +
+      var(--navbar-driver-example-right-spase) + var(--control-border-width)
+    );
+  height: 360px;
+  padding-right: var(--navbar-driver-example-right-spase);
+  border-right:
+    var(--control-border-width) solid
+    var(--color-control-bg-border-default);
+  transition: width var(--navbar-animate-transition-timeout);
+
+  &_open {
+    --navbar-driver-example-width: var(--navbar-animate-menu-draver-width);
+  }
+}
+
+.che--NavbarDriverExample {
+  --navbar-animate-transition-timeout: 0.3s;
+  --navbar-animate-menu-rail-width: 56px;
+  --navbar-animate-menu-draver-width: 260px;
+  --navbar-driver-example-right-spase: var(--space-m);
+  --navbar-driver-example-width: var(--navbar-animate-menu-rail-width);
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  width:
+    calc(
+      var(--navbar-driver-example-width) +
+      var(--navbar-driver-example-right-spase) + var(--control-border-width)
+    );
+  height: 500px;
+  padding-right: var(--navbar-driver-example-right-spase);
+  border-right:
+    var(--control-border-width) solid
+    var(--color-control-bg-border-default);
+  transition: width var(--navbar-animate-transition-timeout);
+
+  &_open {
+    --navbar-driver-example-width: var(--navbar-animate-menu-draver-width);
+  }
+
+  &-User {
+    width: 100%;
+  }
+}

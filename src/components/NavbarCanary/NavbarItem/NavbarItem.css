@@ -1,0 +1,45 @@
+.che--NavbarItem {
+  color: var(--color-control-typo-clear);
+
+  &_active {
+    color: var(--color-control-typo-secondary);
+
+    &:hover {
+      color: var(--color-control-typo-secondary-hover);
+    }
+  }
+
+  &_form {
+    &_brick {
+      border-radius: 0;
+    }
+
+    &_round {
+      border-radius: 99rem;
+    }
+
+    &_default {
+      border-radius: var(--control-radius);
+    }
+  }
+
+  &.ListItem.MixSpace {
+    --space-padding-left:
+      calc(
+        var(--navbar-item-ph) + var(--navbar-item-level) *
+        (var(--navbar-item-level-space) + var(--space-2xs))
+      );
+
+    &:last-child {
+      --space-margin-bottom: 0;
+    }
+  }
+
+  & .ListItemGrid-Slot_position_center {
+    min-height: var(--control-height-xs);
+  }
+
+  & .ListItemGrid-Slot_position_left {
+    padding-right: var(--space-2xs);
+  }
+}

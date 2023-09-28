@@ -1,6 +1,7 @@
 import {
   DefaultNavbarGroup,
   DefaultNavbarItem,
+  DefaultNavbarRailItem,
   NavbarPropGetGroupKey,
   NavbarPropGetGroupLabel,
   NavbarPropGetGroupRightSide,
@@ -10,7 +11,10 @@ import {
   NavbarPropGetItemLabel,
   NavbarPropGetItemRightSide,
   NavbarPropGetItemStatus,
+  NavbarPropGetItemSubMenu,
   NavbarProps,
+  NavbarRailPropGetItemTooltip,
+  NavbarRailProps,
 } from './types';
 
 const defaultGetItemLabel: NavbarPropGetItemLabel<DefaultNavbarItem> = (item) =>
@@ -20,9 +24,6 @@ const defaultGetItemActive: NavbarPropGetItemActive<DefaultNavbarItem> = (
   item,
 ) => item.active;
 
-const defaultGetItemStatus: NavbarPropGetItemStatus<DefaultNavbarItem> = (
-  item,
-) => item.status;
 const defaultGetItemGroupKey: NavbarPropGetItemGroupId<DefaultNavbarItem> = (
   item,
 ) => item.groupId;
@@ -35,12 +36,24 @@ const defaultGetItemRightSide: NavbarPropGetItemRightSide<DefaultNavbarItem> = (
 
 const defaultGetGroupKey: NavbarPropGetGroupKey<DefaultNavbarGroup> = (group) =>
   group.id;
+
+const defaultGetItemSubMenu: NavbarPropGetItemSubMenu<DefaultNavbarItem> = (
+  item,
+) => item.subMenu;
 const defaultGetGroupLabel: NavbarPropGetGroupLabel<DefaultNavbarGroup> = (
   group,
 ) => group.label;
 const defaultGetGroupRightSide: NavbarPropGetGroupRightSide<
   DefaultNavbarGroup
 > = (group) => group.rightSide;
+
+const defaultGetItemStatus: NavbarPropGetItemStatus<DefaultNavbarItem> = (
+  item,
+) => item.status;
+
+const defaultGetItemTooltip: NavbarRailPropGetItemTooltip<
+  DefaultNavbarRailItem
+> = (item) => item.tooltip;
 
 export function withDefaultGetters<
   ITEM = DefaultNavbarItem,
@@ -53,9 +66,23 @@ export function withDefaultGetters<
     getItemActive: props.getItemActive || defaultGetItemActive,
     getItemIcon: props.getItemIcon || defaultGetItemIcon,
     getItemRightSide: props.getItemRightSide || defaultGetItemRightSide,
-    getItemStatus: props.getItemStatus || defaultGetItemStatus,
     getGroupLabel: props.getGroupLabel || defaultGetGroupLabel,
     getGroupKey: props.getGroupKey || defaultGetGroupKey,
     getGroupRightSide: props.getGroupRightSide || defaultGetGroupRightSide,
+    getItemSubMenu: props.getItemSubMenu || defaultGetItemSubMenu,
+    getItemStatus: props.getItemStatus || defaultGetItemStatus,
+  };
+}
+
+export function withDefaultRailGetters<ITEM = NavbarRailProps>(
+  props: NavbarRailProps<ITEM>,
+) {
+  return {
+    ...props,
+    getItemLabel: props.getItemLabel || defaultGetItemLabel,
+    getItemActive: props.getItemActive || defaultGetItemActive,
+    getItemIcon: props.getItemIcon || defaultGetItemIcon,
+    getItemStatus: props.getItemStatus || defaultGetItemStatus,
+    getItemTooltip: props.getItemTooltip || defaultGetItemTooltip,
   };
 }

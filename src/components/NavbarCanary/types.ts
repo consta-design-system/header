@@ -1,14 +1,21 @@
 import { IconComponent } from '@consta/icons/Icon';
 import { Group } from '@consta/uikit/__internal__/src/utils/getGroups';
+import {
+  AsAttributes,
+  AsTags,
+} from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
+import { BadgePropStatus } from '@consta/uikit/Badge';
+import { Direction } from '@consta/uikit/Popover';
 import React from 'react';
 
 export const navbarPropSize = ['s', 'm'] as const;
 export type NavbarPropSize = (typeof navbarPropSize)[number];
 export const defaultNavbarPropSize: NavbarPropSize = 'm';
 
-export const navbarPropStatus = ['alert', 'success', 'warning'] as const;
-export type NavbarPropStatus = (typeof navbarPropStatus)[number];
+export const navbarPropForm = ['default', 'brick', 'round'] as const;
+export type NavbarPropForm = (typeof navbarPropForm)[number];
+export const defaultNavbarPropForm = navbarPropForm[0];
 
 export type DefaultNavbarGroup = {
   id: string | number;
@@ -17,12 +24,21 @@ export type DefaultNavbarGroup = {
 };
 
 export type DefaultNavbarItem = {
-  label: React.ReactNode;
-  status?: NavbarPropStatus;
+  label: string;
+  status?: BadgePropStatus;
   groupId?: string | number;
   icon?: IconComponent;
   rightSide?: React.ReactNode;
   active?: boolean;
+  subMenu?: DefaultNavbarItem[];
+};
+
+export type DefaultNavbarRailItem = {
+  label: string;
+  icon: IconComponent;
+  status?: BadgePropStatus;
+  active?: boolean;
+  tooltip?: React.ReactNode;
 };
 
 export type NavbarPropOnItemClick<ITEM> = (
@@ -34,7 +50,10 @@ export type NavbarPropOnItemClick<ITEM> = (
 
 // ITEMS
 
-export type NavbarPropGetItemLabel<ITEM> = (item: ITEM) => React.ReactNode;
+export type NavbarPropGetItemLabel<ITEM> = (item: ITEM) => string;
+export type NavbarRailPropGetItemLabel<ITEM> = (
+  item: ITEM,
+) => string | undefined;
 
 export type NavbarPropGetItemAdditionalClassName<ITEM> = (item: ITEM) => string;
 
@@ -43,14 +62,6 @@ export type NavbarPropGetItemDisabled<ITEM> = (
 ) => boolean | undefined;
 
 export type NavbarPropGetItemActive<ITEM> = (item: ITEM) => boolean | undefined;
-
-export type NavbarPropGetItemChecked<ITEM> = (
-  item: ITEM,
-) => boolean | undefined;
-
-export type NavbarPropGetItemStatus<ITEM> = (
-  item: ITEM,
-) => NavbarPropStatus | undefined;
 
 export type NavbarPropGetItemGroupId<ITEM> = (
   item: ITEM,
@@ -64,6 +75,8 @@ export type NavbarPropGetItemIcon<ITEM> = (
   item: ITEM,
 ) => IconComponent | undefined;
 
+export type NavbarRailPropGetItemIcon<ITEM> = (item: ITEM) => IconComponent;
+
 export type NavbarPropGetItemRightSide<ITEM> = (
   item: ITEM,
 ) => React.ReactNode | undefined;
@@ -72,13 +85,11 @@ export type NavbarPropGetItemRightIcon<ITEM> = (
   item: ITEM,
 ) => IconComponent | undefined;
 
-export type NavbarPropGetItemAs<ITEM> = (
-  item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+export type NavbarPropGetItemAs<ITEM> = (item: ITEM) => AsTags | undefined;
 
 export type NavbarPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => AsAttributes | undefined;
 
 export type NavbarPropSortGroup<ITEM, GROUP> = (
   a: Group<ITEM, GROUP>,
@@ -86,7 +97,10 @@ export type NavbarPropSortGroup<ITEM, GROUP> = (
 ) => number;
 
 // GROUPS
-export type NavbarPropGetGroupKey<GROUP> = (item: GROUP) => string | number;
+export type NavbarPropGetGroupKey<GROUP> = (
+  item: GROUP,
+) => string | number | undefined;
+
 export type NavbarPropGetGroupAdditionalClassName<GROUP> = (
   item: GROUP,
 ) => string;
@@ -102,22 +116,30 @@ export type NavbarPropGetItemRef<ITEM> = (
   item: ITEM,
 ) => React.RefObject<HTMLElement> | undefined;
 
+export type NavbarPropGetItemStatus<ITEM> = (
+  item: ITEM,
+) => BadgePropStatus | undefined;
+
 export type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
+export type NavbarRailPropGetItemTooltip<ITEM> = (
+  item: ITEM,
+) => React.ReactNode | undefined;
 
 export type NavbarProps<
   ITEM = DefaultNavbarItem,
   GROUP = DefaultNavbarGroup,
 > = PropsWithHTMLAttributesAndRef<
   {
-    size?: NavbarPropSize;
     items: ITEM[];
+    size?: NavbarPropSize;
+    form?: NavbarPropForm;
     onItemClick?: NavbarPropOnItemClick<ITEM>;
     getItemLabel?: NavbarPropGetItemLabel<ITEM>;
     getItemIcon?: NavbarPropGetItemIcon<ITEM>;
     getItemActive?: NavbarPropGetItemActive<ITEM>;
     getItemRightSide?: NavbarPropGetItemRightSide<ITEM>;
-    getItemGroupKey?: NavbarPropGetItemGroupId<ITEM>;
     getItemStatus?: NavbarPropGetItemStatus<ITEM>;
+    getItemGroupKey?: NavbarPropGetItemGroupId<ITEM>;
     getItemAs?: NavbarPropGetItemAs<ITEM>;
     getItemAttributes?: NavbarPropGetItemAttributes<ITEM>;
     getItemRef?: NavbarPropGetItemRef<ITEM>;
@@ -146,23 +168,61 @@ export type NavbarComponent = <
   props: NavbarProps<ITEM, GROUP>,
 ) => React.ReactElement | null;
 
-export type NavbarItemProps<ITEM = DefaultNavbarItem> =
+type TooltipProps = {
+  direction?: Direction;
+  spareDirection?: Direction;
+  possibleDirections?: readonly Direction[];
+  offset?: number;
+};
+
+export type NavbarRailProps<ITEM = DefaultNavbarRailItem> =
   PropsWithHTMLAttributesAndRef<
     {
+      items: ITEM[];
       size?: NavbarPropSize;
-      item: ITEM;
+      form?: NavbarPropForm;
       onItemClick?: NavbarPropOnItemClick<ITEM>;
-      getItemLabel: NavbarPropGetItemLabel<ITEM>;
-      getItemIcon?: NavbarPropGetItemIcon<ITEM>;
+      getItemLabel?: NavbarRailPropGetItemLabel<ITEM>;
+      getItemIcon?: NavbarRailPropGetItemIcon<ITEM>;
       getItemActive?: NavbarPropGetItemActive<ITEM>;
-      getItemRightSide?: NavbarPropGetItemRightSide<ITEM>;
       getItemStatus?: NavbarPropGetItemStatus<ITEM>;
       getItemAs?: NavbarPropGetItemAs<ITEM>;
       getItemAttributes?: NavbarPropGetItemAttributes<ITEM>;
       getItemRef?: NavbarPropGetItemRef<ITEM>;
-      getItemSubMenu?: NavbarPropGetItemSubMenu<ITEM>;
       getItemAdditionalClassName?: NavbarPropGetItemAdditionalClassName<ITEM>;
-      level?: number;
+      getItemTooltip?: NavbarRailPropGetItemTooltip<ITEM>;
+      tooltipProps?: TooltipProps;
+    },
+    HTMLDivElement
+  > &
+    (ITEM extends { icon: DefaultNavbarRailItem['icon'] }
+      ? {}
+      : { getItemIcon: NavbarRailPropGetItemIcon<ITEM> });
+
+export type NavbarRailComponent = <ITEM = DefaultNavbarRailItem>(
+  props: NavbarRailProps<ITEM>,
+) => React.ReactElement | null;
+
+export type NavbarItemProps<ITEM = DefaultNavbarItem> =
+  PropsWithHTMLAttributesAndRef<
+    {
+      size: NavbarPropSize;
+      item: ITEM;
+      form: NavbarPropForm;
+      onItemClick: NavbarPropOnItemClick<ITEM> | undefined;
+      getItemLabel: NavbarPropGetItemLabel<ITEM>;
+      getItemIcon: NavbarPropGetItemIcon<ITEM>;
+      getItemActive: NavbarPropGetItemActive<ITEM>;
+      getItemRightSide: NavbarPropGetItemRightSide<ITEM>;
+      getItemStatus: NavbarPropGetItemStatus<ITEM> | undefined;
+      getItemAs: NavbarPropGetItemAs<ITEM> | undefined;
+      getItemAttributes: NavbarPropGetItemAttributes<ITEM> | undefined;
+      getItemRef: NavbarPropGetItemRef<ITEM> | undefined;
+      getItemSubMenu: NavbarPropGetItemSubMenu<ITEM> | undefined;
+      getItemAdditionalClassName:
+        | NavbarPropGetItemAdditionalClassName<ITEM>
+        | undefined;
+      level: number;
     },
     HTMLDivElement
   >;
@@ -170,3 +230,18 @@ export type NavbarItemProps<ITEM = DefaultNavbarItem> =
 export type NavbarItemComponent = <ITEM = DefaultNavbarItem>(
   props: NavbarItemProps<ITEM>,
 ) => React.ReactElement | null;
+
+export type NavbarRailItemProps = PropsWithHTMLAttributesAndRef<
+  {
+    size?: NavbarPropSize;
+    form?: NavbarPropForm;
+    icon?: IconComponent;
+    active?: boolean;
+    status?: BadgePropStatus;
+    label?: string;
+    tooltipProps?: TooltipProps & {
+      content?: React.ReactNode;
+    };
+  },
+  HTMLDivElement
+>;

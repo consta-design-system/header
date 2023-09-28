@@ -1,9 +1,15 @@
 import { getGroups } from '@consta/uikit/__internal__/src/utils/getGroups';
-import { ListItem, renderHeader } from '@consta/uikit/ListCanary';
+import { renderHeader } from '@consta/uikit/ListCanary';
 import React, { forwardRef, useMemo } from 'react';
 
-import { withDefaultGetters } from './helpers';
-import { defaultNavbarPropSize, NavbarComponent, NavbarProps } from './types';
+import { withDefaultGetters } from '../helpers';
+import { NavbarItem } from '../NavbarItem';
+import {
+  defaultNavbarPropForm,
+  defaultNavbarPropSize,
+  NavbarComponent,
+  NavbarProps,
+} from '../types';
 
 const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
   const {
@@ -18,15 +24,17 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
     getItemGroupKey,
     getItemActive,
     getItemRef,
-    getItemStatus,
     getItemAdditionalClassName,
     getGroupKey,
     getGroupLabel,
     getGroupRightSide,
     getGroupAdditionalClassName,
     size = defaultNavbarPropSize,
+    form = defaultNavbarPropForm,
+    getItemSubMenu,
     sortGroup,
     className,
+    getItemStatus,
     ...otherProps
   } = withDefaultGetters(props);
 
@@ -45,7 +53,7 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
               groupIndex === 0,
               size,
               group.group && getGroupRightSide(group.group),
-              undefined,
+              { pV: 'xs', mH: 'm', mB: '2xs' },
               undefined,
               getGroupAdditionalClassName &&
                 group.group &&
@@ -54,22 +62,22 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
             {group.items.map((item, index) => {
               return (
                 <React.Fragment key={`${group.key}-${index}`}>
-                  <ListItem
-                    {...(getItemAttributes?.(item) || {})}
-                    label={getItemLabel(item)}
+                  <NavbarItem
                     size={size}
-                    onClick={
-                      onItemClick
-                        ? (e: React.MouseEvent) => onItemClick(item, { e })
-                        : undefined
-                    }
-                    leftIcon={getItemIcon(item)}
-                    rightSide={getItemRightSide(item)}
-                    as={getItemAs?.(item)}
-                    active={getItemActive(item)}
-                    ref={getItemRef?.(item)}
-                    status={getItemStatus(item)}
-                    className={getItemAdditionalClassName?.(item)}
+                    item={item}
+                    level={0}
+                    onItemClick={onItemClick}
+                    getItemLabel={getItemLabel}
+                    getItemActive={getItemActive}
+                    getItemAdditionalClassName={getItemAdditionalClassName}
+                    getItemAs={getItemAs}
+                    getItemAttributes={getItemAttributes}
+                    getItemIcon={getItemIcon}
+                    getItemRef={getItemRef}
+                    getItemRightSide={getItemRightSide}
+                    getItemSubMenu={getItemSubMenu}
+                    form={form}
+                    getItemStatus={getItemStatus}
                   />
                 </React.Fragment>
               );
@@ -81,4 +89,4 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
   );
 };
 
-export const SnackBar = forwardRef(NavbarRender) as NavbarComponent;
+export const Navbar = forwardRef(NavbarRender) as NavbarComponent;

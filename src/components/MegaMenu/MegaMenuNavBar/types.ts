@@ -1,4 +1,5 @@
 import { IconComponent } from '@consta/icons/Icon';
+import { AsTags } from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
 import React from 'react';
 
@@ -9,8 +10,8 @@ export type MegaMenuNavBarDefaultItem = {
   iconLeft?: IconComponent;
   iconRight?: IconComponent;
   active?: boolean;
-  as?: keyof JSX.IntrinsicElements;
-  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  as?: AsTags;
+  attributes?: JSX.IntrinsicElements[AsTags];
   onClick?: React.MouseEventHandler;
 };
 
@@ -29,10 +30,10 @@ export type MegaMenuNavBarPropGetItemOnClick<ITEM> = (
 ) => React.MouseEventHandler | undefined;
 export type MegaMenuNavBarPropGetItemAs<ITEM> = (
   item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+) => AsTags | undefined;
 export type MegaMenuNavBarPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => JSX.IntrinsicElements[AsTags] | undefined;
 
 export type MegaMenuNavBarPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;
@@ -64,22 +65,19 @@ export type MegaMenuNavBarComponent = <ITEM = MegaMenuNavBarDefaultItem>(
   ref: React.Ref<HTMLDivElement>,
 ) => React.ReactElement | null;
 
-export type MegaMenuNavBarItemProps<
-  AS extends keyof JSX.IntrinsicElements = 'div',
-> = PropsWithAsAttributes<
-  {
-    label: string;
-    active?: boolean;
-    onClick?: React.MouseEventHandler;
-    iconLeft?: IconComponent;
-    iconRight?: IconComponent;
-  },
-  AS
->;
+export type MegaMenuNavBarItemProps<AS extends AsTags = 'div'> =
+  PropsWithAsAttributes<
+    {
+      label: string;
+      active?: boolean;
+      onClick?: React.MouseEventHandler;
+      iconLeft?: IconComponent;
+      iconRight?: IconComponent;
+    },
+    AS
+  >;
 
-export type MegaMenuNavBarItemComponent = <
-  AS extends keyof JSX.IntrinsicElements = 'div',
->(
+export type MegaMenuNavBarItemComponent = <AS extends AsTags = 'div'>(
   props: MegaMenuNavBarItemProps<AS>,
   ref: React.Ref<HTMLElement>,
 ) => React.ReactElement | null;

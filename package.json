@@ -49,7 +49,7 @@
   ],
   "peerDependencies": {
     "@consta/icons": "^0.9.0",
-    "@consta/uikit": "^4.28.1"
+    "@consta/uikit": "^4.30.1"
   },
   "config": {
     "commitizen": {
