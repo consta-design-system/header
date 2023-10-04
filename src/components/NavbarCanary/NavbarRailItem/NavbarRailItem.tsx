@@ -83,7 +83,7 @@ export const NavbarRailItem = forwardRefWithAs<NavbarRailItemProps, 'div'>(
 
     const onMouseLeave: React.MouseEventHandler<HTMLDivElement> = (e) => {
       setHover.off();
-      otherProps.onMouseEnter?.(e);
+      otherProps.onMouseLeave?.(e);
     };
 
     const controllerOpen = useDebounce(() => {

@@ -42,11 +42,11 @@ import { Navbar } from '@consta/header/Navbar';
 
 ## Содержимое Navbar
 
-Содерживое можно передать в поле `items` в объекте типа [`DefaultNavbarItem`](#свойства-navbar). Что можно указать:
+Cодержимое можно передать в поле `items` в объекте типа [`DefaultNavbarItem`](#свойства-navbar). Что можно указать:
 
 - лейбл — в поле `label` или с помощью функции `getItemLabel`,
 - статус — в поле `status` или с помощью функции `getItemStatus`,
-- исконка — в поле `icon` или с помощью функции `getItemIcon`,
+- иконка — в поле `icon` или с помощью функции `getItemIcon`,
 - статус активности — в поле `active` или с помощью функции `getItemActive`,
 - принадлежность к группе — в поле `groupId` или с помощью функции `getItemGroupKey`,
 - контент справа от заголовка — в поле `rightSide` или с помощью функции `getItemRightSide`,
@@ -87,7 +87,7 @@ export const NavbarDefaultTypesExample = () => <Navbar items={defaultMenu} />;
 
 ## Размер
 
-Указать размер возможно через свойство `size`, может принимать
+Указать размер возможно через свойство `size`, может принимать `s` и `m`
 
 <NavbarSizeExample />
 
@@ -232,11 +232,11 @@ import { NavbarRail } from '@consta/header/Navbar';
 
 ### Содержимое NavbarRail
 
-Содерживое можно передать в поле `items` в объекте типа [`DefaultNavbarRailItem`](#свойства). Что можно указать:
+Cодержимое можно передать в поле `items` в объекте типа [`DefaultNavbarRailItem`](#свойства). Что можно указать:
 
 - лейбл — в поле `label` или с помощью функции `getItemLabel`,
 - статус — в поле `status` или с помощью функции `getItemStatus`,
-- исконка — в поле `icon` или с помощью функции `getItemIcon`,
+- иконка — в поле `icon` или с помощью функции `getItemIcon`,
 - статус активности — в поле `active` или с помощью функции `getItemActive`,
 - tooltip — в поле `tooltip` или с помощью функции `getItemTooltip`,
 
@@ -523,7 +523,7 @@ export const NavbarDriverFadeExample = () => {
 
 ### Миксин cnNavbarMixDriverAnimate
 
-Возможно использовать с любым видом контанта в `Navbar` и `NavbarRail`
+Возможно использовать с любым видом контента в `Navbar` и `NavbarRail`
 
 ```ts
 type Mods = {
