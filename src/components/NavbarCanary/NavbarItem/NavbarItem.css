@@ -1,7 +1,9 @@
 .che--NavbarItem {
-  color: var(--color-control-typo-clear);
+  &.ListItem {
+    color: var(--color-control-typo-clear);
+  }
 
-  &_active {
+  &_active.ListItem {
     color: var(--color-control-typo-secondary);
 
     &:hover {
@@ -23,7 +25,7 @@
     }
   }
 
-  &.ListItem.MixSpace {
+  &.MixSpace {
     --space-padding-left:
       calc(
         var(--navbar-item-ph) + var(--navbar-item-level) *
