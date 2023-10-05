@@ -186,7 +186,7 @@ export type NavbarRailProps<ITEM = DefaultNavbarRailItem> =
       getItemTooltip?: NavbarRailPropGetItemTooltip<ITEM>;
       tooltipProps?: Omit<
         TooltipProps,
-        'content' | 'position' | 'equalAnchorWidth' | 'anchorRef'
+        'children' | 'position' | 'equalAnchorWidth' | 'anchorRef'
       >;
     },
     HTMLDivElement
