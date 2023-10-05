@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.1.0 (05/10/2023)
+Самое важное:
+
+- Добавили компоненты `Navbar` и `NavbarRail` для создания вертикального меню.
+- Добавили миксины анимации `NavbarMixFadeAnimate`, `NavbarMixDriverRightAnimate`, `NavbarMixDriverLeftAnimate` для плавного переключения между `Navbar` и `NavbarRail`.
+
+---
+
+- [feat(Navbar): added Navbar, NavbarRail components (#59)](https://github.com/consta-design-system/header/commit/14d380f62581ba779798d488a135245d1c66c14f) - [@gizeasy](https://github.com/gizeasy)
+- [feat(as): rewrite as types (#58)](https://github.com/consta-design-system/header/commit/e4fc36b02c0aca7f0bf3b7843539c10f2e6ea105) - [@N1MBER](https://github.com/N1MBER)
+
+--------------------
+
 ## v2.0.0 (28/08/2023)
 Новая мажорная версия:
 
