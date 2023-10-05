@@ -1,0 +1,60 @@
+.che--NavbarRailItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-control-typo-clear);
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--color-control-bg-clear-hover);
+  }
+
+  &_active {
+    color: var(--color-control-typo-secondary);
+    background: var(--color-bg-stripe);
+
+    &:hover {
+      color: var(--color-control-typo-secondary-hover);
+    }
+  }
+
+  &-IconWrapper {
+    position: relative;
+    line-height: 0;
+  }
+
+  &_size {
+    &_s {
+      --navbar-item-badge-offset: -5px;
+    }
+
+    &_m {
+      --navbar-item-badge-offset: -6px;
+    }
+  }
+
+  &_form {
+    &_brick {
+      border-radius: 0;
+    }
+
+    &_round {
+      border-radius: 99rem;
+    }
+
+    &_default {
+      border-radius: var(--control-radius);
+    }
+  }
+
+  &-Label.Text {
+    color: currentColor;
+  }
+
+  &-Badge {
+    position: absolute;
+    top: var(--navbar-item-badge-offset);
+    right: var(--navbar-item-badge-offset);
+  }
+}

@@ -296,8 +296,8 @@ export type MegaMenuBannerBarDefaultItem = {
   label: string;
   description?: string;
   image?: string;
-  as?: keyof JSX.IntrinsicElements;
-  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  as?: AsTags;
+  attributes?: JSX.IntrinsicElements[AsTags];
 };
 
 export type MegaMenuBannerBarPropView = 'vertical' | 'horizontal';
@@ -314,10 +314,10 @@ export type MegaMenuBannerBarPropGetItemOnClick<ITEM> = (
 ) => React.MouseEventHandler | undefined;
 export type MegaMenuBannerBarPropGetItemAs<ITEM> = (
   item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+) => AsTags | undefined;
 export type MegaMenuBannerBarPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => JSX.IntrinsicElements[AsTags] | undefined;
 
 export type MegaMenuBannerBarPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;
@@ -348,7 +348,7 @@ export type MegaMenuBannerBarPropOnItemClick<ITEM> = (params: {
 | [`label`](#содержимое-баннеров)        | `string`                       | -            | Заголовок баннера                                                       |
 | [`description?`](#содержимое-баннеров) | `string`                       | -            | Описание в баннере                                                      |
 | [`image?`](#содержимое-баннеров)       | `string`                       | -            | Картинка баннера                                                        |
-| [`as?`](#содержимое-баннеров)          | `keyof JSX.IntrinsicElements`  | `div`        | HTML-тег элемента                                                       |
+| [`as?`](#содержимое-баннеров)          | `AsTags`                       | `div`        | HTML-тег элемента                                                       |
 | `className?`                           | `string`                       | -            | Дополнительный CSS-класс для кнопки, по которой открываются уведомления |
 | `ref?`                                 | `React.Ref<HTMLButtonElement>` | -            | Ссылка на корневой DOM-элемент                                          |
 
@@ -496,8 +496,8 @@ import { MegaMenuGlobal } from '@consta/header/MegaMenu';
 
 ```tsx
 export type MegaMenuGlobalDefaultItem = {
-  as?: keyof JSX.IntrinsicElements;
-  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  as?: AsTags;
+  attributes?: JSX.IntrinsicElements[AsTags];
   onClick?: React.MouseEventHandler;
   label: string;
   groupId?: string | number;
@@ -511,10 +511,10 @@ export type MegaMenuGlobalDefaultGroup = {
 
 export type MegaMenuGlobalPropGetItemAs<ITEM> = (
   item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+) => AsTags | undefined;
 export type MegaMenuGlobalPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => JSX.IntrinsicElements[AsTags] | undefined;
 export type MegaMenuGlobalPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.MouseEventHandler | undefined;
@@ -710,8 +710,8 @@ export type MegaMenuNavBarDefaultItem = {
   iconLeft?: IconComponent;
   iconRight?: IconComponent;
   active?: boolean;
-  as?: keyof JSX.IntrinsicElements;
-  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  as?: AsTags;
+  attributes?: JSX.IntrinsicElements[AsTags];
   onClick?: React.MouseEventHandler;
 };
 
@@ -730,10 +730,10 @@ export type MegaMenuNavBarPropGetItemOnClick<ITEM> = (
 ) => React.MouseEventHandler | undefined;
 export type MegaMenuNavBarPropGetItemAs<ITEM> = (
   item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+) => AsTags | undefined;
 export type MegaMenuNavBarPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => JSX.IntrinsicElements[AsTags] | undefined;
 
 export type MegaMenuNavBarPropOnItemClick<ITEM> = (params: {
   e: React.MouseEvent;
@@ -877,8 +877,8 @@ export type MegaMenuDefaultItem = {
   key: string | number;
   label: string;
   iconLeft?: IconComponent;
-  as?: keyof JSX.IntrinsicElements;
-  attributes?: JSX.IntrinsicElements[keyof JSX.IntrinsicElements];
+  as?: AsTags;
+  attributes?: JSX.IntrinsicElements[AsTags];
   subMenu?: MegaMenuDefaultItem[];
   onClick?: React.MouseEventHandler;
 };
@@ -891,12 +891,10 @@ export type MegaMenuPropGetItemIconLeft<ITEM> = (
 export type MegaMenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.MouseEventHandler | undefined;
-export type MegaMenuPropGetItemAs<ITEM> = (
-  item: ITEM,
-) => keyof JSX.IntrinsicElements | undefined;
+export type MegaMenuPropGetItemAs<ITEM> = (item: ITEM) => AsTags | undefined;
 export type MegaMenuPropGetItemAttributes<ITEM> = (
   item: ITEM,
-) => JSX.IntrinsicElements[keyof JSX.IntrinsicElements] | undefined;
+) => JSX.IntrinsicElements[AsTags] | undefined;
 export type MegaMenuPropGetItemSubMenu<ITEM> = (
   item: ITEM,
 ) => ITEM[] | undefined;
