@@ -1,4 +1,6 @@
 .che--NavbarItem {
+  transition: background 0.15s;
+
   &.ListItem {
     color: var(--color-control-typo-clear);
   }

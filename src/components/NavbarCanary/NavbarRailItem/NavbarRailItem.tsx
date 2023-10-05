@@ -1,20 +1,11 @@
 import './NavbarRailItem.css';
 
-import { isNotNil } from '@consta/uikit/__internal__/src/utils/type-guards';
 import { forwardRefWithAs } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
 import { Badge } from '@consta/uikit/Badge';
-import {
-  animateTimeout,
-  cnMixPopoverAnimate,
-} from '@consta/uikit/MixPopoverAnimate';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
-import { Tooltip } from '@consta/uikit/Tooltip';
-import { useDebounce } from '@consta/uikit/useDebounce';
-import { useFlag } from '@consta/uikit/useFlag';
-import { useForkRef } from '@consta/uikit/useForkRef';
-import React, { useEffect, useRef } from 'react';
-import { Transition } from 'react-transition-group';
+import { withTooltip } from '@consta/uikit/withTooltip';
+import React from 'react';
 
 import { cn } from '##/utils/bem';
 
@@ -41,8 +32,57 @@ const textSpaceMap = {
   s: { mT: '2xs' },
 } as const;
 
-const defaultTooltipProps: NavbarRailItemProps['tooltipProps'] = {
+const Item = forwardRefWithAs<NavbarRailItemProps, 'div'>((props, ref) => {
+  const {
+    size = defaultNavbarPropSize,
+    icon: Icon,
+    status,
+    form = defaultNavbarPropForm,
+    active,
+    label,
+    as = 'div',
+    className,
+    ...otherProps
+  } = props;
+
+  const Tag = as as string;
+
+  return (
+    <Tag
+      {...otherProps}
+      ref={ref}
+      className={cnNavbarItem({ size, form, active }, [
+        cnMixSpace(spaceMap[size]),
+        className,
+      ])}
+    >
+      <div className={cnNavbarItem('IconWrapper')}>
+        {Icon && <Icon size={size} />}
+        {status && (
+          <Badge
+            className={cnNavbarItem('Badge')}
+            size={bageSizeMap[size]}
+            status={status}
+            minified
+          />
+        )}
+      </div>
+      {label && (
+        <Text
+          className={cnNavbarItem('Label', [cnMixSpace(textSpaceMap[size])])}
+          align="center"
+          size={size}
+        >
+          {label}
+        </Text>
+      )}
+    </Tag>
+  );
+});
+
+export const NavbarRailItem = withTooltip({
   direction: 'rightCenter',
+  mode: 'mouseover',
   possibleDirections: [
     'rightCenter',
     'rightDown',
@@ -51,114 +91,4 @@ const defaultTooltipProps: NavbarRailItemProps['tooltipProps'] = {
     'rightStartUp',
   ],
   spareDirection: 'rightCenter',
-};
-
-export const NavbarRailItem = forwardRefWithAs<NavbarRailItemProps, 'div'>(
-  (props, refComponent) => {
-    const {
-      size = defaultNavbarPropSize,
-      icon: Icon,
-      status,
-      form = defaultNavbarPropForm,
-      active,
-      label,
-      as = 'div',
-      className,
-      tooltipProps: tooltipPropsProp,
-      ...otherProps
-    } = props;
-
-    const tooltipProps = { ...defaultTooltipProps, ...tooltipPropsProp };
-
-    const Tag = as as string;
-    const ref = useRef<HTMLDivElement>(null);
-    const popoverRef = useRef<HTMLDivElement>(null);
-    const [open, setOpen] = useFlag();
-    const [hover, setHover] = useFlag();
-
-    const onMouseEnter: React.MouseEventHandler<HTMLDivElement> = (e) => {
-      setHover.on();
-      otherProps.onMouseEnter?.(e);
-    };
-
-    const onMouseLeave: React.MouseEventHandler<HTMLDivElement> = (e) => {
-      setHover.off();
-      otherProps.onMouseLeave?.(e);
-    };
-
-    const controllerOpen = useDebounce(() => {
-      if (hover) {
-        setOpen.on();
-      } else {
-        setOpen.off();
-      }
-    }, 200);
-
-    useEffect(() => {
-      controllerOpen();
-    }, [hover]);
-
-    return (
-      <>
-        <Tag
-          {...otherProps}
-          ref={useForkRef([ref, refComponent])}
-          className={cnNavbarItem({ size, form, active }, [
-            cnMixSpace(spaceMap[size]),
-            className,
-          ])}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-        >
-          <div className={cnNavbarItem('IconWrapper')}>
-            {Icon && <Icon size={size} />}
-            {status && (
-              <Badge
-                className={cnNavbarItem('Badge')}
-                size={bageSizeMap[size]}
-                status={status}
-                minified
-              />
-            )}
-          </div>
-
-          {label && (
-            <Text
-              className={cnNavbarItem('Label', [
-                cnMixSpace(textSpaceMap[size]),
-              ])}
-              align="center"
-              size={size}
-            >
-              {label}
-            </Text>
-          )}
-        </Tag>
-        {tooltipProps && isNotNil(tooltipProps.content) && (
-          <Transition
-            in={open}
-            unmountOnExit
-            timeout={animateTimeout}
-            nodeRef={popoverRef}
-          >
-            {(animate) => {
-              return (
-                <Tooltip
-                  className={cnMixPopoverAnimate({ animate })}
-                  direction={tooltipProps.direction}
-                  spareDirection={tooltipProps.spareDirection}
-                  possibleDirections={tooltipProps.possibleDirections}
-                  offset={tooltipProps.offset}
-                  anchorRef={ref}
-                  ref={popoverRef}
-                >
-                  {tooltipProps.content}
-                </Tooltip>
-              );
-            }}
-          </Transition>
-        )}
-      </>
-    );
-  },
-);
+})(Item);

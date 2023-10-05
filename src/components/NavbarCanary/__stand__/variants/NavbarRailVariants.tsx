@@ -48,7 +48,7 @@ const menu: DefaultNavbarRailItem[] = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];

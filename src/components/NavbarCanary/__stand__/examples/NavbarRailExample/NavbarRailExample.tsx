@@ -40,7 +40,7 @@ const menu: DefaultNavbarRailItem[] = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];
@@ -49,7 +49,7 @@ const onItemClick = (item: DefaultNavbarRailItem) => alert(item.label);
 
 export const NavbarRailExample = () => (
   <Example col={1}>
-    <NavbarRail style={{ width: 200 }} items={menu} onItemClick={onItemClick} />
+    <NavbarRail style={{ width: 160 }} items={menu} onItemClick={onItemClick} />
   </Example>
 );
 

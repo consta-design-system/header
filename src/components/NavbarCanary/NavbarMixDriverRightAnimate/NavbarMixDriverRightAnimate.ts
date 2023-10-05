@@ -1,4 +1,4 @@
-import './NavbarMixFadeAnimate.css';
+import './NavbarMixDriverRightAnimate.css';
 
 import { cn } from '##/utils/bem';
 
@@ -9,4 +9,6 @@ type Mods = {
 
 type Cn = (mods?: Mods | null, mix?: Array<string | undefined>) => string;
 
-export const cnNavbarMixFadeAnimate: Cn = cn('NavbarMixFadeAnimate');
+export const cnNavbarMixDriverRightAnimate: Cn = cn(
+  'NavbarMixDriverRightAnimate',
+);

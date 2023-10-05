@@ -69,7 +69,7 @@ const menu: Item[] = [
     subMenu: [{ label: 'Важные' }, { label: 'Все' }],
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     groupId: 3,
     icon: IconAlert,
     subMenu: [

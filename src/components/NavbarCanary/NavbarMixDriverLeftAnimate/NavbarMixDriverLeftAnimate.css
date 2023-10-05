@@ -3,19 +3,28 @@
 --navbar-animate-menu-rail-width - ширина меню в свернутом состоянии
 --navbar-animate-menu-draver-width ширина меню в развернутом состоянии
 --navbar-animate-transition-timeout - время анимации
+
  */
 
-.che--NavbarMixFadeAnimate {
+.che--NavbarMixDriverLeftAnimate {
   transition:
-    opacity var(--navbar-animate-transition-timeout, 0.2s)
-    var(--navbar-animate-opacity-fn);
+    opacity var(--navbar-animate-transition-timeout, 0.2s),
+    transform var(--navbar-animate-transition-timeout, 0.2s);
 
   &_menu {
     &_rail {
+      --navbar-animate-transform-exited:
+        translateX(
+          calc(var(--navbar-animate-menu-rail-width) * -1)
+        );
       width: var(--navbar-animate-menu-rail-width);
     }
 
     &_draver {
+      --navbar-animate-transform-exited:
+        translateX(
+          calc(var(--navbar-animate-menu-draver-width))
+        );
       width: var(--navbar-animate-menu-draver-width);
     }
   }
@@ -23,15 +32,15 @@
   &_animate {
     &_entered,
     &_entering {
-      --navbar-animate-opacity-fn: cubic-bezier(0.13, 0.26, 0.58, 1);
       opacity: 1;
+      transform: translateX(0);
     }
 
     &_exiting,
     &_exited {
-      --navbar-animate-opacity-fn: cubic-bezier(0.4, 0, 1, 1);
       position: absolute;
       opacity: 0;
+      transform: var(--navbar-animate-transform-exited);
     }
 
     &_exiting,

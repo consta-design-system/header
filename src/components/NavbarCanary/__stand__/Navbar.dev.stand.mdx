@@ -1,8 +1,9 @@
 import { MdxMenu } from '@consta/stand';
 
 import {
-  NavbarDriverExample,
+  NavbarDriverRightExample,
   NavbarDriverFadeExample,
+  NavbarDriverLeftExample,
 } from './examples/NavbarDriverExample/NavbarDriverExample';
 
 import {
@@ -36,7 +37,8 @@ import { Navbar } from '@consta/header/Navbar';
   - [Cвойства](#свойства-navbarrail)
 - [Организация плавных переходов Navbar и NavbarRail](#организация-плавных-переходов-navbar-и-navbarrail)
   - [Миксин cnNavbarMixFadeAnimate](#миксин-cnnavbarmixfadeanimate)
-  - [Миксин cnNavbarMixDriverAnimate](#миксин-cnnavbarmixdriveranimate)
+  - [Миксин cnNavbarMixDriverRightAnimate](#миксин-cnnavbarmixdriverrightanimate)
+  - [Миксин cnNavbarMixDriverLeftAnimate](#миксин-cnnavbarmixdriverleftanimate)
 
 </MdxMenu>
 
@@ -273,7 +275,7 @@ const menu: DefaultNavbarRailItem[] = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];
@@ -320,7 +322,7 @@ const menu: DefaultNavbarRailItem[] = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];
@@ -342,6 +344,8 @@ export const NavbarRailTooltipExample = () => (
 
 ### Свойства NavbarRail
 
+import { TooltipProps } from '@consta/uikit/Tooltip';
+
 ```ts
 type DefaultNavbarRailItem = {
   label: string;
@@ -351,12 +355,10 @@ type DefaultNavbarRailItem = {
   tooltip?: React.ReactNode;
 };
 
-type TooltipProps = {
-  direction?: Direction;
-  spareDirection?: Direction;
-  possibleDirections?: readonly Direction[];
-  offset?: number;
-};
+type NavbarRailTooltipProp = Omit<
+  TooltipProps,
+  'content' | 'position' | 'equalAnchorWidth' | 'anchorRef'
+>;
 ```
 
 | Свойство                     | Тип                                           | По умолчанию                                                                                                                                               | Описание                                                                       |
@@ -374,18 +376,19 @@ type TooltipProps = {
 | `getItemAttributes`          | `NavbarPropGetItemAttributes`                 | -                                                                                                                                                          | Функция для определения дополнительных атрибутов элемента                      |
 | `getItemRef`                 | `NavbarPropGetItemRef`                        | -                                                                                                                                                          | Функция для определения ссылки на элемент                                      |
 | `getItemAdditionalClassName` | `NavbarPropGetItemAdditionalClassName`        | -                                                                                                                                                          | Функция для определения дополнительного класса элемента                        |
-| `tooltipProps`               | `TooltipProps`                                | `{direction: 'rightCenter', possibleDirections: ['rightCenter', 'rightDown', 'rightUp', 'rightStartDown', 'rightStartUp'], spareDirection: 'rightCenter'}` | Свойства [тултипа](##LIBS.LIB.STAND/lib:uikit/stand:components-tooltip-stable) |
+| `tooltipProps`               | `NavbarRailTooltipProp`                       | `{direction: 'rightCenter', possibleDirections: ['rightCenter', 'rightDown', 'rightUp', 'rightStartDown', 'rightStartUp'], spareDirection: 'rightCenter'}` | Свойства [тултипа](##LIBS.LIB.STAND/lib:uikit/stand:components-tooltip-stable) |
 | `className?`                 | `string`                                      | -                                                                                                                                                          | Дополнительный CSS-класс для пунктов меню                                      |
 | `ref?`                       | `React.Ref<HTMLDivElement>`                   | -                                                                                                                                                          | Ссылка на корневой DOM-элемент                                                 |
 
 ## Организация плавных переходов Navbar и NavbarRail
 
 Для того чтобы организовать плавные переходы между `Navbar` и `NavbarRail` воспользуйтесь
-одним из миксинов анимации: `cnNavbarMixDriverAnimate` или `cnNavbarMixFadeAnimate`
+одним из миксинов анимации: `cnNavbarMixDriverRightAnimate` или `cnNavbarMixFadeAnimate`
 
 ```tsx
 import {
-  cnNavbarMixDriverAnimate,
+  cnNavbarMixDriverRightAnimate,
+  cnNavbarMixDriverLeftAnimate,
   cnNavbarMixFadeAnimate,
 } from '@consta/header/Navbar';
 ```
@@ -449,7 +452,7 @@ const menu = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];
@@ -512,6 +515,8 @@ export const NavbarDriverFadeExample = () => {
   );
   transition: width var(--navbar-animate-transition-timeout);
   padding-right: var(--navbar-driver-example-right-spase);
+  /* хак для сафари, чтобы анимация происходила без дерганья */
+  transform: scale(1, 1);
 
   &_open {
     --navbar-driver-example-width: var(--navbar-animate-menu-draver-width);
@@ -521,9 +526,10 @@ export const NavbarDriverFadeExample = () => {
 
 <NavbarDriverFadeExample />
 
-### Миксин cnNavbarMixDriverAnimate
+### Миксин cnNavbarMixDriverRightAnimate
 
-Возможно использовать с любым видом контента в `Navbar` и `NavbarRail`
+Возможно использовать с любым видом контента в `Navbar` и `NavbarRail`.
+Анимацию рекомендуется применять когда необходимо чтобы меню находилось слева и при открытии двигалось в права.
 
 ```ts
 type Mods = {
@@ -531,7 +537,7 @@ type Mods = {
   menu: 'rail' | 'draver';
 };
 
-type CnNavbarMixDriverAnimate = (
+type cnNavbarMixDriverRightAnimate = (
   mods?: Mods | null,
   mix?: Array<string | undefined>,
 ) => string;
@@ -583,14 +589,14 @@ const menuExapleDriver = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];
 
-const cnNavbarDriverExample = cn('NavbarDriverExample');
+const cnNavbarDriverRightExample = cn('NavbarDriverRightExample');
 
-export const NavbarDriverExample = () => {
+export const NavbarDriverRightExample = () => {
   const [open, setOpen] = useFlag();
   const menuRefs = useRefs<HTMLDivElement>(3);
 
@@ -601,13 +607,13 @@ export const NavbarDriverExample = () => {
   });
 
   return (
-    <div ref={menuRefs[2]} className={cnNavbarDriverExample({ open })}>
+    <div ref={menuRefs[2]} className={cnNavbarDriverRightExample({ open })}>
       <Transition in={!open} unmountOnExit timeout={300} nodeRef={menuRefs[0]}>
         {(animate) => (
           <div
             ref={menuRefs[0]}
-            className={cnNavbarDriverExample('Rail', [
-              cnNavbarMixDriverAnimate({ animate, menu: 'rail' }),
+            className={cnNavbarDriverRightExample('Rail', [
+              cnNavbarMixDriverRightAnimate({ animate, menu: 'rail' }),
             ])}
           >
             <Button
@@ -629,12 +635,12 @@ export const NavbarDriverExample = () => {
         {(animate) => (
           <div
             ref={menuRefs[1]}
-            className={cnNavbarDriverExample('Draver', [
-              cnNavbarMixDriverAnimate({ animate, menu: 'draver' }),
+            className={cnNavbarDriverRightExample('Draver', [
+              cnNavbarMixDriverRightAnimate({ animate, menu: 'draver' }),
             ])}
           >
             <User
-              className={cnNavbarDriverExample('User', [
+              className={cnNavbarDriverRightExample('User', [
                 cnMixSpace({ mV: 'm' }),
               ])}
               name="Петр Уснувкин"
@@ -651,7 +657,7 @@ export const NavbarDriverExample = () => {
 ```
 
 ```css
-.che--NavbarDriverExample {
+.che--NavbarDriverRightExample {
   --navbar-animate-transition-timeout: 0.3s;
   --navbar-animate-menu-rail-width: 56px;
   --navbar-animate-menu-draver-width: 260px;
@@ -684,4 +690,169 @@ export const NavbarDriverExample = () => {
 }
 ```
 
-<NavbarDriverExample />
+<NavbarDriverRightExample />
+
+### Миксин cnNavbarMixDriverLeftAnimate
+
+Возможно использовать с любым видом контента в `Navbar` и `NavbarRail`.
+Анимацию рекомендуется применять когда необходимо чтобы меню находилось справа и при открытии двигалось в влево.
+
+```ts
+type Mods = {
+  animate?: 'entered' | 'entering' | 'exiting' | 'exited' | 'unmounted';
+  menu: 'rail' | 'draver';
+};
+
+type cnNavbarMixDriverLeftAnimate = (
+  mods?: Mods | null,
+  mix?: Array<string | undefined>,
+) => string;
+```
+
+**CSS свойства**
+
+```json
+--navbar-animate-menu-rail-width - ширина меню в свернутом состоянии
+--navbar-animate-menu-draver-width - ширина меню в развернутом состоянии
+--navbar-animate-transition-timeout - время анимации
+```
+
+**Пример**
+
+```tsx
+const menuExapleDriver = [
+  {
+    label: 'Входящие',
+    icon: IconDataNull,
+    status: 'warning',
+    active: true,
+    subMenu: [
+      { label: 'Работа', icon: IconBag, counter: 20 },
+      { label: 'Личное', icon: IconSun, counter: 30 },
+      { label: 'Прочее', icon: IconDocFilled, counter: 50 },
+    ],
+  },
+  {
+    label: 'Отправленные',
+    icon: IconSendMessage,
+  },
+  {
+    label: 'Черновики',
+    icon: IconDocFilled,
+  },
+  {
+    label: 'Удаленные',
+    icon: IconTrash,
+  },
+  {
+    label: 'Спам',
+    icon: IconWarning,
+
+    status: 'warning',
+  },
+  {
+    label: 'Беседы',
+    icon: IconChatFilled,
+  },
+  {
+    label: 'Система',
+    icon: IconAlert,
+  },
+];
+
+const cnNavbarDriverLeftExample = cn('NavbarDriverLeftExample');
+
+export const NavbarDriverLeftExample = () => {
+  const [open, setOpen] = useFlag();
+  const menuRefs = useRefs<HTMLDivElement>(3);
+
+  useClickOutside({
+    isActive: open,
+    ignoreClicksInsideRefs: [menuRefs[2]],
+    handler: setOpen.off,
+  });
+
+  return (
+    <div ref={menuRefs[2]} className={cnNavbarDriverLeftExample({ open })}>
+      <Transition in={!open} unmountOnExit timeout={300} nodeRef={menuRefs[0]}>
+        {(animate) => (
+          <div
+            ref={menuRefs[0]}
+            className={cnNavbarDriverLeftExample('Rail', [
+              cnNavbarMixDriverLeftAnimate({ animate, menu: 'rail' }),
+            ])}
+          >
+            <Button
+              className={cnMixSpace({ mH: 'xs', mV: 'm' })}
+              iconLeft={IconHamburger}
+              view="clear"
+              onClick={setOpen.on}
+              onlyIcon
+            />
+            <NavbarRail
+              getItemLabel={() => undefined}
+              items={menuExapleDriver}
+              getItemTooltip={(item) => item.label}
+            />
+          </div>
+        )}
+      </Transition>
+      <Transition in={open} unmountOnExit timeout={300} nodeRef={menuRefs[1]}>
+        {(animate) => (
+          <div
+            ref={menuRefs[1]}
+            className={cnNavbarDriverLeftExample('Draver', [
+              cnNavbarMixDriverLeftAnimate({ animate, menu: 'draver' }),
+            ])}
+          >
+            <User
+              className={cnNavbarDriverLeftExample('User', [
+                cnMixSpace({ mV: 'm' }),
+              ])}
+              name="Петр Уснувкин"
+              info="Главный звездочет"
+              size="l"
+            />
+            <Navbar items={menuExapleDriver} />
+          </div>
+        )}
+      </Transition>
+    </div>
+  );
+};
+```
+
+```css
+.che--NavbarDriverLeftExample {
+  --navbar-animate-transition-timeout: 0.3s;
+  --navbar-animate-menu-rail-width: 56px;
+  --navbar-animate-menu-draver-width: 260px;
+  --navbar-driver-example-right-spase: var(--space-m);
+  --navbar-driver-example-width: var(--navbar-animate-menu-rail-width);
+  --menu-width: calc(
+    var(--navbar-driver-example-width) + var(
+        --navbar-driver-example-right-spase
+      ) + var(--control-border-width)
+  );
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  width: var(--menu-width);
+  height: 500px;
+  padding-left: var(--navbar-driver-example-right-spase);
+  border-left: var(--control-border-width) solid var(
+      --color-control-bg-border-default
+    );
+  transition: width var(--navbar-animate-transition-timeout), right var(--navbar-animate-transition-timeout);
+  right: calc(var(--menu-width) - 100%);
+  &_open {
+    --navbar-driver-example-width: var(--navbar-animate-menu-draver-width);
+  }
+
+  &-User {
+    width: 100%;
+  }
+}
+```
+
+<NavbarDriverLeftExample />

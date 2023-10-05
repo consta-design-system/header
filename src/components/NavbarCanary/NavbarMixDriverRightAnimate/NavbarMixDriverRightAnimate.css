@@ -3,22 +3,27 @@
 --navbar-animate-menu-rail-width - ширина меню в свернутом состоянии
 --navbar-animate-menu-draver-width ширина меню в развернутом состоянии
 --navbar-animate-transition-timeout - время анимации
+*/
 
- */
-
-.che--NavbarMixDriverAnimate {
+.che--NavbarMixDriverRightAnimate {
   transition:
     opacity var(--navbar-animate-transition-timeout, 0.2s),
     transform var(--navbar-animate-transition-timeout, 0.2s);
 
   &_menu {
     &_rail {
-      --navbar-animate-transform-exited: translateX(-100%);
+      --navbar-animate-transform-exited:
+        translateX(
+          var(--navbar-animate-menu-draver-width)
+        );
       width: var(--navbar-animate-menu-rail-width);
     }
 
     &_draver {
-      --navbar-animate-transform-exited: translateX(100%);
+      --navbar-animate-transform-exited:
+        translateX(
+          calc(var(--navbar-animate-menu-draver-width) * -1)
+        );
       width: var(--navbar-animate-menu-draver-width);
     }
   }
@@ -35,6 +40,11 @@
       position: absolute;
       opacity: 0;
       transform: var(--navbar-animate-transform-exited);
+    }
+
+    &_exiting,
+    &_entering {
+      pointer-events: none;
     }
 
     &_entering {

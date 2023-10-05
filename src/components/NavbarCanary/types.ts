@@ -6,7 +6,7 @@ import {
 } from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import { BadgePropStatus } from '@consta/uikit/Badge';
-import { Direction } from '@consta/uikit/Popover';
+import { TooltipProps } from '@consta/uikit/Tooltip';
 import React from 'react';
 
 export const navbarPropSize = ['s', 'm'] as const;
@@ -168,13 +168,6 @@ export type NavbarComponent = <
   props: NavbarProps<ITEM, GROUP>,
 ) => React.ReactElement | null;
 
-type TooltipProps = {
-  direction?: Direction;
-  spareDirection?: Direction;
-  possibleDirections?: readonly Direction[];
-  offset?: number;
-};
-
 export type NavbarRailProps<ITEM = DefaultNavbarRailItem> =
   PropsWithHTMLAttributesAndRef<
     {
@@ -191,7 +184,10 @@ export type NavbarRailProps<ITEM = DefaultNavbarRailItem> =
       getItemRef?: NavbarPropGetItemRef<ITEM>;
       getItemAdditionalClassName?: NavbarPropGetItemAdditionalClassName<ITEM>;
       getItemTooltip?: NavbarRailPropGetItemTooltip<ITEM>;
-      tooltipProps?: TooltipProps;
+      tooltipProps?: Omit<
+        TooltipProps,
+        'content' | 'position' | 'equalAnchorWidth' | 'anchorRef'
+      >;
     },
     HTMLDivElement
   > &
@@ -239,9 +235,6 @@ export type NavbarRailItemProps = PropsWithHTMLAttributesAndRef<
     active?: boolean;
     status?: BadgePropStatus;
     label?: string;
-    tooltipProps?: TooltipProps & {
-      content?: React.ReactNode;
-    };
   },
   HTMLDivElement
 >;

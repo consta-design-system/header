@@ -23,7 +23,8 @@ import { Transition } from 'react-transition-group';
 import { cn } from '##/utils/bem';
 
 import {
-  cnNavbarMixDriverAnimate,
+  cnNavbarMixDriverLeftAnimate,
+  cnNavbarMixDriverRightAnimate,
   cnNavbarMixFadeAnimate,
   Navbar,
   NavbarRail,
@@ -59,7 +60,7 @@ const menu = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];
@@ -141,14 +142,14 @@ const menuExapleDriver = [
     icon: IconChatFilled,
   },
   {
-    label: 'Пункт меню 3',
+    label: 'Система',
     icon: IconAlert,
   },
 ];
 
-const cnNavbarDriverExample = cn('NavbarDriverExample');
+const cnNavbarDriverRightExample = cn('NavbarDriverRightExample');
 
-export const NavbarDriverExample = () => {
+export const NavbarDriverRightExample = () => {
   const [open, setOpen] = useFlag();
   const menuRefs = useRefs<HTMLDivElement>(3);
 
@@ -160,7 +161,7 @@ export const NavbarDriverExample = () => {
 
   return (
     <Example col={1}>
-      <div ref={menuRefs[2]} className={cnNavbarDriverExample({ open })}>
+      <div ref={menuRefs[2]} className={cnNavbarDriverRightExample({ open })}>
         <Transition
           in={!open}
           unmountOnExit
@@ -170,8 +171,8 @@ export const NavbarDriverExample = () => {
           {(animate) => (
             <div
               ref={menuRefs[0]}
-              className={cnNavbarDriverExample('Rail', [
-                cnNavbarMixDriverAnimate({ animate, menu: 'rail' }),
+              className={cnNavbarDriverRightExample('Rail', [
+                cnNavbarMixDriverRightAnimate({ animate, menu: 'rail' }),
               ])}
             >
               <Button
@@ -193,12 +194,81 @@ export const NavbarDriverExample = () => {
           {(animate) => (
             <div
               ref={menuRefs[1]}
-              className={cnNavbarDriverExample('Draver', [
-                cnNavbarMixDriverAnimate({ animate, menu: 'draver' }),
+              className={cnNavbarDriverRightExample('Draver', [
+                cnNavbarMixDriverRightAnimate({ animate, menu: 'draver' }),
               ])}
             >
               <User
-                className={cnNavbarDriverExample('User', [
+                className={cnNavbarDriverRightExample('User', [
+                  cnMixSpace({ mV: 'm' }),
+                ])}
+                name="Петр Уснувкин"
+                info="Главный звездочет"
+                size="l"
+              />
+              <Navbar items={menuExapleDriver} />
+            </div>
+          )}
+        </Transition>
+      </div>
+    </Example>
+  );
+};
+
+const cnNavbarDriverLeftExample = cn('NavbarDriverLeftExample');
+
+export const NavbarDriverLeftExample = () => {
+  const [open, setOpen] = useFlag();
+  const menuRefs = useRefs<HTMLDivElement>(3);
+
+  useClickOutside({
+    isActive: open,
+    ignoreClicksInsideRefs: [menuRefs[2]],
+    handler: setOpen.off,
+  });
+
+  return (
+    <Example col={1}>
+      <div ref={menuRefs[2]} className={cnNavbarDriverLeftExample({ open })}>
+        <Transition
+          in={!open}
+          unmountOnExit
+          timeout={300}
+          nodeRef={menuRefs[0]}
+        >
+          {(animate) => (
+            <div
+              ref={menuRefs[0]}
+              className={cnNavbarDriverLeftExample('Rail', [
+                cnNavbarMixDriverLeftAnimate({ animate, menu: 'rail' }),
+              ])}
+            >
+              <Button
+                className={cnMixSpace({ mH: 'xs', mV: 'm' })}
+                iconLeft={IconHamburger}
+                view="clear"
+                onClick={setOpen.on}
+                onlyIcon
+              />
+              <NavbarRail
+                getItemLabel={() => undefined}
+                items={menuExapleDriver}
+                getItemTooltip={(item) => item.label}
+                tooltipProps={{ direction: 'leftCenter' }}
+              />
+            </div>
+          )}
+        </Transition>
+        <Transition in={open} unmountOnExit timeout={300} nodeRef={menuRefs[1]}>
+          {(animate) => (
+            <div
+              ref={menuRefs[1]}
+              className={cnNavbarDriverLeftExample('Draver', [
+                cnNavbarMixDriverLeftAnimate({ animate, menu: 'draver' }),
+              ])}
+            >
+              <User
+                className={cnNavbarDriverLeftExample('User', [
                   cnMixSpace({ mV: 'm' }),
                 ])}
                 name="Петр Уснувкин"
