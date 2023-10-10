@@ -2,6 +2,8 @@ import { getGroups } from '@consta/uikit/__internal__/src/utils/getGroups';
 import { renderHeader } from '@consta/uikit/ListCanary';
 import React, { forwardRef, useMemo } from 'react';
 
+import { cnCanary } from '##/utils/bem';
+
 import { withDefaultGetters } from './helpers';
 import { NavbarItem } from './NavbarItem';
 import {
@@ -10,6 +12,8 @@ import {
   NavbarComponent,
   NavbarProps,
 } from './types';
+
+const cnNavbar = cnCanary('Navbar');
 
 const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
   const {
@@ -44,7 +48,7 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
   );
 
   return (
-    <div {...otherProps} ref={ref} className={className}>
+    <div {...otherProps} ref={ref} className={cnNavbar(null, [className])}>
       {groups.map((group, groupIndex) => {
         return (
           <React.Fragment key={group.key}>
