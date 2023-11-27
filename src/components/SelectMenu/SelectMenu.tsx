@@ -79,7 +79,12 @@ const SelectMenuRender = (
         onClick={onClick}
         style={style}
       >
-        <Text className={cnSelectMenu('Label')} size="s">
+        <Text
+          className={cnSelectMenu('Label')}
+          size="s"
+          view="primary"
+          lineHeight="m"
+        >
           {label}
         </Text>
         <span className={cnSelectMenu('ArrowBox', { open })}>
@@ -96,7 +101,7 @@ const SelectMenuRender = (
           getItemAs={getItemAs}
           getItemAttributes={getItemHTMLAttributes}
           onClickOutside={setOpen.off}
-          onItemClick={({ e, item }) =>
+          onItemClick={(item, { e }) =>
             getItemClick(item, getItemOnClick, onItemClick)(e)
           }
           direction="rightStartDown"

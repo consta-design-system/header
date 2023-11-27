@@ -55,10 +55,17 @@ export const NotificationsItem = forwardRef(
               className={cnNotificationsItem('Title', {
                 cardWithActions: !!actions?.length,
               })}
+              view="primary"
+              size="m"
+              lineHeight="m"
             >
               {title}
             </Text>
-            {description && <Text size="s">{description}</Text>}
+            {description && (
+              <Text size="s" view="primary" lineHeight="m">
+                {description}
+              </Text>
+            )}
           </div>
           {(badges || date) && (
             <div className={cnNotificationsItem('Footer')}>
@@ -77,6 +84,7 @@ export const NotificationsItem = forwardRef(
                   className={cnNotificationsItem('Time')}
                   size="xs"
                   view="secondary"
+                  lineHeight="m"
                 >
                   {dateFormat(date)}
                 </Text>

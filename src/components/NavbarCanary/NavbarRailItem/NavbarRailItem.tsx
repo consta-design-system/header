@@ -72,6 +72,8 @@ const Item = forwardRefWithAs<NavbarRailItemProps, 'div'>((props, ref) => {
           className={cnNavbarItem('Label', [cnMixSpace(textSpaceMap[size])])}
           align="center"
           size={size}
+          view="primary"
+          lineHeight="m"
         >
           {label}
         </Text>

@@ -11,7 +11,7 @@ export const ButtonMenuExampleForm = () => (
   <Example>
     {buttonPropForm.map((buttonForm, index) => (
       <div key={index}>
-        <Text size="s" view="ghost">
+        <Text size="s" view="ghost" lineHeight="m">
           {`Форма кнопок ${buttonForm}`}
         </Text>
         <ButtonMenu

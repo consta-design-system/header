@@ -11,7 +11,7 @@ export const ButtonMenuExampleSize = () => (
   <Example>
     {buttonPropSize.map((buttonSize, index) => (
       <div key={index}>
-        <Text size="s" view="ghost">
+        <Text size="s" view="ghost" lineHeight="m">
           {`Размер кнопок ${buttonSize}`}
         </Text>
         <ButtonMenu

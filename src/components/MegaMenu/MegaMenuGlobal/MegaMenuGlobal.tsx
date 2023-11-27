@@ -3,10 +3,7 @@ import './MegaMenuGlobal.css';
 import { getGroups } from '@consta/uikit/__internal__/src/utils/getGroups';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
-import {
-  getLastPoint,
-  useComponentBreakpoints,
-} from '@consta/uikit/useComponentBreakpoints';
+import { getLastPoint, useBreakpoints } from '@consta/uikit/useBreakpoints';
 import { useForkRef } from '@consta/uikit/useForkRef';
 import React, { forwardRef, useMemo, useRef } from 'react';
 
@@ -48,11 +45,14 @@ const MegaMenuGlobalRender = (
   const MegaMenuGlobalRef = useRef<HTMLDivElement>(null);
 
   const columns = getLastPoint(
-    useComponentBreakpoints(MegaMenuGlobalRef, {
-      1: 0,
-      2: 600,
-      3: 1000,
-      4: 1600,
+    useBreakpoints({
+      ref: MegaMenuGlobalRef,
+      map: {
+        1: 0,
+        2: 600,
+        3: 1000,
+        4: 1600,
+      },
     }),
   );
 
@@ -91,6 +91,7 @@ const MegaMenuGlobalRender = (
           className={cnMixSpace({ mB: 'xl' })}
           lineHeight="m"
           size="xl"
+          view="primary"
         >
           {title}
         </Text>

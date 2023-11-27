@@ -55,6 +55,7 @@ const MegaMenuBannerBarItemRender = (
       )}
       <div className={cnMegaMenuBannerBarItem('Content')}>
         <Text
+          view="primary"
           weight="semibold"
           size="m"
           lineHeight="m"
@@ -65,6 +66,7 @@ const MegaMenuBannerBarItemRender = (
         {description && (
           <Text
             className={cnMegaMenuBannerBarItem('Description')}
+            view="primary"
             size="m"
             lineHeight="m"
           >
