@@ -3,13 +3,13 @@ import { renderHeader } from '@consta/uikit/ListCanary';
 import React, { forwardRef, useMemo } from 'react';
 
 import { withDefaultGetters } from '../helpers';
-import { NavbarItem } from '../NavbarItem';
 import {
   defaultNavbarPropForm,
   defaultNavbarPropSize,
   NavbarComponent,
   NavbarProps,
 } from '../types';
+import { NavbarItem } from '.';
 
 const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
   const {

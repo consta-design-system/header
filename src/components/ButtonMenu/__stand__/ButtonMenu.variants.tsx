@@ -8,6 +8,7 @@ import {
   buttonPropView,
   buttonPropViewDefault,
 } from '@consta/uikit/Button';
+import { cnMixFlex } from '@consta/uikit/MixFlex';
 import React from 'react';
 
 import { ButtonMenu } from '../ButtonMenu';
@@ -38,7 +39,10 @@ export const Variants = () => {
   const onlyIcon = useBoolean('onlyIcon', false, Boolean(withIcon));
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div
+      style={{ height: '100vh' }}
+      className={cnMixFlex({ align: 'center', justify: 'center' })}
+    >
       <ButtonMenu
         items={menu}
         form={form}

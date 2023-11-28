@@ -6,7 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Меню в виде кнопок.',
   alias: ['меню', 'кнопка', 'кнопки', 'навигация'],
-  version: '0.4.0',
+  version: '3.0.0',
   status: 'stable',
   sandbox: 'header-buttonmenu-uhdepq',
   figma:

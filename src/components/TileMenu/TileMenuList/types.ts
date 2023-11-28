@@ -30,10 +30,12 @@ export type TileMenuListPropGetItemHref<ITEM> = (
 export type TileMenuListPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.MouseEventHandler | undefined;
-export type TileMenuListPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type TileMenuListPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export type TileMenuListCommonProps<ITEM> = {
   view?: TileMenuListPropView;

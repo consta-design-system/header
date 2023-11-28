@@ -1,10 +1,12 @@
 export type GetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-export type OnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type OnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export const getItemClick =
   <ITEM>(
@@ -13,6 +15,6 @@ export const getItemClick =
     onItemClick?: OnItemClick<ITEM>,
   ): React.MouseEventHandler =>
   (e) => {
-    onItemClick?.({ e, item });
+    onItemClick?.(item, { e });
     getItemOnClick(item)?.(e);
   };

@@ -3,10 +3,7 @@ import { useBoolean, useText } from '@consta/stand';
 import React from 'react';
 
 import { NotificationsList } from '##/components/Notifications';
-import {
-  actions,
-  items,
-} from '##/components/Notifications/__mocks__/data.mock';
+import { items } from '##/components/Notifications/__mocks__/data.mock';
 import { PopoverButton } from '##/components/PopoverButton/PopoverButton';
 
 const Variants = () => {
@@ -25,12 +22,7 @@ const Variants = () => {
       isMobile={isMobile}
       title={title}
     >
-      <NotificationsList
-        items={items}
-        title="Уведомления"
-        actions={actions}
-        groupByDay
-      />
+      <NotificationsList items={items} groupByDay />
     </PopoverButton>
   );
 };

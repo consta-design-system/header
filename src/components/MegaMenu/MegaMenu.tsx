@@ -84,7 +84,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
   }, [depth, firstLevel, secondLevel, thirdLevel]);
 
   const handleNavBarClick = (e: React.MouseEvent, item: ITEM) => {
-    onItemClickProp?.({ e, item });
+    onItemClickProp?.(item, { e });
     if (getItemSubMenu(item)) {
       setActiveItem(item);
     }
@@ -137,7 +137,7 @@ export const MegaMenu = (props: MegaMenuProps) => {
           getItemIconLeft={({ item }) => getItemIconLeft(item)}
           getItemLabel={({ item }) => getItemLabel(item)}
           getItemOnClick={({ item }) => getItemOnClick(item)}
-          onItemClick={({ e, item: { item } }) => handleNavBarClick(e, item)}
+          onItemClick={({ item }, { e }) => handleNavBarClick(e, item)}
           getItemIconRight={({ item }) =>
             getItemSubMenu(item) ? IconArrowRight : undefined
           }
@@ -162,14 +162,14 @@ export const MegaMenu = (props: MegaMenuProps) => {
             getGroupOnClick={({ item }) => getItemOnClick(item)}
             onGroupClick={
               onItemClickProp
-                ? ({ e, group: { item } }) => {
-                    onItemClickProp?.({ e, item });
+                ? ({ item }, { e }) => {
+                    onItemClickProp?.(item, { e });
                   }
                 : undefined
             }
             onItemClick={
               onItemClickProp
-                ? ({ e, item: { item } }) => onItemClickProp?.({ e, item })
+                ? ({ item }, { e }) => onItemClickProp?.(item, { e })
                 : undefined
             }
             maxElements={menuMaxElements}

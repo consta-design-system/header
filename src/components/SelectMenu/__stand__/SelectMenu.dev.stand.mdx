@@ -80,10 +80,12 @@ type SelectMenuPropGetItemTarget<ITEM> = (item: ITEM) => string | undefined;
 type SelectMenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-type SelectMenuPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type SelectMenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 type SelectMenuPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
 
 const defaultGetItemLabel: SelectMenuPropGetItemLabel<SelectMenuDefaultItem> = (

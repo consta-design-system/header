@@ -1,8 +1,6 @@
 import './NotificationsItem.css';
 
 import { Avatar } from '@consta/uikit/Avatar';
-import { BadgePropView } from '@consta/uikit/Badge';
-import { BadgeGroup } from '@consta/uikit/BadgeGroup';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import { Text } from '@consta/uikit/Text';
 import React, { forwardRef } from 'react';
@@ -10,12 +8,10 @@ import React, { forwardRef } from 'react';
 import { cn } from '##/utils/bem';
 
 import { NotificationsActions } from '../NotificationsActions';
-import { defaultDateFormat } from './helpers';
+import { NotificationsItemFooter } from '../NotificationsItemFooter';
 import { NotificationsItemProps } from './types';
 
 export const cnNotificationsItem = cn('NotificationsItem');
-
-const getItemView = (): BadgePropView => 'stroked';
 
 export const NotificationsItem = forwardRef(
   (props: NotificationsItemProps, ref: React.Ref<HTMLDivElement>) => {
@@ -27,7 +23,7 @@ export const NotificationsItem = forwardRef(
       view = 'default',
       read,
       date,
-      dateFormat = defaultDateFormat,
+      dateFormat,
       badges = [],
       actions,
       actionsMenuOpened,
@@ -67,30 +63,11 @@ export const NotificationsItem = forwardRef(
               </Text>
             )}
           </div>
-          {(badges || date) && (
-            <div className={cnNotificationsItem('Footer')}>
-              <BadgeGroup
-                className={cnNotificationsItem('Badges', [
-                  cnMixSpace({ mR: 'xl' }),
-                ])}
-                items={badges}
-                size="s"
-                fitMode="reduction"
-                getItemKey={(item) => item.label}
-                getItemView={getItemView}
-              />
-              {date && (
-                <Text
-                  className={cnNotificationsItem('Time')}
-                  size="xs"
-                  view="secondary"
-                  lineHeight="m"
-                >
-                  {dateFormat(date)}
-                </Text>
-              )}
-            </div>
-          )}
+          <NotificationsItemFooter
+            badges={badges}
+            date={date}
+            dateFormat={dateFormat}
+          />
           {actions?.length && (
             <NotificationsActions
               className={cnNotificationsItem('Actions')}

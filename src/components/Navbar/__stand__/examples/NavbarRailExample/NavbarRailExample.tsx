@@ -8,7 +8,7 @@ import { IconWarning } from '@consta/icons/IconWarning';
 import { Example } from '@consta/stand';
 import React from 'react';
 
-import { DefaultNavbarRailItem, NavbarRail } from '##/components/NavbarCanary';
+import { DefaultNavbarRailItem, NavbarRail } from '##/components/Navbar';
 
 const menu: DefaultNavbarRailItem[] = [
   {

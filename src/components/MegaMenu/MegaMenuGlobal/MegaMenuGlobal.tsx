@@ -115,7 +115,7 @@ const MegaMenuGlobalRender = (
                 group.group && (!!onClickGroup || !!onGroupClick);
               const onClick = (e: React.MouseEvent) => {
                 onClickGroup?.(e);
-                group.group && onGroupClick?.({ e, group: group.group });
+                group.group && onGroupClick?.(group.group, { e });
               };
 
               return (

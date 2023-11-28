@@ -1,7 +1,7 @@
 import { Example } from '@consta/stand';
 import React from 'react';
 
-import { DefaultNavbarItem, Navbar } from '##/components/NavbarCanary';
+import { DefaultNavbarItem, Navbar } from '##/components/Navbar';
 
 const menu = ['Пункт 1', 'Пункт 2', 'Пункт 3'];
 const getItemLabel = (item: string) => item;

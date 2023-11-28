@@ -16,10 +16,12 @@ export type NotificationsActionsPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
 
-export type NotificationsActionsOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type NotificationsActionsOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export type NotificationsActionsProps<ITEM = ButtonMenuDefaultItem> =
   PropsWithHTMLAttributes<

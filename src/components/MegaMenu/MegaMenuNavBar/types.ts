@@ -38,10 +38,12 @@ export type MegaMenuNavBarPropGetItemAttributes<ITEM> = (
   item: ITEM,
 ) => AsAttributes | undefined;
 
-export type MegaMenuNavBarPropOnItemClick<ITEM> = (params: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type MegaMenuNavBarPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export type MegaMenuNavBarProps<ITEM = MegaMenuNavBarDefaultItem> =
   PropsWithHTMLAttributesAndRef<

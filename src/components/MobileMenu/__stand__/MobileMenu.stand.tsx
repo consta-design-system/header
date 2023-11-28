@@ -6,7 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Мобильное меню.',
   alias: ['меню', 'сайдбар', 'sidebar', 'мобильный', 'навигация'],
-  version: '0.4.0',
+  version: '3.0.0',
   status: 'stable',
   sandbox: 'header-mobilemenu-fo64o4',
   figma:

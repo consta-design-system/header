@@ -18,10 +18,12 @@ export type SelectMenuPropGetItemTarget<ITEM> = (
 export type SelectMenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-export type SelectMenuPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type SelectMenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 export type SelectMenuPropGetItemSubMenu<ITEM> = (
   item: ITEM,
 ) => ITEM[] | undefined;

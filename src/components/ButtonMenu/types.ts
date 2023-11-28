@@ -28,10 +28,12 @@ export type ButtonMenuPropGetItemIcon<ITEM> = (
 export type ButtonMenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-export type ButtonMenuPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type ButtonMenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export type ButtonMenuProps<ITEM = ButtonMenuDefaultItem> =
   PropsWithHTMLAttributesAndRef<

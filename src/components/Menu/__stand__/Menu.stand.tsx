@@ -6,7 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Горизонтальное выпадающее меню.',
   alias: ['меню', 'tabs', 'табы', 'навигация'],
-  version: '0.4.0',
+  version: '3.0.0',
   status: 'stable',
   sandbox: 'header-menu-g6g5k0',
   figma:
