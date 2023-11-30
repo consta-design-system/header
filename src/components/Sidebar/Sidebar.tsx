@@ -22,7 +22,10 @@ const cnSidebar = cn('Sidebar');
 
 export const Sidebar = (props: SidebarProps) => {
   const { children, title, onClose, className, ...otherProps } = props;
-  const { bigScreen } = useBreakpoints({ map: { bigScreen: 520 } });
+  const { bigScreen } = useBreakpoints({
+    map: { bigScreen: 520 },
+    isActive: true,
+  });
   return (
     <ConstaSidebar
       {...otherProps}

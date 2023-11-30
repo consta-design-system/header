@@ -53,6 +53,7 @@ const MegaMenuGlobalRender = (
         3: 1000,
         4: 1600,
       },
+      isActive: true,
     }),
   );
 
