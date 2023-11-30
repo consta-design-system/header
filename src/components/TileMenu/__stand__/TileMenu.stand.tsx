@@ -6,7 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Выпадающее меню с плиткой внутри.',
   alias: ['меню', 'список', 'навигация'],
-  version: '0.4.0',
+  version: '3.0.0',
   status: 'stable',
   sandbox: 'header-tilemenu-d2evvn',
   figma:

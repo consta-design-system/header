@@ -6,6 +6,6 @@ export default createStand({
   group: 'components',
   description: 'Навигация',
   alias: ['меню', 'сайдбар', 'sidebar', 'навигация', 'навбар'],
-  version: '2.1.0',
-  status: 'canary',
+  version: '3.0.0',
+  status: 'stable',
 });

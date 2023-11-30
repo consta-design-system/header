@@ -7,7 +7,7 @@ import { ContextMenu } from '@consta/uikit/ContextMenu';
 import { animateTimeout } from '@consta/uikit/MixPopoverAnimate';
 import { useDebounce } from '@consta/uikit/useDebounce';
 import { useFlag } from '@consta/uikit/useFlag';
-import { useHideElementsInLine } from '@consta/uikit/useHideElementsInLine';
+import { useHideElementsInLine } from '@consta/uikit/useHideElementsInLineDepricated';
 import { useMutableRef } from '@consta/uikit/useMutableRef';
 import React, {
   forwardRef,
@@ -128,7 +128,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
                 getItemLabel={getItemLabel}
                 getItemSubMenu={getItemSubMenu}
                 anchorRef={itemsRefs[index]}
-                onItemClick={({ e, item }) =>
+                onItemClick={(item, { e }) =>
                   getItemClick(item, getItemOnClick, onItemClick)(e)
                 }
                 direction="downStartLeft"
@@ -165,7 +165,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
               getItemLabel={getItemLabel}
               getItemSubMenu={getItemSubMenu}
               anchorRef={moreButtonRef}
-              onItemClick={({ e, item }) =>
+              onItemClick={(item, { e }) =>
                 getItemClick(item, getItemOnClick, onItemClick)(e)
               }
               direction="downStartLeft"

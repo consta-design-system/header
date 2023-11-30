@@ -17,10 +17,12 @@ import {
   MegaMenuBannerBarPropGetItemOnClick,
 } from './MegaMenuBannerBar';
 
-export type MegaMenuPropOnItemClick<ITEM> = (params: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type MegaMenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export type MegaMenuDefaultItem = {
   key: string | number;

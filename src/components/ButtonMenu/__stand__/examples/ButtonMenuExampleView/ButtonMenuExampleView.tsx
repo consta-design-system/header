@@ -11,7 +11,7 @@ export const ButtonMenuExampleView = () => (
   <Example>
     {buttonPropView.map((buttonView, index) => (
       <div key={index}>
-        <Text size="s" view="ghost">
+        <Text size="s" view="ghost" lineHeight="m">
           {`Вид кнопок ${buttonView}`}
         </Text>
         <ButtonMenu

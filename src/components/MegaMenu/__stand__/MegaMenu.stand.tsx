@@ -6,7 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Мега меню',
   alias: ['меню', 'баннер', 'баннеры', 'группа', 'группы', 'навигация'],
-  version: '1.0.2',
+  version: '3.0.0',
   status: 'stable',
   sandbox: 'header-megamenu-dm0dqt',
   figma:

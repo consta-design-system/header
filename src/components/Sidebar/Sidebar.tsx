@@ -22,7 +22,7 @@ const cnSidebar = cn('Sidebar');
 
 export const Sidebar = (props: SidebarProps) => {
   const { children, title, onClose, className, ...otherProps } = props;
-  const { bigScreen } = useBreakpoints({ bigScreen: 520 });
+  const { bigScreen } = useBreakpoints({ map: { bigScreen: 520 } });
   return (
     <ConstaSidebar
       {...otherProps}
@@ -34,7 +34,13 @@ export const Sidebar = (props: SidebarProps) => {
         <div
           className={cnSidebar('Header', [cnMixSpace({ pV: 'l', pH: 'xl' })])}
         >
-          <Text className={cnSidebar('Title')} size="xl" truncate>
+          <Text
+            className={cnSidebar('Title')}
+            size="xl"
+            truncate
+            view="primary"
+            lineHeight="m"
+          >
             {title}
           </Text>
           {onClose && (

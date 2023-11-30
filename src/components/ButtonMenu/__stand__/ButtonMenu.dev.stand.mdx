@@ -255,10 +255,12 @@ type ButtonMenuPropGetItemIcon<ITEM> = (
 type ButtonMenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-type ButtonMenuPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+type ButtonMenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 const defaultGetItemLabel: ButtonMenuPropGetItemLabel<ButtonMenuDefaultItem> = (
   item,

@@ -80,6 +80,8 @@ function NotificationsListRender(
             className={cnNotificationsList('HeaderItem')}
             size="xl"
             truncate
+            view="primary"
+            lineHeight="m"
           >
             {title}
           </Text>
@@ -124,6 +126,7 @@ function NotificationsListRender(
                   transform="uppercase"
                   weight="bold"
                   size="2xs"
+                  lineHeight="m"
                 >
                   {groupLabel}
                 </Text>

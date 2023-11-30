@@ -56,11 +56,19 @@ export const TileMenuItem = forwardRefWithAs<TileMenuItemProps>(
             className={cnTileMenuItem('Title', [
               view === 'default' ? cnMixSpace({ pB: '2xs' }) : undefined,
             ])}
+            view="primary"
+            size="m"
+            lineHeight="m"
           >
             {title}
           </Text>
           {description && view === 'default' && (
-            <Text view="secondary" className={cnTileMenuItem('Description')}>
+            <Text
+              view="secondary"
+              className={cnTileMenuItem('Description')}
+              size="m"
+              lineHeight="m"
+            >
               {description}
             </Text>
           )}

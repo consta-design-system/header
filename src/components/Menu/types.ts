@@ -17,10 +17,12 @@ export type MenuPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
 export type MenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-export type MenuPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type MenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export type MenuProps<ITEM = MenuDefaultItem> = PropsWithHTMLAttributesAndRef<
   {

@@ -175,11 +175,12 @@ type VerticalMenuPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
 type VerticalMenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-type VerticalMenuPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
-
+export type VerticalMenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 const defaultGetItemLabel: VerticalMenuPropGetItemLabel<
   VerticalMenuDefaultItem
 > = (item) => item.label;

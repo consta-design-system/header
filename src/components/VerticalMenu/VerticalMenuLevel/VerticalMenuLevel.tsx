@@ -64,7 +64,13 @@ export const VerticalMenuLevel: VerticalMenuLevelComponent = forwardRef(
               size="s"
               onClick={removeLevel}
             />
-            <Text className={cnMixSpace({ mL: 's' })} truncate>
+            <Text
+              className={cnMixSpace({ mL: 's' })}
+              truncate
+              view="primary"
+              size="m"
+              lineHeight="m"
+            >
               {levelLabel}
             </Text>
           </div>

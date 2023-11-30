@@ -87,7 +87,7 @@ const RowTopRight = () => {
             zIndex: 1,
           }}
           getItemLabel={(item: Language) => item.toUpperCase()}
-          onItemClick={({ item }) => setLanguage(item)}
+          onItemClick={setLanguage}
           size="m"
         />
         <Button

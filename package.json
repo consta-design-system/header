@@ -48,8 +48,8 @@
     "Chrome >= 75"
   ],
   "peerDependencies": {
-    "@consta/icons": "^0.9.0",
-    "@consta/uikit": "^4.31.1"
+    "@consta/icons": "^0.11.0",
+    "@consta/uikit": "^5.0.0-beta.2"
   },
   "config": {
     "commitizen": {

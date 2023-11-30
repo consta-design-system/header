@@ -6,7 +6,7 @@ export default createStand({
   group: 'components',
   description: 'Вертикальное выпадающее меню.',
   alias: ['меню', 'список', 'навигация'],
-  version: '0.4.0',
+  version: '3.0.0',
   status: 'stable',
   sandbox: 'header-verticalmenu-k0k8f2',
   figma:

@@ -43,15 +43,19 @@ export type MegaMenuGlobalPropGetGroupOnClick<ITEM> = (
   item: ITEM,
 ) => React.MouseEventHandler | undefined;
 
-export type MegaMenuGlobalPropOnItemClick<ITEM> = (params: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type MegaMenuGlobalPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 
-export type MegaMenuGlobalPropOnGroupClick<GROUP> = (params: {
-  e: React.MouseEvent;
-  group: GROUP;
-}) => void;
+export type MegaMenuGlobalPropOnGroupClick<GROUP> = (
+  group: GROUP,
+  params: {
+    e: React.MouseEvent;
+  },
+) => void;
 
 export type MappersItem<ITEM = MegaMenuGlobalDefaultItem> = {
   getItemLabel?: MegaMenuGlobalPropGetItemLabel<ITEM>;

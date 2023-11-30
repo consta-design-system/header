@@ -38,6 +38,9 @@ export const VerticalMenuItem: VerticalMenuItemComponent = (props) => {
       {...propsLink}
       className={cnVerticalMenuItem({ active }, [className])}
       onClick={onClick}
+      view="primary"
+      size="m"
+      lineHeight="m"
     >
       {label}
       {withSubMenu && (

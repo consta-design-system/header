@@ -31,10 +31,12 @@ export type VerticalMenuPropGetItemSubMenu<ITEM> = (
 export type VerticalMenuPropGetItemOnClick<ITEM> = (
   item: ITEM,
 ) => React.EventHandler<React.MouseEvent> | undefined;
-export type VerticalMenuPropOnItemClick<ITEM> = (props: {
-  e: React.MouseEvent;
-  item: ITEM;
-}) => void;
+export type VerticalMenuPropOnItemClick<ITEM> = (
+  item: ITEM,
+  props: {
+    e: React.MouseEvent;
+  },
+) => void;
 export type VerticalMenuPropGetItemGroup<ITEM> = (
   item: ITEM,
 ) => string | number | undefined;

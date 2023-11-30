@@ -101,7 +101,7 @@ const NotificationsActionsRender = (
         isOpen={visibleMenu}
         items={items}
         getItemLabel={getItemLabel}
-        onItemClick={({ e, item }) =>
+        onItemClick={(item, { e }) =>
           getItemClick(item, getItemOnClick, onItemClick)(e)
         }
         getItemKey={getItemLabel}

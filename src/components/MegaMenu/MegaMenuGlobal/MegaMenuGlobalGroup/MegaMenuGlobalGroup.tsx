@@ -61,6 +61,7 @@ const MegaMenuGlobalGroupRender = (
           size="m"
           lineHeight="m"
           weight="bold"
+          view="primary"
         >
           {title}
         </Text>

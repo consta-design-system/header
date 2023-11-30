@@ -31,23 +31,6 @@
     }
   }
 
-  &-Time {
-    white-space: nowrap;
-  }
-
-  &-Footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: var(--space-3xl);
-    max-width: 100%;
-  }
-
-  &-Badges {
-    position: relative;
-    flex: 1;
-  }
-
   &-Button {
     position: absolute;
     top: 0;
