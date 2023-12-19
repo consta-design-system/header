@@ -1,5 +1,18 @@
 # Changelog
 
+## v3.0.0 (19/12/2023)
+Самое важное:
+- Добавлена поддержка `@consta/uikit` `v5.0.0`
+
+---
+
+- [fix: useBreakpoints is not active](https://github.com/consta-design-system/header/commit/7960d6b77d01569782d30f471523ec248c386952) - [@gizeasy](https://github.com/gizeasy)
+- [chore(deps): update](https://github.com/consta-design-system/header/commit/61d1d5a9449f15b7f1e03f8811252c0e44df96b9) - [@gizeasy](https://github.com/gizeasy)
+- [chore: update uikit version (#61)](https://github.com/consta-design-system/header/commit/e18c3ff9feadf533b6dc2cae4f8656eb29e6fae8) - [@gizeasy](https://github.com/gizeasy)
+- [chore(utils): added status classNames (#60)](https://github.com/consta-design-system/header/commit/7b9f33d1230ff018c197015534e5a4f769c1d7d5) - [@N1MBER](https://github.com/N1MBER)
+
+--------------------
+
 ## v2.1.0 (05/10/2023)
 Самое важное:
 
