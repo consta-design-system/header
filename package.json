@@ -1,6 +1,6 @@
 {
   "name": "@consta/header",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "scripts": {
     "postinstall": "yarn install-peers && husky install",
     "tsc-dry-run": "tsc --noEmit",
