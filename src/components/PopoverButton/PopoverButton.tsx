@@ -51,6 +51,7 @@ export const PopoverButton = forwardRef<HTMLButtonElement, PopoverButtonProps>(
     );
 
     const buttonRef = useRef<HTMLButtonElement>(null);
+    const popoverRef = useRef<HTMLDivElement>(null);
 
     const handleClick: React.MouseEventHandler = (e) => {
       onClick?.(e);
@@ -86,7 +87,12 @@ export const PopoverButton = forwardRef<HTMLButtonElement, PopoverButtonProps>(
               : children}
           </Sidebar>
         ) : (
-          <Transition timeout={animateTimeout} unmountOnExit in={isOpen}>
+          <Transition
+            timeout={animateTimeout}
+            unmountOnExit
+            in={isOpen}
+            nodeRef={popoverRef}
+          >
             {(animate) => (
               <Popover
                 className={cnPopoverButton('Popover', [
@@ -104,6 +110,7 @@ export const PopoverButton = forwardRef<HTMLButtonElement, PopoverButtonProps>(
                   ['--popover-arrow-offset' as string]: `${DEFAULT_POPOVER_ARROW_OFFSET}px`,
                   zIndex,
                 }}
+                ref={popoverRef}
                 onClickOutside={setIsOpen.off}
               >
                 <div

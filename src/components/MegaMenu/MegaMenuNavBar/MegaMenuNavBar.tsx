@@ -52,7 +52,7 @@ const MegaMenuNavBarRender = (
           getItemClick(item, getItemOnClickProp, onItemClick)
         }
         getItemAs={getItemAs}
-        itemSpase={{ pV: 's', pH: 'l' }}
+        itemSpace={{ pV: 's', pH: 'l' }}
         getItemAttributes={getItemAttributes}
         getItemAdditionalClassName={(item) =>
           cnMegaMenuNavBar('Item', { active: getItemActive(item) })
