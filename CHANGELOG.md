@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.0.1 (11/04/2025)
+- [fix(Transition): findDOMNode is not a function in react 19 (#63)](https://github.com/consta-design-system/header/commit/484a12d6d357bc718fb5b5c30d3d9e6db1767793) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v3.0.0 (19/12/2023)
 Самое важное:
 - Добавлена поддержка `@consta/uikit` `v5.0.0`
