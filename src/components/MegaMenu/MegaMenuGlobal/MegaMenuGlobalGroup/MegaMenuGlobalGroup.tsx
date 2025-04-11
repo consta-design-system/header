@@ -70,7 +70,7 @@ const MegaMenuGlobalGroupRender = (
         <List
           items={items}
           size="m"
-          itemSpase={{ p: 0 }}
+          itemSpace={{ p: 0 }}
           getItemLabel={getItemLabel}
           getItemAs={getItemAs}
           getItemAttributes={getItemAttributes}
