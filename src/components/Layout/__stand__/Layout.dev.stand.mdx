@@ -1,4 +1,4 @@
-import { MdxMenu } from '@consta/stand';
+import { MdxMenu, MdxInformer } from '@consta/stand';
 import {
   LayoutExampleBasic,
   LayoutExample,
@@ -49,7 +49,11 @@ export const LayoutExampleBasic = () => (
 
 Каркас занимает всю ширину контейнера. Модули в строке занимают всё доступное место, но центральный всегда держится по центру, а левый и правый модули стремятся занять крайние положения.
 
-> Вы можете не использовать модули и вывести в строке что угодно, но тогда вы сами определяете, как это что угодно будет располагаться и меняться — например, при изменении размера экрана
+<MdxInformer status="normal">
+
+Вы можете не использовать модули и вывести в строке что угодно, но тогда вы сами определяете, как это что угодно будет располагаться и меняться — например, при изменении размера экрана
+
+</MdxInformer>
 
 ## Наполнение
 
@@ -62,7 +66,11 @@ export const LayoutExampleBasic = () => (
 
 А также — любые компоненты и блоки, собранные из компонентов Consta, изображения и другой контент.
 
-> Блок с логином можно собрать из компонентов [Button](##LIBS.LIB.STAND/lib:uikit/stand:components-button-stable) и [User](##LIBS.LIB.STAND/lib:uikit/stand:components-user-stable)
+<MdxInformer status="normal">
+
+Блок с логином можно собрать из компонентов [Button](##LIBS.LIB.STAND/lib:uikit/stand:components-button-stable) и [User](##LIBS.LIB.STAND/lib:uikit/stand:components-user-stable).
+
+</MdxInformer>
 
 ```tsx
 import { MenuDefaultItem, Menu } from '@consta/header/Menu';
