@@ -1,4 +1,4 @@
-import { MdxMenu } from '@consta/stand';
+import { MdxMenu, MdxInformer } from '@consta/stand';
 import { NotificationsExample } from './examples/NotificationsExample/NotificationsExample';
 import {
   NotificationsListExample,
@@ -221,8 +221,11 @@ export const NotificationsListExampleActions = () => (
 
 <NotificationsListExampleActions />
 
-> **Важно:** формулируйте описание действий так, чтобы было понятно,
-> что действие применится ко всем элементам списка: «Удалить всё», «Отметить всё», «Наплевать на всё»
+<MdxInformer status="warning">
+
+Формулируйте описание действий так, чтобы было понятно, что действие применится ко всем элементам списка: «Удалить всё», «Отметить всё», «Наплевать на всё».
+
+</MdxInformer>
 
 ### Группировка
 
