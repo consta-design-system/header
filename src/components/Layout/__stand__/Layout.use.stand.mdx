@@ -35,7 +35,6 @@ const tiles: TileMenuListDefaultItem[] = [
   {
     label: 'Портал',
     description: 'Сводная информация обо мне и подразделении, новости компании',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   ...
 ];
@@ -44,7 +43,6 @@ const notifications: NotificationsListDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
     read: false,
     badges: [
@@ -193,7 +191,6 @@ const RowCenterRight = () => (
     <TileMenu items={tiles} />
     <User
       className={cnMixSpace({ mL: 'xs' })}
-      avatarUrl="https://avatars.githubusercontent.com/u/13190808?v=4"
       name="Имя Фамилия"
       info="Доп. информация"
     />
