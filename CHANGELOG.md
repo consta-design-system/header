@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.0.2 (11/06/2025)
+- [chore: update types (#66)](https://github.com/consta-design-system/header/commit/31c01877744ac5d1a5a23d866616577b674d8ec4) - [@gizeasy](https://github.com/gizeasy)
+- [docs: replace informers (#65)](https://github.com/consta-design-system/header/commit/57f817e0a0808e1760c73badf76ca57fc9405aad) - [@alyonurchick1](https://github.com/alyonurchick1)
+- [chore(deps): update (#64)](https://github.com/consta-design-system/header/commit/84e104e8ab29670785af826effe6ed6426f854a9) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v3.0.1 (11/04/2025)
 - [fix(Transition): findDOMNode is not a function in react 19 (#63)](https://github.com/consta-design-system/header/commit/484a12d6d357bc718fb5b5c30d3d9e6db1767793) - [@gizeasy](https://github.com/gizeasy)
 
