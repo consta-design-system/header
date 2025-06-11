@@ -1,4 +1,4 @@
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 
 export type MenuDefaultItem = {
   label: string;
@@ -44,4 +44,4 @@ export type MenuProps<ITEM = MenuDefaultItem> = PropsWithHTMLAttributesAndRef<
 
 export type MenuComponent = <ITEM = MenuDefaultItem>(
   props: MenuProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;

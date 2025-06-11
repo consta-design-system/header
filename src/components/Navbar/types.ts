@@ -166,7 +166,7 @@ export type NavbarComponent = <
   GROUP = DefaultNavbarGroup,
 >(
   props: NavbarProps<ITEM, GROUP>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type NavbarRailProps<ITEM = DefaultNavbarRailItem> =
   PropsWithHTMLAttributesAndRef<
@@ -197,7 +197,7 @@ export type NavbarRailProps<ITEM = DefaultNavbarRailItem> =
 
 export type NavbarRailComponent = <ITEM = DefaultNavbarRailItem>(
   props: NavbarRailProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type NavbarItemProps<ITEM = DefaultNavbarItem> =
   PropsWithHTMLAttributesAndRef<
@@ -225,7 +225,7 @@ export type NavbarItemProps<ITEM = DefaultNavbarItem> =
 
 export type NavbarItemComponent = <ITEM = DefaultNavbarItem>(
   props: NavbarItemProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type NavbarRailItemProps = PropsWithHTMLAttributesAndRef<
   {

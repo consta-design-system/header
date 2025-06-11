@@ -31,7 +31,7 @@ const ContextConsumer: React.FC<{
     handler: onClickOutside,
   });
 
-  return children as React.ReactElement;
+  return children;
 };
 
 export const MegaMenuBox = (props: MegaMenuBoxProps) => {

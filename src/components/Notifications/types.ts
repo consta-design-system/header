@@ -1,4 +1,4 @@
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 
 import { NotificationsItemAction } from './NotificationsItem';
 import {
@@ -27,4 +27,4 @@ export type NotificationsComponent = <
   GROUP_BY_DAY extends boolean = false,
 >(
   props: NotificationsProps<ITEM, GROUP, ACTION, GROUP_BY_DAY>,
-) => React.ReactElement | null;
+) => React.ReactNode;

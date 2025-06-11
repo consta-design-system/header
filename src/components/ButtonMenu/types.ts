@@ -1,11 +1,10 @@
 import { IconComponent } from '@consta/icons/Icon';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import {
   ButtonPropForm,
   ButtonPropSize,
   ButtonPropView,
 } from '@consta/uikit/Button';
-
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 export type ButtonMenuDefaultItem = {
   label: string;
@@ -58,4 +57,4 @@ export type ButtonMenuProps<ITEM = ButtonMenuDefaultItem> =
 
 export type ButtonMenuComponent = <ITEM = ButtonMenuDefaultItem>(
   props: ButtonMenuProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;

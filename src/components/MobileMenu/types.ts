@@ -1,3 +1,4 @@
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import React from 'react';
 
 import {
@@ -11,7 +12,6 @@ import {
   VerticalMenuPropGetItemTarget,
   VerticalMenuPropOnItemClick,
 } from '##/components/VerticalMenu';
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 export type MobileMenuProps<ITEM = VerticalMenuDefaultItem> =
   PropsWithHTMLAttributesAndRef<
@@ -38,6 +38,6 @@ export type MobileMenuProps<ITEM = VerticalMenuDefaultItem> =
 
 export type MobileMenuComponent = <ITEM = VerticalMenuDefaultItem>(
   props: MobileMenuProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type { VerticalMenuDefaultItem };

@@ -1,8 +1,7 @@
 import { IconProps } from '@consta/icons/Icon';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import { BadgePropStatus } from '@consta/uikit/Badge';
 import React from 'react';
-
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 export type NotificationsItemAction = {
   label: string;

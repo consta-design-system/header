@@ -1,4 +1,4 @@
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 
 export type MegaMenuBoxProps = PropsWithHTMLAttributesAndRef<
   {

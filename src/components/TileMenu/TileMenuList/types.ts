@@ -1,4 +1,4 @@
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 
 export const tileMenuListPropView = ['lines', 'twoLines', 'cards'] as const;
 export type TileMenuListPropView = (typeof tileMenuListPropView)[number];
@@ -57,4 +57,4 @@ export type TileMenuListProps<ITEM = TileMenuListDefaultItem> =
 
 export type TileMenuListComponent = <ITEM = TileMenuListDefaultItem>(
   props: TileMenuListProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;
