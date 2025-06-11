@@ -48,7 +48,10 @@ const NavbarRailRender = (
             icon={getItemIcon(item)}
             ref={getItemRef?.(item) as React.RefObject<HTMLDivElement>}
             label={getItemLabel(item)}
-            tooltipProps={{ ...tooltipProps, content: getItemTooltip(item) }}
+            tooltipProps={{
+              ...tooltipProps,
+              tooltipContent: getItemTooltip(item),
+            }}
             active={getItemActive(item)}
             status={getItemStatus(item)}
           />

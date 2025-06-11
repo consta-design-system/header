@@ -1,10 +1,10 @@
 import './LayoutRow.css';
 
+import { PropsWithHTMLAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import { cnMixSpace } from '@consta/uikit/MixSpace';
 import React from 'react';
 
 import { cn } from '##/utils/bem';
-import { PropsWithHTMLAttributes } from '##/utils/types/PropsWithHTMLAttributes';
 
 import { LayoutRowIsObject } from '../helpers';
 import { LayoutRow as LayoutRowType, LayoutSlotHeight } from '../types';

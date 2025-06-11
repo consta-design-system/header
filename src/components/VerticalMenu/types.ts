@@ -1,9 +1,8 @@
-import React from 'react';
-
 import {
   PropsWithHTMLAttributes,
   PropsWithHTMLAttributesAndRef,
-} from '##/utils/types/PropsWithHTMLAttributes';
+} from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
+import React from 'react';
 
 export type VerticalMenuDefaultItem = {
   label: string;
@@ -64,7 +63,7 @@ export type VerticalMenuProps<ITEM = VerticalMenuDefaultItem> =
 
 export type VerticalMenuComponent = <ITEM = VerticalMenuDefaultItem>(
   props: VerticalMenuProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type VerticalMenuLevel<ITEM> = {
   items: ITEM[];
@@ -95,7 +94,7 @@ export type VerticalMenuLevelProps<ITEM = VerticalMenuDefaultItem> =
 
 export type VerticalMenuLevelComponent = <ITEM = VerticalMenuDefaultItem>(
   props: VerticalMenuLevelProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type VerticalMenuItemProps = PropsWithHTMLAttributes<
   {
@@ -111,4 +110,4 @@ export type VerticalMenuItemProps = PropsWithHTMLAttributes<
 
 export type VerticalMenuItemComponent = (
   props: VerticalMenuItemProps,
-) => React.ReactElement | null;
+) => React.ReactNode;

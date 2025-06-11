@@ -1,6 +1,5 @@
 import { IconProps } from '@consta/icons/Icon';
-
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 
 import {
   NotificationsItemAction,
@@ -126,4 +125,4 @@ export type NotificationsListComponent = <
   GROUP_BY_DAY extends boolean = false,
 >(
   props: NotificationsListProps<ITEM, GROUP, ACTION, GROUP_BY_DAY>,
-) => React.ReactElement | null;
+) => React.ReactNode;

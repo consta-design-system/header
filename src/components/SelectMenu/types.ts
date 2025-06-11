@@ -1,4 +1,4 @@
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 
 export type SelectMenuDefaultItem = {
   label: string;
@@ -48,4 +48,4 @@ export type SelectMenuProps<ITEM = SelectMenuDefaultItem> =
 
 export type SelectMenuComponent = <ITEM = SelectMenuDefaultItem>(
   props: SelectMenuProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;

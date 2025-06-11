@@ -3,9 +3,8 @@ import {
   AsAttributes,
   AsTags,
 } from '@consta/uikit/__internal__/src/utils/types/AsTags';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import React from 'react';
-
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 import {
   MegaMenuBannerBarDefaultItem,
@@ -103,4 +102,4 @@ export type MegaMenuComponent = <
 >(
   props: MegaMenuProps<ITEM, BANNER>,
   ref: React.Ref<HTMLDivElement>,
-) => React.ReactElement | null;
+) => React.ReactNode;

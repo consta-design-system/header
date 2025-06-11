@@ -3,9 +3,8 @@ import {
   AsTags,
 } from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import React from 'react';
-
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 export type MegaMenuBannerBarDefaultItem = {
   onClick?: React.MouseEventHandler;
@@ -61,7 +60,7 @@ export type MegaMenuBannerBarProps<ITEM = MegaMenuBannerBarDefaultItem> =
 export type MegaMenuBannerBarComponent = <ITEM = MegaMenuBannerBarDefaultItem>(
   props: MegaMenuBannerBarProps<ITEM>,
   ref: React.Ref<HTMLDivElement>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type MegaMenuBannerBarItemProps<AS extends AsTags = 'div'> =
   PropsWithAsAttributes<
@@ -78,4 +77,4 @@ export type MegaMenuBannerBarItemProps<AS extends AsTags = 'div'> =
 export type MegaMenuBannerBarItemComponent = <AS extends AsTags = 'div'>(
   props: MegaMenuBannerBarItemProps<AS>,
   ref: React.Ref<HTMLElement>,
-) => React.ReactElement | null;
+) => React.ReactNode;

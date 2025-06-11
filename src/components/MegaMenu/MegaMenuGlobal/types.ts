@@ -3,9 +3,8 @@ import {
   AsTags,
 } from '@consta/uikit/__internal__/src/utils/types/AsTags';
 import { PropsWithAsAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithAsAttributes';
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import React from 'react';
-
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 export type MegaMenuGlobalDefaultItem = {
   as?: AsTags;
@@ -102,7 +101,7 @@ export type MegaMenuGlobalComponent = <
 >(
   props: MegaMenuGlobalProps<ITEM, GROUP>,
   ref: React.Ref<HTMLDivElement>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type MegaMenuGlobalGroupProps<ITEM = MegaMenuGlobalDefaultItem> =
   PropsWithHTMLAttributesAndRef<
@@ -120,7 +119,7 @@ export type MegaMenuGlobalGroupProps<ITEM = MegaMenuGlobalDefaultItem> =
 export type MegaMenuGlobalGroupComponent = <ITEM = MegaMenuGlobalDefaultItem>(
   props: MegaMenuGlobalGroupProps<ITEM>,
   ref: React.Ref<HTMLDivElement>,
-) => React.ReactElement | null;
+) => React.ReactNode;
 
 export type MegaMenuGlobalItemProps<AS extends AsTags = 'div'> =
   PropsWithAsAttributes<
@@ -134,4 +133,4 @@ export type MegaMenuGlobalItemProps<AS extends AsTags = 'div'> =
 export type MegaMenuGlobalItemComponent = <AS extends AsTags = 'div'>(
   props: MegaMenuGlobalItemProps<AS>,
   ref: React.Ref<HTMLElement>,
-) => React.ReactElement | null;
+) => React.ReactNode;

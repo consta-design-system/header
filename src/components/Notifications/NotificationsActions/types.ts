@@ -1,6 +1,5 @@
 import { IconComponent } from '@consta/icons/Icon';
-
-import { PropsWithHTMLAttributes } from '##/utils/types/PropsWithHTMLAttributes';
+import { PropsWithHTMLAttributes } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 
 export type ButtonMenuDefaultItem = {
   label: string;
@@ -43,4 +42,4 @@ export type NotificationsActionsProps<ITEM = ButtonMenuDefaultItem> =
 
 export type NotificationsActionsComponent = <ITEM = ButtonMenuDefaultItem>(
   props: NotificationsActionsProps<ITEM>,
-) => React.ReactElement | null;
+) => React.ReactNode;

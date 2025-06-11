@@ -1,6 +1,5 @@
+import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import { BadgePropStatus } from '@consta/uikit/Badge';
-
-import { PropsWithHTMLAttributesAndRef } from '##/utils/types/PropsWithHTMLAttributes';
 
 export type NotificationsItemBadge = {
   label: string;
