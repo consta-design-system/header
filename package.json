@@ -10,7 +10,7 @@
     "format:svg": "prettier --write '**/*.svg' --parser html",
     "pre-push": "yarn run tsc-dry-run",
     "pre-commit": "yarn run lint-staged",
-    "test": "yarn tsc-dry-run",
+    "test": "yarn tsc-dry-run && yarn unit",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "unit:clear": "jest --clearCache",
