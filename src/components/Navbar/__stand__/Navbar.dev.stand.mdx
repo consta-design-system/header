@@ -115,6 +115,32 @@ export const NavbarOnClickExample = () => (
 
 <NavbarOnClickExample />
 
+## Управление состоянием подменю
+
+Для управления состоянием подменю (открыто/закрыто) используйте связку getItemSubMenuOpen и onItemSubMenuToggle. Это позволяет контролировать открытие подменю через внешний стейт, включая задание начального состояния.
+
+```tsx
+const [openStates, setOpenStates] = React.useState({ 'Пункт 1': true });
+const menu = [
+  { label: 'Пункт 1', subMenu: [{ label: 'Подпункт 1' }] },
+  { label: 'Пункт 2', subMenu: [{ label: 'Подпункт 2' }] },
+];
+
+const getItemSubMenuOpen = (item) => openStates[item.label] || false;
+
+const onItemSubMenuToggle = (item, open, { e }) => {
+  setOpenStates((prev) => ({ ...prev, [item.label]: open }));
+};
+
+export const NavbarControlledExample = () => (
+  <Navbar
+    items={menu}
+    getItemSubMenuOpen={getItemSubMenuOpen}
+    onItemSubMenuToggle={onItemSubMenuToggle}
+  />
+);
+```
+
 ## Свойства Navbar
 
 ```tsx
@@ -196,6 +222,14 @@ type NavbarPropGetItemStatus<ITEM> = (
 ) => BadgePropStatus | undefined;
 
 type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
+
+type NavbarPropGetItemSubMenuOpen<ITEM> = (item: ITEM) => boolean | undefined;
+
+type NavbarPropOnItemSubMenuToggle<ITEM> = (
+  item: ITEM,
+  open: boolean,
+  params: { e?: React.MouseEvent },
+) => void;
 ```
 
 | Свойство                      | Тип                                           | По умолчанию                 | Описание                                                                     |
@@ -223,6 +257,8 @@ type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
 | `getGroupAdditionalClassName` | `NavbarPropGetGroupAdditionalClassName`       | -                            | Функция для определения дополнительного класса группы                        |
 | `className?`                  | `string`                                      | -                            | Дополнительный CSS-класс для пунктов меню                                    |
 | `ref?`                        | `React.Ref<HTMLDivElement>`                   | -                            | Ссылка на корневой DOM-элемент                                               |
+| `getItemSubMenuOpen?`         | `NavbarPropGetItemSubMenuOpen<ITEM>`          | -                            | Функция для определения открыто ли подменю элемента                          |
+| `onItemSubMenuToggle?`        | `NavbarPropOnItemSubMenuToggle<ITEM>`         | -                            | Функция для обработки изменения состояния подменю элемента                   |
 
 ## NavbarRail
 
