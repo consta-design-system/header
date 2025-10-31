@@ -15,19 +15,19 @@ import {
   NavbarItemProps,
 } from '../types';
 
-const cnNavbarItem = cn('NavbarItem');
+export const cnNavbarItem = cn('NavbarItem');
 
-const spaceMap = {
+export const spaceMap = {
   m: { pV: 's', pH: 'm', mB: '2xs' },
   s: { pV: 'xs', pH: 'm', mB: '2xs' },
 } as const;
 
-const mapLevelSpace = {
+export const mapLevelSpace = {
   m: '2xl',
   s: 'xl',
 } as const;
 
-const bageSizeMap = {
+export const bageSizeMap = {
   s: 'xs',
   m: 's',
 } as const;
@@ -51,15 +51,30 @@ const NavbarItemRender = (
     onItemClick,
     className,
     getItemStatus,
+    getItemSubMenuOpen,
+    onItemSubMenuToggle,
     level = 0,
     form,
   } = props;
 
   const [open, setOpen] = useFlag();
+  const isControlled = !!getItemSubMenuOpen && !!onItemSubMenuToggle;
+  const isOpen = isControlled ? getItemSubMenuOpen(item) ?? false : open;
   const subItems = getItemSubMenu?.(item);
   const rightSide = getItemRightSide?.(item);
   const active = getItemActive?.(item);
   const status = getItemStatus?.(item);
+
+  const handleToggle = (e: React.MouseEvent) => {
+    if (subItems?.length) {
+      const newOpen = !isOpen;
+      if (isControlled) {
+        onItemSubMenuToggle(item, newOpen, { e });
+      } else {
+        setOpen.toggle();
+      }
+    }
+  };
 
   return (
     <>
@@ -68,7 +83,7 @@ const NavbarItemRender = (
         label={getItemLabel(item)}
         size={size}
         onClick={(e: React.MouseEvent) => {
-          subItems?.length && setOpen.toggle();
+          handleToggle(e);
           onItemClick?.(item, { e });
         }}
         leftIcon={getItemIcon?.(item)}
@@ -79,7 +94,12 @@ const NavbarItemRender = (
             <Badge size={bageSizeMap[size]} status={status} minified />
           ) : undefined,
           subItems?.length ? (
-            <NavbarArrow open={open} onClick={setOpen.toggle} />
+            <NavbarArrow
+              open={isOpen}
+              onClick={(e) => {
+                handleToggle(e);
+              }}
+            />
           ) : undefined,
         ]}
         as={getItemAs?.(item)}
@@ -96,9 +116,9 @@ const NavbarItemRender = (
           ['--navbar-item-level-space' as string]: `var(--space-${mapLevelSpace[size]})`,
         }}
       />
-      {open &&
-        subItems?.map((item, index) => (
-          <NavbarItem {...props} key={index} level={level + 1} item={item} />
+      {isOpen &&
+        subItems?.map((subItem, index) => (
+          <NavbarItem {...props} key={index} level={level + 1} item={subItem} />
         ))}
     </>
   );
