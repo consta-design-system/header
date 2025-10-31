@@ -7,7 +7,7 @@ import {
 import { PropsWithHTMLAttributesAndRef } from '@consta/uikit/__internal__/src/utils/types/PropsWithHTMLAttributes';
 import { BadgePropStatus } from '@consta/uikit/Badge';
 import { TooltipProps } from '@consta/uikit/Tooltip';
-import React from 'react';
+import * as React from 'react';
 
 export const navbarPropSize = ['s', 'm'] as const;
 export type NavbarPropSize = (typeof navbarPropSize)[number];
@@ -96,6 +96,16 @@ export type NavbarPropSortGroup<ITEM, GROUP> = (
   b: Group<ITEM, GROUP>,
 ) => number;
 
+export type NavbarPropGetItemSubMenuOpen<ITEM> = (
+  item: ITEM,
+) => boolean | undefined;
+
+export type NavbarPropOnItemSubMenuToggle<ITEM> = (
+  item: ITEM,
+  open: boolean,
+  params: { e?: React.MouseEvent },
+) => void;
+
 // GROUPS
 export type NavbarPropGetGroupKey<GROUP> = (
   item: GROUP,
@@ -151,6 +161,8 @@ export type NavbarProps<
     getGroupRightSide?: NavbarPropGetGroupRightSide<GROUP>;
     sortGroup?: NavbarPropSortGroup<ITEM, GROUP>;
     getGroupAdditionalClassName?: NavbarPropGetGroupAdditionalClassName<GROUP>;
+    getItemSubMenuOpen?: NavbarPropGetItemSubMenuOpen<ITEM>;
+    onItemSubMenuToggle?: NavbarPropOnItemSubMenuToggle<ITEM>;
   },
   HTMLDivElement
 > &
@@ -219,6 +231,8 @@ export type NavbarItemProps<ITEM = DefaultNavbarItem> =
         | NavbarPropGetItemAdditionalClassName<ITEM>
         | undefined;
       level: number;
+      getItemSubMenuOpen: NavbarPropGetItemSubMenuOpen<ITEM> | undefined;
+      onItemSubMenuToggle: NavbarPropOnItemSubMenuToggle<ITEM> | undefined;
     },
     HTMLDivElement
   >;
