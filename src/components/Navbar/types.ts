@@ -100,7 +100,7 @@ export type NavbarPropGetItemSubMenuOpen<ITEM> = (
   item: ITEM,
 ) => boolean | undefined;
 
-export type NavbarPropOnItemSubMenuToggle<ITEM> = (
+export type NavbarPropOnSubMenuToggle<ITEM> = (
   item: ITEM,
   open: boolean,
   params: { e?: React.MouseEvent },
@@ -162,7 +162,7 @@ export type NavbarProps<
     sortGroup?: NavbarPropSortGroup<ITEM, GROUP>;
     getGroupAdditionalClassName?: NavbarPropGetGroupAdditionalClassName<GROUP>;
     getItemSubMenuOpen?: NavbarPropGetItemSubMenuOpen<ITEM>;
-    onItemSubMenuToggle?: NavbarPropOnItemSubMenuToggle<ITEM>;
+    onSubMenuToggle?: NavbarPropOnSubMenuToggle<ITEM>;
   },
   HTMLDivElement
 > &
@@ -232,7 +232,7 @@ export type NavbarItemProps<ITEM = DefaultNavbarItem> =
         | undefined;
       level: number;
       getItemSubMenuOpen: NavbarPropGetItemSubMenuOpen<ITEM> | undefined;
-      onItemSubMenuToggle: NavbarPropOnItemSubMenuToggle<ITEM> | undefined;
+      onSubMenuToggle: NavbarPropOnSubMenuToggle<ITEM> | undefined;
     },
     HTMLDivElement
   >;
