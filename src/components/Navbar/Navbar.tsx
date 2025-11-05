@@ -38,7 +38,7 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
     getItemSubMenu,
     getItemStatus,
     getItemSubMenuOpen,
-    onItemSubMenuToggle,
+    onSubMenuToggle,
     sortGroup,
     className,
     ...otherProps
@@ -84,7 +84,7 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
                     getItemSubMenu={getItemSubMenu}
                     getItemStatus={getItemStatus}
                     getItemSubMenuOpen={getItemSubMenuOpen}
-                    onItemSubMenuToggle={onItemSubMenuToggle}
+                    onSubMenuToggle={onSubMenuToggle}
                     form={form}
                   />
                 </React.Fragment>
