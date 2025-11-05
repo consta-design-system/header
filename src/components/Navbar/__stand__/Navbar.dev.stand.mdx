@@ -225,7 +225,7 @@ type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
 
 type NavbarPropGetItemSubMenuOpen<ITEM> = (item: ITEM) => boolean | undefined;
 
-type NavbarProponSubMenuToggle<ITEM> = (
+type NavbarProponOnSubMenuToggle<ITEM> = (
   item: ITEM,
   open: boolean,
   params: { e?: React.MouseEvent },
@@ -258,7 +258,7 @@ type NavbarProponSubMenuToggle<ITEM> = (
 | `className?`                  | `string`                                      | -                            | Дополнительный CSS-класс для пунктов меню                                    |
 | `ref?`                        | `React.Ref<HTMLDivElement>`                   | -                            | Ссылка на корневой DOM-элемент                                               |
 | `getItemSubMenuOpen?`         | `NavbarPropGetItemSubMenuOpen<ITEM>`          | -                            | Функция для определения открыто ли подменю элемента                          |
-| `onSubMenuToggle?`            | `NavbarProponSubMenuToggle<ITEM>`             | -                            | Функция для обработки изменения состояния подменю элемента                   |
+| `onSubMenuToggle?`            | `NavbarProponOnSubMenuToggle<ITEM>`           | -                            | Функция для обработки изменения состояния подменю элемента                   |
 
 ## NavbarRail
 
