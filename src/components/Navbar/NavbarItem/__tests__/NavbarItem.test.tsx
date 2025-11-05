@@ -333,13 +333,13 @@ describe('Компонент NavbarItem', () => {
       it('должен вызывать onItemClick даже в контролируемом режиме', () => {
         const onItemClick = jest.fn();
         const getItemSubMenuOpen = jest.fn().mockReturnValue(false);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: itemWithSubMenu,
           onItemClick,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         fireEvent.click(screen.getByText('Parent Item'));
@@ -347,21 +347,19 @@ describe('Компонент NavbarItem', () => {
         expect(onItemClick).toHaveBeenCalledWith(itemWithSubMenu, {
           e: expect.any(Object),
         });
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          itemWithSubMenu,
-          true,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+          e: expect.any(Object),
+        });
       });
 
       it('должен отображать стрелку если есть subMenu в контролируемом режиме', () => {
         const getItemSubMenuOpen = jest.fn().mockReturnValue(false);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: itemWithSubMenu,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.getByRole('button')).toBeInTheDocument();
@@ -369,12 +367,12 @@ describe('Компонент NavbarItem', () => {
 
       it('должен использовать переданное значение открытия извне', () => {
         const getItemSubMenuOpen = jest.fn().mockReturnValue(true);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: itemWithSubMenu,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.getByText('Sub Item 1')).toBeInTheDocument();
@@ -383,81 +381,64 @@ describe('Компонент NavbarItem', () => {
 
       it('должен использовать переданное значение закрытия извне', () => {
         const getItemSubMenuOpen = jest.fn().mockReturnValue(false);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: itemWithSubMenu,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
         expect(screen.queryByText('Sub Item 2')).not.toBeInTheDocument();
       });
 
-      it('должен вызывать onItemSubMenuToggle при клике, но не менять состояние самостоятельно', () => {
+      it('должен вызывать onSubMenuToggle при клике и поменять внутреннее состояние', () => {
         const getItemSubMenuOpen = jest.fn().mockReturnValue(false);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
-        const { rerender } = renderComponent({
+        renderComponent({
           item: itemWithSubMenu,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Parent Item'));
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          itemWithSubMenu,
-          true,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+          e: expect.any(Object),
+        });
 
-        expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
-
-        getItemSubMenuOpen.mockReturnValue(true);
-        rerender(
-          <NavbarItem
-            {...createNavbarItemProps({
-              item: itemWithSubMenu,
-              getItemSubMenuOpen,
-              onItemSubMenuToggle,
-            })}
-          />,
-        );
-
-        expect(screen.getByText('Sub Item 1')).toBeInTheDocument();
+        expect(screen.queryByText('Sub Item 1')).toBeInTheDocument();
       });
 
       it('должен работать полный цикл открытия/закрытия через контролируемое состояние', () => {
         let isOpen = false;
         const getItemSubMenuOpen = jest.fn(() => isOpen);
-        const onItemSubMenuToggle = jest.fn((item, newOpen) => {
+        const onSubMenuToggle = jest.fn((item, newOpen) => {
           isOpen = newOpen;
         });
 
         const { rerender } = renderComponent({
           item: itemWithSubMenu,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Parent Item'));
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          itemWithSubMenu,
-          true,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+          e: expect.any(Object),
+        });
 
         rerender(
           <NavbarItem
             {...createNavbarItemProps({
               item: itemWithSubMenu,
               getItemSubMenuOpen,
-              onItemSubMenuToggle,
+              onSubMenuToggle,
             })}
           />,
         );
@@ -465,18 +446,16 @@ describe('Компонент NavbarItem', () => {
         expect(screen.getByText('Sub Item 1')).toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Parent Item'));
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          itemWithSubMenu,
-          false,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, false, {
+          e: expect.any(Object),
+        });
 
         rerender(
           <NavbarItem
             {...createNavbarItemProps({
               item: itemWithSubMenu,
               getItemSubMenuOpen,
-              onItemSubMenuToggle,
+              onSubMenuToggle,
             })}
           />,
         );
@@ -487,31 +466,29 @@ describe('Компонент NavbarItem', () => {
       it('должен работать полный цикл открытия/закрытия через стрелку в контролируемом состоянии', () => {
         let isOpen = false;
         const getItemSubMenuOpen = jest.fn(() => isOpen);
-        const onItemSubMenuToggle = jest.fn((item, newOpen) => {
+        const onSubMenuToggle = jest.fn((item, newOpen) => {
           isOpen = newOpen;
         });
 
         const { rerender } = renderComponent({
           item: itemWithSubMenu,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
 
         fireEvent.click(screen.getByRole('button'));
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          itemWithSubMenu,
-          true,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+          e: expect.any(Object),
+        });
 
         rerender(
           <NavbarItem
             {...createNavbarItemProps({
               item: itemWithSubMenu,
               getItemSubMenuOpen,
-              onItemSubMenuToggle,
+              onSubMenuToggle,
             })}
           />,
         );
@@ -519,18 +496,16 @@ describe('Компонент NavbarItem', () => {
         expect(screen.getByText('Sub Item 1')).toBeInTheDocument();
 
         fireEvent.click(screen.getByRole('button'));
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          itemWithSubMenu,
-          false,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, false, {
+          e: expect.any(Object),
+        });
 
         rerender(
           <NavbarItem
             {...createNavbarItemProps({
               item: itemWithSubMenu,
               getItemSubMenuOpen,
-              onItemSubMenuToggle,
+              onSubMenuToggle,
             })}
           />,
         );
@@ -550,16 +525,16 @@ describe('Компонент NavbarItem', () => {
         expect(screen.getByText('Sub Item 1')).toBeInTheDocument();
       });
 
-      it('должен вызывать и onItemClick и onItemSubMenuToggle при клике на элемент с subMenu', () => {
+      it('должен вызывать и onItemClick и onSubMenuToggle при клике на элемент с subMenu', () => {
         const onItemClick = jest.fn();
         const getItemSubMenuOpen = jest.fn().mockReturnValue(false);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: itemWithSubMenu,
           onItemClick,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         fireEvent.click(screen.getByText('Parent Item'));
@@ -567,23 +542,21 @@ describe('Компонент NavbarItem', () => {
         expect(onItemClick).toHaveBeenCalledWith(itemWithSubMenu, {
           e: expect.any(Object),
         });
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          itemWithSubMenu,
-          true,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+          e: expect.any(Object),
+        });
       });
 
       it('должен вызывать только onItemClick при клике на элемент без subMenu в контролируемом режиме', () => {
         const onItemClick = jest.fn();
         const getItemSubMenuOpen = jest.fn().mockReturnValue(false);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: defaultItem,
           onItemClick,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         fireEvent.click(screen.getByText('Test Item'));
@@ -591,7 +564,7 @@ describe('Компонент NavbarItem', () => {
         expect(onItemClick).toHaveBeenCalledWith(defaultItem, {
           e: expect.any(Object),
         });
-        expect(onItemSubMenuToggle).not.toHaveBeenCalled();
+        expect(onSubMenuToggle).not.toHaveBeenCalled();
       });
     });
 
@@ -619,12 +592,12 @@ describe('Компонент NavbarItem', () => {
         };
 
         const getItemSubMenuOpen = jest.fn((item) => openStates[item.label]);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: deepNestedItems,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.getByText('Level 1')).toBeInTheDocument();
@@ -641,12 +614,12 @@ describe('Компонент NavbarItem', () => {
         };
 
         const getItemSubMenuOpen = jest.fn((item) => openStates[item.label]);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: deepNestedItems,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.getByText('Level 1')).toBeInTheDocument();
@@ -663,14 +636,14 @@ describe('Компонент NavbarItem', () => {
         };
 
         const getItemSubMenuOpen = jest.fn((item) => openStates[item.label]);
-        const onItemSubMenuToggle = jest.fn((item, newOpen) => {
+        const onSubMenuToggle = jest.fn((item, newOpen) => {
           openStates[item.label] = newOpen;
         });
 
         const { rerender } = renderComponent({
           item: deepNestedItems,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.getByText('Level 2')).toBeInTheDocument();
@@ -678,11 +651,9 @@ describe('Компонент NavbarItem', () => {
         expect(screen.getByText('Level 4')).toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Level 1'));
-        expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-          deepNestedItems,
-          false,
-          { e: expect.any(Object) },
-        );
+        expect(onSubMenuToggle).toHaveBeenCalledWith(deepNestedItems, false, {
+          e: expect.any(Object),
+        });
 
         expect(openStates['Level 1']).toBe(false);
         rerender(
@@ -690,7 +661,7 @@ describe('Компонент NavbarItem', () => {
             {...createNavbarItemProps({
               item: deepNestedItems,
               getItemSubMenuOpen,
-              onItemSubMenuToggle,
+              onSubMenuToggle,
             })}
           />,
         );
@@ -711,12 +682,12 @@ describe('Компонент NavbarItem', () => {
         };
 
         const getItemSubMenuOpen = jest.fn((item) => openStates[item.label]);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: deepNestedItems,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.getByText('Level 1')).toBeInTheDocument();
@@ -734,12 +705,12 @@ describe('Компонент NavbarItem', () => {
         };
 
         const getItemSubMenuOpen = jest.fn((item) => openStates[item.label]);
-        const onItemSubMenuToggle = jest.fn();
+        const onSubMenuToggle = jest.fn();
 
         renderComponent({
           item: deepNestedItems,
           getItemSubMenuOpen,
-          onItemSubMenuToggle,
+          onSubMenuToggle,
         });
 
         expect(screen.getByText('Level 1')).toBeInTheDocument();
@@ -861,7 +832,7 @@ describe('Компонент NavbarItem', () => {
 
     it('должен работать с кастомными геттерами для всех полей', () => {
       const onItemClick = jest.fn();
-      const onItemSubMenuToggle = jest.fn();
+      const onSubMenuToggle = jest.fn();
 
       renderComponent({
         item: customItem,
@@ -877,7 +848,7 @@ describe('Компонент NavbarItem', () => {
         getItemAttributes: (item: CustomNavbarItem) => item.htmlAttributes,
 
         onItemClick,
-        onItemSubMenuToggle,
+        onSubMenuToggle,
       });
 
       expect(screen.getByText('Custom Item')).toBeInTheDocument();
@@ -896,34 +867,22 @@ describe('Компонент NavbarItem', () => {
 
     it('должен работать с кастомными геттерами для subMenu', () => {
       const getItemSubMenuOpen = jest.fn().mockReturnValue(false);
-      const onItemSubMenuToggle = jest.fn();
+      const onSubMenuToggle = jest.fn();
 
       renderComponent({
         item: customItem,
         getItemLabel: (item: CustomNavbarItem) => item.name,
         getItemSubMenu: (item: CustomNavbarItem) => item.children,
         getItemSubMenuOpen,
-        onItemSubMenuToggle,
+        onSubMenuToggle,
       });
 
       expect(screen.getByRole('button')).toBeInTheDocument();
 
       fireEvent.click(screen.getByText('Custom Item'));
-      expect(onItemSubMenuToggle).toHaveBeenCalledWith(customItem, true, {
+      expect(onSubMenuToggle).toHaveBeenCalledWith(customItem, true, {
         e: expect.any(Object),
       });
-    });
-
-    it('должен работать с кастомными геттерами для вложенных элементов', () => {
-      renderComponent({
-        item: customItem,
-        getItemLabel: (item: CustomNavbarItem) => item.name,
-        getItemSubMenu: (item: CustomNavbarItem) => item.children,
-        getItemSubMenuOpen: (item: CustomNavbarItem) => item.isActive,
-        onItemSubMenuToggle: jest.fn(),
-      });
-
-      fireEvent.click(screen.getByText('Custom Item'));
 
       expect(screen.getByText('Child Item')).toBeInTheDocument();
     });
@@ -995,7 +954,7 @@ describe('Компонент NavbarItem', () => {
         getItemLabel: (item: any) => item.title,
         getItemSubMenu: (item: any) => item.items,
         getItemSubMenuOpen: (item: any) => item.expanded,
-        onItemSubMenuToggle: jest.fn((item, newOpen) => {
+        onSubMenuToggle: jest.fn((item, newOpen) => {
           item.expanded = newOpen;
         }),
       });
@@ -1010,7 +969,7 @@ describe('Компонент NavbarItem', () => {
             getItemLabel: (item: any) => item.title,
             getItemSubMenu: (item: any) => item.items,
             getItemSubMenuOpen: (item: any) => item.expanded,
-            onItemSubMenuToggle: jest.fn(),
+            onSubMenuToggle: jest.fn(),
           })}
         />,
       );

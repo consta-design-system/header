@@ -226,7 +226,7 @@ describe('Компонент Navbar', () => {
       render(
         <Navbar
           items={itemsWithSubMenu}
-          onItemSubMenuToggle={onItemSubMenuToggle}
+          onSubMenuToggle={onItemSubMenuToggle}
           getItemSubMenuOpen={getItemSubMenuOpen}
         />,
       );
@@ -259,7 +259,7 @@ describe('Компонент Navbar', () => {
         <Navbar
           items={itemsWithSubMenu}
           getItemSubMenuOpen={getItemSubMenuOpen}
-          onItemSubMenuToggle={onItemSubMenuToggle}
+          onSubMenuToggle={onItemSubMenuToggle}
         />,
       );
 
@@ -425,7 +425,7 @@ describe('Компонент Navbar', () => {
           form="round"
           size="s"
           onItemClick={onItemClick}
-          onItemSubMenuToggle={onItemSubMenuToggle}
+          onSubMenuToggle={onItemSubMenuToggle}
         />,
       );
 
