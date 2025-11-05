@@ -4,7 +4,7 @@ import { Badge } from '@consta/uikit/Badge';
 import { ListItem } from '@consta/uikit/ListCanary';
 import { useFlag } from '@consta/uikit/useFlag';
 import { useForkRef } from '@consta/uikit/useForkRef';
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 
 import { cn } from '##/utils/bem';
 
@@ -52,14 +52,20 @@ const NavbarItemRender = (
     className,
     getItemStatus,
     getItemSubMenuOpen,
-    onItemSubMenuToggle,
+    onSubMenuToggle,
     level = 0,
     form,
   } = props;
 
-  const [open, setOpen] = useFlag();
-  const isControlled = !!getItemSubMenuOpen && !!onItemSubMenuToggle;
-  const isOpen = isControlled ? getItemSubMenuOpen(item) ?? false : open;
+  const [open, setOpen] = useFlag(getItemSubMenuOpen?.(item) || false);
+  const controlledOpen = getItemSubMenuOpen?.(item);
+
+  useEffect(() => {
+    if (controlledOpen !== undefined) {
+      setOpen.set(controlledOpen);
+    }
+  }, [controlledOpen]);
+
   const subItems = getItemSubMenu?.(item);
   const rightSide = getItemRightSide?.(item);
   const active = getItemActive?.(item);
@@ -67,12 +73,8 @@ const NavbarItemRender = (
 
   const handleToggle = (e: React.MouseEvent) => {
     if (subItems?.length) {
-      const newOpen = !isOpen;
-      if (isControlled) {
-        onItemSubMenuToggle(item, newOpen, { e });
-      } else {
-        setOpen.toggle();
-      }
+      onSubMenuToggle?.(item, !open, { e });
+      setOpen.set(!open);
     }
   };
 
@@ -94,12 +96,7 @@ const NavbarItemRender = (
             <Badge size={bageSizeMap[size]} status={status} minified />
           ) : undefined,
           subItems?.length ? (
-            <NavbarArrow
-              open={isOpen}
-              onClick={(e) => {
-                handleToggle(e);
-              }}
-            />
+            <NavbarArrow open={open} onClick={handleToggle} />
           ) : undefined,
         ]}
         as={getItemAs?.(item)}
@@ -116,7 +113,7 @@ const NavbarItemRender = (
           ['--navbar-item-level-space' as string]: `var(--space-${mapLevelSpace[size]})`,
         }}
       />
-      {isOpen &&
+      {open &&
         subItems?.map((subItem, index) => (
           <NavbarItem {...props} key={index} level={level + 1} item={subItem} />
         ))}
