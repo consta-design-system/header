@@ -102,8 +102,10 @@ export type NavbarPropGetItemSubMenuOpen<ITEM> = (
 
 export type NavbarPropOnSubMenuToggle<ITEM> = (
   item: ITEM,
-  open: boolean,
-  params: { e?: React.MouseEvent },
+  params: {
+    open: boolean;
+    e?: React.MouseEvent;
+  },
 ) => void;
 
 // GROUPS
