@@ -128,7 +128,7 @@ const menu = [
 
 const getItemSubMenuOpen = (item) => openStates[item.label] || false;
 
-const onSubMenuToggle = (item, open, { e }) => {
+const onSubMenuToggle = (item, { open, e }) => {
   setOpenStates((prev) => ({ ...prev, [item.label]: open }));
 };
 
@@ -227,8 +227,7 @@ type NavbarPropGetItemSubMenuOpen<ITEM> = (item: ITEM) => boolean | undefined;
 
 type NavbarProponOnSubMenuToggle<ITEM> = (
   item: ITEM,
-  open: boolean,
-  params: { e?: React.MouseEvent },
+  params: { open: boolean; e?: React.MouseEvent },
 ) => void;
 ```
 
