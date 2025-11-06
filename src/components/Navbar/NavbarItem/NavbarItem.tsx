@@ -60,12 +60,6 @@ const NavbarItemRender = (
   const [open, setOpen] = useFlag(getItemSubMenuOpen?.(item) || false);
   const controlledOpen = getItemSubMenuOpen?.(item);
 
-  useEffect(() => {
-    if (controlledOpen !== undefined) {
-      setOpen.set(controlledOpen);
-    }
-  }, [controlledOpen]);
-
   const subItems = getItemSubMenu?.(item);
   const rightSide = getItemRightSide?.(item);
   const active = getItemActive?.(item);
@@ -73,10 +67,16 @@ const NavbarItemRender = (
 
   const handleToggle = (e: React.MouseEvent) => {
     if (subItems?.length) {
-      onSubMenuToggle?.(item, !open, { e });
+      onSubMenuToggle?.(item, { open: !open, e });
       setOpen.set(!open);
     }
   };
+
+  useEffect(() => {
+    if (controlledOpen !== undefined) {
+      setOpen.set(controlledOpen);
+    }
+  }, [controlledOpen]);
 
   return (
     <>
