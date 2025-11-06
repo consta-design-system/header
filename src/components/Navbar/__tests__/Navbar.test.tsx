@@ -233,11 +233,10 @@ describe('Компонент Navbar', () => {
 
       fireEvent.click(screen.getByText('Parent Item'));
 
-      expect(onItemSubMenuToggle).toHaveBeenCalledWith(
-        itemsWithSubMenu[0],
-        true,
-        { e: expect.any(Object) },
-      );
+      expect(onItemSubMenuToggle).toHaveBeenCalledWith(itemsWithSubMenu[0], {
+        open: true,
+        e: expect.any(Object),
+      });
     });
 
     it('должен открывать subMenu при клике на элемент', () => {

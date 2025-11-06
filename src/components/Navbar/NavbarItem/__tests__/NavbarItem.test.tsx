@@ -347,7 +347,8 @@ describe('Компонент NavbarItem', () => {
         expect(onItemClick).toHaveBeenCalledWith(itemWithSubMenu, {
           e: expect.any(Object),
         });
-        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, {
+          open: true,
           e: expect.any(Object),
         });
       });
@@ -406,7 +407,8 @@ describe('Компонент NavbarItem', () => {
         expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Parent Item'));
-        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, {
+          open: true,
           e: expect.any(Object),
         });
 
@@ -416,8 +418,8 @@ describe('Компонент NavbarItem', () => {
       it('должен работать полный цикл открытия/закрытия через контролируемое состояние', () => {
         let isOpen = false;
         const getItemSubMenuOpen = jest.fn(() => isOpen);
-        const onSubMenuToggle = jest.fn((item, newOpen) => {
-          isOpen = newOpen;
+        const onSubMenuToggle = jest.fn((item, params) => {
+          isOpen = params.open;
         });
 
         const { rerender } = renderComponent({
@@ -429,7 +431,8 @@ describe('Компонент NavbarItem', () => {
         expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Parent Item'));
-        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, {
+          open: true,
           e: expect.any(Object),
         });
 
@@ -446,7 +449,8 @@ describe('Компонент NavbarItem', () => {
         expect(screen.getByText('Sub Item 1')).toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Parent Item'));
-        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, false, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, {
+          open: false,
           e: expect.any(Object),
         });
 
@@ -466,8 +470,8 @@ describe('Компонент NavbarItem', () => {
       it('должен работать полный цикл открытия/закрытия через стрелку в контролируемом состоянии', () => {
         let isOpen = false;
         const getItemSubMenuOpen = jest.fn(() => isOpen);
-        const onSubMenuToggle = jest.fn((item, newOpen) => {
-          isOpen = newOpen;
+        const onSubMenuToggle = jest.fn((item, params) => {
+          isOpen = params.open;
         });
 
         const { rerender } = renderComponent({
@@ -479,7 +483,8 @@ describe('Компонент NavbarItem', () => {
         expect(screen.queryByText('Sub Item 1')).not.toBeInTheDocument();
 
         fireEvent.click(screen.getByRole('button'));
-        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, {
+          open: true,
           e: expect.any(Object),
         });
 
@@ -496,7 +501,8 @@ describe('Компонент NavbarItem', () => {
         expect(screen.getByText('Sub Item 1')).toBeInTheDocument();
 
         fireEvent.click(screen.getByRole('button'));
-        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, false, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, {
+          open: false,
           e: expect.any(Object),
         });
 
@@ -542,7 +548,8 @@ describe('Компонент NavbarItem', () => {
         expect(onItemClick).toHaveBeenCalledWith(itemWithSubMenu, {
           e: expect.any(Object),
         });
-        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, true, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(itemWithSubMenu, {
+          open: true,
           e: expect.any(Object),
         });
       });
@@ -636,8 +643,8 @@ describe('Компонент NavbarItem', () => {
         };
 
         const getItemSubMenuOpen = jest.fn((item) => openStates[item.label]);
-        const onSubMenuToggle = jest.fn((item, newOpen) => {
-          openStates[item.label] = newOpen;
+        const onSubMenuToggle = jest.fn((item, params) => {
+          openStates[item.label] = params.open;
         });
 
         const { rerender } = renderComponent({
@@ -651,7 +658,8 @@ describe('Компонент NavbarItem', () => {
         expect(screen.getByText('Level 4')).toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Level 1'));
-        expect(onSubMenuToggle).toHaveBeenCalledWith(deepNestedItems, false, {
+        expect(onSubMenuToggle).toHaveBeenCalledWith(deepNestedItems, {
+          open: false,
           e: expect.any(Object),
         });
 
@@ -880,7 +888,8 @@ describe('Компонент NavbarItem', () => {
       expect(screen.getByRole('button')).toBeInTheDocument();
 
       fireEvent.click(screen.getByText('Custom Item'));
-      expect(onSubMenuToggle).toHaveBeenCalledWith(customItem, true, {
+      expect(onSubMenuToggle).toHaveBeenCalledWith(customItem, {
+        open: true,
         e: expect.any(Object),
       });
 
@@ -954,8 +963,8 @@ describe('Компонент NavbarItem', () => {
         getItemLabel: (item: any) => item.title,
         getItemSubMenu: (item: any) => item.items,
         getItemSubMenuOpen: (item: any) => item.expanded,
-        onSubMenuToggle: jest.fn((item, newOpen) => {
-          item.expanded = newOpen;
+        onSubMenuToggle: jest.fn((item, params) => {
+          item.expanded = params.open;
         }),
       });
 
