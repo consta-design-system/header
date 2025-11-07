@@ -223,7 +223,7 @@ type NavbarPropGetItemStatus<ITEM> = (
 
 type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
 
-type NavbarPropGetItemSubMenuOpen<ITEM> = (item: ITEM) => boolean | undefined;
+type NavbarPropGetItemSubMenuOpen<ITEM> = (item: ITEM) => boolean;
 
 type NavbarProponOnSubMenuToggle<ITEM> = (
   item: ITEM,
