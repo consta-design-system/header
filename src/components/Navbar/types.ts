@@ -96,9 +96,7 @@ export type NavbarPropSortGroup<ITEM, GROUP> = (
   b: Group<ITEM, GROUP>,
 ) => number;
 
-export type NavbarPropGetItemSubMenuOpen<ITEM> = (
-  item: ITEM,
-) => boolean | undefined;
+export type NavbarPropGetItemSubMenuOpen<ITEM> = (item: ITEM) => boolean;
 
 export type NavbarPropOnSubMenuToggle<ITEM> = (
   item: ITEM,
