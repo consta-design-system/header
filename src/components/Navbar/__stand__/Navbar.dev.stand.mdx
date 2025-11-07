@@ -1,4 +1,4 @@
-import { MdxMenu } from '@consta/stand';
+import { MdxMenu, MdxTabs } from '@consta/stand';
 
 import {
   NavbarDriverRightExample,
@@ -120,27 +120,104 @@ export const NavbarOnClickExample = () => (
 
 Для управления состоянием подменю (открыто/закрыто) используйте связку getItemSubMenuOpen и onSubMenuToggle. Это позволяет контролировать открытие подменю через внешний стейт, включая задание начального состояния.
 
+<MdxTabs>
+
 ```tsx
-const [openStates, setOpenStates] = React.useState({ 'Пункт 1': true });
-const menu = [
-  { label: 'Пункт 1', subMenu: [{ label: 'Подпункт 1' }] },
-  { label: 'Пункт 2', subMenu: [{ label: 'Подпункт 2' }] },
-];
-
-const getItemSubMenuOpen = (item) => openStates[item.label] || false;
-
-const onSubMenuToggle = (item, { open, e }) => {
-  setOpenStates((prev) => ({ ...prev, [item.label]: open }));
+type MenuItem = {
+  label: string;
+  subMenu?: MenuItem[];
 };
 
-export const NavbarControlledExample = () => (
-  <Navbar
-    items={menu}
-    getItemSubMenuOpen={getItemSubMenuOpen}
-    onSubMenuToggle={onSubMenuToggle}
-  />
-);
+const menu: MenuItem[] = [
+  {
+    label: 'Пункт 1',
+    subMenu: [{ label: 'Подпункт 1.1' }, { label: 'Подпункт 1.2' }],
+  },
+  {
+    label: 'Пункт 2',
+    subMenu: [{ label: 'Подпункт 2.1' }, { label: 'Подпункт 2.2' }],
+  },
+  {
+    label: 'Пункт 3',
+    subMenu: [{ label: 'Подпункт 3.1' }, { label: 'Подпункт 3.2' }],
+  },
+];
+
+export const NavbarControlledExample = () => {
+  const [openStates, setOpenStates] = React.useState<Record<string, boolean>>({
+    'Пункт 1': true,
+    'Пункт 2': false,
+    'Пункт 3': false,
+  });
+
+  const getItemSubMenuOpen = (item: MenuItem) =>
+    openStates[item.label] || false;
+
+  const onSubMenuToggle = (
+    item: MenuItem,
+    { open }: { open: boolean; e?: React.MouseEvent },
+  ) => {
+    setOpenStates((prev) => ({ ...prev, [item.label]: open }));
+  };
+
+  const toggleMenu = (menuLabel: string) => {
+    setOpenStates((prev) => ({
+      ...prev,
+      [menuLabel]: !prev[menuLabel],
+    }));
+  };
+
+  return (
+    <div className={cnNavbarControlledExample()}>
+      <div className={cnNavbarControlledExample('Navbar')}>
+        <Navbar
+          items={menu}
+          getItemSubMenuOpen={getItemSubMenuOpen}
+          onSubMenuToggle={onSubMenuToggle}
+        />
+      </div>
+      <div className={cnNavbarControlledExample('Controls')}>
+        {menu.map((item) => (
+          <Button
+            key={item.label}
+            size="s"
+            label={
+              openStates[item.label]
+                ? `Закрыть ${item.label}`
+                : `Открыть ${item.label}`
+            }
+            onClick={() => toggleMenu(item.label)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 ```
+
+```css
+.che--NavbarControlledExample {
+  display: flex;
+  gap: var(--space-m);
+  height: 400px;
+}
+
+.che--NavbarControlledExample-Navbar {
+  flex: 1;
+  border: 1px solid var(--color-bg-border);
+  padding: var(--space-m);
+  overflow: auto;
+}
+
+.che--NavbarControlledExample-Controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 120px;
+}
+```
+
+</MdxTabs>
 
 <NavbarControlledExample />
 
