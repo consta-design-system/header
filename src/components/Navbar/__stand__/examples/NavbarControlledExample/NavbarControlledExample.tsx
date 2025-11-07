@@ -1,8 +1,13 @@
+import './NavbarControlledExample.css';
+
 import { Example } from '@consta/stand';
 import { Button } from '@consta/uikit/Button';
 import React from 'react';
 
 import { Navbar } from '##/components/Navbar';
+import { cn } from '##/utils/bem';
+
+const cnNavbarControlledExample = cn('NavbarControlledExample');
 
 type MenuItem = {
   label: string;
@@ -12,11 +17,7 @@ type MenuItem = {
 const menu: MenuItem[] = [
   {
     label: 'Пункт 1',
-    subMenu: [
-      { label: 'Подпункт 1.1' },
-      { label: 'Подпункт 1.2' },
-      { label: 'Подпункт 1.3' },
-    ],
+    subMenu: [{ label: 'Подпункт 1.1' }, { label: 'Подпункт 1.2' }],
   },
   {
     label: 'Пункт 2',
@@ -54,35 +55,15 @@ export const NavbarControlledExample = () => {
 
   return (
     <Example col={1}>
-      <div
-        style={{
-          display: 'flex',
-          gap: '16px',
-          height: '400px',
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            border: '1px solid var(--color-bg-border)',
-            overflow: 'auto',
-          }}
-        >
+      <div className={cnNavbarControlledExample()}>
+        <div className={cnNavbarControlledExample('Navbar')}>
           <Navbar
             items={menu}
             getItemSubMenuOpen={getItemSubMenuOpen}
             onSubMenuToggle={onSubMenuToggle}
-            style={{ height: '100%' }}
           />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '8px',
-            minWidth: '120px',
-          }}
-        >
+        <div className={cnNavbarControlledExample('Controls')}>
           {menu.map((item) => (
             <Button
               key={item.label}
@@ -93,7 +74,6 @@ export const NavbarControlledExample = () => {
                   : `Открыть ${item.label}`
               }
               onClick={() => toggleMenu(item.label)}
-              width="full"
             />
           ))}
         </div>
