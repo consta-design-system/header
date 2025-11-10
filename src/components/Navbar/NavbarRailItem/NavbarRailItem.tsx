@@ -15,9 +15,9 @@ import {
   NavbarRailItemProps,
 } from '../types';
 
-const cnNavbarItem = cn('NavbarRailItem');
+export const cnNavbarItem = cn('NavbarRailItem');
 
-const spaceMap = {
+export const spaceMap = {
   m: { pV: 's', pH: 'm', mB: '2xs' },
   s: { pV: 'xs', pH: 'm', mB: '2xs' },
 } as const;

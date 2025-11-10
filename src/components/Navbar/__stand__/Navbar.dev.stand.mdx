@@ -1,4 +1,4 @@
-import { MdxMenu } from '@consta/stand';
+import { MdxMenu, MdxTabs } from '@consta/stand';
 
 import {
   NavbarDriverRightExample,
@@ -14,6 +14,7 @@ import {
 import { NavbarSizeExample } from './examples/NavbarSizeExample/NavbarSizeExample';
 import { NavbaFormExample } from './examples/NavbaFormExample/NavbaFormExample';
 import { NavbarOnClickExample } from './examples/NavbarOnClickExample/NavbarOnClickExample';
+import { NavbarControlledExample } from './examples/NavbarControlledExample/NavbarControlledExample';
 import {
   NavbarRailExample,
   NavbarRailTooltipExample,
@@ -31,7 +32,8 @@ import { Navbar } from '@consta/header/Navbar';
 - [Размер](#размер)
 - [Форма](#форма)
 - [Взаимодействие](#взаимодействие)
-- [Cвойства](#свойства-navbar)
+- [Управление состоянием подменю](#управление-состоянием-подменю)
+- [Свойства](#свойства-navbar)
 - [NavbarRail](#navbarrail)
   - [Содержимое](#содержимое-navbarrail)
   - [Cвойства](#свойства-navbarrail)
@@ -115,6 +117,111 @@ export const NavbarOnClickExample = () => (
 
 <NavbarOnClickExample />
 
+## Управление состоянием подменю
+
+Для управления состоянием подменю (открыто/закрыто) используйте связку getItemSubMenuOpen и onSubMenuToggle. Это позволяет контролировать открытие подменю через внешний стейт, включая задание начального состояния.
+
+<MdxTabs>
+
+```tsx
+type MenuItem = {
+  label: string;
+  subMenu?: MenuItem[];
+};
+
+const menu: MenuItem[] = [
+  {
+    label: 'Пункт 1',
+    subMenu: [{ label: 'Подпункт 1.1' }, { label: 'Подпункт 1.2' }],
+  },
+  {
+    label: 'Пункт 2',
+    subMenu: [{ label: 'Подпункт 2.1' }, { label: 'Подпункт 2.2' }],
+  },
+  {
+    label: 'Пункт 3',
+    subMenu: [{ label: 'Подпункт 3.1' }, { label: 'Подпункт 3.2' }],
+  },
+];
+
+export const NavbarControlledExample = () => {
+  const [openStates, setOpenStates] = React.useState<Record<string, boolean>>({
+    'Пункт 1': true,
+    'Пункт 2': false,
+    'Пункт 3': false,
+  });
+
+  const getItemSubMenuOpen = (item: MenuItem) =>
+    openStates[item.label] || false;
+
+  const onSubMenuToggle = (
+    item: MenuItem,
+    { open }: { open: boolean; e?: React.MouseEvent },
+  ) => {
+    setOpenStates((prev) => ({ ...prev, [item.label]: open }));
+  };
+
+  const toggleMenu = (menuLabel: string) => {
+    setOpenStates((prev) => ({
+      ...prev,
+      [menuLabel]: !prev[menuLabel],
+    }));
+  };
+
+  return (
+    <div className={cnNavbarControlledExample()}>
+      <div className={cnNavbarControlledExample('Navbar')}>
+        <Navbar
+          items={menu}
+          getItemSubMenuOpen={getItemSubMenuOpen}
+          onSubMenuToggle={onSubMenuToggle}
+        />
+      </div>
+      <div className={cnNavbarControlledExample('Controls')}>
+        {menu.map((item) => (
+          <Button
+            key={item.label}
+            size="s"
+            label={
+              openStates[item.label]
+                ? `Закрыть ${item.label}`
+                : `Открыть ${item.label}`
+            }
+            onClick={() => toggleMenu(item.label)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+```
+
+```css
+.che--NavbarControlledExample {
+  display: flex;
+  gap: var(--space-m);
+  height: 400px;
+}
+
+.che--NavbarControlledExample-Navbar {
+  flex: 1;
+  border: 1px solid var(--color-bg-border);
+  padding: var(--space-m);
+  overflow: auto;
+}
+
+.che--NavbarControlledExample-Controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 120px;
+}
+```
+
+</MdxTabs>
+
+<NavbarControlledExample />
+
 ## Свойства Navbar
 
 ```tsx
@@ -196,6 +303,13 @@ type NavbarPropGetItemStatus<ITEM> = (
 ) => BadgePropStatus | undefined;
 
 type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
+
+type NavbarPropGetItemSubMenuOpen<ITEM> = (item: ITEM) => boolean;
+
+type NavbarProponOnSubMenuToggle<ITEM> = (
+  item: ITEM,
+  params: { open: boolean; e?: React.MouseEvent },
+) => void;
 ```
 
 | Свойство                      | Тип                                           | По умолчанию                 | Описание                                                                     |
@@ -223,6 +337,8 @@ type NavbarPropGetItemSubMenu<ITEM> = (item: ITEM) => ITEM[] | undefined;
 | `getGroupAdditionalClassName` | `NavbarPropGetGroupAdditionalClassName`       | -                            | Функция для определения дополнительного класса группы                        |
 | `className?`                  | `string`                                      | -                            | Дополнительный CSS-класс для пунктов меню                                    |
 | `ref?`                        | `React.Ref<HTMLDivElement>`                   | -                            | Ссылка на корневой DOM-элемент                                               |
+| `getItemSubMenuOpen?`         | `NavbarPropGetItemSubMenuOpen<ITEM>`          | -                            | Функция для определения открыто ли подменю элемента                          |
+| `onSubMenuToggle?`            | `NavbarProponOnSubMenuToggle<ITEM>`           | -                            | Функция для обработки изменения состояния подменю элемента                   |
 
 ## NavbarRail
 

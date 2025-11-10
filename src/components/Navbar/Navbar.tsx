@@ -13,7 +13,7 @@ import {
   NavbarProps,
 } from './types';
 
-const cnNavbar = cnCanary('Navbar');
+export const cnNavbar = cnCanary('Navbar');
 
 const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
   const {
@@ -37,6 +37,8 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
     form = defaultNavbarPropForm,
     getItemSubMenu,
     getItemStatus,
+    getItemSubMenuOpen,
+    onSubMenuToggle,
     sortGroup,
     className,
     ...otherProps
@@ -81,6 +83,8 @@ const NavbarRender = (props: NavbarProps, ref: React.Ref<HTMLDivElement>) => {
                     getItemRightSide={getItemRightSide}
                     getItemSubMenu={getItemSubMenu}
                     getItemStatus={getItemStatus}
+                    getItemSubMenuOpen={getItemSubMenuOpen}
+                    onSubMenuToggle={onSubMenuToggle}
                     form={form}
                   />
                 </React.Fragment>

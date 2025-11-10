@@ -1,0 +1,19 @@
+.che--NavbarControlledExample {
+  display: flex;
+  gap: var(--space-m);
+  height: 400px;
+}
+
+.che--NavbarControlledExample-Navbar {
+  overflow: auto;
+  flex: 1;
+  padding: var(--space-m);
+  border: 1px solid var(--color-bg-border);
+}
+
+.che--NavbarControlledExample-Controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 120px;
+}
