@@ -1,5 +1,17 @@
 # Changelog
 
+## v3.1.0 (18/12/2025)
+Самое важное:
+- В `Navbar` добавили возможность управлять состоянием открытости подменю
+- В `Menu` добавили возможность указать к css-класс для подменю
+
+---
+
+- [feat(Menu): add prop subMenuClassName (#68)](https://github.com/consta-design-system/header/commit/87463c833d9b245f498c5f955a45d0226c37b1d7) - [@gizeasy](https://github.com/gizeasy)
+- [feat(Navbar): controlled subMenu (#67)](https://github.com/consta-design-system/header/commit/520b94b252b7b522c131965dae805f94aff0f44e) - [@ShavrinAleksei](https://github.com/ShavrinAleksei)
+
+--------------------
+
 ## v3.0.2 (11/06/2025)
 - [chore: update types (#66)](https://github.com/consta-design-system/header/commit/31c01877744ac5d1a5a23d866616577b674d8ec4) - [@gizeasy](https://github.com/gizeasy)
 - [docs: replace informers (#65)](https://github.com/consta-design-system/header/commit/57f817e0a0808e1760c73badf76ca57fc9405aad) - [@alyonurchick1](https://github.com/alyonurchick1)
