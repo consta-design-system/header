@@ -35,6 +35,7 @@ export type MenuProps<ITEM = MenuDefaultItem> = PropsWithHTMLAttributesAndRef<
     getItemActive?: MenuPropGetItemActive<ITEM>;
     getItemOnClick?: MenuPropGetItemOnClick<ITEM>;
     getItemSubMenu?: MenuPropGetItemSubMenu<ITEM>;
+    subMenuClassName?: string;
   },
   HTMLDivElement
 > &

@@ -177,15 +177,16 @@ const defaultGetItemSubMenu: MenuPropGetItemSubMenu<DefaultItem> = (item) =>
   item.subMenu;
 ```
 
-| Свойство                                            | Тип                         | По умолчанию            | Описание                                       |
-| --------------------------------------------------- | --------------------------- | ----------------------- | ---------------------------------------------- |
-| [`items`](#пункты-меню)                             | `ITEM[]`                    | -                       | Элементы меню                                  |
-| `onItemClick?`                                      | `MenuPropOnItemClick`       | -                       | Функция клика по элементу                      |
-| [`getItemTarget?`](#пример-меню-с-кастомным-типом)  | `MenuPropGetItemTarget`     | `defaultGetItemTarget`  | Функция для определения `target` элемента      |
-| [`getItemHref?`](#пример-меню-с-кастомным-типом)    | `MenuPropGetItemTarget`     | `defaultGetItemHref`    | Функция для определения `href` элемента        |
-| [`getItemLabel?`](#пример-меню-с-кастомным-типом)   | `MenuPropGetItemLabel`      | `defaultGetItemLabel`   | Функция для определения заголовка элемента     |
-| [`getItemActive?`](#пример-меню-с-кастомным-типом)  | `MenuPropGetItemActive`     | `defaultGetItemActive`  | Функция для определения активности элемента    |
-| [`getItemOnClick?`](#пример-меню-с-кастомным-типом) | `MenuPropGetItemOnClick`    | `defaultGetItemOnClick` | Функция для определения функции клика элемента |
-| [`getItemSubMenu?`](#пример-меню-с-кастомным-типом) | `MenuPropGetItemSubMenu`    | `defaultGetItemSubMenu` | Функция для определения подменю элемента       |
-| `className?`                                        | `string`                    | -                       | Дополнительный CSS-класс                       |
-| `ref?`                                              | `React.Ref<HTMLDivElement>` | -                       | Ссылка на корневой DOM-элемент                 |
+| Свойство                                            | Тип                         | По умолчанию            | Описание                                         |
+| --------------------------------------------------- | --------------------------- | ----------------------- | ------------------------------------------------ |
+| [`items`](#пункты-меню)                             | `ITEM[]`                    | -                       | Элементы меню                                    |
+| `onItemClick?`                                      | `MenuPropOnItemClick`       | -                       | Функция клика по элементу                        |
+| [`getItemTarget?`](#пример-меню-с-кастомным-типом)  | `MenuPropGetItemTarget`     | `defaultGetItemTarget`  | Функция для определения `target` элемента        |
+| [`getItemHref?`](#пример-меню-с-кастомным-типом)    | `MenuPropGetItemTarget`     | `defaultGetItemHref`    | Функция для определения `href` элемента          |
+| [`getItemLabel?`](#пример-меню-с-кастомным-типом)   | `MenuPropGetItemLabel`      | `defaultGetItemLabel`   | Функция для определения заголовка элемента       |
+| [`getItemActive?`](#пример-меню-с-кастомным-типом)  | `MenuPropGetItemActive`     | `defaultGetItemActive`  | Функция для определения активности элемента      |
+| [`getItemOnClick?`](#пример-меню-с-кастомным-типом) | `MenuPropGetItemOnClick`    | `defaultGetItemOnClick` | Функция для определения функции клика элемента   |
+| [`getItemSubMenu?`](#пример-меню-с-кастомным-типом) | `MenuPropGetItemSubMenu`    | `defaultGetItemSubMenu` | Функция для определения подменю элемента         |
+| `className?`                                        | `string`                    | -                       | Дополнительный CSS-класс                         |
+| `subMenuClassName?`                                 | `string`                    | -                       | Дополнительный CSS-класс для выпадающего подменю |
+| `ref?`                                              | `React.Ref<HTMLDivElement>` | -                       | Ссылка на корневой DOM-элемент                   |

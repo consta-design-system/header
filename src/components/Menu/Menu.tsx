@@ -37,6 +37,7 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
     getItemTarget,
     getItemSubMenu,
     onItemClick,
+    subMenuClassName,
     ...otherProps
   } = withDefaultGetters(props);
 
@@ -123,6 +124,9 @@ const MenuRender = (props: MenuProps, ref: React.Ref<HTMLDivElement>) => {
               </Tag>
               {subItems && <IconSelect size="s" className={cnMenu('Arrow')} />}
               <ContextMenu
+                className={cnMenu('SubMenu', { index: index.toString() }, [
+                  subMenuClassName,
+                ])}
                 isOpen={subItems && subItems.length > 0 && opened}
                 items={subItems || []}
                 getItemLabel={getItemLabel}
