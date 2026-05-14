@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.2.0 (14/05/2026)
+- [chore(deps): update date-fns](https://github.com/consta-design-system/header/commit/78b35a92af67e9606ce9c6740f3db14847934676) - [@gizeasy](https://github.com/gizeasy)
+
+--------------------
+
 ## v3.1.0 (18/12/2025)
 Самое важное:
 - В `Navbar` добавили возможность управлять состоянием открытости подменю
