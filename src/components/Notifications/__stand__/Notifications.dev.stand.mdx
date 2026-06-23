@@ -54,7 +54,6 @@ export const items: NotificationsDefaultItem[] = [
   {
     label: 'Иванов Иван Иванович',
     description: 'Добавил файлы в проект, план/факт по расчету предварительные',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
     read: false,
     badges: [
@@ -143,12 +142,10 @@ const itemsBasic: NotificationsListDefaultItem[] = [
   {
     label: 'Один человек',
     description: 'Принёс краску',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
     label: 'Другой человек',
     description: 'Покрасил забор',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
   },
 ];
 
@@ -194,12 +191,10 @@ const itemsBasic: NotificationsListDefaultItem[] = [
   {
     label: 'Один человек',
     description: 'Принёс краску',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
   },
   {
     label: 'Другой человек',
     description: 'Покрасил забор',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
   },
 ];
 
@@ -248,25 +243,21 @@ const itemsDate: NotificationsListDefaultItem[] = [
   {
     label: 'Первое уведомление',
     description: 'Привет, мир',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
   },
   {
     label: 'Второе уведомление',
     description: 'Пока-пока',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
     date: new Date(2021, 10, 12, 13, 57, 0),
   },
   {
     label: 'Третее уведомление',
     description: 'Пока-пока',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
     date: new Date(),
   },
   {
     label: 'Четвёртое уведомление',
     description: 'Пока-пока',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
     date: new Date(),
   },
 ];
@@ -313,25 +304,21 @@ const itemsGroups: NotificationsListDefaultItem[] = [
   {
     label: 'Первое уведомление',
     description: 'Привет, мир',
-    image: 'https://avatars.githubusercontent.com/u/13190808?v=4',
     group: 'important',
   },
   {
     label: 'Второе уведомление',
     description: 'Пока-пока',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
     group: 'not',
   },
   {
     label: 'Третее уведомление',
     description: 'Пока-пока',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
     group: 'not',
   },
   {
     label: 'Четвёртое уведомление',
     description: 'Пока-пока',
-    image: 'https://avatars.githubusercontent.com/u/12581569?s=40&v=4',
     group: 'important',
   },
 ];
@@ -514,12 +501,7 @@ const date = new Date(2021, 10, 12, 13, 57, 0);
 
 export const NotificationsItemExampleBasic = () => {
   return (
-    <NotificationsItem
-      title="Заголовок"
-      date={date}
-      description="Описание"
-      imageUrl="https://avatars.githubusercontent.com/u/12581569?s=40&v=4"
-    />
+    <NotificationsItem title="Заголовок" date={date} description="Описание" />
   );
 };
 ```
@@ -541,7 +523,6 @@ export const NotificationsItemExampleBadges = () => (
   <NotificationsItem
     title="Один человек"
     description="Принёс краску"
-    imageUrl="https://avatars.githubusercontent.com/u/13190808?v=4"
     badges={[
       {
         label: 'готов к работе',
@@ -606,7 +587,6 @@ export const NotificationsItemExampleAction = () => {
     <NotificationsItem
       title="Иванов Иван Иванович"
       description="Принёс краску"
-      imageUrl="https://avatars.githubusercontent.com/u/12581569?s=40&v=4"
       actions={[
         {
           label: 'Удалить',
